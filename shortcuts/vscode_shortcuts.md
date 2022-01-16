@@ -1,0 +1,8 @@
+- **Ctrl + Enter**: 执行文件
+- **Ctrl + W**: 关闭文件
+- **Ctrl + Tab**: 文件间切换
+- **Alt + S**: 分离出新窗口
+- **Ctrl + H**: 向左窗口切换
+- **Ctrl + L**: 向右窗口切换
+- **Ctrl + J**: 关闭Terminal
+- **Ctrl + Shift + J**: 新建Notebook

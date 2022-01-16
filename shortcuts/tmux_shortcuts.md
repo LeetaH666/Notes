@@ -1,0 +1,4 @@
+- **tmux new -s**：创建新的session
+- **tmux a -t + session**：attach到某个session
+- **Ctrl + B，D**：暂时关闭当前session
+- **exit**：永久关闭当前session
