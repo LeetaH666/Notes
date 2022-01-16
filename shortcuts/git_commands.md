@@ -1,0 +1,6 @@
+- **git init**: initiate a git repository
+- **git add + filepath**: add files into the buffer, can use '.' to represent all files in the current path
+- **git status**: check the status of the repository, e.g., if we just add some files, there will be some new files to be commited; after commit the changes, the result will be 'up to date'
+- **git commit -m + message**: commit message to the changes, e.g., 'add some new files'
+- **git remote add origin + url**: connect the local repository to the remote one
+- **git push -u origin master**: push the local repository to the remote one, '-u' means we can just type 'git push' to represent the whole command after this command
