@@ -13,3 +13,4 @@ Markdown notes.
   - Windows
   - tmux
   - git
+- *ggb* for ggb files saved from GeoGebra (some function plots)
