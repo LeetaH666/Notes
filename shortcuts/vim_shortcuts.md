@@ -1,3 +1,8 @@
+---
+puppeteer:
+    printBackground: true
+---
+
 ### NORMAL
 - **i**: 在光标前进入INSERT模式
 - **I**: 在行首进入INSERT模式
