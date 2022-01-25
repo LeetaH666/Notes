@@ -54,7 +54,7 @@ puppeteer:
 <div STYLE='page-break-after: always;'></div>
 
 ### CPT-value Estimation
-- **Convergence assumptions (eithor or) for weighting function $\bm{w}$**
+- **Convergence assumptions (eithor or) for probability weighting function $\bm{w}$**
   - Lipschitz continuous
   - $H \ddot{o} lder$ continuous
   ![](image/2022-01-22-16-37-40.png)
@@ -155,9 +155,9 @@ $$ where the param vector $\theta$ with dimension $d$ is contrained in a compact
   - CPT
     - Use CPT-value as reward.
   - EUT
-    - Use value function $u$ but do not use weighting function $w$.
+    - Use value function $u$ but do not use probability weighting function $w$.
   - AVG
-    - Use neither value function nor weighting function, i.e., just use the simple mean.
+    - Use neither value function nor probability weighting function, i.e., just use the simple mean.
   - Do 100 independent tests, calculate CPT-value of these 3 algos respectively.
 
 <br>
