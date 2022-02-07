@@ -14,4 +14,5 @@ Markdown notes.
   - Windows
   - tmux
   - git
+- *packages* for notes of python packages
 - *ggb* for ggb files saved from GeoGebra (some function plots)
