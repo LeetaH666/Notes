@@ -4,6 +4,7 @@
 - **Ctrl + 1**：光标移到第一屏（同理Ctrl+2即移到第二屏，以此类推）
 - **Ctrl + W**: 关闭文件
 - **Ctrl + Tab**: 文件间切换
+- **Ctrl + Shift + L**：选中相同单词（按F2批量修改）
 - **Ctrl + Shift + N**：打开新窗口
 - **Ctrl + Shift + W**: 关闭窗口
 - **Ctrl + Shift + P**: 打开命令面板

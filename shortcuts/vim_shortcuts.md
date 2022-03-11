@@ -70,7 +70,6 @@ puppeteer:
 - **r + 字符**：替换光标选中的字符为指定字符
 - **v**: 进入VIEW模式
 - **Ctrl + V**: 进入VIEW-BLOCK模式
-- **Ctrl + shift + L**: 批量修改变量（进入MULTICURSOR模式）
 
 ---
 - **" + 寄存器**：访问寄存器（a~z），后面可以加复制、删除或粘贴命令
