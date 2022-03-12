@@ -118,7 +118,7 @@ The target is not to use mean and variance estimations to get a optimized weight
 - There exist more than one optimized portfolio, which means there should be multiple global maxima. We can clear the market by allocating investors to different optimized portfolios.
 - Since $\mu$ is a $N$-dimensional vector for $N$ assets, if we consider $100$ candidate values for each component of $\mu$, there will be $100^{N}$ combinations. It is computaionally infeasible to meet this equilibrium.
 
-### Bounded rationality with heterogeneous holdings**
+### Bounded rationality with heterogeneous holdings
 - To overcome the difficulties described above, authors introduce a method: ==hold other assets' weight as the market weight while optimizing some asset.==
 - Actually, the solution cannot be the best using this method, but it do simplify the problem.
 - After optimization using this method, results show that there may be one unique solution or two global maxima for each asset. If there are two global maxima, one would be higher than the market weight while the other is slightly lower than the market weight.

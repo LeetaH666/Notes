@@ -1,12 +1,12 @@
-# Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control
+# Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control {ignore}
 
-### Author
+### Author {ignore}
 Prashanth L.A. et al.
 
-### Publication
+### Publication {ignore}
 ICML 2016
 
-### Related Work
+### Related Work {ignore}
   - Reinforcement Learning With Function Approximation for Traffic Signal Control (Prashanth L. A. & Shalabh Bhatnagar, 2011)
   - Threshold Tuning Using Stochastic Optimization for Graded Signal Control (Prashanth L. A. & Shalabh Bhatnagar, 2012)
 
