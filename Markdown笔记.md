@@ -1,7 +1,11 @@
+---
+html:
+    toc: true
+---
+
 # Markdown 笔记 {ignore}
 
 ### 目录
-`Ctrl + Shift + P` 打开功能搜索，输入`toc`可以看到`Markdown Preview Enhanced: Create TOC`，回车并`Ctrl + S`保存即可。在标题后加`{ignore}`即可忽略该标题不放入目录。
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
@@ -9,7 +13,7 @@
 
 - [Markdown 笔记 {ignore}](#markdown-笔记-ignore)
     - [目录](#目录)
-    - [打印分页](#打印分页)
+    - [打印分页 {ignore}](#打印分页-ignore)
     - [语言规则](#语言规则)
     - [结构体](#结构体)
       - [列表](#列表)
@@ -39,11 +43,14 @@
     - [其他常用HTML语言](#其他常用html语言)
       - [空行](#空行)
       - [占位符](#占位符)
+    - [输出文件](#输出文件)
+      - [HTML（推荐）](#html推荐)
+      - [PDF](#pdf)
 
 <!-- /code_chunk_output -->
 
 
-### 打印分页
+### 打印分页 {ignore}
     <div STYLE='page-break-after: always;'></div>
 或者
 输入pagebreak并`Ctrl + /`注释，可以达到同样的效果。
@@ -312,3 +319,21 @@ $$
     </details>
     
     > pdf 不适用。
+
+### 输出文件
+
+#### HTML（推荐）
+在`Preview`中右键选择`HTML`中的`HTML (cdn hosted)`。
+
+#### PDF
+在`Preview`中右键选择`Chrome (Puppeteer)`中的`PDF`。
+`Puppeteer`默认`printBackground`的属性是`false`，即在`Preview`中设置的主题并不会打印出来，如果想要打印主题，可以`Ctrl + Shift + P`输入`setting json`选择`Prefrences: Open Settings (JSON)`，在里面加入`"markdown-preview-enhanced.printBackground": true`的设置。
+如果设置的主题是除白色以外的其他颜色，打印出来的 PDF 四周会有空白，一种解决办法是`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在其中加入如下代码：
+```less
+@media print {
+    @page {
+        margin: 0;
+    }
+}
+```
+但是出来的效果有点丑。欢迎使用HTML:grin:！
