@@ -1,13 +1,7 @@
----
-html:
-    toc: true
----
-
 # Markdown Preview Enhanced (MPE) {ignore}
 
 ### 目录
 `Ctrl + Shift + P`打开功能搜索，输入`toc`可以看到`Markdown Preview Enhanced: Create TOC`，回车并`Ctrl + S`保存即可。在标题后加`{ignore}`即可忽略该标题不放入目录。
-
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
