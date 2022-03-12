@@ -17,72 +17,9 @@
       coverpage: true, 
       loadNavbar: true,
       loadSiderbar: true,
-      subMaxLevel: 3,
-
-      // Full text search - Search path
-      search: [
-        '/markdown_guide'
-      ],
-
-      // Dark mode - Toggle color
-      darkMode: {
-        light: {
-          background: "white",
-          toggleBtnBg: "#42b983",
-          textColor: "var(--theme-color)"
-        }
-      },
-      
-      // Tweet emoji
-      plugins: [
-        function (hook, vm) {
-          // parse twemoji
-          hook.doneEach(function() {
-              twemoji.parse(document);
-          });
-        },
-      ],
-
-      // Highlight
-      plugins: [
-        function(hook, vm) {
-          hook.beforeEach(function (html) {
-              // 适配MPE的====高亮语法
-              let res = html.match(/==(.+?)==/g);
-              for (var i = 0; i < res.length; i++) {
-                html = html.replace(res[i],`<span class="mark">`+res[i].replace(/==/g,"")+`</span>`);
-              }
-              //将更新时间加到文档的最顶部
-              return '> Last Modified {docsify-updated}'
-                    + '\n----\n'
-                    + html;
-          })
-        }
-      ],
-
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-
-  <!-- katex -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
-
-  <!-- Full text search -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-
-  <!-- Flexible alerts -->
-  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
-
-  <!-- Dark mode -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"/>
-
-  <!-- Tweet emoji -->
-  <script src="//cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
-
-  <!-- Pangu (add spaces for different languages) -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
 </body>
 </html>
