@@ -3,15 +3,17 @@ html:
     toc: true
 ---
 
-# Markdown 笔记 {ignore}
+# Markdown Preview Enhanced (MPE) {ignore}
 
 ### 目录
+`Ctrl + Shift + P`打开功能搜索，输入`toc`可以看到`Markdown Preview Enhanced: Create TOC`，回车并`Ctrl + S`保存即可。在标题后加`{ignore}`即可忽略该标题不放入目录。
+
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Markdown 笔记 {ignore}](#markdown-笔记-ignore)
+- [Markdown Preview Enhanced (MPE) {ignore}](#markdown-preview-enhanced-mpe-ignore)
     - [目录](#目录)
     - [打印分页 {ignore}](#打印分页-ignore)
     - [语言规则](#语言规则)
@@ -49,6 +51,9 @@ html:
 
 <!-- /code_chunk_output -->
 
+!!! note 注意
+    *[TOC]: Table of Contents
+    当需要输出为 HTML 文件时，`{ignore}`对主体的 TOC 失效，即仍会显示被忽略的标题，但对侧边栏依旧生效。
 
 ### 打印分页 {ignore}
     <div STYLE='page-break-after: always;'></div>
@@ -324,6 +329,15 @@ $$
 
 #### HTML（推荐）
 在`Preview`中右键选择`HTML`中的`HTML (cdn hosted)`。
+
+- **侧边栏设置**
+    输出 HTML 时默认侧边栏收缩，如果需要默认展开，则可以在 md 文件顶端输入如下 yaml 语言：
+        
+        ---
+        html:
+            toc: true
+        ---
+    如果不需要侧边栏，则为`false`。默认是`undefined`。
 
 #### PDF
 在`Preview`中右键选择`Chrome (Puppeteer)`中的`PDF`。
