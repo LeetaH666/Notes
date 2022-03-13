@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Levi's Notes</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- Katex -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+
+  <!-- Dark mode -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"/>
+
+</head>
+<body>
+  <div id="app">Please wait...</div>
+  <script>
+    window.$docsify = {
+      name: '',
+      coverpage: true,
+      loadNavbar: true,
+      subMaxLevel: 3,
+
+      // Flexible alerts
+      'flexible-alerts': {
+            style: 'flat'
+      },
+
+      // Dark mode
+      darkMode: {
+        dark: {
+            background: "#1c2022",
+            toggleBtnBg: "#34495e",
+            textColor: "#b4b4b4"
+          },
+          light: {
+            background: "white",
+            toggleBtnBg: "#42b983",
+            textColor: "var(--theme-color)"
+          }
+      },
+
+      // Twitter emoji
+      plugins: [
+        function (hook, vm) {
+          // parse twemoji
+          hook.doneEach(function() {
+              twemoji.parse(document);
+          });
+        },
+      ],
+
+      // Corner
+      repo:'true', // set the docsify show the corner
+      corner: {
+        // the icon link url to another site  
+        url: "https://github.com/LeetaH666/Notes", 
+        // the default preset icon in docsify-corner  
+        icon: "github", 
+      },
+
+      // Progress
+      progress: {
+        position: "top",
+        color: "var(--theme-color, #42b983)",
+        height: "3px",
+      },
+
+      // Updated time
+      timeUpdater: {
+        text: ">Last update time: {docsify-updated}",
+        formatUpdated: "{YYYY}/{MM}/{DD} {HH}:{mm}",
+      },
+
+      //Full text search
+      search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: 'auto', // or 'auto'
+        placeholder: 'Type to search',
+      
+        noData: 'No Results!',
+      
+        // Headline depth, 1 - 6
+        depth: 6,
+      
+        hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+      },
+    }
+
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- Katex -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+
+  <!-- Flexible alerts -->
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
+
+  <!-- Dark mode -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/index.min.js"></script>
+
+  <!-- Twitter emoji -->
+  <script src="//cdn.jsdelivr.net/gh/TaQini/docsify-twemoji@master/twemoji.min.js"></script>
+
+  <!-- Corner -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.js"></script>
+
+  <!-- Progress -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+
+  <!-- Updated time -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-updated@1/src/time-updater.min.js"></script>
+
+  <!-- Full text search -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+  <!-- Zoom image -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+
+</body>
+</html>

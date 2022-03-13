@@ -1,12 +1,12 @@
-# Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control {ignore}
+# Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control
 
-### Author {ignore}
+### Author <!-- {docsify-ignore} -->
 Prashanth L.A. et al.
 
-### Publication {ignore}
+### Publication <!-- {docsify-ignore} -->
 ICML 2016
 
-### Related Work {ignore}
+### Related Work <!-- {docsify-ignore} -->
   - Reinforcement Learning With Function Approximation for Traffic Signal Control (Prashanth L. A. & Shalabh Bhatnagar, 2011)
   - Threshold Tuning Using Stochastic Optimization for Graded Signal Control (Prashanth L. A. & Shalabh Bhatnagar, 2012)
 
@@ -22,7 +22,7 @@ ICML 2016
 - Agent controls a system to produce returns that are maximally aligned with the preferences of one or possibly multiple humans.
 - Preferences of rational agents facing decisions with stochastic outcomes can be modeled using expected utilities.
 - Here the authors use CPT to model the stochastic outcomes.
-![](image/2022-01-16-21-23-16.png)
+  ![](image/2022-01-16-21-23-16.png)
 
 <!-- pagebreak -->
 
@@ -46,7 +46,7 @@ Traffic lights.
 Feasible combinations of red and green.
 
 ### Reward
-CPT-value of ==differential delay== $X$ (because CPT needs gains and losses), i.e., $C(X)=\sum\limits_{i=1}^{M} \mu_i C(X_i)$ where $X_i$ is the differential delay (calculated by the elapsed time minus a baseline which is the elapsed time of a fixed-time signal control) of $i$-th path, $\mu_i$ is the proportion of road users on the $i$-th path and $M$ is the num of paths.
+CPT-value of <mark>differential delay</mark> $X$ (because CPT needs gains and losses), i.e., $C(X)=\sum\limits_{i=1}^{M} \mu_i C(X_i)$ where $X_i$ is the differential delay (calculated by the elapsed time minus a baseline which is the elapsed time of a fixed-time signal control) of $i$-th path, $\mu_i$ is the proportion of road users on the $i$-th path and $M$ is the num of paths.
 
 <!-- pagebreak -->
 
@@ -60,9 +60,9 @@ CPT-value of ==differential delay== $X$ (because CPT needs gains and losses), i.
 - Locally Lipschitz
 
 ### Estimation scheme under each of the assumptions
-- Under $H \ddot{o} lder$ continuity, the CPT-value can be estimatied by the ==discrete== version.
+- Under $H \ddot{o} lder$ continuity, the CPT-value can be estimatied by the <mark>discrete</mark> version.
 ![](image/2022-01-22-16-48-10.png)
-  - ==Algo==: 
+  - <mark>Algo</mark>: 
 <br>![](image/2022-01-22-16-45-07.png)
 - Under Locally Lipschitz
   - Omitted
@@ -78,7 +78,7 @@ $$ where the param vector $\theta$ with dimension $d$ is contrained in a compact
 
 ### Gradient Estimation
 - It is hard to get the gradient of $C(X^{\theta})$, especially in high-dimension cases.
-- ==SPSA== (Simultaneous Perturbation Stochastic Approximation)
+- <mark>SPSA</mark> (Simultaneous Perturbation Stochastic Approximation)
   - A method to solve the problem above.
   - Use stochastic perturbation to get 2 sample values and approximate the gradient. The idea is similar to $\frac{\mathrm{d}f(x)}{\mathrm{d}x} \approx \frac{f(x+\varepsilon)-f(x-\varepsilon)}{2 \varepsilon}$ where $ \varepsilon$ is a number close to $0$.
   - At the $n$-th iteration, the gradient is estimated by 
@@ -93,23 +93,9 @@ $$
 $$ where $\Gamma_i$ is the clip operater to constrain $\theta$ in $\Theta$ and $\gamma_n$ is the learning rate (also called the step size).
 - Convergence Condition
   - To guarantee that we can obtain the solution after several iterations, we need 
-  $$
-  \begin{cases}
-    \gamma_n,\ \delta_n \to 0 \\
-    \frac{1}{m_n^{\frac{\alpha}{2}}\delta_n} \to 0 \\
-    \sum\limits_{n} \gamma_n \to \infty \\
-    \sum\limits_{n} \frac{\gamma_n^{2}}{\delta_n^{2}} < \infty
-  \end{cases} \stackrel{\text{simple choice}}\implies
-  \begin{cases}
-    \gamma_n = \frac{\gamma_0}{n} \\
-    m_n = m_0 n^{\nu} \\
-    \delta_n = \frac{\delta_0}{n^{\gamma}}
-  \end{cases} \text{for}
-  \begin{cases}
-    \nu,\ \gamma > 0 \\
-    \gamma > \frac{\nu \alpha}{2}
-  \end{cases}
-  $$ where $\alpha$ is the $H \ddot{o}lder$ order (we choose $\alpha=1$ for Lipschitz continuity).
+    $$
+    \begin{cases}\gamma_n,\ \delta_n \to 0 \\ \frac{1}{m_n^{\frac{\alpha}{2}}\delta_n} \to 0 \\ \sum\limits_{n} \gamma_n \to \infty \\ \sum\limits_{n} \frac{\gamma_n^{2}}{\delta_n^{2}} < \infty \end{cases} \overset{\text{simple choice}} \to \begin{cases}\gamma_n = \frac{\gamma_0}{n} \\ m_n = m_0 n^{\nu} \\ \delta_n = \frac{\delta_0}{n^{\gamma}} \end{cases} \text{for} \begin{cases}\nu,\ \gamma > 0 \\ \gamma > \frac{\nu \alpha}{2} \end{cases}
+    $$ where $\alpha$ is the $H \ddot{o}lder$ order (we choose $\alpha=1$ for Lipschitz continuity).
 
 ### Gradient Ascent Algo
 ![](image/2022-01-22-23-43-24.png)

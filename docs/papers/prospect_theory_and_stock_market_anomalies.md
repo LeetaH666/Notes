@@ -1,9 +1,9 @@
-# Prospect Theory and Stock Market Anomalies {ignore}
+# Prospect Theory and Stock Market Anomalies
 
-### Author {ignore}
+### Author <!-- {docsify-ignore} -->
 Nicholas Barberis et al.
 
-### Publication {ignore}
+### Publication <!-- {docsify-ignore} -->
 JF 2021
 
 <!-- pagebreak -->
@@ -27,12 +27,12 @@ JF 2021
 
 ### Statistics of Anomaly Deciles
 ![](image/2022-01-24-04-45-43.png)
-- We can see the phenomenon in all anomalies except NOA: ==if decile 1 has a higher standard deviation than decile 10, then it also has a higher skewness and more negative gain overhang, and vice versa.==
-- This means ==there exist counteracting forces== since investors require higher average return if there is higher standard deviation while they require lower average return if there is higher skewness and more negative gain overhang.
+- We can see the phenomenon in all anomalies except NOA: <mark>if decile 1 has a higher standard deviation than decile 10, then it also has a higher skewness and more negative gain overhang, and vice versa.</mark>
+- This means <mark>there exist counteracting forces</mark> since investors require higher average return if there is higher standard deviation while they require lower average return if there is higher skewness and more negative gain overhang.
 - Thus, we need a quantitive model to determine which force dominates.
 
 ### Cumulative Prospect Theory (CPT)
-- ==Value Function==
+- <mark>Value Function</mark>
 $$
 v(x) = \begin{cases}
   x^{\alpha} &,\ x\geqslant 0\\
@@ -42,7 +42,7 @@ $$ where $\alpha \in (0,\ 1)$ and $\lambda>1$.
 ![](image/val_func.png)
   - The value function models the concave utility over gains and convex utility over losses of investors by setting $\alpha$.
   - The value function considers the phenomenon that investors are more sensitive to losses by setting $\lambda$.
-- ==Probability Weighting Function==
+- <mark>Probability Weighting Function</mark>
 $$
 w(P) = \frac{P^{\delta}}{(P^{\delta}+(1-P)^{\delta})^{\frac{1}{\delta}}}
 $$ where $\delta \in (0,\ 1)$.
@@ -56,11 +56,8 @@ $$ where $\delta \in (0,\ 1)$.
   - Similar to the traditional (discrete) expected utility framework, i.e. $\sum\limits_{i=-m}^{n} P_{i}U(W+x_i)$ where $U$ is the utility function and $W$ is the current wealth, the discrete CPT is 
   $$
   \sum\limits_{i=-m}^{n} \pi_i v(x_i)
-  $$where $\pi_i=\begin{cases}
-    w(p_i+\cdots+p_n)-w(p_{i+1}+\cdots+p_n) &,\ 0\leqslant i\leqslant n \\
-    w(p_{-m}+\cdots+p_i)-w(p_{-m}+\cdots+p_{i-1}) &,\ -m\leqslant i <0 \\
-  \end{cases}$is the pmf-like function.
-- ==Continuous Form==
+  $$where $\pi_i=\begin{cases}w(p_i+\cdots+p_n)-w(p_{i+1}+\cdots+p_n) &,\ 0\leqslant i\leqslant n \\ w(p_{-m}+\cdots+p_i)-w(p_{-m}+\cdots+p_{i-1}) &,\ -m\leqslant i <0 \\ \end{cases}$ is the pmf-like function.
+- <mark>Continuous Form</mark>
   - Similar to the traditional (continuous) expected utility framework, i.e., $\int_{\Omega} U(W+x)\ \mathrm{d}P$ where $\Omega$ is a set of probabilities that has one-to-one correspondence with payoffs, the continuous CPT is 
   $$
   \int_{\Omega^{'}} v(x)\ \mathrm{d} w(P)
@@ -76,10 +73,10 @@ $$ where $\delta \in (0,\ 1)$.
 
 ### Model Assumptions
 - Consider 3 time states: -1, 0 and 1 that represent past, now and future respectively.
-- For simplicity, ==assume all investors hold the market portfolio at time -1, and thus they would have the same prior gain or loss in each asset.==
+- For simplicity, <mark>assume all investors hold the market portfolio at time -1, and thus they would have the same prior gain or loss in each asset.</mark>
 - Also for simplicity, assume that the total wealth does not change from time -1 to 0.
   - It can be set as the change with average market return, which has little impact on the results.
-- ==Assume narrow framing==.
+- <mark>Assume narrow framing</mark>.
 - Assume investors derive utility from paper gains and losses rather than from realized gains and losses, i.e., investors do not derive utility from selling at a gain at time 0, instead, they derive utility from accumulated gain at time 1.
 
 ### Optimization Objective
@@ -87,25 +84,25 @@ $$
   \max_\Theta \quad \mathrm{E}(\widetilde{W}_1) - \frac{\gamma}{2} \mathrm{Var}(\widetilde{W}_{1}) + b \sum\limits_{i=1}^{N} V(\widetilde{G}_{i})\\
 $$where $\Theta$ is the weight vector for the portfolio, $\widetilde{W}_{1} = W_0 ((1-\Theta^{\mathsf{T}}e)R_f + \Theta^{\mathsf{T}}\widetilde{R})$ is the future wealth ($W_0$ is the current wealth, $e=\begin{bmatrix} 1,\ \cdots,\ 1 \end{bmatrix}^{\mathsf{T}}$, $R_f$ is the gross risk-free rate and $\widetilde{R}$ is the gross return of risky assets), $\gamma$ is the risk aversion coefficient, $b$ is the importance coefficient of CPT, $N$ is the num of assets, $V(\cdot)$ is the continuous CPT value and $\widetilde{G}_i = W_{-1}\Theta_{i,\ -1}g_i + W_0\Theta_i(\widetilde{R}_{i}-R_f)$ is the simple addition of prior and future gains or losses ($W_{-1}$ is the past wealth, $\Theta_{i,\ -1}$ is the past weight and $g_i$ is the prior gain or loss).
 - Expansion of $V(\widetilde{G}_i)$ for $\Theta_i>0$ (the case for $\Theta_i<0$ is similar): 
-$$
--\lambda W_0^{\alpha} \int_{\Omega_1} \left( \Theta_i\left( R_f-R_i \right)-\Theta_{i,\ -1}g_i  \right)^{\alpha} \mathrm{d} w(P(R_i)) \\ - W_0^{\alpha} \int_{\Omega_2} \left( \Theta_i\left( R_i-R_f \right)+\Theta_{i,\ -1}g_i  \right)^{\alpha} \mathrm{d} w(1-P(R_i))
-$$where $\Omega_1$ is a set of weights that has one-to-one correspondence with losses, i.e. $R_i \in (-\infty,\ R_f-\frac{\Theta_{i,\ -1}}{\Theta_i})$ and $\Omega_2$ is a set of weights that has one-to-one correspondence with gains, i.e. $R_i \in (\ R_f-\frac{\Theta_{i,\ -1}}{\Theta_i},\ \infty)$.
+  $$
+  \lambda W_0^{\alpha} \int_{\Omega_1} \left( \Theta_i\left( R_f-R_i \right)-\Theta_{i,\ -1}g_i  \right)^{\alpha} \mathrm{d} w(P(R_i)) \\ - W_0^{\alpha} \int_{\Omega_2} \left( \Theta_i\left( R_i-R_f \right)+\Theta_{i,\ -1}g_i  \right)^{\alpha} \mathrm{d} w(1-P(R_i))
+  $$where $\Omega_1$ is a set of weights that has one-to-one correspondence with losses, i.e. $R_i \in (-\infty,\ R_f-\frac{\Theta_{i,\ -1}}{\Theta_i})$ and $\Omega_2$ is a set of weights that has one-to-one correspondence with gains, i.e. $R_i \in (\ R_f-\frac{\Theta_{i,\ -1}}{\Theta_i},\ \infty)$.
 - Return Distribution
   - One-dimensional GH skewed $t$ distribution for each asset $i$ to model the skewness and fat tails
   - pdf
   ![](image/2022-01-24-03-57-23.png)
-  - ==Params==
+  - <mark>Params</mark>
     - $\mu$ helps determine the mean of returns
     - $S$ helps determine the variance
     - $\xi$ helps determine the skewness
     - $\nu$ helps determine the heaviness of tails
-  - ==Moments==
+  - <mark>Moments</mark>
   ![](image/2022-01-24-03-59-30.png)
 - Expansion of the whole objective (scaled): 
 ![](image/2022-01-24-05-53-28.png)
 
 ### Target
-The target is not to use mean and variance estimations to get a optimized weight vector. Instead, ==estimate the needed params by some infomation and the final target is to get $\mu$ under an equilibrium condition, i.e., we try to find a $\mu$ that let the optimized weight vector equal the market portfolio.==
+The target is not to use mean and variance estimations to get a optimized weight vector. Instead, <mark>estimate the needed params by some infomation and the final target is to get $\mu$ under an equilibrium condition, i.e., we try to find a $\mu$ that let the optimized weight vector equal the market portfolio.</mark>
 
 <!-- pagebreak -->
 
@@ -119,7 +116,7 @@ The target is not to use mean and variance estimations to get a optimized weight
 - Since $\mu$ is a $N$-dimensional vector for $N$ assets, if we consider $100$ candidate values for each component of $\mu$, there will be $100^{N}$ combinations. It is computaionally infeasible to meet this equilibrium.
 
 ### Bounded rationality with heterogeneous holdings
-- To overcome the difficulties described above, authors introduce a method: ==hold other assets' weight as the market weight while optimizing some asset.==
+- To overcome the difficulties described above, authors introduce a method: <mark>hold other assets' weight as the market weight while optimizing some asset.</mark>
 - Actually, the solution cannot be the best using this method, but it do simplify the problem.
 - After optimization using this method, results show that there may be one unique solution or two global maxima for each asset. If there are two global maxima, one would be higher than the market weight while the other is slightly lower than the market weight.
 
@@ -167,14 +164,14 @@ The target is not to use mean and variance estimations to get a optimized weight
 ### Results
 - $\alpha$ spread
 ![](image/2022-01-24-06-18-47.png)
-  - ==14 anomalies above the blue lines are predicted well, 2 anomalies between the blue lines are predicted in the right direction but the predictions are not strong, while the model performs poorly for 7 anomalies below the blue lines.==
+  - <mark>14 anomalies above the blue lines are predicted well, 2 anomalies between the blue lines are predicted in the right direction but the predictions are not strong, while the model performs poorly for 7 anomalies below the blue lines.</mark>
   - For 5 of the 7 anomalies that are predicted poorly (VAL, INV, LTREV, ACC and AG), a large fraction of their return comes around earnings announcement dates, which means these anomalies are driven incorrect beliefs instead of prospect theory risk attitudes. Thus, anomalies can be categorized into 2 classes: preference-based and belief-based.
 
 - Decile $\alpha$'s
 ![](image/2022-01-24-06-25-08.png)
 where the blue solid lines are model $\alpha$'s and the red dot lines are data $\alpha$'s.
-  - ==The model $\alpha$ can approximately track the data $\alpha$.==
-  - Combined with the anomalies' statistics in *Introduction*, we can find that ==the force of skewness and the force of gain overhang dominate.==
+  - <mark>The model $\alpha$ can approximately track the data $\alpha$.</mark>
+  - Combined with the anomalies' statistics in *Introduction*, we can find that <mark>the force of skewness and the force of gain overhang dominate.</mark>
 
 ### Performance Comparation
 - Average Absolute Pricing Error
@@ -183,8 +180,8 @@ $$
 $$where $\overline{R}(l)$ is the average return of the stocks in anomaly decile $l$.
 - Comparation
 ![](image/2022-01-24-06-41-48.png)
-  - ==This model is similar to the four-factor model and better than CAPM as well as the three-factor model. The six-factor model is the best.==
-  - Although the comparation seems to imply that the CPT model is not that good, we should notice that ==factor models are developed in full knowledge of multiple anomalies while the CPT model are not.==
+  - <mark>This model is similar to the four-factor model and better than CAPM as well as the three-factor model. The six-factor model is the best.</mark>
+  - Although the comparation seems to imply that the CPT model is not that good, we should notice that <mark>factor models are developed in full knowledge of multiple anomalies while the CPT model are not.</mark>
 
 <!-- pagebreak -->
 

@@ -1,0 +1,731 @@
+<!DOCTYPE html><html><head>
+      <title>mpe_guide</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      @import url("https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600");
+*{-webkit-font-smoothing:antialiased;-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:none;-webkit-touch-callout:none;box-sizing:border-box}.markdown-preview code{border-radius:2px;color:#e96900;font-size:12.8px;font-size:.8rem;margin:0 2px;padding:3px 5px;white-space:pre-wrap}.markdown-preview code,.markdown-preview pre{background-color:#f8f8f8;font-family:Roboto Mono,Monaco,courier,monospace}.markdown-preview pre{-moz-osx-font-smoothing:initial;-webkit-font-smoothing:initial;line-height:24px;line-height:1.5rem;margin:1.2em 0;overflow:auto;padding:0 22.4px;padding:0 1.4rem;position:relative;word-wrap:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8e908c}.token.namespace{opacity:.7}.token.boolean,.token.number{color:#c76b29}.token.punctuation{color:#525252}.token.property{color:#c08b30}.token.tag{color:#2973b7}.token.string{color:#42b983;color:var(--theme-color, #42b983)}.token.selector{color:#6679cc}.token.attr-name{color:#2973b7}.language-css .token.string,.style .token.string,.token.entity,.token.url{color:#22a2c9}.token.attr-value,.token.control,.token.directive,.token.unit{color:#42b983;color:var(--theme-color, #42b983)}.token.keyword{color:#e96900}.token.atrule,.token.regex,.token.statement{color:#22a2c9}.token.placeholder,.token.variable{color:#3d8fd1}.token.deleted{text-decoration:line-through}.token.inserted{border-bottom:1px dotted #202746;text-decoration:none}.token.italic{font-style:italic}.token.bold,.token.important{font-weight:700}.token.important{color:#c94922}.token.entity{cursor:help}.markdown-preview pre>code,.markdown-preview pre[class*="language"]{-moz-osx-font-smoothing:initial;-webkit-font-smoothing:initial;background-color:#f8f8f8;border-radius:2px;color:#525252;display:block;font-family:Roboto Mono,Monaco,courier,monospace;font-size:12.8px;font-size:.8rem;line-height:2em;max-width:inherit;overflow:inherit;padding:.8em 1.4em;white-space:pre}.markdown-preview pre>code{padding-left:0;padding-right:0}.markdown-preview code:after,.markdown-preview code:before{letter-spacing:.8px;letter-spacing:.05rem}code .token{-moz-osx-font-smoothing:initial;-webkit-font-smoothing:initial;min-height:24px;min-height:1.5rem}pre:after{color:#ccc;content:attr(data-lang);font-size:9.6px;font-size:.6rem;font-weight:600;height:15px;line-height:15px;padding:5px 10px 0;position:absolute;right:0;text-align:right;top:0}pre[data-line]{position:relative;padding:1em 0 1em 3em !important}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:rgba(153,122,102,0.08);background:linear-gradient(to right, rgba(153,122,102,0.1) 70%, rgba(153,122,102,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:rgba(153,122,102,0.4);color:#f5f2f0;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px white}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}@font-face{font-family:'Roboto Mono';font-style:normal;font-weight:400;src:local('Roboto Mono'),local('RobotoMono-Regular'),url(https://fonts.gstatic.com/s/robotomono/v7/L0x5DF4xlVMF-BfR8bXMIjhLq3o.ttf) format('truetype')}@font-face{font-family:'Source Sans Pro';font-style:normal;font-weight:300;src:local('Source Sans Pro Light'),local('SourceSansPro-Light'),url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype')}@font-face{font-family:'Source Sans Pro';font-style:normal;font-weight:400;src:local('Source Sans Pro Regular'),local('SourceSansPro-Regular'),url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7g.ttf) format('truetype')}@font-face{font-family:'Source Sans Pro';font-style:normal;font-weight:600;src:local('Source Sans Pro SemiBold'),local('SourceSansPro-SemiBold'),url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdr.ttf) format('truetype')}*{-webkit-font-smoothing:antialiased;-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:none;-webkit-touch-callout:none;box-sizing:border-box}body:not(.ready){overflow:hidden}body:not(.ready) .app-nav,body:not(.ready)>nav,body:not(.ready) [data-cloak]{display:none}div#app{font-size:30px;font-weight:lighter;margin:40vh auto;text-align:center}div#app:empty:before{content:"Loading..."}.emoji{height:19.2px;height:1.2rem;vertical-align:middle}.progress{background-color:#42b983;background-color:var(--theme-color, #42b983);height:2px;left:0;position:fixed;right:0;top:0;transition:width .2s,opacity .4s;width:0;z-index:5}.search .search-keyword,.search a:hover{color:#42b983;color:var(--theme-color, #42b983)}.search .search-keyword{font-style:normal;font-weight:700}body,html{height:100%}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;color:#34495e;font-family:Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:15px;letter-spacing:0;margin:0;overflow-x:hidden}img{max-width:100%}a[disabled]{cursor:not-allowed;opacity:.6}kbd{color:#34495e;border:1px solid #ccc;border-radius:3px;display:inline-block;font-size:12px !important;line-height:12px;margin-bottom:3px;padding:3px 5px;vertical-align:middle}.task-list-item{list-style-type:none}li input[type=checkbox]{margin:0 .2em .25em -1.6em;vertical-align:middle}.app-nav{left:0;margin:25px 60px 0 0;position:absolute;right:0;text-align:right;z-index:2}.app-nav p{margin:0}.app-nav>a{margin:0 16px;margin:0 1rem;padding:5px 0}.app-nav li,.app-nav ul{display:inline-block;list-style:none;margin:0}.app-nav a{color:inherit;font-size:16px;text-decoration:none;transition:color .3s}.app-nav a.active,.app-nav a:hover{color:#42b983;color:var(--theme-color, #42b983)}.app-nav a.active{border-bottom:2px solid #42b983;border-bottom:2px solid var(--theme-color, #42b983)}.app-nav li{display:inline-block;margin:0 16px;margin:0 1rem;padding:5px 0;position:relative}.app-nav li ul{background-color:#fff;border:1px solid #ddd;border-bottom-color:#ccc;border-radius:4px;box-sizing:border-box;display:none;max-height:calc(100vh - 61px);overflow-y:scroll;padding:10px 0;position:absolute;right:-15px;text-align:left;top:100%;white-space:nowrap}.app-nav li ul li{display:block;font-size:14px;line-height:16px;line-height:1rem;margin:0;margin:8px 14px;white-space:nowrap}.app-nav li ul a{display:block;font-size:inherit;margin:0;padding:0}.app-nav li ul a.active{border-bottom:0}.app-nav li:hover ul{display:block}.app-nav.no-badge{margin-right:25px}.github-corner{border-bottom:0;position:fixed;right:0;text-decoration:none;top:0;z-index:1}.github-corner svg{color:#fff;fill:#42b983;fill:var(--theme-color, #42b983);height:80px;width:80px}.github-corner:hover .octo-arm{-webkit-animation:a .56s ease-in-out;animation:a .56s ease-in-out}main{display:block;position:relative;width:100vw;height:100%;z-index:0}.anchor{display:inline-block;text-decoration:none;transition:all .3s}.anchor span{color:#34495e}.anchor:hover{text-decoration:underline}.sidebar{border-right:1px solid rgba(0,0,0,0.07);overflow-y:auto;padding:40px 0 0;top:0;bottom:0;left:0;position:absolute;transition:-webkit-transform .25s ease-out;transition:transform .25s ease-out;transition:transform .25s ease-out,-webkit-transform .25s ease-out;width:300px;z-index:3}.sidebar>h1{margin:0 auto 16px;margin:0 auto 1rem;font-size:24px;font-size:1.5rem;font-weight:300;text-align:center}.sidebar>h1 a{color:inherit;text-decoration:none}.sidebar>h1 .app-nav{display:block;position:static}.sidebar .sidebar-nav{line-height:2em;padding-bottom:40px}.sidebar ul{margin:0;padding:0}.sidebar li>p{font-weight:700;margin:0}.sidebar ul,.sidebar ul li{list-style:none}.sidebar ul li a{border-bottom:none;display:block}.sidebar ul li ul{padding-left:20px}.sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:transparent;border-radius:4px}.sidebar:hover::-webkit-scrollbar-thumb{background:hsla(0,0%,53%,0.4)}.sidebar:hover::-webkit-scrollbar-track{background:hsla(0,0%,53%,0.1)}.sidebar-toggle{background-color:transparent;background-color:hsla(0,0%,100%,0.8);border:0;outline:none;padding:10px;bottom:0;left:0;position:absolute;text-align:center;transition:opacity .3s;width:30px;width:284px;z-index:4}.sidebar-toggle .sidebar-toggle-button:hover{opacity:.4}.sidebar-toggle span{background-color:#42b983;background-color:var(--theme-color, #42b983);display:block;margin-bottom:4px;width:16px;height:2px}body.sticky .sidebar,body.sticky .sidebar-toggle{position:fixed}.content{padding-top:60px;top:0;right:0;bottom:0;left:300px;position:absolute;transition:left .25s ease}.markdown-preview>*{box-sizing:border-box;font-size:inherit}.markdown-preview>:first-child{margin-top:0 !important}.markdown-preview hr{border:none;border-bottom:1px solid #eee;margin:2em 0}.markdown-preview table{border-collapse:collapse;border-spacing:0;display:block;margin-bottom:16px;margin-bottom:1rem;overflow:auto;width:100%}.markdown-preview th{font-weight:700}.markdown-preview td,.markdown-preview th{border:1px solid #ddd;padding:6px 13px}.markdown-preview tr{border-top:1px solid #ccc}.markdown-preview p.tip,.markdown-preview tr:nth-child(2n){background-color:#f8f8f8}.markdown-preview p.tip{border-bottom-right-radius:2px;border-left:4px solid #f66;border-top-right-radius:2px;margin:2em 0;padding:12px 24px 12px 30px;position:relative}.markdown-preview p.tip code{background-color:#efefef}.markdown-preview p.tip em{color:#34495e}.markdown-preview p.tip:before{background-color:#f66;border-radius:100%;color:#fff;content:"!";font-family:Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;font-size:14px;font-weight:700;left:-12px;line-height:20px;position:absolute;width:20px;height:20px;text-align:center;top:14px}.markdown-preview p.warn{background:rgba(66,185,131,0.1);border-radius:2px;padding:16px;padding:1rem}body.close .sidebar{-webkit-transform:translateX(-300px);transform:translateX(-300px)}body.close .sidebar-toggle{width:auto}body.close .content{left:0}@media print{.app-nav,.github-corner,.sidebar,.sidebar-toggle{display:none}}@media screen and (max-width:768px){.github-corner,.sidebar,.sidebar-toggle{position:fixed}.app-nav{margin-top:16px}.app-nav li ul{top:30px}main{height:auto;overflow-x:hidden}.sidebar{left:-300px;transition:-webkit-transform .25s ease-out;transition:transform .25s ease-out;transition:transform .25s ease-out,-webkit-transform .25s ease-out}.content{left:0;max-width:100vw;position:static;padding-top:20px;transition:-webkit-transform .25s ease;transition:transform .25s ease;transition:transform .25s ease,-webkit-transform .25s ease}.app-nav,.github-corner{transition:-webkit-transform .25s ease-out;transition:transform .25s ease-out;transition:transform .25s ease-out,-webkit-transform .25s ease-out}.sidebar-toggle{background-color:transparent;width:auto;padding:30px 30px 10px 10px}body.close .sidebar{-webkit-transform:translateX(300px);transform:translateX(300px)}body.close .sidebar-toggle{background-color:hsla(0,0%,100%,0.8);transition:background-color 1s;width:284px;padding:10px}body.close .content{-webkit-transform:translateX(300px);transform:translateX(300px)}body.close .app-nav,body.close .github-corner{display:none}.github-corner .octo-arm{-webkit-animation:a .56s ease-in-out;animation:a .56s ease-in-out}.github-corner:hover .octo-arm{-webkit-animation:none;animation:none}}@-webkit-keyframes a{0%,to{-webkit-transform:rotate(0);transform:rotate(0)}20%,60%{-webkit-transform:rotate(-25deg);transform:rotate(-25deg)}40%,80%{-webkit-transform:rotate(10deg);transform:rotate(10deg)}}@keyframes a{0%,to{-webkit-transform:rotate(0);transform:rotate(0)}20%,60%{-webkit-transform:rotate(-25deg);transform:rotate(-25deg)}40%,80%{-webkit-transform:rotate(10deg);transform:rotate(10deg)}}section.cover{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-position:50%;background-repeat:no-repeat;background-size:cover;height:100vh;display:none}section.cover .cover-main{-webkit-box-flex:1;-ms-flex:1;flex:1;margin:-20px 16px 0;text-align:center;z-index:1}section.cover a{color:inherit}section.cover a,section.cover a:hover{text-decoration:none}section.cover p{line-height:24px;line-height:1.5rem;margin:1em 0}section.cover h1{color:inherit;font-size:40px;font-size:2.5rem;font-weight:300;margin:10px 0 40px;margin:.625rem 0 2.5rem;position:relative;text-align:center}section.cover h1 a{display:block}section.cover h1 small{bottom:-7px;bottom:-0.4375rem;font-size:16px;font-size:1rem;position:absolute}section.cover blockquote{font-size:24px;font-size:1.5rem;text-align:center}section.cover ul{line-height:1.8;list-style-type:none;margin:1em auto;max-width:500px;padding:0}section.cover .cover-main>p:last-child a{border-color:#42b983;border:1px solid var(--theme-color, #42b983);border-radius:2rem;box-sizing:border-box;color:#42b983;color:var(--theme-color, #42b983);display:inline-block;font-size:16.8px;font-size:1.05rem;letter-spacing:1.6px;letter-spacing:.1rem;margin-right:16px;margin-right:1rem;padding:.75em 32px;padding:.75em 2rem;text-decoration:none;transition:all .15s ease}section.cover .cover-main>p:last-child a:last-child{background-color:#42b983;background-color:var(--theme-color, #42b983);color:#fff;margin-right:0}section.cover .cover-main>p:last-child a:last-child:hover{color:inherit;opacity:.8}section.cover .cover-main>p:last-child a:hover{color:inherit}section.cover blockquote>p>a{border-bottom:2px solid #42b983;border-bottom:2px solid var(--theme-color, #42b983);transition:color .3s}section.cover blockquote>p>a:hover{color:#42b983;color:var(--theme-color, #42b983)}section.cover.show{display:-webkit-box;display:-ms-flexbox;display:flex}section.cover.has-mask .mask{background-color:#fff;opacity:.8;position:absolute;width:100%;height:100%}.sidebar,body{background-color:#fff}.sidebar{color:#364149}.sidebar li{margin:6px 0 6px 15px}.sidebar ul li a{color:#505d6b;font-size:14px;font-weight:400;overflow:hidden;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}.sidebar ul li a:hover{text-decoration:underline}.sidebar ul li ul{padding:0}.sidebar ul li.active>a{border-right:2px solid;color:#42b983;color:var(--theme-color, #42b983);font-weight:600}.app-sub-sidebar li:before{content:"-";padding-right:4px;float:left}.markdown-preview h1,.markdown-preview h2,.markdown-preview h3,.markdown-preview h4,.markdown-preview strong{color:#2c3e50;font-weight:600}.markdown-preview a{color:#42b983;color:var(--theme-color, #42b983);font-weight:600}.md-sidebar-toc a{color:#42b983;font-weight:600}.markdown-preview h1{font-size:32px;font-size:2rem;margin:0 0 16px;margin:0 0 1rem}.markdown-preview h2{font-size:28px;font-size:1.75rem;margin:45px 0 12.8px;margin:45px 0 .8rem}.markdown-preview h3{font-size:24px;font-size:1.5rem;margin:40px 0 9.6px;margin:40px 0 .6rem}.markdown-preview h4{font-size:20px;font-size:1.25rem}.markdown-preview h5,.markdown-preview h6{font-size:16px;font-size:1rem}.markdown-preview h6{color:#777}.markdown-preview figure,.markdown-preview p{margin:1.2em 0}.markdown-preview ol,.markdown-preview p,.markdown-preview ul{line-height:25.6px;line-height:1.6rem;word-spacing:.8px;word-spacing:.05rem}.markdown-preview ol,.markdown-preview ul{padding-left:24px;padding-left:1.5rem}.markdown-preview blockquote{border-left:4px solid #42b983;border-left:4px solid var(--theme-color, #42b983);color:#858585;background-color:#f0f0f0;margin:2em 0;padding-left:20px}.markdown-preview blockquote p{font-weight:600;margin-left:0}.markdown-preview iframe{margin:1em 0}.markdown-preview em{color:#7f8c8d}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url("data:application/x-font-woff;charset=utf-8;base64,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") format("woff");
+}
+
+.admonition {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  position: relative;
+  margin: 1.5625em 0;
+  padding: 0 1.2rem;
+  border-left: .4rem solid rgba(68, 138, 255, .8);
+  border-radius: .2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  overflow: auto;
+}
+
+.admonition>p {
+  margin-top: .8rem;
+}
+
+.admonition>.admonition-title {
+  margin: 0 -1.2rem;
+  padding: .8rem 1.2rem .8rem 3.6rem;
+  border-bottom: 1px solid rgba(68, 138, 255, .2);
+  background-color: rgba(68, 138, 255, .1);
+  font-weight: 700;
+}
+
+.admonition>.admonition-title:before {
+  position: absolute;
+  left: 1.2rem;
+  font-size: 1.5rem;
+  color: rgba(68, 138, 255, .8);
+  content: "\E3C9";
+}
+
+.admonition>.admonition-title:before {
+  font-family: Material Icons;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  text-transform: none;
+  white-space: nowrap;
+  speak: none;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.admonition.summary,
+.admonition.abstract,
+.admonition.tldr {
+  border-left-color: rgba(0, 176, 255, .8);
+}
+
+.admonition.summary>.admonition-title,
+.admonition.abstract>.admonition-title,
+.admonition.tldr>.admonition-title {
+  background-color: rgba(0, 176, 255, .1);
+  border-bottom-color: rgba(0, 176, 255, .2);
+}
+
+.admonition.summary>.admonition-title:before,
+.admonition.abstract>.admonition-title:before,
+.admonition.tldr>.admonition-title:before {
+  color: rgba(0, 176, 255, 1);
+  ;
+  content: "\E8D2";
+}
+
+.admonition.hint,
+.admonition.tip {
+  border-left-color: rgba(0, 191, 165, .8);
+}
+
+.admonition.hint>.admonition-title,
+.admonition.tip>.admonition-title {
+  background-color: rgba(0, 191, 165, .1);
+  border-bottom-color: rgba(0, 191, 165, .2);
+}
+
+.admonition.hint>.admonition-title:before,
+.admonition.tip>.admonition-title:before {
+  color: rgba(0, 191, 165, 1);
+  content: "\E80E";
+}
+
+.admonition.info,
+.admonition.todo {
+  border-left-color: rgba(0, 184, 212, .8);
+}
+
+.admonition.info>.admonition-title,
+.admonition.todo>.admonition-title {
+  background-color: rgba(0, 184, 212, .1);
+  border-bottom-color: rgba(0, 184, 212, .2);
+}
+
+.admonition.info>.admonition-title:before,
+.admonition.todo>.admonition-title:before {
+  color: rgba(0, 184, 212, 1);
+  ;
+  content: "\E88E";
+}
+
+.admonition.success,
+.admonition.check,
+.admonition.done {
+  border-left-color: rgba(0, 200, 83, .8);
+}
+
+.admonition.success>.admonition-title,
+.admonition.check>.admonition-title,
+.admonition.done>.admonition-title {
+  background-color: rgba(0, 200, 83, .1);
+  border-bottom-color: rgba(0, 200, 83, .2);
+}
+
+.admonition.success>.admonition-title:before,
+.admonition.check>.admonition-title:before,
+.admonition.done>.admonition-title:before {
+  color: rgba(0, 200, 83, 1);
+  ;
+  content: "\E876";
+}
+
+.admonition.question,
+.admonition.help,
+.admonition.faq {
+  border-left-color: rgba(100, 221, 23, .8);
+}
+
+.admonition.question>.admonition-title,
+.admonition.help>.admonition-title,
+.admonition.faq>.admonition-title {
+  background-color: rgba(100, 221, 23, .1);
+  border-bottom-color: rgba(100, 221, 23, .2);
+}
+
+.admonition.question>.admonition-title:before,
+.admonition.help>.admonition-title:before,
+.admonition.faq>.admonition-title:before {
+  color: rgba(100, 221, 23, 1);
+  ;
+  content: "\E887";
+}
+
+.admonition.warning,
+.admonition.attention,
+.admonition.caution {
+  border-left-color: rgba(255, 145, 0, .8);
+}
+
+.admonition.warning>.admonition-title,
+.admonition.attention>.admonition-title,
+.admonition.caution>.admonition-title {
+  background-color: rgba(255, 145, 0, .1);
+  border-bottom-color: rgba(255, 145, 0, .2);
+}
+
+.admonition.attention>.admonition-title:before {
+  color: rgba(255, 145, 0, 1);
+  content: "\E417";
+}
+
+.admonition.warning>.admonition-title:before,
+.admonition.caution>.admonition-title:before {
+  color: rgba(255, 145, 0, 1);
+  content: "\E002";
+}
+
+.admonition.failure,
+.admonition.fail,
+.admonition.missing {
+  border-left-color: rgba(255, 82, 82, .8);
+}
+
+.admonition.failure>.admonition-title,
+.admonition.fail>.admonition-title,
+.admonition.missing>.admonition-title {
+  background-color: rgba(255, 82, 82, .1);
+  border-bottom-color: rgba(255, 82, 82, .2);
+}
+
+.admonition.failure>.admonition-title:before,
+.admonition.fail>.admonition-title:before,
+.admonition.missing>.admonition-title:before {
+  color: rgba(255, 82, 82, 1);
+  ;
+  content: "\E14C";
+}
+
+.admonition.danger,
+.admonition.error,
+.admonition.bug {
+  border-left-color: rgba(255, 23, 68, .8);
+}
+
+.admonition.danger>.admonition-title,
+.admonition.error>.admonition-title,
+.admonition.bug>.admonition-title {
+  background-color: rgba(255, 23, 68, .1);
+  border-bottom-color: rgba(255, 23, 68, .2);
+}
+
+.admonition.danger>.admonition-title:before {
+  color: rgba(255, 23, 68, 1);
+  content: "\E3E7";
+}
+
+.admonition.error>.admonition-title:before {
+  color: rgba(255, 23, 68, 1);
+  content: "\E14C";
+}
+
+.admonition.bug>.admonition-title:before {
+  color: rgba(255, 23, 68, 1);
+  content: "\E868";
+}
+
+.admonition.example,
+.admonition.snippet {
+  border-left-color: rgba(0, 184, 212, .8);
+}
+
+.admonition.example>.admonition-title,
+.admonition.snippet>.admonition-title {
+  background-color: rgba(0, 184, 212, .1);
+  border-bottom-color: rgba(0, 184, 212, .2);
+}
+
+.admonition.example>.admonition-title:before,
+.admonition.snippet>.admonition-title:before {
+  color: rgba(0, 184, 212, 1);
+  ;
+  content: "\E242";
+}
+
+.admonition.quote,
+.admonition.cite {
+  border-left-color: rgba(158, 158, 158, .8);
+}
+
+.admonition.quote>.admonition-title,
+.admonition.cite>.admonition-title {
+  background-color: rgba(158, 158, 158, .1);
+  border-bottom-color: rgba(158, 158, 158, .2);
+}
+
+.admonition.quote>.admonition-title:before,
+.admonition.cite>.admonition-title:before {
+  color: rgba(158, 158, 158, 1);
+  ;
+  content: "\E244";
+}
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header undefined" id="markdown-preview-enhanced-for-vscode">Markdown Preview Enhanced for VSCode</h1>
+
+<h3 class="mume-header" id="%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</h3>
+
+<p><code>Ctrl + Shift + P</code>&#x6253;&#x5F00;&#x529F;&#x80FD;&#x641C;&#x7D22;&#xFF0C;&#x8F93;&#x5165;<code>toc</code>&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>Markdown Preview Enhanced: Create TOC</code>&#xFF0C;&#x56DE;&#x8F66;&#x5E76;<code>Ctrl + S</code>&#x4FDD;&#x5B58;&#x5373;&#x53EF;&#x3002;&#x5728;&#x6807;&#x9898;&#x540E;&#x52A0;<code>{ignore}</code>&#x5373;&#x53EF;&#x5FFD;&#x7565;&#x8BE5;&#x6807;&#x9898;&#x4E0D;&#x653E;&#x5165;&#x76EE;&#x5F55;&#x3002;</p>
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="toc"><div class="input-div"><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><ul>
+<li><a href="#markdown-preview-enhanced-for-vscode-ignore">Markdown Preview Enhanced for VSCode {ignore}</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">&#x76EE;&#x5F55;</a></li>
+<li><a href="#%E6%89%93%E5%8D%B0%E5%88%86%E9%A1%B5-ignore">&#x6253;&#x5370;&#x5206;&#x9875; {ignore}</a></li>
+<li><a href="#%E8%AF%AD%E8%A8%80%E8%A7%84%E5%88%99">&#x8BED;&#x8A00;&#x89C4;&#x5219;</a></li>
+<li><a href="#%E7%BB%93%E6%9E%84%E4%BD%93">&#x7ED3;&#x6784;&#x4F53;</a>
+<ul>
+<li><a href="#%E5%88%97%E8%A1%A8">&#x5217;&#x8868;</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8">&#x5F15;&#x7528;</a></li>
+<li><a href="#%E8%AD%A6%E5%91%8A">&#x8B66;&#x544A;</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">&#x8868;&#x683C;</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">&#x4EE3;&#x7801;&#x5757;</a></li>
+<li><a href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81">&#x884C;&#x5185;&#x4EE3;&#x7801;</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C">&#x6587;&#x5B57;&#x6548;&#x679C;</a>
+<ul>
+<li><a href="#%E6%96%9C%E4%BD%93">&#x659C;&#x4F53;</a></li>
+<li><a href="#%E5%8A%A0%E7%B2%97">&#x52A0;&#x7C97;</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">&#x5220;&#x9664;&#x7EBF;</a></li>
+<li><a href="#%E9%AB%98%E4%BA%AE">&#x9AD8;&#x4EAE;</a></li>
+<li><a href="#%E4%B8%8B%E5%88%92%E7%BA%BF">&#x4E0B;&#x5212;&#x7EBF;</a></li>
+<li><a href="#%E5%88%86%E5%89%B2%E7%BA%BF">&#x5206;&#x5272;&#x7EBF;</a></li>
+<li><a href="#%E4%B8%8A%E6%A0%87">&#x4E0A;&#x6807;</a></li>
+<li><a href="#%E4%B8%8B%E6%A0%87">&#x4E0B;&#x6807;</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E7%BC%A9%E5%86%99">&#x5B9A;&#x4E49;&#x7F29;&#x5199;</a></li>
+<li><a href="#latex">LaTeX</a></li>
+<li><a href="#emoji">Emoji</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">&#x5FEB;&#x6377;&#x952E;</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</a>
+<ul>
+<li><a href="#%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</a></li>
+<li><a href="#%E6%A0%87%E9%A2%98">&#x6807;&#x9898;</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87">&#x56FE;&#x7247;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6">&#x5BFC;&#x5165;&#x5916;&#x90E8;&#x6587;&#x4EF6;</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8html%E8%AF%AD%E8%A8%80">&#x5176;&#x4ED6;&#x5E38;&#x7528;HTML&#x8BED;&#x8A00;</a>
+<ul>
+<li><a href="#%E7%A9%BA%E8%A1%8C">&#x7A7A;&#x884C;</a></li>
+<li><a href="#%E5%8D%A0%E4%BD%8D%E7%AC%A6">&#x5360;&#x4F4D;&#x7B26;</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6">&#x8F93;&#x51FA;&#x6587;&#x4EF6;</a>
+<ul>
+<li><a href="#html%E6%8E%A8%E8%8D%90">HTML&#xFF08;&#x63A8;&#x8350;&#xFF09;</a></li>
+<li><a href="#pdf">PDF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">&#x6CE8;&#x610F;</p>
+<p>&#x5F53;&#x9700;&#x8981;&#x8F93;&#x51FA;&#x4E3A; HTML &#x6587;&#x4EF6;&#x65F6;&#xFF0C;<code>{ignore}</code>&#x5BF9;&#x4E3B;&#x4F53;&#x7684; <abbr title="Table of Contents">TOC</abbr> &#x5931;&#x6548;&#xFF0C;&#x5373;&#x4ECD;&#x4F1A;&#x663E;&#x793A;&#x88AB;&#x5FFD;&#x7565;&#x7684;&#x6807;&#x9898;&#xFF0C;&#x4F46;&#x5BF9;&#x4FA7;&#x8FB9;&#x680F;&#x4F9D;&#x65E7;&#x751F;&#x6548;&#x3002;</p>
+</div>
+<h3 class="mume-header undefined" id="%E6%89%93%E5%8D%B0%E5%88%86%E9%A1%B5">&#x6253;&#x5370;&#x5206;&#x9875;</h3>
+
+<pre class="language-text">&lt;div STYLE=&apos;page-break-after: always;&apos;&gt;&lt;/div&gt;
+</pre>
+<p>&#x6216;&#x8005;<br>
+&#x8F93;&#x5165;pagebreak&#x5E76;<code>Ctrl + /</code>&#x6CE8;&#x91CA;&#xFF0C;&#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x540C;&#x6837;&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<pre class="language-text">&lt;!-- pagebreak --&gt;
+</pre>
+<div class="pagebreak"> </div>
+<h3 class="mume-header" id="%E8%AF%AD%E8%A8%80%E8%A7%84%E5%88%99">&#x8BED;&#x8A00;&#x89C4;&#x5219;</h3>
+
+<p><code>Enter</code>&#x8D77;&#x5230;&#x6362;&#x884C;&#x6216;&#x7ED3;&#x6784;&#x4F53;&#x5206;&#x5757;&#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x5B9E;&#x73B0;&#x7A7A;&#x884C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x591A;&#x6B21;<code>Enter</code>&#x662F;&#x65E0;&#x6548;&#x7684;&#x3002;<br>
+<code>Space</code>&#x53EA;&#x80FD;&#x7A7A;&#x4E00;&#x683C;&#xFF0C;&#x4E0D;&#x80FD;&#x8FDE;&#x7EED;&#x7A7A;&#x683C;&#x3002;<br>
+<code>Tab</code>&#x7528;&#x6765;&#x6539;&#x53D8;&#x7ED3;&#x6784;&#x4F53;&#x5C42;&#x7EA7;&#x3002;<br>
+&#x5B9E;&#x73B0;&#x5176;&#x4ED6;&#x7684;&#x9700;&#x6C42;&#x9700;&#x8981;&#x4F7F;&#x7528;<a href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8html%E8%AF%AD%E8%A8%80">HTML&#x8BED;&#x8A00;</a>&#x3002;</p>
+<div class="pagebreak"> </div>
+<h3 class="mume-header" id="%E7%BB%93%E6%9E%84%E4%BD%93">&#x7ED3;&#x6784;&#x4F53;</h3>
+
+<h4 class="mume-header" id="%E5%88%97%E8%A1%A8">&#x5217;&#x8868;</h4>
+
+<ul>
+<li>
+<p><strong>&#x65E0;&#x5E8F;&#x5217;&#x8868;</strong></p>
+<pre class="language-text">- &#x65E0;&#x5E8F;&#x5217;&#x8868;
+- &#x7528;&#x6A2A;&#x6760;&#x8868;&#x793A;
+  - &#x7528;`Tab`&#x63A7;&#x5236;&#x5C42;&#x7EA7;
+</pre>
+<ul>
+<li>&#x65E0;&#x5E8F;&#x5217;&#x8868;</li>
+<li>&#x7528;&#x6A2A;&#x6760;&#x8868;&#x793A;
+<ul>
+<li>&#x7528;<code>Tab</code>&#x63A7;&#x5236;&#x5C42;&#x7EA7;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>&#x6709;&#x5E8F;&#x5217;&#x8868;</strong></p>
+<pre class="language-text">  1. &#x6570;&#x5B57;&#x6807;&#x53F7;
+  2. `Enter`&#x81EA;&#x52A8;&#x7F16;&#x53F7;
+</pre>
+<ol>
+<li>&#x6570;&#x5B57;&#x6807;&#x53F7;</li>
+<li><code>Enter</code>&#x81EA;&#x52A8;&#x7F16;&#x53F7;</li>
+</ol>
+</li>
+</ul>
+<h4 class="mume-header" id="%E5%BC%95%E7%94%A8">&#x5F15;&#x7528;</h4>
+
+<pre class="language-text">&gt; &#x4E00;&#x4E2A;&#x5927;&#x4E8E;&#x53F7;
+</pre>
+<blockquote>
+<p>&#x4E00;&#x4E2A;&#x5927;&#x4E8E;&#x53F7;</p>
+</blockquote>
+<h4 class="mume-header" id="%E8%AD%A6%E5%91%8A">&#x8B66;&#x544A;</h4>
+
+<pre class="language-text">!!! note &#x6807;&#x9898;
+    &#x6807;&#x9898;&#x524D;&#x4E0D;&#x8981;&#x5FD8;&#x4E86;&#x52A0;`note`
+</pre>
+<div class="admonition note">
+<p class="admonition-title">&#x6807;&#x9898;</p>
+<p>&#x6807;&#x9898;&#x524D;&#x4E0D;&#x8981;&#x5FD8;&#x4E86;&#x52A0;<code>note</code></p>
+</div>
+<h4 class="mume-header" id="%E8%A1%A8%E6%A0%BC">&#x8868;&#x683C;</h4>
+
+<pre class="language-text">|         &#x8868;&#x5934;1          | &#x8868;&#x5934;2          |          &#x8868;&#x5934;3 |
+| :--------------------: | :------------- | -------------: |
+|          &#x5C45;&#x4E2D;          | &#x5DE6;&#x5BF9;&#x9F50;         |         &#x53F3;&#x5BF9;&#x9F50; |
+|           &gt;            | &#x5408;&#x5E76;&#x5DE6;&#x8FB9;&#x5355;&#x5143;&#x683C; | &#x5408;&#x5E76;&#x4E0B;&#x65B9;&#x5355;&#x5143;&#x683C; |
+| &#x7A7A;&#x7740;&#x4E0D;&#x5199;&#x5408;&#x5E76;&#x53F3;&#x8FB9;&#x5355;&#x5143;&#x683C; |                |              ^ |
+</pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x8868;&#x5934;1</th>
+<th style="text-align:left">&#x8868;&#x5934;2</th>
+<th style="text-align:right">&#x8868;&#x5934;3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x5C45;&#x4E2D;</td>
+<td style="text-align:left">&#x5DE6;&#x5BF9;&#x9F50;</td>
+<td style="text-align:right">&#x53F3;&#x5BF9;&#x9F50;</td>
+</tr>
+<tr>
+
+<td style="text-align:left" colspan="2">&#x5408;&#x5E76;&#x5DE6;&#x8FB9;&#x5355;&#x5143;&#x683C;</td>
+<td style="text-align:right" rowspan="2">&#x5408;&#x5E76;&#x4E0B;&#x65B9;&#x5355;&#x5143;&#x683C;</td>
+</tr>
+<tr>
+<td style="text-align:center" colspan="2">&#x7A7A;&#x7740;&#x4E0D;&#x5199;&#x5408;&#x5E76;&#x53F3;&#x8FB9;&#x5355;&#x5143;&#x683C;</td>
+
+
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E4%BB%A3%E7%A0%81%E5%9D%97">&#x4EE3;&#x7801;&#x5757;</h4>
+
+<pre class="language-text">```python
+print(&apos;&#x4E09;&#x4E2A;&#x952E;&#x76D8;&#x5DE6;&#x4E0A;&#x89D2;&#x7C7B;&#x4F3C;&#x987F;&#x53F7;&#x7684;&#x7B26;&#x53F7;&#xFF0C;&#x540E;&#x9762;&#x63A5;&#x8BED;&#x8A00;&#x7C7B;&#x578B;&#x3002;&apos;)
+```
+</pre>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">&apos;&#x4E09;&#x4E2A;&#x952E;&#x76D8;&#x5DE6;&#x4E0A;&#x89D2;&#x7C7B;&#x4F3C;&#x987F;&#x53F7;&#x7684;&#x7B26;&#x53F7;&#xFF0C;&#x540E;&#x9762;&#x63A5;&#x8BED;&#x8A00;&#x7C7B;&#x578B;&#x3002;&apos;</span><span class="token punctuation">)</span>
+</pre><blockquote>
+<p>&#x652F;&#x6301;&#x8BED;&#x8A00;&#x7C7B;&#x578B;&#x540E;&#x81EA;&#x5B9A;&#x4E49;<code>class</code>&#x548C;<code>attribute</code>&#x3002;</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>&#x6DFB;&#x52A0;&#x884C;&#x53F7;</strong></p>
+<pre class="language-text">  ```python {.line-numbers}
+      def add(x, y):
+      return x+y
+  ```
+</pre>
+<pre data-role="codeBlock" data-info="python {.line-numbers}" class="language-python line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">+</span>y
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></pre></li>
+<li>
+<p><strong>&#x9AD8;&#x4EAE;&#x67D0;&#x51E0;&#x884C;</strong></p>
+<pre class="language-text">  ```python {highlight=1-3}
+  def add(x, y):
+      return x+y
+
+  def multiply(x, y):
+      return x*y
+  ```
+</pre>
+<pre data-role="codeBlock" data-info="python {highlight=1-3}" class="language-python" data-line="1-3"><span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">+</span>y
+
+<span class="token keyword keyword-def">def</span> <span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">*</span>y
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1-3" data-start="1" data-end="3">
+
+
+</div></div></pre><p>&#x6216;&#x8005;</p>
+<pre class="language-text">  ```python {highlight=[1-3, 5]}
+  def add(x, y):
+      return x+y
+
+  def multiply(x, y):
+      return x*y
+  ```
+</pre>
+<pre data-role="codeBlock" data-info="python {highlight=[1-3, 5]}" class="language-python" data-line="1-3,5"><span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">+</span>y
+
+<span class="token keyword keyword-def">def</span> <span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">*</span>y
+<div class="line-highlight-wrapper"><div aria-hidden="true" class="line-highlight" data-range="1-3" data-start="1" data-end="3">
+
+
+</div></div><div class="line-highlight-wrapper">
+
+
+
+<div aria-hidden="true" class="line-highlight" data-range="5" data-start="5">
+</div></div></pre></li>
+</ul>
+<blockquote>
+<p>&#x6DFB;&#x52A0;&#x4E86;<code>cmd</code>&#x540E;&#x53EF;&#x4EE5;<code>Ctrl + Shift + P</code>&#x641C;&#x7D22;<code>code chunk</code>&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF08;&#x9700;&#x8981;&#x5728; VSCode &#x8BBE;&#x7F6E;&#x4E2D;&#x5F00;&#x542F;<code>Markdown-preview-enhanced: Enable Script Execution</code>&#xFF09;&#x3002;</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>&#x6267;&#x884C;&#x4EE3;&#x7801;</strong></p>
+<pre class="language-text">  ```python {.line-numbers cmd}
+      def add(x, y):
+      return x+y
+  ```
+</pre>
+<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="python"><div class="input-div"><pre data-role="codeBlock" data-info="python {.line-numbers cmd}" class="language-python line-numbers"><span class="token keyword keyword-def">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-return">return</span> x<span class="token operator">+</span>y
+
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>add<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></pre><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"><pre class="language-text">3
+</pre></div></div></li>
+</ul>
+<h4 class="mume-header" id="%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81">&#x884C;&#x5185;&#x4EE3;&#x7801;</h4>
+
+<pre class="language-text">&#x4EE3;&#x7801;&#x4E24;&#x8FB9;&#x52A0;&#x952E;&#x76D8;&#x5DE6;&#x4E0A;&#x89D2;&#x7C7B;&#x4F3C;&#x987F;&#x53F7;&#x7684;&#x7B26;&#x53F7;&#x5373;&#x53EF;&#xFF1A;`print(&apos;Hello World!&apos;)`
+</pre>
+<p>&#x4EE3;&#x7801;&#x4E24;&#x8FB9;&#x52A0;&#x952E;&#x76D8;&#x5DE6;&#x4E0A;&#x89D2;&#x7C7B;&#x4F3C;&#x987F;&#x53F7;&#x7684;&#x7B26;&#x53F7;&#x5373;&#x53EF;&#xFF1A;<code>print(&apos;Hello World!&apos;)</code></p>
+<div class="pagebreak"> </div>
+<h3 class="mume-header" id="%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C">&#x6587;&#x5B57;&#x6548;&#x679C;</h3>
+
+<h4 class="mume-header" id="%E6%96%9C%E4%BD%93">&#x659C;&#x4F53;</h4>
+
+<pre class="language-text">*&#x4E00;&#x4E2A;&#x661F;&#x53F7;* &#x6216;&#x8005; _&#x4E00;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;_
+</pre>
+<p><em>&#x4E00;&#x4E2A;&#x661F;&#x53F7;</em> &#x6216;&#x8005; <em>&#x4E00;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;</em></p>
+<h4 class="mume-header" id="%E5%8A%A0%E7%B2%97">&#x52A0;&#x7C97;</h4>
+
+<pre class="language-text">**&#x4E24;&#x4E2A;&#x661F;&#x53F7;** &#x6216;&#x8005; __&#x4E24;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;__
+</pre>
+<p><strong>&#x4E24;&#x4E2A;&#x661F;&#x53F7;</strong> &#x6216;&#x8005; <strong>&#x4E24;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;</strong></p>
+<blockquote>
+<p>&#x5E73;&#x65F6;&#x5355;&#x72EC;&#x52A0;&#x7C97;&#x6216;&#x8005;&#x5355;&#x72EC;&#x659C;&#x4F53;&#x7528;<code>*</code>&#xFF0C;&#x5982;&#x679C;&#x8981;&#x7EC4;&#x5408;&#xFF0C;&#x5373;&#x65E2;&#x8981;&#x52A0;&#x7C97;&#x53C8;&#x8981;&#x659C;&#x4F53;&#x5219;<code>*</code>&#x4E0E;<code>_</code>&#x7EC4;&#x5408;&#x4F7F;&#x7528;&#x3002;</p>
+</blockquote>
+<h4 class="mume-header" id="%E5%88%A0%E9%99%A4%E7%BA%BF">&#x5220;&#x9664;&#x7EBF;</h4>
+
+<pre class="language-text">~~&#x4E24;&#x4E2A;&#x6CE2;&#x6D6A;&#x7EBF;~~
+</pre>
+<p><s>&#x4E24;&#x4E2A;&#x6CE2;&#x6D6A;&#x7EBF;</s></p>
+<h4 class="mume-header" id="%E9%AB%98%E4%BA%AE">&#x9AD8;&#x4EAE;</h4>
+
+<pre class="language-text">==&#x4E24;&#x4E2A;&#x7B49;&#x4E8E;&#x53F7;==
+</pre>
+<p><mark>&#x4E24;&#x4E2A;&#x7B49;&#x4E8E;&#x53F7;</mark></p>
+<h4 class="mume-header" id="%E4%B8%8B%E5%88%92%E7%BA%BF">&#x4E0B;&#x5212;&#x7EBF;</h4>
+
+<pre class="language-text">&lt;u&gt;html u &#x6807;&#x7B7E;&lt;/u&gt;
+</pre>
+<p><u>html u &#x6807;&#x7B7E;</u></p>
+<h4 class="mume-header" id="%E5%88%86%E5%89%B2%E7%BA%BF">&#x5206;&#x5272;&#x7EBF;</h4>
+
+<pre class="language-text">---
+</pre>
+<hr>
+<h4 class="mume-header" id="%E4%B8%8A%E6%A0%87">&#x4E0A;&#x6807;</h4>
+
+<pre class="language-text">2^th^
+</pre>
+<p>2<sup>th</sup></p>
+<h4 class="mume-header" id="%E4%B8%8B%E6%A0%87">&#x4E0B;&#x6807;</h4>
+
+<pre class="language-text">x~1~
+</pre>
+<p>x<sub>1</sub></p>
+<h4 class="mume-header" id="%E5%AE%9A%E4%B9%89%E7%BC%A9%E5%86%99">&#x5B9A;&#x4E49;&#x7F29;&#x5199;</h4>
+
+<pre class="language-text">*[CNN]: Convolutional Neuraul Network
+Chairman Zheng is proficient in CNN.
+</pre>
+<p>Chairman Zheng is proficient in <abbr title="Convolutional Neuraul Network">CNN</abbr>.</p>
+<blockquote>
+<p>&#x9F20;&#x6807;&#x60AC;&#x6D6E;&#x5373;&#x53EF;&#x770B;&#x5230;&#x5168;&#x79F0;&#xFF08;pdf&#x4E0D;&#x652F;&#x6301;&#x8BE5;&#x6548;&#x679C;&#xFF09;&#x3002;</p>
+</blockquote>
+<h4 class="mume-header" id="latex">LaTeX</h4>
+
+<pre class="language-text">$\text{&#x884C;&#x5185;&#x516C;&#x5F0F;}$
+$$
+\text{&#x5757;&#x516C;&#x5F0F;}
+$$
+</pre>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>&#x884C;&#x5185;&#x516C;&#x5F0F;</mtext></mrow><annotation encoding="application/x-tex">\text{&#x884C;&#x5185;&#x516C;&#x5F0F;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord cjk_fallback">&#x884C;&#x5185;&#x516C;&#x5F0F;</span></span></span></span></span><br>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>&#x5757;&#x516C;&#x5F0F;</mtext></mrow><annotation encoding="application/x-tex">\text{&#x5757;&#x516C;&#x5F0F;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord cjk_fallback">&#x5757;&#x516C;&#x5F0F;</span></span></span></span></span></span></p>
+<h4 class="mume-header" id="emoji">Emoji</h4>
+
+<p>&#x1F604; &#x1F633; &#x1F613; &#x1F62D; &#x1F602;<br>
+&#x1F44D; &#x1F44C; &#x1F447; &#x1F44F; &#x1F4AA; &#x1F64F;<br>
+&#x2764;&#xFE0F; &#x1F525; &#x1F4A5; &#x1F31F; &#x1F4A9; &#x1F4A4;<br>
+&#x66F4;&#x591A;emoji&#x53EF;&#x67E5;&#x627E;<a href="https://www.webfx.com/tools/emoji-cheat-sheet/">emoji&#x8868;</a>&#x3002;</p>
+<div class="pagebreak"> </div>
+<h3 class="mume-header" id="%E5%BF%AB%E6%8D%B7%E9%94%AE">&#x5FEB;&#x6377;&#x952E;</h3>
+
+<ul>
+<li><strong>Ctrl + B</strong>: &#x9009;&#x4E2D;&#x7684;&#x6587;&#x672C;&#x52A0;&#x7C97;</li>
+<li><strong>Ctrl + I</strong>: &#x9009;&#x4E2D;&#x7684;&#x6587;&#x672C;&#x659C;&#x4F53;</li>
+<li><strong>Ctrl + M</strong>: &#x8FDB;&#x5165;&#x6570;&#x5B66;&#x6A21;&#x5F0F;&#xFF08;&#x4E00;&#x4E0B;&#x884C;&#x5185;&#xFF0C;&#x4E24;&#x4E0B;&#x5757;&#xFF09;</li>
+<li><strong>lm</strong>: &#x8FDB;&#x5165;&#x884C;&#x5185;&#x6570;&#x5B66;&#x6A21;&#x5F0F;</li>
+<li><strong>dm</strong>: &#x8FDB;&#x5165;&#x5757;&#x6570;&#x5B66;&#x6A21;&#x5F0F;</li>
+<li><strong>Ctrl + Alt + V</strong>: &#x5C06;&#x526A;&#x8D34;&#x677F;&#x7684;&#x56FE;&#x7247;&#x7C98;&#x8D34;&#x5230;&#x7B14;&#x8BB0;&#x4E2D;</li>
+<li><strong>table + m + n</strong>: &#x751F;&#x6210;mxn&#x7684;&#x8868;&#x683C;&#xFF08;&#x884C;&#x6570;&#x4E0D;&#x5305;&#x62EC;&#x8868;&#x5934;&#xFF09;</li>
+<li><strong>Shift + Alt + F</strong>: &#x4EE3;&#x7801;&#x6574;&#x7406;</li>
+</ul>
+<blockquote>
+<p>&#x5176;&#x4E2D;&#x67D0;&#x4E9B;&#x5FEB;&#x6377;&#x952E;&#x9700;&#x8981;&#x5B89;&#x88C5; <em>HyperSnipts for Math</em> &#x4E0E; <em>Paste Image</em> &#x3002;</p>
+</blockquote>
+<div class="pagebreak"> </div>
+<h3 class="mume-header" id="%E9%93%BE%E6%8E%A5">&#x94FE;&#x63A5;</h3>
+
+<h4 class="mume-header" id="%E7%BD%91%E9%A1%B5">&#x7F51;&#x9875;</h4>
+
+<pre class="language-text">[&#x60F3;&#x663E;&#x793A;&#x7684;&#x6587;&#x5B57;](https://www.baidu.com)
+</pre>
+<p><a href="https://www.baidu.com">&#x60F3;&#x663E;&#x793A;&#x7684;&#x6587;&#x5B57;</a></p>
+<h4 class="mume-header" id="%E6%A0%87%E9%A2%98">&#x6807;&#x9898;</h4>
+
+<pre class="language-text">[&#x60F3;&#x663E;&#x793A;&#x7684;&#x6587;&#x5B57;](#&#x4EE3;&#x7801;&#x5757;)
+</pre>
+<p><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">&#x60F3;&#x663E;&#x793A;&#x7684;&#x6587;&#x5B57;</a></p>
+<h4 class="mume-header" id="%E5%9B%BE%E7%89%87">&#x56FE;&#x7247;</h4>
+
+<pre class="language-text">!\[](&#x56FE;&#x7247;&#x5730;&#x5740;)
+</pre>
+<blockquote>
+<p>&#x7528;<a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">&#x5FEB;&#x6377;&#x952E;</a>&#x7C98;&#x8D34;&#x56FE;&#x7247;&#x5373;&#x53EF;&#x3002;</p>
+</blockquote>
+<h3 class="mume-header" id="%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6">&#x5BFC;&#x5165;&#x5916;&#x90E8;&#x6587;&#x4EF6;</h3>
+
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">@import &quot;test.py&quot; {.line-numbers}
+</pre><pre data-role="codeBlock" data-info="py class=&quot;line-numbers&quot;" class="language-python line-numbers"><span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">&apos;Hello world!&apos;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></pre><blockquote>
+<p>&#x8FD8;&#x652F;&#x6301;&#x56FE;&#x7247;&#xFF0C;csv&#xFF0C;html&#xFF0C;js&#xFF0C;pdf&#xFF08;&#x9700;&#x8981;&#x88C5; <em>pdf2svg</em>&#xFF09;&#xFF0C;md&#x7B49;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5D4C;&#x5165;&#x522B;&#x4EBA;&#x7684;&#x7B14;&#x8BB0;&#x1F601;&#x3002;</p>
+</blockquote>
+<h3 class="mume-header" id="%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8html%E8%AF%AD%E8%A8%80">&#x5176;&#x4ED6;&#x5E38;&#x7528;HTML&#x8BED;&#x8A00;</h3>
+
+<h4 class="mume-header" id="%E7%A9%BA%E8%A1%8C">&#x7A7A;&#x884C;</h4>
+
+<pre class="language-text">&#x7B2C;&#x4E00;&#x884C;
+&#x7B2C;&#x4E8C;&#x884C;&lt;br&gt;
+&#x7B2C;&#x56DB;&#x884C;
+</pre>
+<p>&#x7B2C;&#x4E00;&#x884C;<br>
+&#x7B2C;&#x4E8C;&#x884C;<br><br>
+&#x7B2C;&#x56DB;&#x884C;</p>
+<h4 class="mume-header" id="%E5%8D%A0%E4%BD%8D%E7%AC%A6">&#x5360;&#x4F4D;&#x7B26;</h4>
+
+<ul>
+<li>
+<p><strong>&#x534A;&#x65B9;&#x5360;&#x4F4D;&#x7B26;&#xFF08;&#x4E00;&#x4E2A;&#x82F1;&#x6587;&#x5B57;&#x7B26;&#x5927;&#x5C0F;&#xFF09;</strong></p>
+<pre class="language-text">  ab
+  &amp;ensp;a
+</pre>
+<p>ab<br>
+&#x2002;a</p>
+</li>
+<li>
+<p><strong>&#x5168;&#x65B9;&#x5360;&#x4F4D;&#x7B26;&#xFF08;&#x4E00;&#x4E2A;&#x4E2D;&#x6587;&#x5B57;&#x7B26;&#x5927;&#x5C0F;&#xFF09;</strong></p>
+<pre class="language-text">  &#x54C8;&#x54C8;
+  &amp;emsp;&#x54C8;&#x54C8;
+</pre>
+<p>&#x54C8;&#x54C8;<br>
+&#x2003;&#x54C8;&#x54C8;</p>
+</li>
+<li>
+<p><strong>&#x6298;&#x53E0;&#x5185;&#x5BB9;</strong></p>
+<pre class="language-text">  &lt;details&gt;
+  &lt;summary&gt;&#x5C55;&#x5F00;&#x67E5;&#x770B;&lt;/summary&gt;
+
+  &#x5185;&#x5BB9;&#x8981;&#x4E0E;&#x4E0A;&#x9762;&#x7A7A;&#x4E00;&#x884C;&#xFF01;
+  &lt;/details&gt;
+</pre>
+  <details>
+  <summary>&#x5C55;&#x5F00;&#x67E5;&#x770B;</summary>
+<p>&#x5185;&#x5BB9;&#x8981;&#x4E0E;&#x4E0A;&#x9762;&#x7A7A;&#x4E00;&#x884C;&#xFF01;</p>
+  </details>
+<blockquote>
+<p>pdf &#x4E0D;&#x9002;&#x7528;&#x3002;</p>
+</blockquote>
+</li>
+</ul>
+<h3 class="mume-header" id="%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6">&#x8F93;&#x51FA;&#x6587;&#x4EF6;</h3>
+
+<h4 class="mume-header" id="html%E6%8E%A8%E8%8D%90">HTML&#xFF08;&#x63A8;&#x8350;&#xFF09;</h4>
+
+<p>&#x5728;<code>Preview</code>&#x4E2D;&#x53F3;&#x952E;&#x9009;&#x62E9;<code>HTML</code>&#x4E2D;&#x7684;<code>HTML (cdn hosted)</code>&#x3002;</p>
+<ul>
+<li>
+<p><strong>&#x4FA7;&#x8FB9;&#x680F;&#x8BBE;&#x7F6E;</strong><br>
+&#x8F93;&#x51FA; HTML &#x65F6;&#x9ED8;&#x8BA4;&#x4FA7;&#x8FB9;&#x680F;&#x6536;&#x7F29;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x9ED8;&#x8BA4;&#x5C55;&#x5F00;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5728; md &#x6587;&#x4EF6;&#x9876;&#x7AEF;&#x8F93;&#x5165;&#x5982;&#x4E0B; yaml &#x8BED;&#x8A00;&#xFF1A;</p>
+<pre class="language-text">  ---
+  html:
+      toc: true
+  ---
+</pre>
+<p>&#x5982;&#x679C;&#x4E0D;&#x9700;&#x8981;&#x4FA7;&#x8FB9;&#x680F;&#xFF0C;&#x5219;&#x4E3A;<code>false</code>&#x3002;&#x9ED8;&#x8BA4;&#x662F;<code>undefined</code>&#x3002;</p>
+</li>
+</ul>
+<h4 class="mume-header" id="pdf">PDF</h4>
+
+<p>&#x5728;<code>Preview</code>&#x4E2D;&#x53F3;&#x952E;&#x9009;&#x62E9;<code>Chrome (Puppeteer)</code>&#x4E2D;&#x7684;<code>PDF</code>&#x3002;<br>
+<code>Puppeteer</code>&#x9ED8;&#x8BA4;<code>printBackground</code>&#x7684;&#x5C5E;&#x6027;&#x662F;<code>false</code>&#xFF0C;&#x5373;&#x5728;<code>Preview</code>&#x4E2D;&#x8BBE;&#x7F6E;&#x7684;&#x4E3B;&#x9898;&#x5E76;&#x4E0D;&#x4F1A;&#x6253;&#x5370;&#x51FA;&#x6765;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x8981;&#x6253;&#x5370;&#x4E3B;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;<code>Ctrl + Shift + P</code>&#x8F93;&#x5165;<code>setting json</code>&#x9009;&#x62E9;<code>Prefrences: Open Settings (JSON)</code>&#xFF0C;&#x5728;&#x91CC;&#x9762;&#x52A0;&#x5165;<code>&quot;markdown-preview-enhanced.printBackground&quot;: true</code>&#x7684;&#x8BBE;&#x7F6E;&#x3002;<br>
+&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x7684;&#x4E3B;&#x9898;&#x662F;&#x9664;&#x767D;&#x8272;&#x4EE5;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x989C;&#x8272;&#xFF0C;&#x6253;&#x5370;&#x51FA;&#x6765;&#x7684; PDF &#x56DB;&#x5468;&#x4F1A;&#x6709;&#x7A7A;&#x767D;&#xFF0C;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x662F;<code>Ctrl + Shift + P</code>&#x8F93;&#x5165;<code>css</code>&#x9009;&#x62E9;<code>Markdown Preview Enhanced: Customize CSS</code>&#xFF0C;&#x5728;&#x5176;&#x4E2D;&#x52A0;&#x5165;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="less" class="language-less"><span class="token atrule">@media print</span> <span class="token punctuation">{</span>
+    <span class="token atrule">@page</span> <span class="token punctuation">{</span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><p>&#x4F46;&#x662F;&#x51FA;&#x6765;&#x7684;&#x6548;&#x679C;&#x6709;&#x70B9;&#x4E11;&#x3002;&#x6B22;&#x8FCE;&#x4F7F;&#x7528;HTML&#x1F601;&#xFF01;</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
