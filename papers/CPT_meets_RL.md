@@ -59,7 +59,7 @@ CPT-value of ==differential delay== $X$ (because CPT needs gains and losses), i.
   - Lipschitz continuity is the case that $\alpha=1$.
 - Locally Lipschitz
 
-### Estimation scheme under each of the assumptions**
+### Estimation scheme under each of the assumptions
 - Under $H \ddot{o} lder$ continuity, the CPT-value can be estimatied by the ==discrete== version.
 ![](image/2022-01-22-16-48-10.png)
   - ==Algo==: 

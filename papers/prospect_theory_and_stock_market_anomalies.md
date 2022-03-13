@@ -152,7 +152,8 @@ The target is not to use mean and variance estimations to get a optimized weight
 <!-- pagebreak -->
 
 ## Empirical Test
-Procedure
+
+### Procedure
 - Date range: 1963/7 ~ 2014/12
 - For each anomaly, 
   1. compute the annualized value-weighted CAPM $\alpha$'s $\alpha^{d}(l)$ for each decile $l$ ($d$ represents "data");
