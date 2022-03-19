@@ -23,11 +23,12 @@
       name: '',
       coverpage: true,
       loadNavbar: true,
+      loadSidebar: true,
       subMaxLevel: 3,
 
       // Flexible alerts
       'flexible-alerts': {
-            style: 'flat'
+        style: 'flat',
       },
 
       // Dark mode
@@ -64,11 +65,11 @@
       },
 
       // Progress
-      progress: {
-        position: "top",
-        color: "var(--theme-color, #42b983)",
-        height: "3px",
-      },
+      // progress: {
+        // position: "top",
+        // color: "var(--theme-color, #42b983)",
+        // height: "3px",
+      // },
 
       // Updated time
       timeUpdater: {
@@ -81,12 +82,12 @@
         maxAge: 86400000, // Expiration time, the default one day
         paths: 'auto', // or 'auto'
         placeholder: 'Type to search',
-      
+      // 
         noData: 'No Results!',
-      
+      // 
         // Headline depth, 1 - 6
         depth: 6,
-      
+      // 
         hideOtherSidebarContent: false, // whether or not to hide other sidebar content
       },
     }
@@ -109,9 +110,6 @@
 
   <!-- Corner -->
   <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.js"></script>
-
-  <!-- Progress -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
 
   <!-- Updated time -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-updated@1/src/time-updater.min.js"></script>

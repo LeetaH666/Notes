@@ -1,6 +1,6 @@
 ---
 html:
-    toc: false
+    toc: true
 ---
 
 # Markdown Preview Enhanced for VSCode {ignore}
@@ -52,7 +52,7 @@ html:
 
 !!! note 注意
     *[TOC]: Table of Contents
-    当需要输出为 HTML 文件时，`{ignore}`对主体的 TOC 失效，即仍会显示被忽略的标题，但对侧边栏依旧生效。
+    当需要输出为 HTML 文件时，`{ignore}`对主体的 TOC 失效（如上），即仍会显示被忽略的标题，但对侧边栏依旧生效。
 
 ### 打印分页 {ignore}
     <div STYLE='page-break-after: always;'></div>
@@ -102,12 +102,13 @@ html:
 #### 表格
     |         表头1          | 表头2          |          表头3 |
     | :--------------------: | :------------- | -------------: |
-    |          居中          | 左对齐         |         右对齐 |
+    |      两个冒号居中      | 冒号在左左对齐 | 冒号在右右对齐 |
     |           >            | 合并左边单元格 | 合并下方单元格 |
     | 空着不写合并右边单元格 |                |              ^ |
+
 |         表头1          | 表头2          |          表头3 |
 | :--------------------: | :------------- | -------------: |
-|          居中          | 左对齐         |         右对齐 |
+|      两个冒号居中      | 冒号在左左对齐 | 冒号在右右对齐 |
 |           >            | 合并左边单元格 | 合并下方单元格 |
 | 空着不写合并右边单元格 |                |              ^ |
 
@@ -170,7 +171,9 @@ print('三个键盘左上角类似顿号的符号，后面接语言类型。')
 
         ```python {.line-numbers cmd}
             def add(x, y):
-            return x+y
+                return x+y
+
+            print(add(1, 2))
         ```
     ```python {.line-numbers cmd}
     def add(x, y):
@@ -240,6 +243,10 @@ $$
 
 
 #### Emoji
+    :smile: :flushed: :sweat: :sob: :joy:
+    :+1: :ok_hand: :point_down: :clap: :muscle: :pray:
+    :heart: :fire: :boom: :star2: :shit: :zzz:
+
 :smile: :flushed: :sweat: :sob: :joy:
 :+1: :ok_hand: :point_down: :clap: :muscle: :pray:
 :heart: :fire: :boom: :star2: :shit: :zzz:
@@ -256,7 +263,7 @@ $$
 - **dm**: 进入块数学模式
 - **Ctrl + Alt + V**: 将剪贴板的图片粘贴到笔记中 
 - **table + m + n**: 生成mxn的表格（行数不包括表头）
-- **Shift + Alt + F**: 代码整理
+- **Alt + Shift + F**: 代码整理
 > 其中某些快捷键需要安装 *HyperSnipts for Math* 与 *Paste Image* 。
 
 <!-- pagebreak -->
