@@ -1,0 +1,31 @@
+/* https://github.com/lxhyl/lxhyl.github.io/tree/master/components/backToTop */
+.lxhyl-to-top{
+  animation-duration: 1s;
+  animation-iteration-count:1;
+  animation-fill-mode:forwards;
+}
+.init-hide{
+  opacity: 0;
+}
+.hide{
+  animation-name: hide;
+}
+@keyframes hide {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+.show{
+  animation-name: show;
+}
+@keyframes show{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
