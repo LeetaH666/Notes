@@ -44,6 +44,9 @@ html:
     - [其他常用HTML语言](#其他常用html语言)
       - [空行](#空行)
       - [占位符](#占位符)
+    - [自定义](#自定义)
+      - [表格居中](#表格居中)
+      - [图片居中](#图片居中)
     - [输出文件](#输出文件)
       - [HTML（推荐）](#html推荐)
       - [PDF](#pdf)
@@ -264,7 +267,7 @@ $$
 - **Ctrl + Alt + V**: 将剪贴板的图片粘贴到笔记中 
 - **table + m + n**: 生成mxn的表格（行数不包括表头）
 - **Alt + Shift + F**: 代码整理
-> 其中某些快捷键需要安装 *HyperSnipts for Math* 与 *Paste Image* 。
+> 其中某些快捷键需要安装 *HyperSnips for Math* 与 *Paste Image* 。
 
 <!-- pagebreak -->
 
@@ -330,6 +333,48 @@ $$
     </details>
     
     > pdf 不适用。
+
+### 自定义
+
+#### 表格居中
+`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在括号外加入以下代码：
+```less
+.center {
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+接着在你需要居中的表格前后加上标签`<div class='center'></div>`：
+
+    <div class='center'>
+    
+    |           注意           |          注意          |
+    | :----------------------: | :--------------------: |
+    | 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
+    </div>
+
+<div class='center'>
+
+|           注意           |          注意          |
+| :----------------------: | :--------------------: |
+| 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
+</div>
+
+#### 图片居中
+`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在括号内加入以下代码即可：
+```less
+img {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+```
+
+> 此外还有各种风格可以自定义，包括字体、颜色、表格样式等等；
+> 还可以通过定义id指定使用某一个css文件，即可以为不同文件设置不同的风格。
+> 具体方法这里不做赘述。
 
 ### 输出文件
 
