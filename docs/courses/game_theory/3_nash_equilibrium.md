@@ -147,6 +147,8 @@ $$
 \end{cases}\implies q_1^{*} = q_2^{*} = \frac{1-c}{3}
 $$Actually this can be generalized to $n$ firms. For a $n$-oligopolies market, the optimal quantity for firm $i$ is $q_i^{*} = \frac{1-c}{1+n}$.
 
+> The inverse demand function here is fixed. However, the relation between demand and price can change. See [Cournot with Uncertain Demand](/courses/game_theory/5_games_of_incomplete_information.md#example-cournot-with-uncertain-demand)
+
 #### Bertrand Equilibrium
 Still consider the same duopoly market, but now the 2 firms <mark>select prices rather than quantities</mark>. Assume consumers only buy from the firm with the lowest price and split evenly between the 2 firms when the prices are equal. The profit of firm $1$ is 
 $$

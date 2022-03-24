@@ -1,7 +1,7 @@
 # Dominated Strategies
 
 > [!NOTE]
-> In this notes, we use $a$ to denote action and $s$ to denote strategy.<br>Strategy is a contingent action plan, i.e., it is a plan that the player consider based on different future states (conditional).<br>In simultaneous games, i.e., players decide their actions at the same time, strategy and action are the same thing because players only consider the fixed history states. But they will be different in [sequential-move games](/courses/博弈论/sequential_move_games.md).
+> In this notes, we use $a$ to denote action and $s$ to denote strategy.<br>Strategy is a contingent action plan, i.e., it is a plan that the player consider based on different future states (conditional).<br>In simultaneous games, i.e., players decide their actions at the same time, strategy and action are the same thing because players only consider the fixed history states. But they will be different in [sequential-move games](/courses/game_theory/4_sequential_move_games.md#formal-definition).
 
 ### Dominance
 

@@ -1,4 +1,4 @@
-- [博弈论](/courses/博弈论/README.md)
-- [数理金融](/courses/数理金融/README.md)
-- [财务报表分析](/courses/财务报表分析/README.md)
+- [博弈论](/courses/game_theory/README.md)
+- [数理金融](/courses/mathematical_finance/README.md)
+- [财务报表分析](/courses/financial_statements_analysis/README.md)
 - [Back to Homepage](README.md)
