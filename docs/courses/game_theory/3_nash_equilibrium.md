@@ -132,11 +132,11 @@ Thus, every game $\Gamma_{n}=\{I,\ \{S_i\},\ \{u_i(\cdot)\}\}$ in which the sets
 ### Cournot Equilibrium and Bertrand Equilibrium
 
 #### Cournot Equilibrium
-Consider a <mark>duopoly</mark> market. The cost functions of 2 firms are $c(q_i) = c q_i$ for constant $c$ and $i=1,\ 2$. $q_i$ is the quantity of production of firm $i$. The inverse demand function (price function) is $P(Q) = 1 - Q$ (<mark>same price</mark>) where $Q = q_1 + q_2$ is the total quantity of production.
+Consider a <mark>duopoly</mark> market. The cost functions of 2 firms are $c(q_i) = c\cdot q_i$ for constant $c$ and $i=1,\ 2$. $q_i$ is the quantity of production of firm $i$. The inverse demand function (price function) is $P(Q) = 1 - Q$ (<mark>same price</mark>) where $Q = q_1 + q_2$ is the total quantity of production.
 
 Thus, the profit of firm $1$ is 
 $$
-\pi_1(q_1,\ q_2) = P(Q)\cdot q_1 - c(q_i) = (1-q_1-q_2)q_1 - cq_1
+\pi_1(q_1,\ q_2) = P(Q)\cdot q_1 - c(q_i) = (1-q_1-q_2)q_1 - c\cdot q_1
 $$and similarly for firm $2$.
 
 We can see that $\{q_i\}$ is not bounded, which means we can not directly use the proposition above to judge whether there exists a Nash equilibrium. So we check the <abbr title='First Order Condition'>FOC</abbr>: 
@@ -147,7 +147,7 @@ $$
 \end{cases}\implies q_1^{*} = q_2^{*} = \frac{1-c}{3}
 $$Actually this can be generalized to $n$ firms. For a $n$-oligopolies market, the optimal quantity for firm $i$ is $q_i^{*} = \frac{1-c}{1+n}$.
 
-> The inverse demand function here is fixed. However, the relation between demand and price can change. See [Cournot with Uncertain Demand](/courses/game_theory/5_games_of_incomplete_information.md#example-cournot-with-uncertain-demand)
+> The inverse demand function here is fixed. However, the relation between demand and price can change. See [Cournot with Uncertain Demand](/courses/game_theory/5_games_of_incomplete_information.md#example-cournot-with-uncertain-demand).
 
 #### Bertrand Equilibrium
 Still consider the same duopoly market, but now the 2 firms <mark>select prices rather than quantities</mark>. Assume consumers only buy from the firm with the lowest price and split evenly between the 2 firms when the prices are equal. The profit of firm $1$ is 
