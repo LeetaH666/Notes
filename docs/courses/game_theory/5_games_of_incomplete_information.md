@@ -16,7 +16,7 @@ We also assume that the cost is $0$ (for simplicity).
 
 Thus, the expected profit of firm 2 is 
 $$
-\mathrm{E}(\pi_2(q_2)) = \mathrm{E}(P(Q)\cdot q_2 = \mu (1-q_{L}-q_2)q_2 + (1-\mu)(2-q_{H}-q_2)q_2
+\mathrm{E}(\pi_2(q_2)) = \mathrm{E}(P(Q)\cdot q_2) = \mu (1-q_{L}-q_2)q_2 + (1-\mu)(2-q_{H}-q_2)q_2
 $$To maximize the expected profit, we check the <abbr title='First Order Condition'>FOC</abbr>: 
 $$
 \begin{aligned}
