@@ -45,7 +45,7 @@ Consider a binomial model with $n$ steps per unit time and expected return rate 
 Let $nt$ be an integer, define 
 $$
 M_{nt} = \sum\limits_{k=1}^{nt} X_{k,\ n}
-$$where $\{X_{k,\ n} \}$ are i.i.d. random variables representing the rise or decrease of the stock price with $\mathrm{P}(X_{k,\ n}=1)=p_n$ and $\mathrm{P}(X_{k,\ n}=-1)=1-p_n$. 
+$$where $\{X_{k,\ n} \}$ are i.i.d. random variables representing the rise or decrease of the stock price with $\mathbb{P}(X_{k,\ n}=1)=p_n$ and $\mathbb{P}(X_{k,\ n}=-1)=1-p_n$. 
   
 When $p_n=\frac{1}{2}$, $\frac{1}{\sqrt{n}}M_{nt}$ is a scaled symmetric random walk and tends to be a Wiener process $W(t)$ as $n\to \infty$. Generally, for any $p_n$, the mgf of $\frac{1}{\sqrt{n}}M_{nt}$ is 
 $$

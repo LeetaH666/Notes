@@ -70,7 +70,7 @@ V_6(G) = 0,\ V_5(F_1) = -4,\ V_5(F_2) = -3 \\
 $$which means the optimal path is $A\to B_1\to C_2\to D_1\to E_2\to F_2\to G$.
 
 ### Stochastic Dynamic Programming
-State $x_{k+1}=f_k(x_k,\ u_k,\ z_k)$ where $z_k$ is a random variable with probability distribution $\mathrm{P}_k(\cdot|x_k,\ u_k)$
+State $x_{k+1}=f_k(x_k,\ u_k,\ z_k)$ where $z_k$ is a random variable with probability distribution $\mathbb{P}_k(\cdot|x_k,\ u_k)$
 
 #### Value Functional 
 $$

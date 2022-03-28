@@ -4,7 +4,9 @@ Players in a game of incomplete information have different <mark>types</mark>, i
 
 The set of types of player $i$ is $\Theta_i$ and $\theta_i\in \Theta_i$ is a specific type of player $i$. The set of states of the game is $\Theta = \times_{i=1}^{n}\Theta_i$, i.e., $\Theta_1\times \Theta_2\times \cdots \times \Theta_n$, and $\theta = (\theta_1,\ \theta_2,\ \cdots,\ \theta_n)$ is a specific state of the game. For player $i$, a state of the game can be written as $(\theta_i,\ \theta_{-i})$ where $\theta_{-i}$ denotes others' types.
 
-### Example: Cournot with Uncertain Demand
+### Normal Form Games of Incomplete Information
+
+#### Example: Cournot with Uncertain Demand
 Recall the [Cournot Equilibrium](courses/game_theory/3_nash_equilibrium.md#cournot-equilibrium) we have discussed before. In the previous discussion, the inverse demand function is fixed. Now we assume there is uncertainty on the demand and the inverse demand function becomes 
 $$
 P(Q) = k - Q
@@ -70,11 +72,27 @@ $$
 U^{i}(\sigma_i(\cdot),\ \sigma_{-i}(\cdot)|\theta_i) = \sum\limits_{s_i\in S_i} \sigma_i(s_i|\theta_i)\cdot U^{i}(s_i,\ \sigma_{-i}(\cdot)|\theta_i)
 $$
 
-### Bayesian Equilibrium
-Given a normal form game with incomplete information $\Gamma = \{I,\ \{S_i\},\ \{u_i\},\ \{\Theta_i\},\ \mu\}$, a Bayesian equilibrium is a strategy profile 
+#### Bayesian Nash Equilibrium (BNE) for Normal Form Games
+Given a normal form game with incomplete information $\Gamma = \{I,\ \{S_i\},\ \{u_i\},\ \{\Theta_i\},\ \mu\}$, a Bayesian Nash equilibrium (BNE) is a strategy profile 
 $$
 \sigma^{*}(\cdot) = (\sigma_1^{*}(\cdot),\ \sigma_2^{*}(\cdot),\ \cdots,\ \sigma_n^{*}(\cdot))
 $$s.t. for each player $i$ and each type $\theta_i \in \Theta_i$, the expected payoff 
 $$
 U^{i}(\sigma_i^{*}(\cdot),\ \sigma_{-i}^{*}(\cdot)|\theta_i) \geqslant U^{i}(\sigma_i(\cdot),\ \sigma_{-i}^{*}(\cdot)|\theta_i)
 $$for each $\sigma_i(\cdot)\in \Sigma_i$.
+
+### Sequential-Move Games of Incomplete Information
+
+#### Example: Policy Advice
+<div align='center'>
+
+![](image/2022-03-28-11-19-38.png)
+</div align='center'>
+
+#### Bayesian Nash Equilibrium for Extensive Form Games
+
+
+### Adverse Selection and Market Failure
+
+#### Example: Market for Lemons
+
