@@ -17,7 +17,8 @@ $$
 - <mark>Value functional</mark> of $\pi$ starting at $x_0$ is 
   $$
   J_{\pi}(x_0) = g_{N}(x_{N}) + \sum\limits_{k=0}^{N-1} g_k(x_k,\ u_k)
-  $$where $g(\cdot)$ is the payoff of control under specific discete-time and state.
+  $$
+  where $g(\cdot)$ is the payoff of control under specific discete-time and state.
 - <mark>Value function</mark> $V_0(x_0)=\max_{\pi}\ J_{\pi}(x_0)$ and the corresponding policy is the optimal policy $\pi^{*}$
   > [!NOTE]
   > Difference between functional and function: the independent variable of a functional is function.
@@ -67,7 +68,8 @@ V_6(G) = 0,\ V_5(F_1) = -4,\ V_5(F_2) = -3 \\
 \end{aligned}\\
  \ \\
  g_0(A,\ B_1) + V_1(B_1) = -18,\ g_0(A,\ B_2) + V_1(B_2) = -19 \implies V_0(A) = -18
-$$which means the optimal path is $A\to B_1\to C_2\to D_1\to E_2\to F_2\to G$.
+$$
+which means the optimal path is $A\to B_1\to C_2\to D_1\to E_2\to F_2\to G$.
 
 ### Stochastic Dynamic Programming
 State $x_{k+1}=f_k(x_k,\ u_k,\ z_k)$ where $z_k$ is a random variable with probability distribution $\mathbb{P}_k(\cdot|x_k,\ u_k)$

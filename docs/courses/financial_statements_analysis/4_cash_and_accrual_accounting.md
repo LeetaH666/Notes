@@ -32,7 +32,8 @@ $$
 Reported <abbr title='Operating Cash Flow'>OCF</abbr> includes interest, which is a financing cash flow, so the actual cash flow from operations should be
 $$
 \text{Cash Flow from Operations} = \text{OCF} + \text{After-Tax Net Interest Payments}
-$$where 
+$$
+where 
 $$
 \text{After-Tax Net Interest Payments} = (\text{Interest Payments} - \text{Interest Receipts}) \times (1 - \text{Tax Rate})
 $$
@@ -60,5 +61,6 @@ $$
  &= \text{Cash Investments in Operations} + \text{FCF} + \text{Accruals}
 \end{aligned}
 $$
+
 > [!NOTE]
 > OCF is reported, while cash flow from operations is interest-adjusted.

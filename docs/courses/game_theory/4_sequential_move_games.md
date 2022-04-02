@@ -56,11 +56,15 @@ An extensive form game with perfect information has the following components:
   > [!NOTE]
   > **Difference between Strategies and Actions**<br>
   > Recall what we have discussed in [Dominated Strategies](/courses/game_theory/2_dominated_strategies.md), a strategy is a contingent action plan.<br>
-  > Consider the game above, for player $\text{E}$, the total action set is $$
+  > Consider the game above, for player $\text{E}$, the total action set is 
+  > $$
   > \{(\text{In},\ \text{a}),\ (\text{In},\ \text{f}),\ \text{Out}\}
-  > $$while a strategy should consider all nonterminal histories (decision nodes), e.g., $$
+  > $$
+  > while a strategy should consider all nonterminal histories (decision nodes), e.g., 
+  > $$
   > (\text{In},\ \text{a}|(\text{In},\ \text{A}),\ \text{f}|(\text{In},\ \text{F}))
-  > $$is a strategy that means player $\text{E}$ would choose $\text{In}$ at first, then if player $\text{I}$ choose $\text{A}$, player $\text{E}$ would choose $\text{a}$; if player $\text{I}$ choose $\text{F}$, player $\text{E}$ would choose $\text{f}$.
+  > $$
+  > is a strategy that means player $\text{E}$ would choose $\text{In}$ at first, then if player $\text{I}$ choose $\text{A}$, player $\text{E}$ would choose $\text{a}$; if player $\text{I}$ choose $\text{F}$, player $\text{E}$ would choose $\text{f}$.
 
 #### Information Set
 An information set for a player is <mark>a set of decision nodes</mark> in a game tree s.t. 
@@ -85,10 +89,12 @@ $$
  \text{I}:&\ (\text{In},\ \text{a}|(\text{In},\ \text{A}),\ \text{f}|(\text{In},\ \text{F}))\\
  \text{E}:&\ (\text{A}|\text{In})
 \end{aligned}
-$$while the equilibrium outcome is an action or payoff profile: 
+$$
+while the equilibrium outcome is an action or payoff profile: 
 $$
 (\text{In},\ \text{A},\ \text{a})
-$$or 
+$$
+or 
 $$
 (1,\ 1)
 $$
@@ -119,7 +125,9 @@ At time $T-1$, the second player would offer a split plan that the other player 
 If $T$ is odd, at time $0$, player 1 knows rational player 2 would allocate $v \delta-v \delta^{2}+v \delta^{3}-\cdots-v \delta^{T-1}+v \delta^{T}-\varepsilon$ to himself. As $T\to \infty$, the best response for player 1 at time $0$ is 
 $$
 v_0^{*} = \lim\limits_{T \to \infty} v-v \delta+v \delta^{2}-\cdots-v \delta^{T}+\varepsilon = \frac{v}{1-(-\delta)} = \frac{v}{1+\delta}
-$$If $T$ is even, at time $0$, player 1 knows rational player 2 would allocate $v \delta-v \delta^{2}+v \delta^{3}-\cdots-v \delta^{T}+\varepsilon$ to himself. As $T\to \infty$, the best response for player 1 at time $0$ is 
+$$
+If $T$ is even, at time $0$, player 1 knows rational player 2 would allocate $v \delta-v \delta^{2}+v \delta^{3}-\cdots-v \delta^{T}+\varepsilon$ to himself. As $T\to \infty$, the best response for player 1 at time $0$ is 
 $$
 v_0^{*} = \lim\limits_{T \to \infty} v-v \delta+v \delta^{2}-\cdots-v \delta^{T-1}+v \delta^{T}-\varepsilon = \frac{v}{1-(-\delta)} = \frac{v}{1+\delta}
-$$Thus, no matter $T$ is odd or even, the best response for player 1 at time $0$ is $\frac{v}{1+\delta}$ and the best response for player 2 at time $1$ is $v-\frac{v}{1+\delta}=\frac{\delta v}{1+\delta}$.
+$$
+Thus, no matter $T$ is odd or even, the best response for player 1 at time $0$ is $\frac{v}{1+\delta}$ and the best response for player 2 at time $1$ is $v-\frac{v}{1+\delta}=\frac{\delta v}{1+\delta}$.

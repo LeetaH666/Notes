@@ -23,7 +23,8 @@ u_i = \begin{cases}
   \frac{v_i-\underset{j\neq i}{\mathrm{max}}\ s_j}{k},& s_i=\underset{j\neq i}{\mathrm{max}}\ s_j \\
   v_i-\underset{j\neq i}{\mathrm{max}}\ s_j,& s_i>\underset{j\neq i}{\mathrm{max}}\ s_j
 \end{cases}
-$$where $k$ is the num of winners.
+$$
+where $k$ is the num of winners.
 
 Let $r=\underset{j\neq i}{\mathrm{max}}\ s_j$, we can see the choice of $r$ as the actions of buyers except $i$. The game between buyer $i$ and other buyers can be written as the following payoff matrix: 
 

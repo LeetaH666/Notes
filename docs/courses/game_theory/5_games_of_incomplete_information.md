@@ -19,25 +19,30 @@ We also assume that the cost is $0$ (for simplicity).
 Thus, the expected profit of firm 2 is 
 $$
 \mathrm{E}(\pi_2(q_2)) = \mathrm{E}(P(Q)\cdot q_2) = \mu (1-q_{L}-q_2)q_2 + (1-\mu)(2-q_{H}-q_2)q_2
-$$To maximize the expected profit, we check the <abbr title='First Order Condition'>FOC</abbr>: 
+$$
+To maximize the expected profit, we check the <abbr title='First Order Condition'>FOC</abbr>: 
 $$
 \begin{aligned}
  \mu (-q_2+1-q_L-q_2) + (1-\mu) (-q_2+2-q_H-q_2) &= 0\\
  q_2^{*} &= \frac{\mu(1-q_{L})+(1-\mu)(2-q_{H})}{2} \\
 \end{aligned}
-$$The profit of firm 1 is 
+$$
+The profit of firm 1 is 
 $$
 \pi_1(q_1) = (k-q_1-q_2)q_1
-$$with <abbr title='First Order Condition'>FOC</abbr>
+$$
+with <abbr title='First Order Condition'>FOC</abbr>
 $$
 \begin{aligned}
  -q_1 + k - q_1 - q_2 &= 0\\
  q_1^{*} &= \frac{k-q_2}{2}
 \end{aligned}
-$$which in turn implies 
+$$
+which in turn implies 
 $$
 q_{L} = \frac{1-q_2}{2} \qquad q_{H} = \frac{2-q_2}{2}
-$$Substitute these 2 solutions into $q_2^{*}$, we have 
+$$
+Substitute these 2 solutions into $q_2^{*}$, we have 
 $$
 \begin{aligned}
  q_2^{*} &= \frac{\mu\left( 1- \frac{1-q_2^{*}}{2} \right) + (1-\mu)\left( 2- \frac{2-q_2^{*}}{2} \right) }{2}\\
@@ -45,7 +50,8 @@ $$
  \frac{3}{2}q_2^{*} &= \frac{\mathrm{E}(k)}{2}\\
  q_2^{*} &= \frac{\mathrm{E}(k)}{3}
 \end{aligned}
-$$Substitute this solution into $q_1^{*}$, we have 
+$$
+Substitute this solution into $q_1^{*}$, we have 
 $$
 q_{L} = \frac{1}{2} - \frac{\mathrm{E}(k)}{6} \qquad q_{H} = 1 - \frac{\mathrm{E}(k)}{6}
 $$
@@ -58,7 +64,8 @@ Since the types should be assigned a probability distribution, we assume that al
 To sum up, a game of incomplete information is a collection 
 $$
 \Gamma = \{I,\ \{S_i\},\ \{u_i\},\ \{\Theta_i\},\ \mu\}
-$$Now if a player $i$ with type $\theta_i$ choose a strategy $\hat{s}_i = s_i(\theta_i)$, then the expected payoff of this strategy is 
+$$
+Now if a player $i$ with type $\theta_i$ choose a strategy $\hat{s}_i = s_i(\theta_i)$, then the expected payoff of this strategy is 
 $$
 U^{i}(\hat{s}_i,\ s_{-i}(\cdot)|\theta_i) = \sum\limits_{\theta_{-i}\in \Theta_{-i}} \mu(\theta_{-i}|\theta_i)\cdot u_i((\hat{s}_{i},\ s_{-i}(\theta_{-i})),\ (\theta_{-i},\ \theta_i))
 $$
@@ -67,7 +74,8 @@ $$
 If we consider mixed strategies in a game of incomplete information, i.e., let $\sigma_{-i}(s_{-i}|\theta_{-i})$ be the probability distribution of players in $I\setminus \{i\}$ to choose strategies $s_{-i}$ when their type is $\theta_{-i}$, then the expected payoff of player $i$ to choose $\hat{s}_i$ becomes 
 $$
 U^{i}(\hat{s}_i,\ \sigma_{-i}(\cdot)|\theta_i) = \sum\limits_{\theta_{-i}\in \Theta_{-i}} \mu(\theta_{-i}|\theta_i)\cdot \left( \sum\limits_{s_{-i}\in S_{-i}} \sigma_{-i}(s_{-i}|\theta_{-i})\cdot u_i((\hat{s}_{i},\ s_{-i}(\theta_{-i})),\ (\theta_{-i},\ \theta_i)) \right) 
-$$and the expected payoff of player $i$ with mixed strategy $\sigma_i(s_i|\theta_i)$ is 
+$$
+and the expected payoff of player $i$ with mixed strategy $\sigma_i(s_i|\theta_i)$ is 
 $$
 U^{i}(\sigma_i(\cdot),\ \sigma_{-i}(\cdot)|\theta_i) = \sum\limits_{s_i\in S_i} \sigma_i(s_i|\theta_i)\cdot U^{i}(s_i,\ \sigma_{-i}(\cdot)|\theta_i)
 $$
@@ -76,10 +84,12 @@ $$
 Given a normal form game with incomplete information $\Gamma = \{I,\ \{S_i\},\ \{u_i\},\ \{\Theta_i\},\ \mu\}$, a Bayesian Nash equilibrium (BNE) is a strategy profile 
 $$
 \sigma^{*}(\cdot) = (\sigma_1^{*}(\cdot),\ \sigma_2^{*}(\cdot),\ \cdots,\ \sigma_n^{*}(\cdot))
-$$s.t. for each player $i$ and each type $\theta_i \in \Theta_i$, the expected payoff 
+$$
+s.t. for each player $i$ and each type $\theta_i \in \Theta_i$, the expected payoff 
 $$
 U^{i}(\sigma_i^{*}(\cdot),\ \sigma_{-i}^{*}(\cdot)|\theta_i) \geqslant U^{i}(\sigma_i(\cdot),\ \sigma_{-i}^{*}(\cdot)|\theta_i)
-$$for each $\sigma_i(\cdot)\in \Sigma_i$.
+$$
+for each $\sigma_i(\cdot)\in \Sigma_i$.
 
 ### Sequential-Move Games of Incomplete Information
 

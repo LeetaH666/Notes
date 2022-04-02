@@ -3,16 +3,19 @@
 ### Residual Earnings and Valuation
 $$
 \text{Residual Earnings}_{t} = \text{Earnings}_{t} - \text{Investment}_{t-1} \times \text{Required Return}
-$$To valuate a firm anchoring on its book value, we see the book value of common equity as investment, i.e., 
+$$
+To valuate a firm anchoring on its book value, we see the book value of common equity as investment, i.e., 
 $$
 \begin{aligned}
  \text{Residual Earnings}_{t} &= \text{Earnings}_{t} - \text{Book Value of Common Equity}_{t-1} \times \text{Required Return}\\
  &= (\text{ROCE}_{t} - \text{Required Return})\times \text{Book Value of Common Equity}_{t-1}\\
 \end{aligned}
-$$where 
+$$
+where 
 $$
 \text{ROCE}_{t} = \frac{\text{Comprehensive Earnings to Common}_{t}}{\text{Book Value of Common Equity}_{t-1}}
-$$is called return on common shareholders' equity.
+$$
+is called return on common shareholders' equity.
 
 #### Example
 The following are earnings and dividend forecasts made at the end of 2012 for a firm with $\text{\textdollar 20.00}$ book value per common share at that time. The firm has a required equity return of $10\%$ per year.

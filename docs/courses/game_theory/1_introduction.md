@@ -73,15 +73,18 @@ There are 2 restaurants with prices $P_x$ and $P_y$. The number of customers for
 $$
 Q_x = 44 - 2P_x + P_y \\
 Q_y = 44 - 2P_y + P_x
-$$The cost of serving each customer is $8$. Each restaurant's goal is to maximize its profit and they set prices simultaneously. Since the quantity functions are the same form, 2 restaurants are <mark>substitute</mark>.
+$$
+The cost of serving each customer is $8$. Each restaurant's goal is to maximize its profit and they set prices simultaneously. Since the quantity functions are the same form, 2 restaurants are <mark>substitute</mark>.
 
 Thus, the profit of restaurant $x$ is 
 $$
 \Pi_x = (P_x-8)(44-2P_x+P_y)=-2P_x^2+(P_y+60)P_x-8(P_y+44)
-$$By letting $\frac{\partial \Pi_x}{\partial P_x}=0$ (<abbr title='First Order Condition'>FOC</abbr>), we get the best response function for $x$: 
+$$
+By letting $\frac{\partial \Pi_x}{\partial P_x}=0$ (<abbr title='First Order Condition'>FOC</abbr>), we get the best response function for $x$: 
 $$
 P_x^{*} = \frac{P_y+60}{4} = \frac{P_y}{4} + 15
-$$Similarly for $y$, the best response function is $P_y^{*} = \frac{P_x}{4} + 15$.
+$$
+Similarly for $y$, the best response function is $P_y^{*} = \frac{P_x}{4} + 15$.
 
 According to the definition of Nash equilibrium, the prices should satisfy 
 $$
@@ -89,7 +92,8 @@ $$
   P_x = \frac{P_y}{4} + 15 \\
   P_y = \frac{P_x}{4} + 15 \\
 \end{cases}
-$$which means $(P_x^{*},\ P_y^{*})=(20,\ 20)$.
+$$
+which means $(P_x^{*},\ P_y^{*})=(20,\ 20)$.
 
 ### Method of Scoring
 Control $a_{-i}$ and underline the best response of $i$.

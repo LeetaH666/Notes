@@ -6,7 +6,8 @@ Repeatedly toss a fair coin, denote the successive outcomes of the tosses by $\o
 Let $X_j=\begin{cases}1,& \omega_j = H \\ -1,& \omega_j = T \\ \end{cases}$ for outcome "Head" or "Tail" and define 
 $$
 M_k = \sum\limits_{j=1}^{k} X_j \quad (k=1,\ 2,\ \cdots)
-$$with $M_0=0$, then the process $M$ is a symmetric random walk.
+$$
+with $M_0=0$, then the process $M$ is a symmetric random walk.
 
 A symmetric random walk has the following properties: 
 - <mark>independent increments</mark>;
@@ -17,7 +18,8 @@ A symmetric random walk has the following properties:
 ### Scaled Symmetric Random Walk
 $$
 W^{n}(t) = \frac{1}{\sqrt{n}}M_{nt}\quad (t\geqslant 0)
-$$where $n$ is a fixed integer.
+$$
+where $n$ is a fixed integer.
 
 If $nt$ is not an integer, we define $W^{n}(t)$ by linear interpolation between its values at the nearest points $s$ and $u$ to the left and right of $t$ for which $ns$ and $nu$ are integers.
 
@@ -28,14 +30,16 @@ By the CLT (Central Limit Theorem), when $n\to \infty$, $M_{nt} \sim N(0,\ t)$ s
 #### Arithmetic Brownian Motion
 $$
 S(t) = at + b W(t)\quad (t\geqslant 0)
-$$where $W(t)\sim N(0,\ t)$.
+$$
+where $W(t)\sim N(0,\ t)$.
 
 > Under this model, the asset prices can be negative. Thus, the geometric Brownian motion came out.
 
 #### Geometric Brownian Motion (GBM)
 $$
-S(t) = S(0)e^{\sigma W(t) + (\mu-\frac{1}{2}\sigma^{2})t}
-$$GBM is a limit of a Binomial model.
+S(t) = S(0)e^{(\mu-\frac{1}{2}\sigma^{2})t + \sigma W(t)}
+$$
+GBM is a limit of a binomial model.
 
 <details>
 <summary>Proof</summary>
@@ -45,12 +49,14 @@ Consider a binomial model with $n$ steps per unit time and expected return rate 
 Let $nt$ be an integer, define 
 $$
 M_{nt} = \sum\limits_{k=1}^{nt} X_{k,\ n}
-$$where $\{X_{k,\ n} \}$ are i.i.d. random variables representing the rise or decrease of the stock price with $\mathbb{P}(X_{k,\ n}=1)=p_n$ and $\mathbb{P}(X_{k,\ n}=-1)=1-p_n$. 
+$$
+where $\{X_{k,\ n} \}$ are i.i.d. random variables representing the rise or decrease of the stock price with $\mathbb{P}(X_{k,\ n}=1)=p_n$ and $\mathbb{P}(X_{k,\ n}=-1)=1-p_n$. 
   
 When $p_n=\frac{1}{2}$, $\frac{1}{\sqrt{n}}M_{nt}$ is a scaled symmetric random walk and tends to be a Wiener process $W(t)$ as $n\to \infty$. Generally, for any $p_n$, the mgf of $\frac{1}{\sqrt{n}}M_{nt}$ is 
 $$
 M_{\frac{1}{\sqrt{n}}M_{nt}}(\theta) = \mathrm{E}\left( e^{\theta \frac{1}{\sqrt{n}}M_{nt}} \right) = \mathrm{E}\left( \prod_{k=1}^{nt} e^{\theta \frac{1}{\sqrt{n}}X_{k,\ n} } \right) = \left[ e^{\frac{\theta}{\sqrt{n}}}\frac{\left( 1+\frac{\mu}{n} \right) - e^{-\frac{\sigma}{\sqrt{n}}}}{e^{\frac{\sigma}{\sqrt{n}}}-e^{-\frac{\sigma}{\sqrt{n}}}} + e^{-\frac{\theta}{\sqrt{n}}}\frac{e^{\frac{\sigma}{\sqrt{n}}}-\left( 1+\frac{\mu}{n} \right) }{e^{\frac{\sigma}{\sqrt{n}}}-e^{-\frac{\sigma}{\sqrt{n}}}} \right]^{nt}
-$$Then, let $x=\frac{1}{\sqrt{n}}$, when $n\to \infty$, we have 
+$$
+Then, let $x=\frac{1}{\sqrt{n}}$, when $n\to \infty$, we have 
 $$
 \begin{aligned}
  \lim\limits_{n \to \infty} \log M_{\frac{1}{\sqrt{n}}M_{nt}}(\theta) &= \lim\limits_{x \to 0^{+}} \frac{t}{x^{2}} \log \left[ e^{\theta x} \frac{(1+\mu x^{2})-e^{-\sigma x}}{e^{\sigma x}-e^{-\sigma x}} + e^{-\theta x} \frac{e^{\sigma x}-(1+\mu x^{2})}{e^{\sigma x}-e^{-\sigma x}} \right]\\

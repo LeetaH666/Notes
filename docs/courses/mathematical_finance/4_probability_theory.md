@@ -33,12 +33,14 @@ A random variable $X$ induces a probability measure $\mu_{X}$ on $\mathbb{R}^{n}
 Rolling a dice gives a sample space
 $$
 \Omega = \{1,\ 2,\ 3,\ 4,\ 5,\ 6\}
-$$The set of all subsets $\mathcal{F}=2^{\Omega}$ is a $\sigma$-algebra.
+$$
+The set of all subsets $\mathcal{F}=2^{\Omega}$ is a $\sigma$-algebra.
 
 Define a random variable
 $$
 X(\omega) = \omega + 1,\ \forall \omega\in \Omega
-$$We can easily verify that it is $\mathcal{F}$-measurable through the definition.
+$$
+We can easily verify that it is $\mathcal{F}$-measurable through the definition.
 
 However, given another $\sigma$-algebra $\mathcal{G}=\{\empty,\ \Omega,\ \{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$, $X(\omega)$ is not a random variable with it because $X(\omega)$ is not $\mathcal{G}$-measurable. For example, choose an open interval $U=(0.5,\ 1.5)$, $X ^{-1}(U) = \{1\} \nsubseteq \mathcal{G}$.
 
@@ -48,10 +50,12 @@ However, given another $\sigma$-algebra $\mathcal{G}=\{\empty,\ \Omega,\ \{1,\ 3
 Let $X$ be a random variable on a probability space $(\Omega,\ \mathcal{F},\ \mathbb{P})$. The expectation of $X$ is 
 $$
 \mathrm{E}(X) = \int_\Omega X(\omega)\ \mathrm{d}\mathbb{P}(\omega)
-$$if 
+$$
+if 
 $$
 \mathrm{E}(\left\vert X \right\vert ) = \int_\Omega \left\vert X(\omega) \right\vert\ \mathrm{d}\mathbb{P}(\omega) < \infty
-$$or 
+$$
+or 
 $$
 X \geqslant 0 \quad \text{a.s.}
 $$
@@ -91,18 +95,21 @@ $$
 Note that we need 
 $$
 \widetilde{\mathrm{E}}(X+\theta) = \mathrm{E}(XZ) = \int_\Omega \frac{1}{\sqrt{2\pi}} e^{-\frac{(X(\omega))^{2}}{2}}\cdot Z(\omega)\ \mathrm{d}\omega
-$$where $Z$ is the Radon-Nikodym derevative of $\widetilde{\mathbb{P}}$ w.r.t. $\mathbb{P}$.
+$$
+where $Z$ is the Radon-Nikodym derevative of $\widetilde{\mathbb{P}}$ w.r.t. $\mathbb{P}$.
 
 This means we need 
 $$
 Z(\omega) = e^{-\frac{1}{2}\theta^{2}-\theta X(\omega)}
-$$for all $\omega\in \Omega$.
+$$
+for all $\omega\in \Omega$.
 
 #### Girsanov Theorem
 Assume that process $W(t)$ ($0\leqslant t\leqslant T$) is a Wiener process on the porbability space $(\Omega,\ \mathcal{F},\ \mathbb{P})$. Define a random variable 
 $$
 Z = e^{-\frac{1}{2}\frac{(\mu-r)^{2}}{\sigma^{2}}T - \frac{\mu-r}{\sigma}W(T)}
-$$and we have 
+$$
+and we have 
 $$
 \mathrm{E}(Z) = e^{-\frac{1}{2}\frac{(\mu-r)^{2}}{\sigma^{2}}T}\mathrm{E}(e^{-\frac{\mu-r}{\sigma}W(T)}) = 1
 $$
@@ -113,17 +120,20 @@ $$
 Define a probability measure $\widetilde{\mathbb{P}}$ s.t. $\frac{\mathrm{d}\widetilde{\mathbb{P}}}{\mathrm{d}\mathbb{P}} = Z$, then the process 
 $$
 \widetilde{W} := W(t) + \frac{\mu-r}{\sigma}t
-$$is a Wiener process under $\widetilde{\mathbb{P}}$.
+$$
+is a Wiener process under $\widetilde{\mathbb{P}}$.
 
 The theorem can be easily shown like the [example](#example-normal-random-variable) above.
 
 Suppose the stock price follows the <abbr title='Geometric Brownian Motion'>GBM</abbr> under the physical probability measure $\widetilde{\mathbb{P}}$, then we have 
 $$
 \mathrm{d}S(t) = \mu S(t) \mathrm{d}t + \sigma S(t) \mathrm{d}W(t)
-$$In the risk-neutral world, i.e., under the probability $\widetilde{\mathbb{P}}$, we have 
+$$
+In the risk-neutral world, i.e., under the probability $\widetilde{\mathbb{P}}$, we have 
 $$
 \mathrm{d}S(t) = r S(t) \mathrm{d}t + \sigma S(t) \mathrm{d}\widetilde{W}(t)
-$$by the Girsanov theorem.
+$$
+by the Girsanov theorem.
 
 ### Information and Partition
 
@@ -141,18 +151,21 @@ $f(\omega)$ denotes the subset of of the partition $f$ that contains the state $
 The toss of 2 coins has a sample space with 4 states:
 $$
 \Omega = \{\text{HH},\ \text{HT},\ \text{TH},\ \text{TT}\}
-$$The information of the head count can be represented by the partition 
+$$
+The information of the head count can be represented by the partition 
 $$
 f = \{\{\text{HH}\},\ \{\text{HT},\ \text{TH}\},\ \{\text{TT}\}\}
-$$since there are only 3 events: 2 heads, 1 head and no head.
+$$
+since there are only 3 events: 2 heads, 1 head and no head.
 
 #### Unique Relation between $\sigma$-Algebra and Partition
 In a finite space, a $\sigma$-algebra corresponds to a partition, i.e., suppose there is a $\sigma$-algebra $\mathcal{F}$ on finite $\Omega$, then 
 $$
 f = \{A\neq \empty | A\in \mathcal{F} \text{ and if } \exists B\in \mathcal{F} \text{ and } B \sub A,\ \text{then } B=A \text{ or } B=\empty \}
-$$is a partition on $\Omega$.
+$$
+is a partition on $\Omega$.
 
-Meanwhile, each partition $f$ generates an unique $\sigma$-algebra denoted by $\sigma(f)$.
+Meanwhile, <mark>each partition $f$ generates an unique $\sigma$-algebra denoted by $\sigma(f)$</mark>.
 
 #### Measurable Theorem
 Let $f$ be a partition, then a random variable $X$ is measurable with $\sigma(f)$ iff $X$ is <mark>constant at any element of the set $f$</mark>.
@@ -164,19 +177,21 @@ For example, let $\Omega=\{\omega_1,\ \cdots,\ \omega_K\}$,
 > [!TIP]
 > For the null partition $f$, if $X(\omega)=0$ for some $\omega$ and $X(\omega)=1$ for others, then $\empty \subsetneq X ^{-1}((0.5,\ 1.5)) \subsetneq \Omega$ and thus $X ^{-1}((0.5,\ 1.5)) \notin \sigma(f)$.
 
-Similarly, a random variable $X$ can generate a $\sigma$-algebra denoted by $\sigma(X)$ (need not to be unique). Note that $\sigma(X)$ is the smallest $\sigma$-algebra where $X$ is measurable.
+Similarly, <mark>a random variable $X$ can generate a $\sigma$-algebra denoted by $\sigma(X)$</mark> (need not to be unique). Note that $\sigma(X)$ is the smallest $\sigma$-algebra where $X$ is measurable.
 
 #### Example: Rolling a Dice - Odd or Even
 Rolling a dice gives a sample space
 $$
 \Omega = \{1,\ 2,\ 3,\ 4,\ 5,\ 6\}
-$$Define a random variable 
+$$
+Define a random variable 
 $$
 X(\omega) = \begin{cases}
     1,& \omega=1,\ 3,\ 5 \\
     0,& \omega=2,\ 4,\ 6 \\
 \end{cases}
-$$Then $\sigma(X)=\{\empty,\ \Omega,\ \{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$.
+$$
+Then $\sigma(X)=\{\empty,\ \Omega,\ \{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$.
 
 For the null partition $f=\{\Omega\}$, $X$ is not $\sigma(f)$ measurable since it is not constant at $\Omega$.
 
@@ -197,7 +212,8 @@ $$
     {}\\
     \frac{\mathbb{P}(\{2\})}{\mathbb{P}(\{2,\ 4,\ 6\})}=\frac{1}{3},& \omega\in \{2,\ 4,\ 6\}\\
 \end{cases}
-$$which is $\sigma(f)$-measurable since it is constant at each element in $f$.
+$$
+which is $\sigma(f)$-measurable since it is constant at each element in $f$.
 
 #### Conditional Expectation on Partition
 For a random variable $X$ on $(\Omega,\ \mathbb{P})$ and a partition $f$ of $\Omega$, the conditional expectation $\mathrm{E}(X|f)$ is a random variable given by 
@@ -211,7 +227,8 @@ $$
     {}\\
     \frac{\sum\limits_{\omega^{\prime} \in \{4,\ 5,\ 6\}} \frac{1}{6}X(\omega^{\prime})}{\mathbb{P}(\{4,\ 5,\ 6\})}=\frac{1}{3},& \omega\in \{4,\ 5,\ 6\}\\
 \end{cases}
-$$which is $\sigma(f)$-measurable since it is constant at each element in $f$.
+$$
+which is $\sigma(f)$-measurable since it is constant at each element in $f$.
 
 #### General Conditional Expectation
 Let $(\Omega,\ \mathcal{F},\ \mathbb{P})$ be a probability space and $\mathcal{G}$ be a sub-$\sigma$-algebra of $\mathcal{F}$. Assume $X$ is a random variable that is either nonnegative or integrable, then the conditional expectation of $X$ given $\mathcal{G}$, denoted by $\mathrm{E}(X|\mathcal{G})$, is a random variable that satisfies
@@ -226,7 +243,8 @@ General conditional expectations have the following properties:
 
     $$
     \mathrm{E}(c_1X+c_2Y|\mathcal{G}) = c_1 \mathrm{E}(X|\mathcal{G}) + c_2 \mathrm{E}(Y|\mathcal{G})
-    $$where $c_1$ and $c_2$ are 2 constants.
+    $$
+    where $c_1$ and $c_2$ are 2 constants.
 
 - <mark>Taking out what is known</mark>: If X, Y and $XY$ are integrable random variables, and $X$ is $\mathcal{G}$-measurable, then 
 

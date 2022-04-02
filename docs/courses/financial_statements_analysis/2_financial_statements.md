@@ -91,10 +91,12 @@ $$
 \text{Gross Margin} = \text{\textdollar}4458 - \text{\textdollar}3348 = \text{\textdollar}1110\\
 {}\\
 \text{EBIT} = \text{Gross Margin} - \text{\textdollar}1230 - \text{\textdollar}450 = \text{\textdollar}(-570)
-$$Note that <mark>the number in the parentheses means negative number</mark>. Thus, we have 
+$$
+Note that <mark>the number in the parentheses means negative number</mark>. Thus, we have 
 $$
 \text{NI} = \text{EBIT} - \text{\textdollar}(-200) = \text{\textdollar}(-370)
 $$
+
 > [!TIP]
 > A loss yields a tax benefit that the firm can carry forward to reduce future taxes.
 
@@ -161,5 +163,6 @@ $$
 $$
 \text{Dividend-Adjusted P/E} = \frac{\text{Price}+\text{Annual DPS}}{\text{EPS}}
 $$
+
 > [!TIP]
 > Dividends affects prices but not earnings.

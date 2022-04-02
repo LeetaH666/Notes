@@ -8,7 +8,8 @@ $$
  \frac{\mathrm{d}x}{\mathrm{d}t} = b(t,\ x(t),\ u(t)),& t \in [0,\ T] \\
  x(0) = x_0
 \end{cases}
-$$where the initial value $x_0 \in \mathbb{R}$, the control $u: [0,\ T] \to U$ with a metric space $U$ and the map $b: [0,\ T]\times \mathbb{R}\times U \to \mathbb{R}$.
+$$
+where the initial value $x_0 \in \mathbb{R}$, the control $u: [0,\ T] \to U$ with a metric space $U$ and the map $b: [0,\ T]\times \mathbb{R}\times U \to \mathbb{R}$.
 Consider $s \in [0,\ T)$ and $y \in \mathbb{R}$, the control system becomes
 $$
 \begin{cases}
@@ -45,7 +46,8 @@ $$
   V_t + \underset{u \in U}{\mathrm{sup}}\ [b(t,\ x,\ u)V_x + f(t,\ x,\ u)] = 0 \\
   V(t=T,\ x) = h(x)
 \end{cases}
-$$where $x(t)$ and $u(t)$ are simply written as $x$ and $u$.
+$$
+where $x(t)$ and $u(t)$ are simply written as $x$ and $u$.
 
 <details>
 <summary>Proof</summary>
@@ -53,21 +55,26 @@ $$where $x(t)$ and $u(t)$ are simply written as $x$ and $u$.
 Fix a $u \in U$. By the principle of optimality, we have
 $$
  \int_{s}^{\hat{s}} f(t,\ x,\ u)  ~\mathrm{d}t + V(\hat{s},\ x(\hat{s})) \leqslant V(s,\ y)
-$$Let $\hat{s} \to s$, then we can write 
+$$
+Let $\hat{s} \to s$, then we can write 
 $$
  \int_{s}^{\hat{s}} f(t,\ x,\ u)  ~\mathrm{d}t = (\hat{s}-s)f(s,\ x(s),\ u(s)) + \omicron(\hat{s}-s) \implies \frac{\int_{s}^{\hat{s}} f(t,\ x,\ u)  ~\mathrm{d}t}{\hat{s}-s} = f(s,\ x(s),\ u(s))
-$$and 
+$$
+and 
 $$
  V(\hat{s},\ x(\hat{s})) = V(s,\ x(s)) +V_t|_{t=s}(\hat{s}-s)+\omicron(\hat{s}-s)+V_x|_{x=x(s)}(x(\hat{s})-x(s))+\omicron(x(\hat{s})-x(s)) \\
  \implies \frac{V(\hat{s},\ x(\hat{s}))-V(s,\ x(s))}{\hat{s}-s} = V_t|_{t=s} + V_x|_{x=x(s)}b(s,\ x(s),\ u(s))
-$$by Taylor expansion.
+$$
+by Taylor expansion.
+
 > [!TIP]
 > When $\hat{s} \to s$, $\frac{\omicron(x(\hat{s})-x(s))}{\hat{s}-s}=\frac{\omicron(x(\hat{s})-x(s))}{x(\hat{s})-x(s)}\frac{x(\hat{s})-x(s)}{\hat{s}-s}=\frac{\omicron(x(\hat{s})-x(s))}{x(\hat{s})-x(s)}b(s,\ x(s),\ u(s))=0$. 
 
 Thus, we have 
 $$
 f(s,\ x(s),\ u(s)) + V_t|_{t=s} + V_x|_{x=x(s)}b(s,\ x(s),\ u(s)) \leqslant 0
-$$Then for any $u \in U$, we obtain 
+$$
+Then for any $u \in U$, we obtain 
 $$
 V_t|_{t=s} + \underset{u \in U}{\mathrm{sup}}[ f(s,\ x(s),\ u(s)) + V_x|_{x=x(s)}b(s,\ x(s),\ u(s)) ] \leqslant 0
 $$On the other hand, by the definition of supremum, $\forall \varepsilon>0$ with $\hat{s}-s>0$ small enough, $\exists u \in U$ s.t. 
@@ -76,10 +83,12 @@ V(s,\ y) - \varepsilon(\hat{s}-s) \leqslant \int_{s}^{\hat{s}} f(t,\ x,\ u)  ~\m
 $$Using the same method above, this yeilds
 $$
 f(s,\ x(s),\ u(s)) + V_t|_{t=s} + V_x|_{x=x(s)}b(s,\ x(s),\ u(s)) \geqslant -\varepsilon
-$$which means 
+$$
+which means 
 $$
 V_t|_{t=s} + \underset{u \in U}{\mathrm{sup}}[ f(s,\ x(s),\ u(s)) + V_x|_{x=x(s)}b(s,\ x(s),\ u(s)) ] \geqslant 0
-$$Hence, we finish the proof.
+$$
+Hence, we finish the proof.
 </details>
 
 #### Example: Bliss Point
@@ -91,7 +100,8 @@ $$where $U(c)$ is the utility experienced as a result of per capita consumption 
 Consumers want to minimize the gap between utility and the bliss point, so the value functional of the control system can be written as 
 $$
 J(0,\ k_0;\ c(\cdot)) = \int_{0}^{\infty} U(c)-B ~\mathrm{d}t 
-$$and the value function 
+$$
+and the value function 
 $$
 V(s,\ k_0) = \underset{c}{\mathrm{sup}}\ \int_{0}^{\infty} U(c)-B ~\mathrm{d}t = V(k_0)
 $$is <mark>time-homogeneous</mark>.
@@ -106,7 +116,8 @@ $$where $Y$ is output, $K$ and $L$ are time-varying capital input and constant l
 Thus, if we take labor $L$ to be fixed, per capita output can be expressed as 
 $$
 y = \frac{Y}{L} = F\left( \frac{K}{L}, 1 \right)  := f(k)
-$$where $k=\frac{K}{L}$.
+$$
+where $k=\frac{K}{L}$.
 
 The well-known macroeconomic identities show that 
 $$
@@ -114,35 +125,38 @@ $$
   I = Y - C \\
   \mathrm{d}K = I \mathrm{d}t - \delta K \mathrm{d}t
 \end{cases}
-$$where $I$ represents investment, $C$ is total consumption and $\delta$ is the rate of depreciation of capital.
+$$
+where $I$ represents investment, $C$ is total consumption and $\delta$ is the rate of depreciation of capital.
 
 Let per capita consumption $c=\frac{C}{L}$, we obtain 
 $$
 \frac{\mathrm{d}k}{\mathrm{d}t} = \frac{1}{L}\frac{\mathrm{d}K}{\mathrm{d}t} = \frac{I-\delta K}{L} = \frac{Y}{L} - \frac{C}{L} - \delta \frac{K}{L} = f(k) - c - \delta k
-$$which means the control system can be written as 
+$$
+which means the control system can be written as 
 $$
 \begin{cases}
   \frac{\mathrm{d}k}{\mathrm{d}t} = f(k) - c - \delta k\\
   k(0) = k_0
 \end{cases}
-$$given initial per capita capital $k_0$.
-
-
+$$
+given initial per capita capital $k_0$.
 
 Assume $U(c) = B - e^{-\lambda c}$ with constant $\lambda>0$. By HJB equation we know that 
 $$
 V_t + \underset{c}{\mathrm{sup}}\ \left[(f(k)-c-\delta k) V_k - e^{-\lambda c}  \right]  = 0 \\
-$$Since the value function is time-homogeneous, $V_t=0$. The first-order derivative of the function in the bracket w.r.t. $c$ is $-V_k + \lambda e^{-\lambda c}$, and the second-order derivative w.r.t. $c$ is $-\lambda^{2}e^{-\lambda c}$, which means the function reaches an unique maximum when $c$ satisfies $\lambda e^{-\lambda c} = V_k$. Thus, the equation above becomes 
+$$
+Since the value function is time-homogeneous, $V_t=0$. The first-order derivative of the function in the bracket w.r.t. $c$ is $-V_k + \lambda e^{-\lambda c}$, and the second-order derivative w.r.t. $c$ is $-\lambda^{2}e^{-\lambda c}$, which means the function reaches an unique maximum when $c$ satisfies $\lambda e^{-\lambda c} = V_k$. Thus, the equation above becomes 
 $$
 \begin{aligned}
  (f(k^{*}) - c^{*} - \delta k^{*}) \lambda e^{-\lambda c^{*}} - e^{-\lambda c^{*}} &= 0 \\
  c^{*} &= f(k^{*}) - \delta k^{*} - \frac{1}{\lambda}
 \end{aligned}
-$$and we have 
+$$
+and we have 
 $$
 \frac{\mathrm{d}k^{*}}{\mathrm{d}t} = f(k^{*}) - c^{*} - \delta k^{*} = \frac{1}{\lambda}
-$$which means 
+$$
+which means 
 $$
 k^{*} = k_0 + \frac{t}{\lambda}
 $$
- 
