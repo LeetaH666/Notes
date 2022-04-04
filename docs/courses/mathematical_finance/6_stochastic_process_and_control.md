@@ -41,18 +41,136 @@ From this we can derive that
 $$
 V(t) = S(t)\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
 $$
+
 where $\Phi(\cdot)$ is the cdf of standard normal distribution and 
 $$
 d_1 = \frac{\log \left(\frac{S(t)}{K} \right) + \left( r + \frac{\sigma^{2}}{2} \right) (T-t)}{\sigma \sqrt{T-t}},\ \qquad d_2 = d_1 - \sigma \sqrt{T-t}
 $$
+
 Recall that in the [multi-period binomial model](courses/mathematical_finance/5_binomial_model.md#multi-period-binomial-model), we use 
 $$
 \Delta_n(S_n) = \frac{V_{n+1}(u\, S_n)-V_{n+1}(d\, S_n)}{u\, S_n - d\, S_n}
 $$
+
 shares of stock to hedge our portfolio.
 
 Similarly, in the <abbr title='Black-Scholes'>B-S</abbr> model, we use 
 $$
 \Delta(t,\ S(t)) = \frac{\partial V(t,\ S(t))}{\partial S(t)}
 $$
+
 shares of stock to hedge our portfolio.
+
+### Stochastic Control
+Back to the control system we have learned in [Continuous Time Deterministic Dynamic programming](courses/mathematical_finance/2_continuous_time_deterministic_dynamic_programming.md), now we consider a stochastic component, e.g., a wiener process $W(t)$.
+
+#### Control System
+$$
+\begin{cases}
+    \mathrm{d}x(t) = b(t,\ x(t),\ u(t))\mathrm{d}t + \sigma(t,\ x(t),\ u(t))\mathrm{d}W(t),& t \in [0,\ T]\\
+    x(0) = x_0
+\end{cases}
+$$
+
+where control $u(\cdot)$ belongs to the admissible control set 
+$$
+\mathcal{A}[0,\ T]=\left\{u(\cdot) \text{ is measurable in } [0,\ T] \text{ and } u(\cdot) \text{ is } \{\mathcal{F}(t)\}_{t=0}^{T} \text{-adapted}\right\}
+$$
+
+Consider $s \in [0,\ T)$ and $y \in \mathbb{R}$, the control system becomes
+$$
+\begin{cases}
+    \mathrm{d}x(t) = b(t,\ x(t),\ u(t))\mathrm{d}t + \sigma(t,\ x(t),\ u(t))\mathrm{d}W(t),& t \in [s,\ T]\\
+    x(s) = y
+\end{cases}
+$$
+
+#### Value Functional
+$$
+J(s,\ y;\ u(\cdot)) = \mathrm{E}\left(h(x(T)) + \int_{s}^{T} f(t,\ x(t),\ u(t)) ~\mathrm{d}t  \right) 
+$$
+
+#### Value Function
+$$
+V(s,\ y) =
+\begin{cases}
+   \underset{u(\cdot) \in \mathcal{A}[s,\ T]}{\mathrm{sup}}\ J(s,\ y;\ u(\cdot)),& s \in [0,\ T) \\
+   {}\\
+   h(y),& s=T
+\end{cases}
+$$
+
+### Bellman's Principle of Optimality
+For any $(s,\ y)\in [0,\ T)\times \mathbb{R}^{n}$ and $0\leqslant s \leqslant \hat{s}\leqslant T$, 
+$$
+V(s,\ y) = \underset{u(\cdot)\in \mathcal{A}[s,\ \hat{s}]}{\mathrm{sup}} \mathrm{E}\left( \int_{s}^{\hat{s}} f(t,\ x(t;\ s,\ y,\ u(\cdot)),\ u(t)) ~\mathrm{d}t + V(\hat{s},\ x(\hat{s};\ s,\ y,\ u(\cdot))) \right)  
+$$
+
+#### HJB Equation
+If the value function $V\in \mathcal{C}^{1,\ 2}([0,\ T]\times \mathbb{R}^{n})$, then $V$ is a solution to the following terminal value problem: 
+$$
+\begin{cases}
+  V_t + \underset{u \in U}{\mathrm{sup}}\ \left[b(t,\ x,\ u)V_x + f(t,\ x,\ u) + \frac{1}{2}\sigma^{2}(t,\ x,\ u)\right] = 0 \\
+  V(t=T,\ x) = h(x)
+\end{cases}
+$$
+
+where $x(t)$ and $u(t)$ are simply written as $x$ and $u$.
+
+#### Example: Merton's Problem
+Suppose there are only 2 assets available for investment: 
+- A risk-free asset with interest rate $r$, whose price is denoted by $B(t)$ satisfying $\mathrm{d}B(t)=rB(t)\mathrm{d}t$.
+- A risky asset (stock) whose price is denoted by $S(t)$ satisfying $\mathrm{d}S(t)=S(t)(\mu \mathrm{d}t + \sigma \mathrm{d}Z(t))$ where $Z(t)$ is a wiener process.
+
+Assume that an investor has an initial wealth $W(0)=w$. At time $t$, the investor holds $\Delta(t)$ and $W(t)-\Delta(t)$ in stock and risk-free asset respectively. In addition, he consumes at a rate $C(t)$.
+
+Thus, we can build a control system as follow: 
+$$
+\begin{cases}
+    \mathrm{d}W(t) = [rW(t) + (\mu-r)\Delta(t) - C(t)]\mathrm{d}t + \sigma \Delta(t) \mathrm{d}Z(t) \\
+    W(0) = w
+\end{cases}
+$$
+
+The investor tries to maximize his utility, so the value functional can be written as 
+$$
+J(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \mathrm{E}\left( \int_{0}^{\infty} U(t,\ C(t)) ~\mathrm{d}t \right)
+$$ 
+
+where $U(\cdot,\ \cdot)$ is the utility function.
+
+Suppose the utility function is given by 
+$$
+U(t,\ c) = e^{-\rho t}\frac{c^{1-\gamma}}{1-\gamma}
+$$
+
+where $\rho$ and $\gamma$ are constants.
+
+Then the value function is 
+$$
+V(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right) := V(w)
+$$
+
+From economic intuition we have 
+$$
+\begin{aligned}
+ V(\lambda w) &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(\lambda w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right)\\
+ &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(\lambda C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right)\\
+ &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\lambda^{1-\gamma} \mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right)\\
+ &= \lambda^{1-\gamma}V(w)
+\end{aligned}
+$$
+
+where $\lambda$ is a constant.
+
+Taking $w=1$, we have 
+$$
+V(\lambda) = \lambda^{1-\gamma} V(1)
+$$
+
+Thus, we can assume the value function has the form 
+$$
+V(w) = \kappa^{-\gamma} \frac{w^{1-\gamma}}{1-\gamma}
+$$
+
+where $\kappa$ is some constant.

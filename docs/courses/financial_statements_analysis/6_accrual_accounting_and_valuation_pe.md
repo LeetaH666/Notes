@@ -5,14 +5,17 @@ Remember that the forward P/E is
 $$
 \text{Forward P/E} = \frac{\text{Price}_0}{\text{Earnings Forecast}_1}
 $$
+
 and the trailing P/E (dividend-adjusted) is 
 $$
 \text{Trailing P/E} = \frac{\text{Price}_0 + \text{Dividend}_0}{\text{Earnings}_0}
 $$
+
 Then the normal forward P/E is 
 $$
 \text{Normal Forward P/E} = \frac{1}{\text{Required Return}}
 $$
+
 and the normal trailing P/E is 
 $$
 \text{Normal Trailing P/E} = \frac{1+\text{Required Return}}{\text{Required Return}} = \text{Normal Forward P/E} + 1
@@ -23,10 +26,12 @@ Abnormal earnings growth (AEG) is the <mark>growth in earnings over the required
 $$
 \text{AEG}_t = \text{Earnings}_t - \text{Earnings}_{t-1} - \text{Change in Book Value of Equity}_{t-1}\times \text{Required Return}
 $$
+
 Remember that 
 $$
 \text{Residual Earnings}_{t} = \text{Earnings}_{t} - \text{Book Value of Equity}_{t-1} \times \text{Required Return}\\
 $$
+
 so 
 $$
 \begin{aligned}
@@ -36,6 +41,7 @@ $$
  &= \text{Residual Earnings}_t - \text{Residual Earnings}_{t-1}
 \end{aligned}
 $$
+
 is also the <mark>change in residual earnings</mark>.
 
 #### P/E Valuation Using AEG
@@ -156,12 +162,14 @@ Normal earnings is earnings growing at the required return:
 $$
 \text{Normal Earnings}_t = \text{Cum-Dividend Earnings}_{t-1}\times (1+\text{Required Return})
 $$
+
 Consider the example above, the normal earnings and cum-dividend earnings are equal.
 
 If the cum-dividend earnings is calculated using only the simple interest of last year's dividend instead of compound interest of several years, the normal earnings can be simply calculated by 
 $$
 \text{Normal Earnings}_t = \text{Earnings}_{t-1}\times (1+\text{Required Return})
 $$
+
 <mark>We use the method of simple interest by default</mark>.
 
 Actually, there is a relation between <abbr title='Abnormal Earnings Growth'>AEG</abbr> and these 2 types of earnings: 
@@ -172,10 +180,12 @@ $$
  &= \text{Earnings}_{t-1}\times (\text{Cum-Dividend Growth Rate}-\text{Required Return}) 
 \end{aligned}
 $$
+
 where
 $$
 \text{Cum-Dividend Growth Rate}_t = \frac{\text{Cum-Dividend Earnings}_t}{\text{Earnings}_{t-1}} - 1
 $$
+
 Thus, the example above shows <mark>zero <abbr title='Abnormal Earnings Growth'>AEG</abbr></mark>, which means the company should have a <mark>normal P/E</mark>.
 
 #### Example (Continued): Valuation of IBM
@@ -212,12 +222,14 @@ We can see that the earnings difference between cum-dividend earnings and normal
 $$
 \text{PEG} = \frac{\text{Forward P/E}}{\text{Forward Earnings Growth Rate}\times 100}
 $$
+
 where forward earnings growth rate is 1-year ahead earnings growth rate.
 
 If earnings of a company grows at the required return, then the normal PEG is 
 $$
 \text{Normal PEG} = \frac{\frac{1}{\text{Required Return}}}{\text{Required Return}\times 100} = \frac{1}{\text{Required Return}^{2}\times 100}
 $$
+
 Thus, only when the required return is $10\%$, we have normal PEG $1$.
 
 #### Disadvantages

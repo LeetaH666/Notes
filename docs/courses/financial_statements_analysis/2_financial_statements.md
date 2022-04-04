@@ -92,6 +92,7 @@ $$
 {}\\
 \text{EBIT} = \text{Gross Margin} - \text{\textdollar}1230 - \text{\textdollar}450 = \text{\textdollar}(-570)
 $$
+
 Note that <mark>the number in the parentheses means negative number</mark>. Thus, we have 
 $$
 \text{NI} = \text{EBIT} - \text{\textdollar}(-200) = \text{\textdollar}(-370)
@@ -151,14 +152,17 @@ Price is about expectation, which means industries like Information Technology a
 $$
 \text{Trailing P/E} = \frac{\text{Price}}{\text{Most Recent Annual EPS}}
 $$
+
 #### Rolling P/E
 $$
 \text{Rolling P/E} = \frac{\text{Price}}{\text{Sum of EPS for Most Recent 4 Quarters}}
 $$
+
 #### Forward P/E
 $$
 \text{Forward P/E} = \frac{\text{Price}}{\text{Forecast of Next Year's EPS}}
 $$
+
 #### Dividend-Adjusted P/E
 $$
 \text{Dividend-Adjusted P/E} = \frac{\text{Price}+\text{Annual DPS}}{\text{EPS}}

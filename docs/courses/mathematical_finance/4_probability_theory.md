@@ -34,12 +34,14 @@ Rolling a dice gives a sample space
 $$
 \Omega = \{1,\ 2,\ 3,\ 4,\ 5,\ 6\}
 $$
+
 The set of all subsets $\mathcal{F}=2^{\Omega}$ is a $\sigma$-algebra.
 
 Define a random variable
 $$
 X(\omega) = \omega + 1,\ \forall \omega\in \Omega
 $$
+
 We can easily verify that it is $\mathcal{F}$-measurable through the definition.
 
 However, given another $\sigma$-algebra $\mathcal{G}=\{\empty,\ \Omega,\ \{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$, $X(\omega)$ is not a random variable with it because $X(\omega)$ is not $\mathcal{G}$-measurable. For example, choose an open interval $U=(0.5,\ 1.5)$, $X ^{-1}(U) = \{1\} \nsubseteq \mathcal{G}$.
@@ -51,10 +53,12 @@ Let $X$ be a random variable on a probability space $(\Omega,\ \mathcal{F},\ \ma
 $$
 \mathrm{E}(X) = \int_\Omega X(\omega)\ \mathrm{d}\mathbb{P}(\omega)
 $$
+
 if 
 $$
 \mathrm{E}(\left\vert X \right\vert ) = \int_\Omega \left\vert X(\omega) \right\vert\ \mathrm{d}\mathbb{P}(\omega) < \infty
 $$
+
 or 
 $$
 X \geqslant 0 \quad \text{a.s.}
@@ -74,12 +78,16 @@ $$
 Consider a random variable $Z$, let $\mathrm{E}(Z) = 1$ and $Z \geqslant 0$. For event $A \in \mathcal{F}$, define 
 $$
 \widetilde{\mathbb{P}}(A) = \int_A Z(\omega)\ \mathrm{d}\mathbb{P}(\omega)
-$$Then $\widetilde{\mathbb{P}}$ is a probability measure and $\widetilde{\mathrm{E}}(X) = \mathrm{E}(XZ)$.
+$$
+
+Then $\widetilde{\mathbb{P}}$ is a probability measure and $\widetilde{\mathrm{E}}(X) = \mathrm{E}(XZ)$.
 
 If $Z > 0$, then 
 $$
 \mathrm{E}(Y) = \widetilde{\mathrm{E}}\left(\frac{Y}{Z}\right)
-$$If $\mathbb{P}$ and $\widetilde{\mathbb{P}}$ are 2 equivalent probability measures on $(\Omega,\ \mathcal{F})$ and $Z$ is a.s. positive, then $Z$ is called the <mark>Radon-Nikodym derivative</mark> of $\widetilde{\mathbb{P}}$ w.r.t. $\mathbb{P}$ and we write 
+$$
+
+If $\mathbb{P}$ and $\widetilde{\mathbb{P}}$ are 2 equivalent probability measures on $(\Omega,\ \mathcal{F})$ and $Z$ is a.s. positive, then $Z$ is called the <mark>Radon-Nikodym derivative</mark> of $\widetilde{\mathbb{P}}$ w.r.t. $\mathbb{P}$ and we write 
 $$
 Z = \frac{\mathrm{d}\widetilde{\mathbb{P}}}{\mathrm{d}\mathbb{P}}
 $$
@@ -96,12 +104,14 @@ Note that we need
 $$
 \widetilde{\mathrm{E}}(X+\theta) = \mathrm{E}(XZ) = \int_\Omega \frac{1}{\sqrt{2\pi}} e^{-\frac{(X(\omega))^{2}}{2}}\cdot Z(\omega)\ \mathrm{d}\omega
 $$
+
 where $Z$ is the Radon-Nikodym derevative of $\widetilde{\mathbb{P}}$ w.r.t. $\mathbb{P}$.
 
 This means we need 
 $$
 Z(\omega) = e^{-\frac{1}{2}\theta^{2}-\theta X(\omega)}
 $$
+
 for all $\omega\in \Omega$.
 
 #### Girsanov Theorem
@@ -109,6 +119,7 @@ Assume that process $W(t)$ ($0\leqslant t\leqslant T$) is a Wiener process on th
 $$
 Z = e^{-\frac{1}{2}\frac{(\mu-r)^{2}}{\sigma^{2}}T - \frac{\mu-r}{\sigma}W(T)}
 $$
+
 and we have 
 $$
 \mathrm{E}(Z) = e^{-\frac{1}{2}\frac{(\mu-r)^{2}}{\sigma^{2}}T}\mathrm{E}(e^{-\frac{\mu-r}{\sigma}W(T)}) = 1
@@ -121,6 +132,7 @@ Define a probability measure $\widetilde{\mathbb{P}}$ s.t. $\frac{\mathrm{d}\wid
 $$
 \widetilde{W} := W(t) + \frac{\mu-r}{\sigma}t
 $$
+
 is a Wiener process under $\widetilde{\mathbb{P}}$.
 
 The theorem can be easily shown like the [example](#example-normal-random-variable) above.
@@ -129,10 +141,12 @@ Suppose the stock price follows the <abbr title='Geometric Brownian Motion'>GBM<
 $$
 \mathrm{d}S(t) = \mu S(t) \mathrm{d}t + \sigma S(t) \mathrm{d}W(t)
 $$
+
 In the risk-neutral world, i.e., under the probability $\widetilde{\mathbb{P}}$, we have 
 $$
 \mathrm{d}S(t) = r S(t) \mathrm{d}t + \sigma S(t) \mathrm{d}\widetilde{W}(t)
 $$
+
 by the Girsanov theorem.
 
 ### Information and Partition
@@ -152,10 +166,12 @@ The toss of 2 coins has a sample space with 4 states:
 $$
 \Omega = \{\text{HH},\ \text{HT},\ \text{TH},\ \text{TT}\}
 $$
+
 The information of the head count can be represented by the partition 
 $$
 f = \{\{\text{HH}\},\ \{\text{HT},\ \text{TH}\},\ \{\text{TT}\}\}
 $$
+
 since there are only 3 events: 2 heads, 1 head and no head.
 
 #### Unique Relation between $\sigma$-Algebra and Partition
@@ -163,6 +179,7 @@ In a finite space, a $\sigma$-algebra corresponds to a partition, i.e., suppose 
 $$
 f = \{A\neq \empty | A\in \mathcal{F} \text{ and if } \exists B\in \mathcal{F} \text{ and } B \sub A,\ \text{then } B=A \text{ or } B=\empty \}
 $$
+
 is a partition on $\Omega$.
 
 Meanwhile, <mark>each partition $f$ generates an unique $\sigma$-algebra denoted by $\sigma(f)$</mark>.
@@ -184,6 +201,7 @@ Rolling a dice gives a sample space
 $$
 \Omega = \{1,\ 2,\ 3,\ 4,\ 5,\ 6\}
 $$
+
 Define a random variable 
 $$
 X(\omega) = \begin{cases}
@@ -191,6 +209,7 @@ X(\omega) = \begin{cases}
     0,& \omega=2,\ 4,\ 6 \\
 \end{cases}
 $$
+
 Then $\sigma(X)=\{\empty,\ \Omega,\ \{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$.
 
 For the null partition $f=\{\Omega\}$, $X$ is not $\sigma(f)$ measurable since it is not constant at $\Omega$.
@@ -205,6 +224,7 @@ For an event $A$ on $(\Omega,\ \mathbb{P})$ and a partition $f$ of $\Omega$, the
 $$
 \mathbb{P}(A|f)(\omega) = \frac{\mathbb{P}(A \cap f(\omega))}{\mathbb{P}(f(\omega))}
 $$
+
 Recall the [example of rolling a dice](#example-rolling-a-dice-odd-or-even) above, suppose $A=\{1,\ 2\}$ and $f = \{\{1,\ 3,\ 5\},\ \{2,\ 4,\ 6\}\}$, then 
 $$
 \mathbb{P}(A|f)(\omega) = \begin{cases}
@@ -213,6 +233,7 @@ $$
     \frac{\mathbb{P}(\{2\})}{\mathbb{P}(\{2,\ 4,\ 6\})}=\frac{1}{3},& \omega\in \{2,\ 4,\ 6\}\\
 \end{cases}
 $$
+
 which is $\sigma(f)$-measurable since it is constant at each element in $f$.
 
 #### Conditional Expectation on Partition
@@ -220,6 +241,7 @@ For a random variable $X$ on $(\Omega,\ \mathbb{P})$ and a partition $f$ of $\Om
 $$
 \mathrm{E}(X|f)(\omega) = \frac{\sum\limits_{\omega^{\prime} \in f(\omega)} \mathbb{P}(\omega^{\prime})X(\omega^{\prime})}{\mathbb{P}(f(\omega))}
 $$
+
 Recall the [example of rolling a dice](#example-rolling-a-dice-odd-or-even) above, suppose $f = \{\{1,\ 2,\ 3\},\ \{4,\ 5,\ 6\}\}$, then 
 $$
 \mathrm{E}(X|f)(\omega) = \begin{cases}
@@ -228,6 +250,7 @@ $$
     \frac{\sum\limits_{\omega^{\prime} \in \{4,\ 5,\ 6\}} \frac{1}{6}X(\omega^{\prime})}{\mathbb{P}(\{4,\ 5,\ 6\})}=\frac{1}{3},& \omega\in \{4,\ 5,\ 6\}\\
 \end{cases}
 $$
+
 which is $\sigma(f)$-measurable since it is constant at each element in $f$.
 
 #### General Conditional Expectation
@@ -244,6 +267,7 @@ General conditional expectations have the following properties:
     $$
     \mathrm{E}(c_1X+c_2Y|\mathcal{G}) = c_1 \mathrm{E}(X|\mathcal{G}) + c_2 \mathrm{E}(Y|\mathcal{G})
     $$
+
     where $c_1$ and $c_2$ are 2 constants.
 
 - <mark>Taking out what is known</mark>: If X, Y and $XY$ are integrable random variables, and $X$ is $\mathcal{G}$-measurable, then 

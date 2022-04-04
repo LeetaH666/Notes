@@ -66,6 +66,7 @@ B_1(q_2) = \begin{cases}
   \text{T},& q_1>0.5 \\
 \end{cases}
 $$
+
 which means the relationship between $q_1$ and $q_2$ is 
 $$
 q_1(q_2) = \begin{cases}
@@ -78,6 +79,7 @@ q_1(q_2) = \begin{cases}
   0,& q_1>0.5 \\
 \end{cases}
 $$
+
 > [!TIP]
 > The $[0,\ 1]$ comes because $\text{H}$ and $\text{T}$ are both best responses when the other player has $0.5$ probability to choose "Head" or "Tail" and taking any probability does not affect the expected payoff.
   
@@ -139,6 +141,7 @@ Thus, the profit of firm $1$ is
 $$
 \pi_1(q_1,\ q_2) = P(Q)\cdot q_1 - c(q_i) = (1-q_1-q_2)q_1 - c\cdot q_1
 $$
+
 and similarly for firm $2$.
 
 We can see that $\{q_i\}$ is not bounded, which means we can not directly use the proposition above to judge whether there exists a Nash equilibrium. So we check the <abbr title='First Order Condition'>FOC</abbr>: 
@@ -148,6 +151,7 @@ $$
  1 - q_1 - 2q_2 - c = 0
 \end{cases}\implies q_1^{*} = q_2^{*} = \frac{1-c}{3}
 $$
+
 Actually this can be generalized to $n$ firms. For a $n$-oligopolies market, the optimal quantity for firm $i$ is $q_i^{*} = \frac{1-c}{1+n}$.
 
 > The inverse demand function here is fixed. However, the relation between demand and price can change. See [Cournot with Uncertain Demand](/courses/game_theory/5_games_of_incomplete_information.md#example-cournot-with-uncertain-demand).
@@ -162,6 +166,7 @@ $$
   (1-p_1)(p_1-c),& p_1<p_2 \\
 \end{cases}
 $$
+
 and similarly for firm $2$.
 
 We can easily see that the profit functions are discontinuous, which means we cannot say immediately that if there exists a Nash equilibrium. Consider cases below: 

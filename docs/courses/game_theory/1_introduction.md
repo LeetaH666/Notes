@@ -13,14 +13,17 @@
 $$
 I = \{1,\ \cdots,\ n\}
 $$
+
 #### Actions
 $$
 a = (a_1,\ \cdots,\ a_n) \in A = A_1 \times \cdots \times A_n
 $$
+
 #### Payoff Function (Utility Function)
 $$
 u_i:A \to \mathbb{R} \text{ for player } i
 $$
+
 #### Example: Prisoner's Dilemma
 <div align='center'>
 
@@ -74,16 +77,19 @@ $$
 Q_x = 44 - 2P_x + P_y \\
 Q_y = 44 - 2P_y + P_x
 $$
+
 The cost of serving each customer is $8$. Each restaurant's goal is to maximize its profit and they set prices simultaneously. Since the quantity functions are the same form, 2 restaurants are <mark>substitute</mark>.
 
 Thus, the profit of restaurant $x$ is 
 $$
 \Pi_x = (P_x-8)(44-2P_x+P_y)=-2P_x^2+(P_y+60)P_x-8(P_y+44)
 $$
+
 By letting $\frac{\partial \Pi_x}{\partial P_x}=0$ (<abbr title='First Order Condition'>FOC</abbr>), we get the best response function for $x$: 
 $$
 P_x^{*} = \frac{P_y+60}{4} = \frac{P_y}{4} + 15
 $$
+
 Similarly for $y$, the best response function is $P_y^{*} = \frac{P_x}{4} + 15$.
 
 According to the definition of Nash equilibrium, the prices should satisfy 
@@ -93,6 +99,7 @@ $$
   P_y = \frac{P_x}{4} + 15 \\
 \end{cases}
 $$
+
 which means $(P_x^{*},\ P_y^{*})=(20,\ 20)$.
 
 ### Method of Scoring

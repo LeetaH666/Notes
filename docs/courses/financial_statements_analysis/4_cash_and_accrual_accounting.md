@@ -33,6 +33,7 @@ Reported <abbr title='Operating Cash Flow'>OCF</abbr> includes interest, which i
 $$
 \text{Cash Flow from Operations} = \text{OCF} + \text{After-Tax Net Interest Payments}
 $$
+
 where 
 $$
 \text{After-Tax Net Interest Payments} = (\text{Interest Payments} - \text{Interest Receipts}) \times (1 - \text{Tax Rate})
