@@ -115,4 +115,3 @@ for each $\sigma_i(\cdot)\in \Sigma_i$.
 ### Adverse Selection and Market Failure
 
 #### Example: Market for Lemons
-

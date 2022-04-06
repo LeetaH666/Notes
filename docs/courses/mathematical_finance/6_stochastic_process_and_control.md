@@ -110,7 +110,7 @@ $$
 If the value function $V\in \mathcal{C}^{1,\ 2}([0,\ T]\times \mathbb{R}^{n})$, then $V$ is a solution to the following terminal value problem: 
 $$
 \begin{cases}
-  V_t + \underset{u \in U}{\mathrm{sup}}\ \left[b(t,\ x,\ u)V_x + f(t,\ x,\ u) + \frac{1}{2}\sigma^{2}(t,\ x,\ u)\right] = 0 \\
+  V_t + \underset{u \in U}{\mathrm{sup}}\ \left[b(t,\ x,\ u)V_x + f(t,\ x,\ u) + \frac{1}{2}\sigma^{2}(t,\ x,\ u) V_{xx}\right] = 0 \\
   V(t=T,\ x) = h(x)
 \end{cases}
 $$
@@ -122,7 +122,7 @@ Suppose there are only 2 assets available for investment:
 - A risk-free asset with interest rate $r$, whose price is denoted by $B(t)$ satisfying $\mathrm{d}B(t)=rB(t)\mathrm{d}t$.
 - A risky asset (stock) whose price is denoted by $S(t)$ satisfying $\mathrm{d}S(t)=S(t)(\mu \mathrm{d}t + \sigma \mathrm{d}Z(t))$ where $Z(t)$ is a wiener process.
 
-Assume that an investor has an initial wealth $W(0)=w$. At time $t$, the investor holds $\Delta(t)$ and $W(t)-\Delta(t)$ in stock and risk-free asset respectively. In addition, he consumes at a rate $C(t)$.
+Assume that an investor has an initial wealth $W(0)=w$. At time $t$, the investor holds $\Delta(t)$ and $W(t)-\Delta(t)$ in stock and risk-free asset respectively. In addition, he consumes at a rate $C(t)$ where $0\leqslant C(t)\leqslant W(t)$.
 
 Thus, we can build a control system as follow: 
 $$
@@ -132,7 +132,7 @@ $$
 \end{cases}
 $$
 
-The investor tries to maximize his utility, so the value functional can be written as 
+The investor tries to maximize his utility, so the value functional starting at time $0$ can be written as 
 $$
 J(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \mathrm{E}\left( \int_{0}^{\infty} U(t,\ C(t)) ~\mathrm{d}t \right)
 $$ 
@@ -146,7 +146,7 @@ $$
 
 where $\rho$ and $\gamma$ are constants.
 
-Then the value function is 
+Then the value function starting at time $0$ is 
 $$
 V(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right) := V(w)
 $$
@@ -174,3 +174,44 @@ V(w) = \kappa^{-\gamma} \frac{w^{1-\gamma}}{1-\gamma}
 $$
 
 where $\kappa$ is some constant.
+
+Now, the value function starting at any time $s\geqslant 0$ with wealth $y$ becomes 
+$$
+\begin{aligned}
+ V(s,\ y;\ \Delta(\cdot),\ C(\cdot)) &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{s}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \Big| W(s)=y \right)\\
+ &= e^{-\rho s} \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{s}^{\infty} e^{-\rho (t-s)}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \Big| W(s)=y \right)\\
+ &= e^{-\rho s} V(y)\\
+ &= e^{-\rho s} \kappa^{-\gamma} \frac{y^{1-\gamma}}{1-\gamma}\\
+\end{aligned}
+$$
+
+Through HJB equation, we have 
+$$
+-\rho e^{-\rho t} \kappa^{-\gamma} \frac{W^{1-\gamma}}{1-\gamma} + \underset{\Delta,\ C}{\mathrm{sup}}\ \left\{[rW + (\mu-r)\Delta - C]e^{-\rho t}\kappa^{-\gamma} W^{-\gamma} + e^{-\rho t}\frac{C^{1-\gamma}}{1-\gamma} + \frac{1}{2}\sigma^{2}\Delta^{2} e^{-\rho t}\kappa^{-\gamma}(-\gamma)W^{-\gamma-1} \right\} = 0
+$$
+
+where $W,\ \Delta,\ C$ represent $W(t),\ \Delta(t),\ C(t)$ respectively.
+
+The <abbr title='First Order Condition'>FOC</abbr>s for $\Delta$ and $C$ are 
+$$
+\begin{cases}
+    (\mu-r)e^{-\rho t}\kappa^{-\gamma}W^{-\gamma} - \sigma^{2}\gamma e^{-\rho t}\kappa^{-\gamma}W^{-\gamma-1} = 0\\
+    -e^{-\rho t} \kappa^{-\gamma} W^{-\gamma} + e^{-\rho t} C^{-\gamma} = 0
+\end{cases}\implies
+\begin{cases}
+    \Delta^{*} = \frac{\mu-r}{\sigma^{2}\gamma}W \\
+    C^{*} = \kappa W
+\end{cases}
+$$
+
+Substitude them back to the HJB equation, we have 
+$$
+\kappa = \frac{\rho + (\gamma-1)(r+\frac{\eta^{2}}{2\gamma})}{\gamma}
+$$
+
+where
+$$
+\eta = \frac{\mu-r}{\sigma}
+$$
+
+is the Sharpe ratio.
