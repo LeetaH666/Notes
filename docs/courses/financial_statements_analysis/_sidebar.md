@@ -7,5 +7,6 @@
 - [Chapter 7: Valuation and Active Investing](/courses/financial_statements_analysis/7_valuation_and_active_investing.md)
 - [Chapter 8: Viewing the Business through the Fniancial Statements](/courses/financial_statements_analysis/8_viewing_the_business_through_the_financial_statements.md)
 - [Chapter 9: The Analysis of the Statement of Shareholders' Equity](/courses/financial_statements_analysis/9_analysis_of_statement_of_shareholders_equity.md)
+- [Chapter 10: The Analysis of the Balance Sheet and Income Statement](/courses/financial_statements_analysis/10_analysis_of_balance_sheet_and_income_statement.md)
 
 - [Back to Courses](/courses/README.md)

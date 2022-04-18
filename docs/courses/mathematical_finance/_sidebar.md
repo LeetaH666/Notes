@@ -4,5 +4,6 @@
 - [Probability Theory](/courses/mathematical_finance/4_probability_theory.md)
 - [Binomial Model](/courses/mathematical_finance/5_binomial_model.md)
 - [Stochastic Process and Control](/courses/mathematical_finance/6_stochastic_process_and_control.md)
+- [Pricing Corporate Securities](/courses/mathematical_finance/7_pricing_corporate_securities.md)
 
 - [Back to Courses](/courses/README.md)

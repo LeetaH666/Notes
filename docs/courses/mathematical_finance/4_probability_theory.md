@@ -276,7 +276,7 @@ General conditional expectations have the following properties:
     \mathrm{E}(XY|\mathcal{G}) = X \mathrm{E}(Y|\mathcal{G})
     $$
 
-- <mark>Iterated conditioning</mark>: If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathcal{G}$ and $X$ is an integrable random variable, then 
+- <mark>Tower equality</mark>: If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathcal{G}$ and $X$ is an integrable random variable, then 
     $$
     \mathrm{E}[\mathrm{E}(X|\mathcal{G})|\mathcal{H}] = \mathrm{E}(X|\mathcal{H})
     $$
