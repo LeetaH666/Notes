@@ -147,10 +147,8 @@ $$
 \text{RNFA}_t = \frac{\text{NFI}_t}{1/2(\text{NFA}_{t-1}+\text{NFA}_t)}\\
 $$
 
-### Analysis Methods
-
-#### Common Size Analysis
-Common size analysis is a kind of cross-sectional analysis. We can compare 
+### Common-Size Analysis
+Common-size analysis is simply a <mark>standardization</mark> of line items to <mark>eliminate the effect of size</mark>. Line items are expressed per dollar of an attribute that reflects the scale of operations. We can compare 
 - each item 
 - total revenues
 
@@ -159,7 +157,9 @@ in the income statement and
 - financing items
 - total
 
-in the balance sheet.
+in the balance sheet using the ratios above.
+
+Common-size analysis can be cross-sectional or time-series.
 
 #### Trend Analysis
 Trend analysis is a kind of time-series analysis. We set a base for a specific year and see how the following years go, e.g., 

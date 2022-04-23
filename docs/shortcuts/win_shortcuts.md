@@ -9,3 +9,4 @@
 - **Ctrl + Alt + S**：打开VSCode
 - **Ctrl + Alt + C**：打开Chrome
 - **Ctrl + Alt + W**：打开微信
+- **Ctrl + Alt + N**：打开网易有道词典

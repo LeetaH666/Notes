@@ -82,3 +82,41 @@ $$
 $$
 
 and we can easily see that $\gamma_{+}>1$ and $\gamma_{-}<0$.
+
+#### Value of Equity
+Consider a company with constant debt $c$ and cash flow $X_t$ satisfying the cash flow model above with initial cash $x$. It will go bankrupt when cash reaches $\delta_b \ll x$. 
+
+If there is no bankrupt, the equity can be represented by a standard asset $a X_t + K$ with $a=1$ and $K=-c$. The value is given by 
+$$
+\begin{aligned}
+ V(x) &= \mathrm{E}\left[ \int_{0}^{\infty} e^{-rt} (X_t - c) ~\mathrm{d}t \bigg| X_0=x \right]\\
+ &= \int_{0}^{\infty} e^{-rt}\mathrm{E}\left( X_t - c | X_0=x \right) ~\mathrm{d}t\\
+ &= \int_{0}^{\infty} e^{-rt}\mathrm{E}\left( x e^{\left( \mu-\frac{\sigma^{2}}{2} \right) t + \sigma W_t} - c \bigg| X_0=x \right) ~\mathrm{d}t\\
+ &= \int_{0}^{\infty} x e^{-(r-\mu)t} - c e^{-rt} ~\mathrm{d}t\\
+ &= \frac{x}{r-\mu} - \frac{c}{r}\\
+\end{aligned}
+$$
+
+> [!TIP]
+> The mgf of $X\sim N(\mu,\ \sigma^{2})$ is $M_X(\theta) = \mathrm{E}\left( e^{\theta X} \right)  = e^{\mu \theta + \frac{1}{2}\sigma^{2}\theta^{2}}$.
+
+When the company goes bankrupt, shareholders lose all their equity, which means there is a boundary condition
+$$
+V(\delta_b) = 0
+$$
+
+According to the general solution above, we have 
+
+$$
+\begin{cases}
+ A_1 x^{\gamma_{+}} + A_2 x^{\gamma_{-}} + \frac{x}{r-\mu} - \frac{c}{r} = \frac{x}{r-\mu} - \frac{c}{r}\\
+ A_1 \delta_b^{\gamma_{+}} + A_2 \delta_b^{\gamma_{-}} + \frac{\delta_b}{r-\mu} - \frac{c}{r} = 0\\
+\end{cases}
+$$
+
+Since $\gamma_{+}>1$ and $\gamma_{-}<0$, we have $A_1=0$ and $A_2=-\left( \frac{\delta_b}{r-\mu} - \frac{c}{r} \right) \left( \frac{1}{\delta_b} \right)^{\gamma_{-}}$.
+
+Thus, the value of equity is given by
+$$
+E(x,\ c) = \left( \frac{x}{r-\mu} - \frac{c}{r} \right) - \left( \frac{\delta_b}{r-\mu} - \frac{c}{r} \right) \left( \frac{x}{\delta_b} \right) ^{\gamma_{-}}
+$$

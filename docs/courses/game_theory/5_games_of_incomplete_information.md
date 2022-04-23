@@ -124,13 +124,13 @@ where $\sigma(\cdot|\cdot)$ is the expert's strategy.
 
 Suppose the policy maker has a posterior belief that $p(\text{s}|\text{m})=p(\text{t}|\text{n})=1$. Based on this belief, his best response is to choose $\text{b}$ when receiving $\text{n}$ and to choose $\text{a}$ when receiving $\text{m}$. Under this strategy, the payoff of the expert to send message is 
 
-<div class='center'>
+<div class='centertable'>
 
 |       |  n  |  m  |
 | :---: | :-: | :-: |
 | **t** | $3$ | $1$ |
 | **s** | $0$ | $5$ |
-</div class='center'>
+</div class='centertable'>
 
 which means the best response of the expert is to send $\text{n}$ when $\text{t}$ happens and to send $\text{m}$ when $\text{s}$ happens. This coincides with the policy maker's belief. Thus, these 2 pure strategies form a Bayesian Nash equilibrium.
 

@@ -5,5 +5,6 @@
 - [Binomial Model](/courses/mathematical_finance/5_binomial_model.md)
 - [Stochastic Process and Control](/courses/mathematical_finance/6_stochastic_process_and_control.md)
 - [Pricing Corporate Securities](/courses/mathematical_finance/7_pricing_corporate_securities.md)
+- [Equilibrium Pricing Theory and a Jump-Diffusion Model](/courses/mathematical_finance/8_equilibrium_pricing_theory_and_jump_diffusion_model.md)
 
 - [Back to Courses](/courses/README.md)

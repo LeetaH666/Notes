@@ -6,26 +6,26 @@ There can be several Nash equilibria in a game, so which equilibrium would playe
 #### Payoff Dominance (Pareto Dominance)
 Payoff dominance means players would reach a equilibrium that each player gets higher payoff than in other equilibria. For example, see the following payoff table: 
 
-<div class='center'>
+<div class='centertable'>
 
 |                |             Friendly              |            Aggressive             |
 | :------------: | :-------------------------------: | :-------------------------------: |
 |  **Friendly**  | $\underline{50},\ \underline{50}$ |             $0,\ 40$              |
 | **Aggressive** |             $40,\ 0$              | $\underline{20},\ \underline{20}$ |
-</div class='center'>
+</div class='centertable'>
 
 The payoff table above shows that there are 2 Nash equilibria. According to payoff dominance, players will reach the equilibrium $(\text{Friendly},\ \text{Friendly})$.
 
 #### Risk Dominance
 Different from payoff dominance, risk dominance means players may reach a equilibrium that each player has lower risk than in other equilibria. We consider the same game but with different payoff diagram: 
 
-<div class='center'>
+<div class='centertable'>
 
 |                |            Friendly             |           Aggressive            |
 | :------------: | :-----------------------------: | :-----------------------------: |
 |  **Friendly**  | $\underline{9},\ \underline{9}$ |             $0,\ 8$             |
 | **Aggressive** |             $8,\ 0$             | $\underline{7},\ \underline{7}$ |
-</div class='center'>
+</div class='centertable'>
 
 In this case, Pareto dominant equilibrium may not be reached because the difference of payoffs between 2 equilibria is small and being friendly takes more risk. If players both choose to be friendly, then player 1 gets $9$. However, if player 2 chooses to be aggressive, then player 1 gets $0$, which means being friendly is riskier. Thus, the equilibrium $(\text{Aggressive},\ \text{Aggressive})$ may be reached.
 
@@ -46,13 +46,13 @@ Player 1 gets $1$ when pennies are matched, otherwise gets $-1$. Player 2 has th
   
 Given the other's strategy, their expected payoffs are 
 
-<div class='center'>
+<div class='centertable'>
 
 |              |        $\text{H}$         |        $\text{T}$         |
 | :----------: | :-----------------------: | :-----------------------: |
 | **Player 1** | $q_2 - (1-q_2) = 2q_2-1$  | $-q_2 + (1-q_2) = 1-2q_2$ |
 | **Player 2** | $-q_1 + (1-q_1) = 1-2q_1$ | $q_1 - (1-q_1) = 2q_1-1$  |
-</div class='center'>
+</div class='centertable'>
 
 We can easily see that the best responses of these 2 players are  
 $$

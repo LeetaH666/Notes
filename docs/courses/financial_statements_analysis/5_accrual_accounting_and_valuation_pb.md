@@ -23,43 +23,43 @@ is called return on common shareholders' equity.
 #### Example
 The following are earnings and dividend forecasts made at the end of 2012 for a firm with $\text{\textdollar 20.00}$ book value per common share at that time. The firm has a required equity return of $10\%$ per year.
 
-<div class='center'>
+<div class='centertable'>
 
 | $(\text{\textdollar})$ |  2012   |  2013  |  2014  |  2015  |
 | :--------------------: | :-----: | :----: | :----: | :----: |
 |        **EPS**         |  ${}$   | $3.00$ | $3.60$ | $4.10$ |
 |        **DPS**         |  ${}$   | $0.25$ | $0.25$ | $0.30$ |
 |        **BPS**         | $20.00$ |  ${}$  |  ${}$  |  ${}$  |
-</div class='center'>
+</div class='centertable'>
 
 Given the information above, we can calculate BPS by the formula $\text{BPS}_{t} = \text{BPS}_{t-1} + \text{EPS}_{t} - \text{DPS}_{t}$, which results in 
 
-<div class='center'>
+<div class='centertable'>
 
 | $(\text{\textdollar})$ |  2012   |  2013   |  2014   |  2015   |
 | :--------------------: | :-----: | :-----: | :-----: | :-----: |
 |        **EPS**         |  ${}$   | $3.00$  | $3.60$  | $4.10$  |
 |        **DPS**         |  ${}$   | $0.25$  | $0.25$  | $0.30$  |
 |        **BPS**         | $20.00$ | $22.75$ | $26.10$ | $29.90$ |
-</div class='center'>
+</div class='centertable'>
 
 Then the <abbr title="Return on Common Shareholders' Equity">ROCE</abbr> can be calculated by the formula $\text{ROCE}_{t} = \frac{\text{EPS}_{t}}{\text{BPS}_{t-1}}$.
 
-<div class='center'>
+<div class='centertable'>
 
 |          | 2012  |   2013    |   2014    |   2015    |
 | :------: | :---: | :-------: | :-------: | :-------: |
 | **ROCE** | ${}$  | $15.00\%$ | $15.82\%$ | $15.71\%$ |
-</div class='center'>
+</div class='centertable'>
 
 The residual earnings per share can be calculated by the formula $(\text{ROCE}_{t} - \text{Required Return})\times \text{BPS}_{t-1}$.
 
-<div class='center'>
+<div class='centertable'>
 
 | $(\text{\textdollar})$ | 2012  |  2013  |  2014  |  2015  |
 | :--------------------: | :---: | :----: | :----: | :----: |
 |         **RE**         | ${}$  | $1.00$ | $1.32$ | $1.49$ |
-</div class='center'>
+</div class='centertable'>
 
 Since the retain earnings are all positive, the firm has a positive extra value. Thus, the intrinsic value of equity per share (assume retain earnings are zero after 2015) is 
 $$

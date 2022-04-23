@@ -53,31 +53,31 @@ $$
 #### Example: Valuation of IBM
 Analysts' forecast of IBM is shown below:
 
-<div class='center'>
+<div class='centertable'>
 
 | $\text{\textdollar}$ |  2010   |  2011   |  2012   | Next Three Years |
 | :------------------: | :-----: | :-----: | :-----: | :--------------: |
 |       **EPS**        |  ${}$   | $13.22$ | $14.61$ | Growth at $11\%$ |
 |       **DPS**        |  ${}$   | $3.00$  | $3.30$  | Growth at $11\%$ |
 |       **BPS**        | $18.77$ |  ${}$   |  ${}$   |       ${}$       |
-</div class='center'>
+</div class='centertable'>
 
 Assume the required return for equity is $10\%$.
 
 We first calculate the BPS using $\text{BPS}_t=\text{BPS}_{t-1}+\text{EPS}_t-\text{DPS}_t$, 
 
-<div class='center'>
+<div class='centertable'>
 
 | $\text{\textdollar}$ |  2010   |  2011   |  2012   |  2013   |  2014   |  2015   |
 | :------------------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 |       **EPS**        |  ${}$   | $13.22$ | $14.61$ | $16.22$ |  $18$   | $19.98$ |
 |       **DPS**        |  ${}$   | $3.00$  | $3.30$  | $3.66$  | $4.07$  | $4.51$  |
 |       **BPS**        | $18.77$ | $28.99$ | $40.30$ | $52.86$ | $66.79$ | $82.26$ |
-</div class='center'>
+</div class='centertable'>
 
 Then, the residual earnings is calculated by $\text{RE}_t = \text{EPS}_t - \text{BPS}_{t-1}\times \text{Required Return}$, 
 
-<div class='center'>
+<div class='centertable'>
 
 | $\text{\textdollar}$ |  2010   |  2011   |  2012   |  2013   |  2014   |  2015   |
 | :------------------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
@@ -85,11 +85,11 @@ Then, the residual earnings is calculated by $\text{RE}_t = \text{EPS}_t - \text
 |       **DPS**        |  ${}$   | $3.00$  | $3.30$  | $3.66$  | $4.07$  | $4.51$  |
 |       **BPS**        | $18.77$ | $28.99$ | $40.30$ | $52.86$ | $66.79$ | $82.26$ |
 |        **RE**        |  ${}$   | $11.34$ | $11.71$ | $12.19$ | $12.71$ | $13.30$ |
-</div class='center'>
+</div class='centertable'>
 
 The <abbr title='Abnormal Earnings Growth'>AEG</abbr> is just the change in <abbr title='Residual Earnings'>RE</abbr>, 
 
-<div class='center'>
+<div class='centertable'>
 
 | $\text{\textdollar}$ |  2010   |  2011   |  2012   |  2013   |  2014   |  2015   |
 | :------------------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
@@ -98,7 +98,7 @@ The <abbr title='Abnormal Earnings Growth'>AEG</abbr> is just the change in <abb
 |       **BPS**        | $18.77$ | $28.99$ | $40.30$ | $52.86$ | $66.79$ | $82.26$ |
 |        **RE**        |  ${}$   | $11.34$ | $11.71$ | $12.19$ | $12.71$ | $13.30$ |
 |       **AEG**        |  ${}$   |  ${}$   | $0.37$  | $0.48$  | $0.52$  | $0.59$  |
-</div class='center'>
+</div class='centertable'>
 
 which means the current value of IBM's common equity should be
 $$
@@ -130,7 +130,7 @@ We can derive some conclusions using the compounding method, however, using the 
 #### Example: The Prototype Savings Account
 Consider a company pays all its earnings as dividend (assume the required return is $5\%$): 
 
-<div class='center'>
+<div class='centertable'>
 
 |  $(\text{\textdollar})$   |   0   |   1   |           2            |                           3                            |
 | :-----------------------: | :---: | :---: | :--------------------: | :----------------------------------------------------: |
@@ -138,14 +138,14 @@ Consider a company pays all its earnings as dividend (assume the required return
 |          **DPS**          | ${}$  |  $5$  |          $5$           |                          $5$                           |
 |          **BPS**          | $100$ | $100$ |         $100$          |                         $100$                          |
 | **Cum-Dividend Earnings** | ${}$  |  $5$  | $5+5\times 5\% = 5.25$ | $5+5\times 5\%+5\times (1+5\%)\times 5\% \approx 5.51$ |
-</div class='center'>
+</div class='centertable'>
 
 > [!NOTE]
 > Here we use the compounding method.
 
 Also consider a company pays zero as dividend (with the same earnings and required return): 
 
-<div class='center'>
+<div class='centertable'>
 
 |  $(\text{\textdollar})$   |   0   |   1   |           2            |                3                |
 | :-----------------------: | :---: | :---: | :--------------------: | :-----------------------------: |
@@ -153,7 +153,7 @@ Also consider a company pays zero as dividend (with the same earnings and requir
 |          **DPS**          | ${}$  |  $0$  |          $0$           |               $0$               |
 |          **BPS**          | $100$ | $105$ |        $110.25$        |            $115.76$             |
 | **Cum-Dividend Earnings** | ${}$  |  $5$  |         $5.25$         |             $5.51$              |
-</div class='center'>
+</div class='centertable'>
 
 Note that 2 companies with totally different payout plan have the same cum-dividend earnings, which means <mark>dividend do not affect cum-dividend earnings, and thus do not affect value</mark>.
 
@@ -191,7 +191,7 @@ Thus, the example above shows <mark>zero <abbr title='Abnormal Earnings Growth'>
 #### Example (Continued): Valuation of IBM
 Recall the [example of valuating IBM](#example-valuation-of-ibm), the information is shown below: 
 
-<div class='center'>
+<div class='centertable'>
 
 | $\text{\textdollar}$ |  2010   |  2011   |  2012   |  2013   |  2014   |  2015   |
 | :------------------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
@@ -200,11 +200,11 @@ Recall the [example of valuating IBM](#example-valuation-of-ibm), the informatio
 |       **BPS**        | $18.77$ | $28.99$ | $40.30$ | $52.86$ | $66.79$ | $82.26$ |
 |        **RE**        |  ${}$   | $11.34$ | $11.71$ | $12.19$ | $12.71$ | $13.30$ |
 |       **AEG**        |  ${}$   |  ${}$   | $0.37$  | $0.48$  | $0.52$  | $0.59$  |
-</div class='center'>
+</div class='centertable'>
 
 Now we try to calculate the cum-dividend earnings and the normal earnings to chek the relation with <abbr title='Abnormal Earnings Growth'>AEG</abbr>. We use the simple interest of last year's dividend to calculate: $\text{Cum-Dividend Earnings}_t = \text{Earnings}_t + \text{Dividend}_{t-1}\times \text{Required Return}$ and $\text{Normal Earnings}_t = \text{Earnings}_{t-1}\times (1+\text{Required Return})$.
 
-<div class='center'>
+<div class='centertable'>
 
 |   $\text{\textdollar}$    |  2010   |  2011   |  2012   |  2013   |  2014   |  2015   |
 | :-----------------------: | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
@@ -214,7 +214,7 @@ Now we try to calculate the cum-dividend earnings and the normal earnings to che
 | **Cum-Dividend Earnings** |  ${}$   |  ${}$   | $14.91$ | $16.55$ | $18.37$ | $20.39$ |
 |    **Normal Earnings**    |  ${}$   |  ${}$   | $14.54$ | $16.07$ | $17.84$ | $19.80$ |
 |  **Earnings Difference**  |  ${}$   |  ${}$   | $0.37$  | $0.48$  | $0.53$  | $0.59$  |
-</div class='center'>
+</div class='centertable'>
 
 We can see that the earnings difference between cum-dividend earnings and normal earnings is just the <abbr title='Abnormal Earnings Growth'>AEG</abbr>.
 
