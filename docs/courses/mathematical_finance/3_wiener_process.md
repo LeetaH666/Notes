@@ -40,7 +40,7 @@ where $W(t)\sim N(0,\ t)$.
 
 #### Geometric Brownian Motion (GBM)
 $$
-S(t) = S(0)e^{(\mu-\frac{1}{2}\sigma^{2})t + \sigma W(t)}
+S(t) = S(0)e^{\left( \mu-\frac{1}{2}\sigma^{2} \right) t + \sigma W(t)}
 $$
 
 GBM is a limit of a binomial model.

@@ -9,13 +9,13 @@ $$
 where $\mu$ is the <mark>risk-adjusted</mark> expected growth rate, i.e., it is an expected growth rate under the risk-neutral measure. $\sigma$ is volatility and $W$ is a standard Wiener process on $(\Omega,\ \mathcal{F},\ \mathbb{P})$ equipped with a filtration $\{\mathcal{F}_t:\ t\geqslant 0\}$.
 
 ### Standard Asset
-A standard asset has cash flow that is a linear function of the total cash flow of a firm, i.e., $a X_t + K$ for some constant $a$ and $K$, up to a stopping time (bankrupt time) $T_{\mathcal{D}}:=\mathrm{inf}\left\{ t\geqslant 0:\ X_t \notin \mathcal{D} \right\}$ for a given domain $\mathcal{D}$. Thus, $X_{T_{\mathcal{D}}}\in \partial \mathcal{D}$ where $\partial \mathcal{D}$ is the boundary of $\mathcal{D}$.
+A standard asset has cash flow that is a linear function of the total cash flow of a firm, i.e., $a X_t + K$ for some constant $a$ and $K$, up to a stopping time (bankrupt time) $\tau_{\mathcal{D}}:=\mathrm{inf}\left\{ t\geqslant 0:\ X_t \notin \mathcal{D} \right\}$ for a given domain $\mathcal{D}$. Thus, $X_{\tau_{\mathcal{D}}}\in \partial \mathcal{D}$ where $\partial \mathcal{D}$ is the boundary of $\mathcal{D}$.
 
-At the stopping time $T_{\mathcal{D}}$, the owner of the asset obtains nothing but a claim, of which the value is $g(X_{T_{\mathcal{D}}})$ for some function $g(\cdot)$.
+At the stopping time $\tau_{\mathcal{D}}$, the owner of the asset obtains nothing but a claim, of which the value is $g(X_{\tau_{\mathcal{D}}})$ for some function $g(\cdot)$.
 
 The price of the standard asset at the current time is given by 
 $$
-V(x) = \mathrm{E}\left[ \int_{0}^{T_{\mathcal{D}}} e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-rT_{\mathcal{D}}}g(X_{T_{\mathcal{D}}}) \Bigg| X_0=x \right]
+V(x) = \mathrm{E}\left[ \int_{0}^{\tau_{\mathcal{D}}} e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-r \tau_{\mathcal{D}}}g(X_{\tau_{\mathcal{D}}}) \Bigg| X_0=x \right]
 $$
 
 for some $x\in \mathcal{D}$, where $r\geqslant 0$ is the risk-free rate and we assume $r>\mu$.
@@ -39,8 +39,8 @@ $$
 Consider $\Delta \to 0^{+}$, we have 
 $$
 \begin{aligned}
- V(x) &= \mathrm{E} \left[ \int_{0}^{\Delta}e^{-rt}(a X_t + K) ~\mathrm{d}t + \int_{\Delta}^{T_{\mathcal{D}}}e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-rT_{\mathcal{D}}}g(X_{T_{\mathcal{D}}}) \Bigg| X_0=x  \right]\\
- &= \mathrm{E} \left[ \int_{0}^{\Delta}e^{-rt}(a X_t + K) ~\mathrm{d}t \Bigg| X_0=x \right] + \mathrm{E} \left\{\mathrm{E} \left[ \int_{\Delta}^{T_{\mathcal{D}}}e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-rT_{\mathcal{D}}}g(X_{T_{\mathcal{D}}}) \Bigg| \mathcal{F}_{\Delta} \right]  \Bigg| \mathcal{F}_0 \right\}\\
+ V(x) &= \mathrm{E} \left[ \int_{0}^{\Delta}e^{-rt}(a X_t + K) ~\mathrm{d}t + \int_{\Delta}^{\tau_{\mathcal{D}}}e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-r \tau_{\mathcal{D}}}g(X_{\tau_{\mathcal{D}}}) \Bigg| X_0=x  \right]\\
+ &= \mathrm{E} \left[ \int_{0}^{\Delta}e^{-rt}(a X_t + K) ~\mathrm{d}t \Bigg| X_0=x \right] + \mathrm{E} \left\{\mathrm{E} \left[ \int_{\Delta}^{\tau_{\mathcal{D}}}e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-r \tau_{\mathcal{D}}}g(X_{\tau_{\mathcal{D}}}) \Bigg| \mathcal{F}_{\Delta} \right]  \Bigg| \mathcal{F}_0 \right\}\\
  &= \mathrm{E} \left[ \int_{0}^{\Delta}e^{-rt}(a X_t + K) ~\mathrm{d}t + e^{-r \Delta}V(X_{\Delta}) \Bigg| X_0=x \right]\\
  &= \mathrm{E} \left[ (ax + K)\Delta + \omicron(\Delta) + (1-r \Delta + \omicron(\Delta))\left(V(x)+V^{\prime}(x)(X_{\Delta}-x)+\frac{1}{2}V^{\prime\prime}(x)(X_{\Delta}-x)^{2} + \omicron(\Delta)\right) \right]\\
 \end{aligned}
@@ -51,14 +51,15 @@ $$
 
 Note that $\mathrm{d}X_t = \mu \mathrm{d}t + \sigma X_t \mathrm{d}W_t$, thus we have $X_{\Delta}-x = \mu x \Delta + \sigma x (W_{\Delta}-W_0)$, which means 
 $$
-\mathrm{E}(X_{\Delta}-x) = \mu x \Delta,\qquad \mathrm{E}\left[ (X_{\Delta}-x)^{2} \right] = \mu^{2} x^{2} \Delta^{2} + \sigma^{2} x^{2} \Delta
+\mathrm{E}(X_{\Delta}-x) = \mu x \Delta + \omicron(\Delta)\\
+{}\\
+\mathrm{E}\left[ (X_{\Delta}-x)^{2} \right] = \mu^{2} x^{2} \Delta^{2} + \sigma^{2} x^{2} \Delta + \omicron(\Delta) = \sigma^{2}x^{2}\Delta + \omicron(\Delta)
 $$
 
 Thus, we have 
 $$
 \begin{aligned}
-V(x) &= (ax + K)\Delta + \omicron(\Delta) + (1-r \Delta + \omicron(\Delta))\left[V(x)+V^{\prime}(x)\mu x \Delta+\frac{1}{2}V^{\prime\prime}(x)(\mu^{2} x^{2} \Delta^{2} + \sigma^{2} x^{2} \Delta) + \omicron(\Delta)\right]\\
-\frac{V(x)}{\Delta} &= (ax + K) + \left(\frac{1}{\Delta}-r\right)\left[V(x)+V^{\prime}(x)\mu x \Delta+\frac{1}{2}V^{\prime\prime}(x)(\mu^{2} x^{2} \Delta^{2} + \sigma^{2} x^{2} \Delta) + \omicron(\Delta)\right]\\
+V(x) &= (ax + K)\Delta + \omicron(\Delta) + (1-r \Delta + \omicron(\Delta))\left[V(x)+V^{\prime}(x)\left( \mu x \Delta + \omicron(\Delta) \right) +\frac{1}{2}V^{\prime\prime}(x)\left( \sigma^{2} x^{2} \Delta + \omicron(\Delta) \right)  + \omicron(\Delta)\right]\\
 0 &= (ax + K) + V^{\prime}(x)\mu x \Delta + \frac{1}{2}V^{\prime\prime}(x)\sigma^{2}x^{2} - r V(x) 
 \end{aligned}
 $$
@@ -83,8 +84,8 @@ $$
 
 and we can easily see that $\gamma_{+}>1$ and $\gamma_{-}<0$.
 
-#### Value of Equity
-Consider a company with constant debt $c$ and cash flow $X_t$ satisfying the cash flow model above with initial cash $x$. It will go bankrupt when cash reaches $\delta_b \ll x$. 
+#### Example: Value of Equity
+Consider a company with constant debt $c$ and cash flow $X_t$ satisfying the cash flow model above with initial cash $x$. It will go bankrupt when cash reaches $\delta_b < x$. 
 
 If there is no bankrupt, the equity can be represented by a standard asset $a X_t + K$ with $a=1$ and $K=-c$. The value is given by 
 $$
@@ -114,7 +115,7 @@ $$
 \end{cases}
 $$
 
-Since $\gamma_{+}>1$ and $\gamma_{-}<0$, we have $A_1=0$ and $A_2=-\left( \frac{\delta_b}{r-\mu} - \frac{c}{r} \right) \left( \frac{1}{\delta_b} \right)^{\gamma_{-}}$.
+Since $\gamma_{+}>1$ and $\gamma_{-}<0$, we have $A_1=0$ (consider $x\to \infty$) and $A_2=-\left( \frac{\delta_b}{r-\mu} - \frac{c}{r} \right) \left( \frac{1}{\delta_b} \right)^{\gamma_{-}}$.
 
 Thus, the value of equity is given by
 $$

@@ -139,12 +139,12 @@ $$
 
 where $U(\cdot,\ \cdot)$ is the utility function.
 
-Suppose the utility function is given by 
+Suppose the utility function is a constant-relative-risk-aversion (CRRA) utility given by 
 $$
 U(t,\ c) = e^{-\rho t}\frac{c^{1-\gamma}}{1-\gamma}
 $$
 
-where $\rho$ and $\gamma$ are constants.
+where $\rho,\ \gamma > 0$ and $\gamma\neq 1$.
 
 Then the value function starting at time $0$ is 
 $$
@@ -206,7 +206,7 @@ $$
 
 Substitude them back to the HJB equation, we have 
 $$
-\kappa = \frac{\rho + (\gamma-1)(r+\frac{\eta^{2}}{2\gamma})}{\gamma}
+\kappa = \frac{\rho + (\gamma-1)\left( r+\frac{\eta^{2}}{2\gamma} \right) }{\gamma}
 $$
 
 where
