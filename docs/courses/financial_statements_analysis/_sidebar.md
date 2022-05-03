@@ -10,5 +10,6 @@
 - [Chapter 10: The Analysis of the Balance Sheet and Income Statement](/courses/financial_statements_analysis/10_analysis_of_balance_sheet_and_income_statement.md)
 - [Chapter 11: The Analysis of the Cash Flow Statement](/courses/financial_statements_analysis/11_analysis_of_cash_flow_statement.md)
 - [Chapter 12: The Analysis of Profitability](/courses/financial_statements_analysis/12_analysis_of_profitability.md)
+- [Chapter 13: The Analysis of Growth and Sustainable](/courses/financial_statements_analysis/13_analysis_of_growth_and_sustainable.md)
 
 - [Back to Courses](/courses/README.md)
