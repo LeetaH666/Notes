@@ -1,4 +1,4 @@
-# The Analysis of Profitability
+# Chapter 12: The Analysis of Profitability
 
 ### Two Drivers of Residual Earnings
 Recall that in [Chapter 5](courses/financial_statements_analysis/5_accrual_accounting_and_valuation_pb.md#residual-earnings-and-valuation) we have 

@@ -168,3 +168,24 @@ The proof is similar with [previous proof](courses/mathematical_finance/7_pricin
 
 > [!TIP]
 > The probability of jump in a small time difference $\Delta$ is $\lambda \Delta$, and the expected jump size is $\int_{-\infty}^{\infty} (V(x+z) - V(x)) h(z) ~\mathrm{d}z$. Remember that we divide the equation by $\Delta$ in [previous proof](courses/mathematical_finance/7_pricing_corporate_securities.md#standard-asset). So the additional term is $\lambda \int_{-\infty}^{\infty} (V(x+z) - V(x)) h(z) ~\mathrm{d}z$.
+
+The solution is given by 
+$$
+V(x) = \overline{A}_{1} e^{\beta_{1}(x-h)} + \overline{A}_{2} e^{\beta_{2}(x-h)} + \overline{A}_{3} e^{-\beta_{3}(x-l)} + \overline{A}_{4} e^{-\beta_{4}(x-l)}+\frac{a x + K}{r} + a \frac{\mu+\lambda \xi}{r^{2}}
+$$
+
+for $\mathcal{D}=(l,\ h)$, $\xi=\mathrm{E}(Z_i)=\frac{p}{\eta_1}+\frac{q}{\eta_2}$, $\left\{ \beta_1,\ \beta_2,\ -\beta_3,\ -\beta_4 \right\} $ are roots derived from equation 
+$$
+\frac{1}{2}\sigma^{2}\beta^{2} + \mu \beta + \lambda \left( \frac{p \eta_1}{\eta_1 - \beta} + \frac{q \eta_2}{\eta_2 + \beta} - 1 \right) = r
+$$
+
+satisfiying $0<\beta_1<\eta_1<\beta_2<\infty$ and $0<\beta_3<\eta_2<\beta_4<\infty$, and $\left\{\overline{A}_1,\ \overline{A}_2,\ \overline{A}_3,\ \overline{A}_4 \right\} $ are constants determined by boundary conditions.
+
+The sum of last 2 terms, i.e., $\frac{ax+K}{r}+a\frac{\mu+\lambda \xi}{r^{2}}$, is the value of a claim at any time $t\geqslant 0$ to the perpetual cash flow $a \delta_s+K$ where $s\in[0,\ \infty)$ and $\delta_t=x$. We can verify it by calculating 
+$$
+\begin{aligned}
+ \mathrm{E}^{\mathbb{Q}}\left[ \int_{t}^{\infty} e^{-r(s-t)}(a \delta_s+K) ~\mathrm{d}s \bigg| \mathcal{F}_t \right] &= a \int_{t}^{\infty} e^{-r(s-t)} \mathrm{E}^{\mathbb{Q}}(\delta_s | \mathcal{F}_t) ~\mathrm{d}s + \frac{K}{r}\\
+ &= a \int_{t}^{\infty} e^{-r(s-t)} \mathrm{E}^{\mathbb{Q}}(\delta_s | \mathcal{F}_t) ~\mathrm{d}s + \frac{K}{r}\\
+ \\
+\end{aligned}
+$$

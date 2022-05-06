@@ -1,4 +1,4 @@
-# The Analysis of the Balance Sheet and Income Statement
+# Chapter 10: The Analysis of the Balance Sheet and Income Statement
 
 ### Reformulating the Balance Sheet
 

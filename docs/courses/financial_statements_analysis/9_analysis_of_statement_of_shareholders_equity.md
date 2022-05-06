@@ -1,4 +1,4 @@
-# The Analysis of the Statement of Shareholders' Equity
+# Chapter 9: The Analysis of the Statement of Shareholders' Equity
 
 ### Reformulated Statement of Common Stockholders' Equity
 <div align='center'>

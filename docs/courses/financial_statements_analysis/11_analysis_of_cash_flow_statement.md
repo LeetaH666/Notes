@@ -1,4 +1,4 @@
-# The Analysis of the Cash Flow Statement
+# Chapter 11: The Analysis of the Cash Flow Statement
 
 ### The Calculation of Free Cash Flow
 In [Chapter 8](courses/financial_statements_analysis/8_viewing_the_business_through_the_financial_statements.md#articulation) we have introduced 2 methods to calculate <abbr title='Free Cash Flow'>FCF</abbr>: 

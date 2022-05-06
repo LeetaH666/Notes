@@ -1,2 +1,3 @@
 - [Courses in SUSTech](/courses/README.md)
 - [Papers](/papers/README.md)
+- [CFA](/CFA/README.md)
