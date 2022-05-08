@@ -181,11 +181,27 @@ $$
 
 satisfiying $0<\beta_1<\eta_1<\beta_2<\infty$ and $0<\beta_3<\eta_2<\beta_4<\infty$, and $\left\{\overline{A}_1,\ \overline{A}_2,\ \overline{A}_3,\ \overline{A}_4 \right\} $ are constants determined by boundary conditions.
 
-The sum of last 2 terms, i.e., $\frac{ax+K}{r}+a\frac{\mu+\lambda \xi}{r^{2}}$, is the value of a claim at any time $t\geqslant 0$ to the perpetual cash flow $a \delta_s+K$ where $s\in[0,\ \infty)$ and $\delta_t=x$. We can verify it by calculating 
+The sum of last 2 terms, i.e., $\frac{ax+K}{r}+a\frac{\mu+\lambda \xi}{r^{2}}$, is the value of a claim at any time $t\geqslant 0$ to the perpetual cash flow $a \delta_s+K$ where $s\in[0,\ \infty)$ and $\delta_t=x$.
+
+<details>
+<summary>Proof</summary>
+
+The value of the claim is given by 
 $$
 \begin{aligned}
  \mathrm{E}^{\mathbb{Q}}\left[ \int_{t}^{\infty} e^{-r(s-t)}(a \delta_s+K) ~\mathrm{d}s \bigg| \mathcal{F}_t \right] &= a \int_{t}^{\infty} e^{-r(s-t)} \mathrm{E}^{\mathbb{Q}}(\delta_s | \mathcal{F}_t) ~\mathrm{d}s + \frac{K}{r}\\
- &= a \int_{t}^{\infty} e^{-r(s-t)} \mathrm{E}^{\mathbb{Q}}(\delta_s | \mathcal{F}_t) ~\mathrm{d}s + \frac{K}{r}\\
- \\
+ &= a \int_{t}^{\infty} e^{-r(s-t)} \mathrm{E}^{\mathbb{Q}}\left[ \delta_t + \mu (s-t) + \sigma \left( Z^{\prime}_s - Z^{\prime}_t \right) + \sum\limits_{i=1}^{N_s-N_t} Z_i  \bigg| \mathcal{F}_t \right]  ~\mathrm{d}s + \frac{K}{r}\\
+ &= a \int_{t}^{\infty} e^{-r(s-t)} \left[ x + \mu(s-t) + \lambda(s-t) \xi \right] ~\mathrm{d}s + \frac{K}{r}\\
+ &= a\left( \frac{x}{r} + \frac{\mu + \lambda \xi}{r^{2}} \right)  + \frac{K}{r}\\
+ &= \frac{ax+K}{r} + a\frac{\mu + \lambda \xi}{r^{2}}\\
 \end{aligned}
 $$
+
+where $Z^{\prime}$ is a standard Brownian motion satisfying $\mathrm{d}Z_t^{\prime} = \rho \sigma \mathrm{d}Z_t^{\mathbb{Q}} + \sqrt{1-\rho^{2}} \sigma \mathrm{d}Z_t^{2}$ and $\xi=\mathrm{E}(Z_i)=\frac{p}{\eta_1}+\frac{q}{\eta_2}$.
+
+> [!TIP]
+> $$
+> \int_{0}^{\infty} x e^{-rx} ~\mathrm{d}x = - \frac{1}{r} \int_{0}^{\infty} x ~\mathrm{d}e^{-rx} = - \frac{1}{r} \left( \left. x e^{-rx} \right|_{0}^{\infty} - \int_{0}^{\infty} e^{-rx} ~\mathrm{d}x \right) = -\frac{1}{r}\cdot \left. \frac{1}{r} e^{-rx}\right|_{0}^{\infty} = \frac{1}{r^{2}}
+> $$
+</details>
+
