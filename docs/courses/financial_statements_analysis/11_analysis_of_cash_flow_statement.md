@@ -96,11 +96,11 @@ Adjustments Summary
 
 After reformulating, we have 
 
-<div align='center'>
+<center>
 
 ![](image/2022-04-25-15-54-39.png)
 Reformulated Cash Flow Statement
-</div align='center'>
+</center>
 
 However, the <abbr title='Free Cash Flow'>FCF</abbr> we get using the reformulating method may not reconcile to the 2 methods we have learned.
 

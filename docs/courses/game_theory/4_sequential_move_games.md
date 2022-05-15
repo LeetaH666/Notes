@@ -54,7 +54,8 @@ An extensive form game with perfect information has the following components:
   $A(\emptyset)=\{\text{In},\ \text{Out}\}$, $A(\text{In})=\{\text{A},\ \text{F}\}$ and $A((\text{In},\ \text{A}))=A((\text{In},\ \text{F}))=\{\text{a},\ \text{f}\}$.
 
   > [!NOTE]
-  > **Difference between Strategies and Actions**<br>
+  > **Difference between Strategies and Actions**
+  > 
   > Recall what we have discussed in [Dominated Strategies](/courses/game_theory/2_dominated_strategies.md), a strategy is a contingent action plan.<br>
   > Consider the game above, for player $\text{E}$, the total action set is 
   > $$
@@ -88,14 +89,14 @@ A strategy profile $s=(s_1,\ \cdots,\ s_{I})$ is SPNE if it induces a Nash equil
 Equilibrium is a strategy profile. In the game above, the equilibrium is 
 $$
 \begin{aligned}
- \text{I}:&\ (\text{In},\ \text{a}|(\text{In},\ \text{A}),\ \text{f}|(\text{In},\ \text{F}))\\
- \text{E}:&\ (\text{A}|\text{In})
+ \text{E}:&\ (\text{In},\ \text{a}|(\text{In},\ \text{A}),\ \text{f}|(\text{In},\ \text{F}))\\
+ \text{I}:&\ \text{A}|\text{In}
 \end{aligned}
 $$
 
 while the equilibrium outcome is an action or payoff profile: 
 $$
-(\text{In},\ \text{A},\ \text{a})
+((\text{In},\ \text{a}),\ \text{A})
 $$
 
 or 
