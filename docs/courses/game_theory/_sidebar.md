@@ -4,5 +4,6 @@
 - [Sequential-Move Games (Extensive Form Games)](/courses/game_theory/4_sequential_move_games.md)
 - [Games of Incomplete Information](/courses/game_theory/5_games_of_incomplete_information.md)
 - [Repeated Games](/courses/game_theory/6_repeated_games.md)
+- [Perfect Bayesian Equilibrium](/courses/game_theory/7_perfect_bayesian_equilibrium.md)
 
 - [Back to Courses](/courses/README.md)
