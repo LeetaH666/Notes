@@ -5,5 +5,6 @@
 - [Games of Incomplete Information](/courses/game_theory/5_games_of_incomplete_information.md)
 - [Repeated Games](/courses/game_theory/6_repeated_games.md)
 - [Perfect Bayesian Equilibrium](/courses/game_theory/7_perfect_bayesian_equilibrium.md)
+- [Trembling-Hand Perfect Nash Equilibrium and Correlated Equilibrium](/courses/game_theory/8_trembling-hand_perfect_nash_equilibrium_and_correlated_equilibrium.md)
 
 - [Back to Courses](/courses/README.md)

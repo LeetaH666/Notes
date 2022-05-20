@@ -182,3 +182,6 @@ Finally, we have
 
 ![](image/2022-04-06-08-42-50.png)
 </div align='center'>
+
+> [!TIP]
+> $-(\text{C}-\text{I})_t + \text{d}_t$ is actually $\text{F}_t$.

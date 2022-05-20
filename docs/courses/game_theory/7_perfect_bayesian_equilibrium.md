@@ -48,7 +48,7 @@ $$
 \mathrm{E}(u_i | h,\ \mu,\ \sigma_i,\ \sigma_{-i})
 $$
 
-Recall that we can denote $i$ as $P(h)$. Then, a strategy profile $\sigma=(sigma_1,\ sigma_2,\ \cdots,\ sigma_I)$ in an extensive form game is <mark>sequentially rational</mark> at information set $h$ given a system of belief $\mu$ if we have 
+Recall that we can denote $i$ as $P(h)$. Then, a strategy profile $\sigma=(\sigma_1,\ \sigma_2,\ \cdots,\ \sigma_I)$ in an extensive form game is <mark>sequentially rational</mark> at information set $h$ given a system of belief $\mu$ if we have 
 $$
 \mathrm{E}\left( u_{P(h)} | h,\ \mu,\ \sigma_{P(h)},\ \sigma_{-P(h)} \right) \geqslant \mathrm{E}\left( u_{P(h)} | h,\ \mu,\ \widetilde{\sigma}_{P(h)},\ \sigma_{-P(h)} \right),\quad \forall \widetilde{\sigma}_{P(h)}\in \Delta\left( S_{P(h)} \right) 
 $$
@@ -74,6 +74,13 @@ Consider a game tree below:
 ![](image/2022-05-10-21-37-37.png)
 </div align='center'>
 
-$((A,\ R),\ l,\ \mu_2(L)=1)$ is a weak <abbr title='Perfect Bayesian Equilibrium'>PBE</abbr> outcome since player 2 would choose $l$ due to his belief $\mu_2(L)=1$ and player 1 would choose $R$ based on this belief. Compared with choosing $D$ to get payoff $1$, the best choice of player 1 at first is $A$ with payoff $2$.
+For player 1, $\text{R}$ is a strictly dominant strategy to $\text{L}$ and thus choosing $\text{L}$ is impossible. However, a weak <abbr title='Perfect Bayesian Equilibrium'>PBE</abbr> is not restricted by Bayes' rule at the zero-possibility information set, which means player 2 can have a belief that the possibility of player 1 choosing $\text{L}$ is bigger than $0$.
+
+For example, $((A,\ R),\ l,\ \mu_2(L)=1)$ is a weak <abbr title='Perfect Bayesian Equilibrium'>PBE</abbr> outcome since player 2 would choose $l$ due to his belief $\mu_2(L)=1$ and player 1 would choose $R$ based on this belief. Compared with choosing $D$ to get payoff $1$, the best choice of player 1 at first is $A$ with payoff $2$.
 
 However, this outcome is not an <abbr title='Subgame Perfect Nash Equilibrium'>SPNE</abbr>.
+
+### Perfect Bayesian Equilibrium
+Different from [weak PBE](#weak-perfect-bayesian-equilibrium), <abbr title='Perfect Bayesian Equilibrium'>PBE</abbr> consider $\forall $ information set $h$ s.t. $\mathbb{P}(h|\sigma)\geqslant 0$, which means in the [example](#example-limitation-of-weak-pbe) above, player 2 cannot have a belief that the possibility of player 1 choosing $\text{L}$ is bigger than $0$.
+
+Recall that we solved the system with imperfect information by seeing it as a normal form game in the [game of entering in the market](#example-enter-in-the-market). Actually the equilibrium is reached when players have a belief that the other would choose the equilibrium strategy with probability $1$, which satisfies Bayes' rule and thus the Nash equilibrium is also a <abbr title='Perfect Bayesian Equilibrium'>PBE</abbr>.

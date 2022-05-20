@@ -11,5 +11,8 @@
 - [Chapter 11: The Analysis of the Cash Flow Statement](/courses/financial_statements_analysis/11_analysis_of_cash_flow_statement.md)
 - [Chapter 12: The Analysis of Profitability](/courses/financial_statements_analysis/12_analysis_of_profitability.md)
 - [Chapter 13: The Analysis of Growth and Sustainable](/courses/financial_statements_analysis/13_analysis_of_growth_and_sustainable.md)
+- [Chapter 14: The Value of Operations and the Evaluation of Enterprise PB and PE Ratios](/courses/financial_statements_analysis/14_value_of_operations.md)
+- [Chapter 15: Anchoring on the Financial Statements: Simple Forecasting and Simple Valuation](/courses/financial_statements_analysis/15_simple_forecasting_and_simple_valuation.md)
+- [Chapter 16: Full-Information Forecasting](/courses/financial_statements_analysis/16_full-information_forecasting.md)
 
 - [Back to Courses](/courses/README.md)
