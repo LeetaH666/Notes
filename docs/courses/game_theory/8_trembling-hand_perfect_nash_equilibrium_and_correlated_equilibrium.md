@@ -23,6 +23,7 @@ Consider the following game:
 There are 2 Nash equilibria. However, we can easily find that $\text{B}$ and $\text{R}$ are weakly dominated strategies, which means the Nash equilibrium $(\text{B},\ \text{R})$ is less likely to be reached.
 
 We first check whether the Nash equilibrium $(\text{T},\ \text{L})$ is trembling-hand perfect. To see this, we construct a sequence of totally mixed strategies: 
+
 $$
 \begin{cases}
     \sigma_1(\text{T}) = 1 - \frac{1}{n} \\
@@ -36,6 +37,7 @@ n = 2,\ 3,\ \cdots,\ \infty
 $$
 
 Given the strategy of the row player, the expected payoff of the column player is given by 
+
 $$
 \begin{cases}
     u_2(\text{L}) = \left( 1 - \frac{1}{n} \right) \cdot 1 + \frac{1}{n}\cdot 0 = 1 - \frac{1}{n}  \\
@@ -45,6 +47,7 @@ u_2(\text{L}) > u_2(\text{R})
 $$
 
 Similarly, given the strategy of the column player, the expected payoff of the row player is given by 
+
 $$
 \begin{cases}
     u_1(\text{T}) = \left( 1 - \frac{1}{n} \right) \cdot 1 + \frac{1}{n}\cdot 0 = 1 - \frac{1}{n}  \\
@@ -56,6 +59,7 @@ $$
 Thus, the Nash equilibrium $(\text{T},\ \text{L})$ is trembling-hand perfect.
 
 Then, we check whether the Nash equilibrium $(\text{B},\ \text{R})$ is trembling-hand perfect. We consider an arbitrary sequence of totally mixed strategies: 
+
 $$
 \begin{cases}
     \sigma_1(\text{T}) = \sigma_1^{\epsilon} \\
@@ -71,6 +75,7 @@ $$
 where $\sigma_1^{\epsilon}$ and $\sigma_2^{\epsilon}$ are both positive and both converge to $0$.
 
 Given the strategy of the row player, the expected payoff of the column player is given by 
+
 $$
 \begin{cases}
     u_2(\text{L}) = \sigma_1^{\epsilon} \cdot 1 + \left( 1 - \sigma_1^{\epsilon} \right) \cdot 0 = \sigma_1^{\epsilon}  \\
@@ -80,6 +85,7 @@ u_2(\text{L}) > u_2(\text{R})
 $$
 
 Similarly, given the strategy of the column player, the expected payoff of the row player is given by 
+
 $$
 \begin{cases}
     u_1(\text{T}) = \sigma_1^{\epsilon} \cdot 1 + \left( 1 - \sigma_1^{\epsilon} \right) \cdot 0 = \sigma_1^{\epsilon}  \\
@@ -158,6 +164,9 @@ Hence, these 2 strategies form a correlated equilibrium. Since the 3 states each
 
 #### Definition
 Let $(\Omega,\ \pi)$ be a countable probability space. For each player $i$, let $P_i$ be his information partition, $q_i$ be his posterior and let $s_i:\ \Omega \to A_i$ assigning the same value to states in the same cell of his information partition. Then $\left( (\Omega,\ \pi),\ \left\{ P_i \right\} ,\ \left\{ s_i \right\}  \right) $ is a correlated equilibrium of game $\left\{ I,\ \left\{ A_i \right\},\ \left\{ u_i \right\}   \right\} $ if $\forall i,\ q_i,\ s_i^{\prime}$, 
+
 $$
 \sum\limits_{\omega\in \Omega} q_i(\omega) u_i\left( s_i(\omega),\ s_{-i}(\omega) \right) \geqslant \sum\limits_{\omega\in \Omega} q_i(\omega) u_i\left( s_i^{\prime}(\omega),\ s_{-i}(\omega) \right)
 $$
+
+For example, in the [example of seperate signal](#example-seperate-signal) above, $\Omega = \left\{ \text{A},\ \text{B},\ \text{C} \right\} $, information partition of player 1 is $P_1 = \left\{ \left\{ \text{A} \right\},\ \left\{ \text{B},\ \text{C} \right\}   \right\} $ and that of player 2 is $P_2 = \left\{ \left\{ \text{A},\ \text{B} \right\},\ \left\{ \text{C} \right\}   \right\} $. Player 1's strategy is $s_1(\text{A}) = \text{U}$ and $s_1(\text{B})=s_1(\text{C})=\text{D}$ while player 2's strategy is $s_2(\text{A})=s_2(\text{B})=\text{L}$ and $s_2(\text{C})=\text{R}$. Correlated equilibrium is reached when each player plays the best response at every state.
