@@ -78,9 +78,9 @@ If every information set in the game contains only a single decision node (uniqu
 
 #### Subgame
 A subgame of a sequential-move game is a subset of the game is a subset of the game having the following properties: 
-- It begins with an information set containing a single decision node.
+- It begins with an information set containing a <mark>single</mark> decision node.
 - It only contains all the decision nodes that are successors of the starting decision node.
-- Given an imperfect information set, if one of the decision nodes in the set is in the subgame, then other decision nodes should be also in the subgame.
+- <mark>Given an imperfect information set, if one of the decision nodes in the set is in the subgame, then other decision nodes should be also in the subgame.</mark>
 
 ### Subgame Perfect Nash Equilibrium (SPNE)
 A strategy profile $s=(s_1,\ \cdots,\ s_{I})$ is SPNE if it induces a Nash equilibrium in every subgame of the game.

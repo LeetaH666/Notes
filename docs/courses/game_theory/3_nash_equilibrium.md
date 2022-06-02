@@ -128,7 +128,7 @@ Let $X$ be a compact convex subset of $\mathbb{R}^{M}$ and let $f:\ X \to X$ be 
 Then there exists $x^{*} \in X$ s.t. $x^{*} \in f(x^{*})$.
 </details>
 
-Thus, every game $\Gamma_{n}=\{I,\ \{S_i\},\ \{u_i(\cdot)\}\}$ in which the sets $\{S_i\}$ have a finite number of elements has a mixed strategy Nash equilibrium.
+Thus, <mark>every game $\Gamma_{n}=\{I,\ \{S_i\},\ \{u_i(\cdot)\}\}$ in which the sets $\{S_i\}$ have a finite number of elements has a mixed strategy Nash equilibrium</mark>.
 
 > Now let us see some examples that we can not use the proposition above to judge.
 

@@ -165,8 +165,8 @@ Potential employers are willing to pay $\text{\textdollar}160,000$ a year to an 
 Consider the following hiring policy of potential employers: anyone who has taken $n$ or more of the tough courses will be regarded as an $\text{A}$ type and anyone who has taken fewer than $n$ tough courses will be regarded as a $\text{C}$ type.
 
 To succeed, such a policy must satisfy 2 conditions: 
-- Incentive-compatibility condition
-- Participation condition
+- <mark>Incentive-compatibility condition</mark>
+- <mark>Participation condition</mark>
 
 The first condition needs the policy to make those who are $\text{A}$ type to take tough courses while those who are $\text{C}$ type to avoid tough courses, i.e., 
 $$
