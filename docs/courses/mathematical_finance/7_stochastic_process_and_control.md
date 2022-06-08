@@ -1,12 +1,15 @@
 # Stochastic Process and Control
 
 ### Stochastic Process
+
 Let $\Omega$ be a nonempty sample space with a filtration $\mathcal{F}(t)$, $0\leqslant t\leqslant T$ and let $X(t)$ be a collection of random variables indexed by $t\in [0,\ T]$. We say this collection of random variables is a stochastic process. If for each $t$, the random variable $X(t)$ is $\mathcal{F}(t)$-measurable, then we call it an <mark>adapted stochastic process</mark>.
 
 The definition above means for each $t\in [0,\ T]$, we have a random variable $X(t):\ \omega\to X(t,\ \omega),\ \forall \omega\in \Omega$. Fixing $\omega\in \Omega$, a function that maps $t$ to $X(t,\ \omega)$ is called a <mark>path</mark> of $X(t),\ \forall t\in [0,\ T]$.
 
 #### Martingale
+
 If $\{X(t)\}_{t=0}^{T}$ satisfies the following 3 conditions: 
+
 - $\{X(t)\}_{t=0}^{T}$ is adapted to $\{\mathcal{F}(t)\}_{t=0}^{T}$ on $(\Omega,\ \mathcal{F},\ \mathbb{P})$;
 - $\mathrm{E}(\left\vert X(t) \right\vert )<\infty,\ \forall t\in [0,\ T]$;
 - $\mathrm{E}(X(s)|X(t))=X(t),\ \forall s\geqslant t$,
@@ -21,12 +24,15 @@ For example, a wiener process $W(t)$ is a martingale w.r.t. $\{\sigma(W(s))\}_{s
 > The time-discounted price process of a financial asset without paying dividends is a martingale under a risk-neutral probability measure.
 
 ### The Black-Scholes Option Pricing Model
+
 Assume there are 3 assets in the market: 
+
 - A risk-free asset with interest rate $r$ per unit time.
 - A risky asset (stock) whith price satisfying $\mathrm{d}S(t) = \mu S(t)\mathrm{d}t + \sigma S(t) \mathrm{d}W(t),\ t\geqslant 0$.
 - An European call option with payoff $(S(T)-K)^{+}$ for maturity date $T>0$ and strike price $K$.
 
 The price of the call option at time $t$ is given by 
+
 $$
 \begin{aligned}
  V(t) &= e^{-r(T-t)} \widetilde{\mathrm{E}} \left[ (S(T)-K)^{+} | \mathcal{F}(t) \right] \\
@@ -38,16 +44,19 @@ $$
 > Recall the <abbr title='Geometric Brownian Motion'>GBM</abbr> is $S(t) = S(0)e^{(\mu-\frac{1}{2}\sigma^{2})t + \sigma W(t)}$ and we have shown that $\mu$ would be $r$ in a risk-neutral probability measure by the [Girsanov Theorem](courses/mathematical_finance/4_probability_theory.md#girsanov-theorem).
 
 From this we can derive that 
+
 $$
 V(t) = S(t)\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)
 $$
 
 where $\Phi(\cdot)$ is the cdf of standard normal distribution and 
+
 $$
 d_1 = \frac{\log \left(\frac{S(t)}{K} \right) + \left( r + \frac{\sigma^{2}}{2} \right) (T-t)}{\sigma \sqrt{T-t}},\ \qquad d_2 = d_1 - \sigma \sqrt{T-t}
 $$
 
 Recall that in the [multi-period binomial model](courses/mathematical_finance/5_binomial_model.md#multi-period-binomial-model), we use 
+
 $$
 \Delta_n(S_n) = \frac{V_{n+1}(u\, S_n)-V_{n+1}(d\, S_n)}{u\, S_n - d\, S_n}
 $$
@@ -55,6 +64,7 @@ $$
 shares of stock to hedge our portfolio.
 
 Similarly, in the <abbr title='Black-Scholes'>B-S</abbr> model, we use 
+
 $$
 \Delta(t,\ S(t)) = \frac{\partial V(t,\ S(t))}{\partial S(t)}
 $$
@@ -62,9 +72,11 @@ $$
 shares of stock to hedge our portfolio.
 
 ### Stochastic Control
-Back to the control system we have learned in [Continuous Time Deterministic Dynamic programming](courses/mathematical_finance/2_continuous_time_deterministic_dynamic_programming.md), now we consider a stochastic component, e.g., a wiener process $W(t)$.
+
+Back to the control system we have learned in [Continuous-Time Deterministic Dynamic programming](courses/mathematical_finance/2_continuous_time_deterministic_dynamic_programming.md), now we consider a stochastic component, e.g., a Wiener process $W(t)$.
 
 #### Control System
+
 $$
 \begin{cases}
     \mathrm{d}x(t) = b(t,\ x(t),\ u(t))\mathrm{d}t + \sigma(t,\ x(t),\ u(t))\mathrm{d}W(t),& t \in [0,\ T]\\
@@ -73,11 +85,13 @@ $$
 $$
 
 where control $u(\cdot)$ belongs to the admissible control set 
+
 $$
 \mathcal{A}[0,\ T]=\left\{u(\cdot) \text{ is measurable in } [0,\ T] \text{ and } u(\cdot) \text{ is } \{\mathcal{F}(t)\}_{t=0}^{T} \text{-adapted}\right\}
 $$
 
 Consider $s \in [0,\ T)$ and $y \in \mathbb{R}$, the control system becomes
+
 $$
 \begin{cases}
     \mathrm{d}x(t) = b(t,\ x(t),\ u(t))\mathrm{d}t + \sigma(t,\ x(t),\ u(t))\mathrm{d}W(t),& t \in [s,\ T]\\
@@ -86,11 +100,13 @@ $$
 $$
 
 #### Value Functional
+
 $$
 J(s,\ y;\ u(\cdot)) = \mathrm{E}\left(h(x(T)) + \int_{s}^{T} f(t,\ x(t),\ u(t)) ~\mathrm{d}t  \right) 
 $$
 
 #### Value Function
+
 $$
 V(s,\ y) =
 \begin{cases}
@@ -101,13 +117,17 @@ V(s,\ y) =
 $$
 
 ### Bellman's Principle of Optimality
+
 For any $(s,\ y)\in [0,\ T)\times \mathbb{R}^{n}$ and $0\leqslant s \leqslant \hat{s}\leqslant T$, 
+
 $$
 V(s,\ y) = \underset{u(\cdot)\in \mathcal{A}[s,\ \hat{s}]}{\mathrm{sup}} \mathrm{E}\left( \int_{s}^{\hat{s}} f(t,\ x(t;\ s,\ y,\ u(\cdot)),\ u(t)) ~\mathrm{d}t + V(\hat{s},\ x(\hat{s};\ s,\ y,\ u(\cdot))) \right)  
 $$
 
 #### HJB Equation
+
 If the value function $V\in \mathcal{C}^{1,\ 2}([0,\ T]\times \mathbb{R}^{n})$, then $V$ is a solution to the following terminal value problem: 
+
 $$
 \begin{cases}
   V_t + \underset{u \in U}{\mathrm{sup}}\ \left[b(t,\ x,\ u)V_x + f(t,\ x,\ u) + \frac{1}{2}\sigma^{2}(t,\ x,\ u) V_{xx}\right] = 0 \\
@@ -118,13 +138,16 @@ $$
 where $x(t)$ and $u(t)$ are simply written as $x$ and $u$.
 
 #### Example: Merton's Problem
+
 Suppose there are only 2 assets available for investment: 
+
 - A risk-free asset with interest rate $r$, whose price is denoted by $B(t)$ satisfying $\mathrm{d}B(t)=rB(t)\mathrm{d}t$.
 - A risky asset (stock) whose price is denoted by $S(t)$ satisfying $\mathrm{d}S(t)=S(t)(\mu \mathrm{d}t + \sigma \mathrm{d}Z(t))$ where $Z(t)$ is a wiener process.
 
 Assume that an investor has an initial wealth $W(0)=w$. At time $t$, the investor holds $\Delta(t)$ and $W(t)-\Delta(t)$ in stock and risk-free asset respectively. In addition, he consumes at a rate $C(t)$ where $0\leqslant C(t)\leqslant W(t)$.
 
 Thus, we can build a control system as follow: 
+
 $$
 \begin{cases}
     \mathrm{d}W(t) = [rW(t) + (\mu-r)\Delta(t) - C(t)]\mathrm{d}t + \sigma \Delta(t) \mathrm{d}Z(t) \\
@@ -133,6 +156,7 @@ $$
 $$
 
 The investor tries to maximize his utility, so the value functional starting at time $0$ can be written as 
+
 $$
 J(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \mathrm{E}\left( \int_{0}^{\infty} U(t,\ C(t)) ~\mathrm{d}t \right)
 $$ 
@@ -140,6 +164,7 @@ $$
 where $U(\cdot,\ \cdot)$ is the utility function.
 
 Suppose the utility function is a constant-relative-risk-aversion (CRRA) utility given by 
+
 $$
 U(t,\ c) = e^{-\rho t}\frac{c^{1-\gamma}}{1-\gamma}
 $$
@@ -147,11 +172,13 @@ $$
 where $\rho,\ \gamma > 0$ and $\gamma\neq 1$.
 
 Then the value function starting at time $0$ is 
+
 $$
 V(0,\ w;\ \Delta(\cdot),\ C(\cdot)) = \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right) := V(w)
 $$
 
 From economic intuition we have 
+
 $$
 \begin{aligned}
  V(\lambda w) &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(\lambda w)}{\mathrm{sup}}\mathrm{E}\left( \int_{0}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \right)\\
@@ -164,11 +191,13 @@ $$
 where $\lambda$ is a constant.
 
 Taking $w=1$, we have 
+
 $$
 V(\lambda) = \lambda^{1-\gamma} V(1)
 $$
 
 Thus, we can assume the value function has the form 
+
 $$
 V(w) = \kappa^{-\gamma} \frac{w^{1-\gamma}}{1-\gamma}
 $$
@@ -176,6 +205,7 @@ $$
 where $\kappa$ is some constant.
 
 Now, the value function starting at any time $s\geqslant 0$ with wealth $y$ becomes 
+
 $$
 \begin{aligned}
  V(s,\ y;\ \Delta(\cdot),\ C(\cdot)) &= \underset{(\Delta(\cdot),\ C(\cdot))\in \mathcal{A}(w)}{\mathrm{sup}}\mathrm{E}\left( \int_{s}^{\infty} e^{-\rho t}\frac{(C(t))^{1-\gamma}}{1-\gamma} ~\mathrm{d}t \Big| W(s)=y \right)\\
@@ -186,6 +216,7 @@ $$
 $$
 
 Through HJB equation, we have 
+
 $$
 -\rho e^{-\rho t} \kappa^{-\gamma} \frac{W^{1-\gamma}}{1-\gamma} + \underset{\Delta,\ C}{\mathrm{sup}}\ \left\{[rW + (\mu-r)\Delta - C]e^{-\rho t}\kappa^{-\gamma} W^{-\gamma} + e^{-\rho t}\frac{C^{1-\gamma}}{1-\gamma} + \frac{1}{2}\sigma^{2}\Delta^{2} e^{-\rho t}\kappa^{-\gamma}(-\gamma)W^{-\gamma-1} \right\} = 0
 $$
@@ -193,6 +224,7 @@ $$
 where $W,\ \Delta,\ C$ represent $W(t),\ \Delta(t),\ C(t)$ respectively.
 
 The <abbr title='First Order Condition'>FOC</abbr>s for $\Delta$ and $C$ are 
+
 $$
 \begin{cases}
     (\mu-r)e^{-\rho t}\kappa^{-\gamma}W^{-\gamma} - \sigma^{2}\gamma e^{-\rho t}\kappa^{-\gamma}W^{-\gamma-1} = 0\\
@@ -205,11 +237,13 @@ $$
 $$
 
 Substitude them back to the HJB equation, we have 
+
 $$
 \kappa = \frac{\rho + (\gamma-1)\left( r+\frac{\eta^{2}}{2\gamma} \right) }{\gamma}
 $$
 
 where
+
 $$
 \eta = \frac{\mu-r}{\sigma}
 $$

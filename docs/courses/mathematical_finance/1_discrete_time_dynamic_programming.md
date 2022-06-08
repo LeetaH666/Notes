@@ -3,30 +3,36 @@
 ### Basic Structure
 
 #### State Transfer System
+
 $$
 x_{k+1} = f_k(x_k,\ u_k),\ k=0,\ 1,\ \cdots,\ N-1
 $$
 
 - $k$: discrete-time
-- $x_k$: state
-- $u_k$: control (dicision to be selected), $u_k \in U$ with a control set $U$
-- $f_k$: rule (a.k.a. state transfer function)
+- $x_k$: state at time $k$
+- $u_k$: control (dicision to be selected) at time $k$, $u_k \in U$ with a control set $U$
+- $f_k$: rule (a.k.a. state transfer function) at time $k$
 - $N$: horizon
 
 #### Policy and Value Functional
+
 - Policy $\pi=(\mu_0,\ \mu_1,\ \cdots,\ \mu_{N-1})$ maps states into controls, i.e., $u_k=\mu_k(x_k)$ (can be understood as strategy).
 - <mark>Value functional</mark> of $\pi$ starting at $x_0$ is 
+
   $$
   J_{\pi}(x_0) = g_{N}(x_{N}) + \sum\limits_{k=0}^{N-1} g_k(x_k,\ u_k)
   $$
 
   where $g(\cdot)$ is the payoff of control under specific discete-time and state.
+
 - <mark>Value function</mark> $V_0(x_0)=\max_{\pi}\ J_{\pi}(x_0)$ and the corresponding policy is the optimal policy $\pi^{*}$
+
   > [!NOTE]
   > Difference between functional and function: the independent variable of a functional is function.
   The independent variable of $J_{\pi}(x_0)$ is $\pi$, whose components are functions.
 
 #### Example: The Shortest Path Problem
+
 <div align='center'>
 
 ![](image/2022-02-16-12-12-32.png)
@@ -36,16 +42,21 @@ $$
 - $g_5(F_1,\ G)=-4,\ g_4(E_1,\ F_1)=-3,\ \cdots$
 
 ### Principle of Optimality
+
 Developed by Richard Bellman (1953).
 
 #### Definition
-From any point on an optimal trajectory, the remaining trajectory is optimal for the corresponding problem initiated at that point.
+
+From any point on an optimal trajectory, the remaining trajectory is optimal for the corresponding problem initiated at that point, i.e., 
+
 $$
 V_k(x_k) = \underset{u_k \in U}{\max}\ \left[ g_k(x_k,\ u_k) + V_{k+1}(f_k(x_k,\ u_k)) \right] 
 $$
 
 #### A Solution Template
+
 To solve the optimality is to solve all the tail subproblem. For example, consider [the shortest path problem](#example-the-shortest-path-problem) above, we start at $G$ and then go backwards to get optimal policies at each state.
+
 $$
 V_6(G) = 0,\ V_5(F_1) = -4,\ V_5(F_2) = -3 \\
 \ \\
@@ -75,14 +86,17 @@ $$
 which means the optimal path is $A\to B_1\to C_2\to D_1\to E_2\to F_2\to G$.
 
 ### Stochastic Dynamic Programming
-State $x_{k+1}=f_k(x_k,\ u_k,\ z_k)$ where $z_k$ is a random variable with probability distribution $\mathbb{P}_k(\cdot|x_k,\ u_k)$
+
+State $x_{k+1}=f_k(x_k,\ u_k,\ z_k)$ where $z_k$ is a random variable with probability distribution $\mathbb{P}_k(\cdot|x_k,\ u_k)$.
 
 #### Value Functional 
+
 $$
 \mathrm{E}\left( g_N(x_N)+\sum\limits_{k=0}^{N-1} g_k(x_k,\ u_k,\ z_k) \right) 
 $$
 
 #### Formula of Principle of Optimality
+
 $$
 V_k(x_k) = \underset{u_k \in U}{\max}\ \mathrm{E}\left[ g_k(x_k,\ u_k,\ z_k) + V_{k+1}(f_k(x_k,\ u_k,\ z_k)) \right] 
 $$
