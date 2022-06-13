@@ -22,6 +22,7 @@ Suppose $\Theta=\left\{ \text{L},\ \text{M},\ \text{H} \right\} $ representing l
 Thus, receiver can know which type the sender is based on the message.
 
 #### PBE of Continuous Case
+
 Given receiver's belief $f(\theta) = \rho$, its target is 
 
 $$

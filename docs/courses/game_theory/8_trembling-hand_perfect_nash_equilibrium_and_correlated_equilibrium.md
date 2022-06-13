@@ -7,9 +7,11 @@ $$
 ### Trembling-Hand Perfect Nash Equilibrium
 
 #### Definition
+
 A Nash equilibrium $\sigma$ of game $\Gamma_N = \left\{ I,\ \left\{ \Delta(S_i) \right\} ,\ \left\{ u_i \right\}  \right\} $ is trembling-hand perfect iff $\exists $ <mark>some</mark> sequence of <mark>totally mixed</mark> strategies $\left\{ \sigma^{k} \right\}_{k=1}^{\infty} $ s.t. $\lim\limits_{k \to \infty} \sigma^{k}$ and $\sigma_i$ is a best response to <mark>every element</mark> of sequence $\left\{ \sigma_{-i}^{k} \right\}_{k=1}^{\infty}$, $\forall i\in I$.
 
 #### Example: Multiple Equilibria
+
 Consider the following game: 
 
 <div class='centertable'>
@@ -28,11 +30,11 @@ $$
 \begin{cases}
     \sigma_1(\text{T}) = 1 - \frac{1}{n} \\
     \sigma_1(\text{B}) = \frac{1}{n} 
-\end{cases},\
+\end{cases},\ 
 \begin{cases}
     \sigma_2(\text{L}) = 1 - \frac{1}{n} \\
     \sigma_2(\text{R}) = \frac{1}{n} 
-\end{cases},\
+\end{cases},\ 
 n = 2,\ 3,\ \cdots,\ \infty
 $$
 

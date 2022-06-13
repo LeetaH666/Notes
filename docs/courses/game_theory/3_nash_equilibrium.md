@@ -1,9 +1,11 @@
 # Nash Equilibrium: Existence, Multiple Equilibria and Mixed Strategies
 
 ### Multiple Equilibria
+
 There can be several Nash equilibria in a game, so which equilibrium would players reach?
 
 #### Payoff Dominance (Pareto Dominance)
+
 Payoff dominance means players would reach a equilibrium that each player gets higher payoff than in other equilibria. For example, see the following payoff table: 
 
 <div class='centertable'>
@@ -17,6 +19,7 @@ Payoff dominance means players would reach a equilibrium that each player gets h
 The payoff table above shows that there are 2 Nash equilibria. According to payoff dominance, players will reach the equilibrium $(\text{Friendly},\ \text{Friendly})$.
 
 #### Risk Dominance
+
 Different from payoff dominance, risk dominance means players may reach a equilibrium that each player has lower risk than in other equilibria. We consider the same game but with different payoff diagram: 
 
 <div class='centertable'>
@@ -30,9 +33,11 @@ Different from payoff dominance, risk dominance means players may reach a equili
 In this case, Pareto dominant equilibrium may not be reached because the difference of payoffs between 2 equilibria is small and being friendly takes more risk. If players both choose to be friendly, then player 1 gets $9$. However, if player 2 chooses to be aggressive, then player 1 gets $0$, which means being friendly is riskier. Thus, the equilibrium $(\text{Aggressive},\ \text{Aggressive})$ may be reached.
 
 ### Mixed Strategies
+
 What we have talked about in previous chapters are <mark>pure strategies</mark>, i.e., players choose their strategies definitely (without randomness). Mixed strategies consider randomness between different pure strategies.
 
 #### Example: Matching Pennies
+
 Consider a matching pennies game with the following payoffs: 
 
 <div align='center'>
@@ -55,6 +60,7 @@ Given the other's strategy, their expected payoffs are
 </div class='centertable'>
 
 We can easily see that the best responses of these 2 players are  
+
 $$
 B_1(q_2) = \begin{cases}
   \text{T},& 0\leqslant q_2<0.5 \\
@@ -68,6 +74,7 @@ B_1(q_2) = \begin{cases}
 $$
 
 which means the relationship between $q_1$ and $q_2$ is 
+
 $$
 q_1(q_2) = \begin{cases}
   0,& 0\leqslant q_2<0.5 \\
@@ -93,12 +100,15 @@ It can be drawn like this:
 Then the Nash equilibrium is reached at the intersection, i.e., when $q_1 = q_2 = 0.5$.
 
 ### Existence of Nash Equilibrium
+
 A Nash equilibrium exists in game $\Gamma_{n}=\{I,\ \{S_i\},\ \{u_i(\cdot)\}\}$ if $\forall i \in I$, 
+
 - $\forall S_i$ are nonempty, convex and compact (closed and bounded) subsets of some Euclidean space $\mathbb{R}^{M}$;
 - $\forall u_i(s),\ s\in S$ are continuous and quasiconcave in $S_i$.
 
 > [!NOTE]
 > The existence conditions above are <mark>sufficient but not necessary</mark>.
+k
 <details>
 <summary>Proof</summary>
 
@@ -112,9 +122,11 @@ Then, if $u_i(s)$ is quasiconcave in $S_i$, i.e., any mixed strategy is at least
 
 <div align='center'>
 
-![](image/2022-03-21-20-26-24.png)A function that is not quasiconcave
+![](image/2022-03-21-20-26-24.png)
+
+A Function That is Not Quasiconcave
 </div align='center'>
-  
+
 > [!NOTE]
 > This is always satisfied for discrete cases because there are just straight lines between discrete points, but for continuous cases, the payoff patterns may be different, see the function above.
   
@@ -135,16 +147,19 @@ Thus, <mark>every game $\Gamma_{n}=\{I,\ \{S_i\},\ \{u_i(\cdot)\}\}$ in which th
 ### Cournot Equilibrium and Bertrand Equilibrium
 
 #### Cournot Equilibrium
+
 Consider a <mark>duopoly</mark> market. The cost functions of 2 firms are $c(q_i) = c\cdot q_i$ for constant $c$ and $i=1,\ 2$. $q_i$ is the quantity of production of firm $i$. The inverse demand function (price function) is $P(Q) = 1 - Q$ (<mark>same price</mark>) where $Q = q_1 + q_2$ is the total quantity of production.
 
 Thus, the profit of firm $1$ is 
+
 $$
-\pi_1(q_1,\ q_2) = P(Q)\cdot q_1 - c(q_i) = (1-q_1-q_2)q_1 - c\cdot q_1
+\pi_1(q_1,\ q_2) = P(Q)\cdot q_1 - c(q_i) = (1-q_1-q_2) \cdot q_1 - c\cdot q_1
 $$
 
 and similarly for firm $2$.
 
 We can see that $\{q_i\}$ is not bounded, which means we can not directly use the proposition above to judge whether there exists a Nash equilibrium. So we check the <abbr title='First Order Condition'>FOC</abbr>: 
+
 $$
 \begin{cases}
  1 - 2q_1 - q_2 - c = 0\\
@@ -157,7 +172,9 @@ Actually this can be generalized to $n$ firms. For a $n$-oligopolies market, the
 > The inverse demand function here is fixed. However, the relation between demand and price can change. See [Cournot with Uncertain Demand](/courses/game_theory/5_games_of_incomplete_information.md#example-cournot-with-uncertain-demand).
 
 #### Bertrand Equilibrium
+
 Still consider the same duopoly market, but now the 2 firms <mark>select prices rather than quantities</mark>. Assume consumers only buy from the firm with the lowest price and split evenly between the 2 firms when the prices are equal. The profit of firm $1$ is 
+
 $$
 \pi_1(p_1,\ p_2) = 
 \begin{cases}
@@ -170,6 +187,7 @@ $$
 and similarly for firm $2$.
 
 We can easily see that the profit functions are discontinuous, which means we cannot say immediately that if there exists a Nash equilibrium. Consider cases below: 
+
 - when $p_2>p_1>c$, 
 
   <div align='center'>
@@ -178,6 +196,7 @@ We can easily see that the profit functions are discontinuous, which means we ca
   </div align='center'>
 
   firm $2$ would lower $p_2$ to get positive profit, which means this cannot be a Nash equilibrium;
+
 - when $p_2=p_1>c$, the 2 firms both get positive profit. However, each firm would lower its price to get higher profit, which means this also cannot be a Nash equilibrium.
 
 Thus, the Nash equilibrium would be $(c,\ c)$.
