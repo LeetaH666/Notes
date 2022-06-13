@@ -1,6 +1,6 @@
 ### 键入
 - **tmux ls**: 查看所有session
-- **tmux new -s**：创建新的session
+- **tmux new -s + session**：创建新的session，`session`为自定义的名字
 - **tmux a -t + session**：attach到某个session
 - **exit**：永久关闭当前session
 - **tmux kill-session -t + session**：永久关闭某个session

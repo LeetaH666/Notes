@@ -6,17 +6,21 @@
 ### Dominance
 
 #### Strict Dominance
+
 Strategy $\overline{s}_i \in S_i$ is <mark>strictly dominated</mark> if there is <mark>some</mark> strategy $\hat{s}_i \in S_i$ s.t. $u_i((\hat{s}_i,\ s_{-i}))>u_i((\overline{s}_i,\ s_{-i}))$ for each $s_{-i} \in S_{-i}$.
 
 #### Weak Dominance
+
 Strategy $\overline{s}_i \in S_i$ is <mark>weakly dominated</mark> if there is some strategy $\hat{s}_i \in S_i$ s.t. $u_i((\hat{s}_i,\ s_{-i}))\geqslant u_i((\overline{s}_i,\ s_{-i}))$ for each $s_{-i} \in S_{-i}$ and $u_i((\hat{s}_i,\ s_{-i}))>u_i((\overline{s}_i,\ s_{-i}))$ for some $s_{-i}$.
 
 #### Example: Second Price Auction
+
 There is one indivisible unit of an object for sale and there are $n$ potential buyers with commonly known valuations $0<v_1<v_2<\cdots<v_{n}$ for the object.
 
 Buyers bid simultaneously and each submits bid $s_i \in [0,\ +\infty)$. The bidder with the highest bid wins the auction and pays the second highest bid (if there are several winners, then randomly choose one).
 
 Thus, bidder $i$'s payoff ($i=1,\ 2,\ \cdots,\ n$) is given by 
+
 $$
 u_i = \begin{cases}
   0,& s_i<\underset{j\neq i}{\mathrm{max}}\ s_j \\
@@ -27,7 +31,7 @@ $$
 
 where $k$ is the num of winners.
 
-Let $r=\underset{j\neq i}{\mathrm{max}}\ s_j$, we can see the choice of $r$ as the actions of buyers except $i$. The game between buyer $i$ and other buyers can be written as the following payoff matrix: 
+Let $r=\underset{j\neq i}{\mathrm{max}}\ s_j$, we can see the choice of $r$ as the actions of buyers except $i$. The game between buyer $i$ and other buyers can be written as the following payoff matrix with only buyer $i$'s payoff recorded: 
 
 <div align='center'>
 
@@ -37,9 +41,11 @@ Let $r=\underset{j\neq i}{\mathrm{max}}\ s_j$, we can see the choice of $r$ as t
 Note that bidding $s_i = v_i$ is a <mark>weakly dominant</mark> strategy even if buyer $i$ does not know others' valuations.
 
 ### Method of Eliminating
+
 Except for using method of scoring, we can also get Nash equilibrium by eliminating <mark>strictly dominated</mark> strategies iteratively.
 
 #### Example
+
 <div align='center'>
 
 ![](image/2022-03-02-10-46-34.png)

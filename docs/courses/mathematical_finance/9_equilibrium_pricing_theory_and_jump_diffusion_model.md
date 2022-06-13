@@ -147,7 +147,7 @@ $$
 \mathrm{d}\psi_t = -\eta \psi_t \mathrm{d}Z_t^{1}
 $$
 
-Using [Girsanov theorem](courses/mathematical_finance/4_probability_theory.md#girsanov-theorem), the standard Brownian motion based on $Z^{1}$ under the measure $\mathbb{Q}$ satisfies 
+Using [Girsanov Theorem](courses/mathematical_finance/4_probability_theory.md#girsanov-theorem), the standard Brownian motion based on $Z^{1}$ under the measure $\mathbb{Q}$ satisfies 
 
 $$
 \mathrm{d}Z_t^{\mathbb{Q}} = \mathrm{d}Z_t^{1} + \eta \mathrm{d}t
