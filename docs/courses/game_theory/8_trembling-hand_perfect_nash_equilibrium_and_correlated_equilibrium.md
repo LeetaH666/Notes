@@ -99,18 +99,22 @@ $$
 Hence, the Nash equilibrium $(\text{B},\ \text{R})$ is not trembling-hand perfect.
 
 #### Proposition of Weakly Dominated Strategy
+
 If $\sigma = (\sigma_i)_{i\in I}$ is a trembling-hand perfect Nash equilibrium, then $\sigma_i$ is not a weakly dominated strategy, $\forall i\in I$.
 
 In the [example](#example-multiple-equilibria) above, we can easily see that $(\text{B},\ \text{R})$ is not a trembling-hand perfect Nash equilibrium since $\text{B}$ and $\text{R}$ are weakly dominated strategies.
 
 ### Correlated Equilibrium
+
 Suppose players choose actions based on a (random) signal. The equilibrium they reach is called correlated equilibrium.
 
 There are 2 types of signal: 
+
 - <mark>Public signal</mark>: players get the same information from the signal;
 - <mark>Seperate signal</mark>: players get different information from the signal.
 
 #### Example: Public Signal
+
 Consider the following normal form game: 
 
 <div class='centertable'>
@@ -143,15 +147,18 @@ More generally, every point on the convex hull of the payoff profiles $(1,\ 5)$,
 </div align='center'>
 
 #### Example: Seperate Signal
+
 We still consider the same payoff diagram in the [example](#example-public-signal) above.
 
 Now suppose there is a signal with 3 equally likely states: $\text{A}$, $\text{B}$ and $\text{C}$. Player 1 observes $\text{A}$ perfectly but cannot distinguish between $\text{B}$ and $\text{C}$ while player 2 observes $\text{C}$ but cannot distinguish between $\text{A}$ and $\text{B}$.
 
 Consider the following strategies: 
+
 - player 1 plays $\text{U}$ when told $\text{A}$, and plays $\text{D}$ otherwise;
 - player 2 plays $\text{R}$ when told $\text{C}$, and plays $\text{L}$ otherwise.
 
 We want to check whether it is a correlated equilibrium: 
+
 - when player 1 observes $\text{A}$, he knows that player 2 observes $(\text{A},\ \text{B})$ and would choose $\text{L}$, and thus $\text{U}$ is the best response of player 1;
 - when player 1 observes $(\text{B},\ \text{C})$, he infers that player 2 would choose $\text{L}$ and $\text{R}$ with probability $\frac{1}{2}$ respectively, and thus $\text{D}$ is one of the best responses of player 1;
 - when player 2 observes $\text{C}$, he knows that player 1 observes $(\text{B},\ \text{C})$ and would choose $\text{D}$, and thus $\text{R}$ is the best response of player 2;
@@ -165,6 +172,7 @@ Hence, these 2 strategies form a correlated equilibrium. Since the 3 states each
 </div align='center'>
 
 #### Definition
+
 Let $(\Omega,\ \pi)$ be a countable probability space. For each player $i$, let $P_i$ be his information partition, $q_i$ be his posterior and let $s_i:\ \Omega \to A_i$ assigning the same value to states in the same cell of his information partition. Then $\left( (\Omega,\ \pi),\ \left\{ P_i \right\} ,\ \left\{ s_i \right\}  \right) $ is a correlated equilibrium of game $\left\{ I,\ \left\{ A_i \right\},\ \left\{ u_i \right\}   \right\} $ if $\forall i,\ q_i,\ s_i^{\prime}$, 
 
 $$
