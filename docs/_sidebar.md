@@ -1,3 +1,4 @@
 - [Courses in SUSTech](/courses/README.md)
+- [Reinforcement Learning](/rl/README.md)
 - [Papers](/papers/README.md)
 - [CFA](/CFA/README.md)

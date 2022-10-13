@@ -1,3 +1,5 @@
-- [Prospect Theory and Stock Market Anomalies (Nicholas Barberis et al., 2021)](papers/prospect_theory_and_stock_market_anomalies.md)
-- [Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control (Prashanth L.A. et al., 2016)](papers/CPT_meets_RL.md)
+- [Prospect Theory and Stock Market Anomalies (Barberis et al., 2021)](papers/prospect_theory_and_stock_market_anomalies.md)
+- [Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control (Prashanth et al., 2016)](papers/CPT_meets_RL.md)
+- [Auto-Encoding Variational Bayes (Kingma & Welling, 2014)](papers/auto_encoding_variational_bayes.md)
+- [Deep Reinforcement Learning amidst Continual Structured Non-Stationarity (Xie et al., 2021)](papers/drl_amidst_continual_structured_nonstationarity.md)
 - [Back to Homepage](README.md)
