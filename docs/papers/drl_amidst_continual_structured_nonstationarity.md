@@ -121,6 +121,7 @@ $$
 <div align='center'>
 
 ![](image/2022-10-20-11-23-29.png)
+
 网络结构
 </div align='center'>
 
@@ -129,6 +130,7 @@ $$
 <div align='center'>
 
 ![](image/2022-10-20-11-02-44.png)
+
 算法流程
 </div align='center'>
 
@@ -139,6 +141,7 @@ $$
 <div align='center'>
 
 ![](image/2022-10-20-13-27-05.png)
+
 Sawyer Reaching
 </div align='center'>
 
@@ -147,6 +150,7 @@ Sawyer Reaching
 <div align='center'>
 
 ![](image/half_cheetah.gif)
+
 Half Cheetah WindVel
 </div align='center'>
 
@@ -155,6 +159,7 @@ Half Cheetah WindVel
 <div align='center'>
 
 ![](image/2022-10-20-13-31-39.png)
+
 Minitaur
 </div align='center'>
 
@@ -163,6 +168,7 @@ Minitaur
 <div align='center'>
 
 ![](image/2022-10-20-13-34-40.png)
+
 2D Open World
 </div align='center'>
 
@@ -171,6 +177,7 @@ Minitaur
 <div align='center'>
 
 ![](image/2022-10-20-13-38-42.png)
+
 实验结果1
 </div align='center'>
 
@@ -181,6 +188,7 @@ Minitaur
 <div align='center'>
 
 ![](image/2022-10-20-13-45-29.png)
+
 实验结果2
 </div align='center'>
 

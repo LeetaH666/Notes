@@ -136,6 +136,7 @@ $$
 <div align='center'>
 
 ![](image/2022-10-19-17-30-14.png)
+
 算法流程
 </div align='center'>
 
@@ -150,6 +151,7 @@ Wake-Sleep算法（Hinton等，1995）是当时仅有的应用于连续隐变量
 <div align='center'>
 
 ![](image/2022-10-18-19-50-54.png)
+
 MNIST和Frey Face数据库中不同隐变量个数下AEVB（本文算法）与Wake-Sleep算法在变分下界上的比较
 </div align='center'>
 
@@ -158,6 +160,7 @@ MNIST和Frey Face数据库中不同隐变量个数下AEVB（本文算法）与Wa
 <div align='center'>
 
 ![](image/2022-10-18-19-55-11.png)
+
 MINIST不同样本量下AEVB，Wake-Sleep和MCEM（蒙特卡洛EM算法）在边际似然上的比较
 </div align='center'>
 
