@@ -32,6 +32,7 @@ Diederik P. Kingma, Max Welling
 
 变分贝叶斯的目的是用一个识别模型（recognition model）$q_{\phi}(z|x)$ 来估计难以获得的真实后验分布 $p_{\theta}(z|x)$。
 
+> [!TIP|label:提示]
 > 假设输入数据 $x$ 和输出数据 $y$ ，生成式模型（generative model）和判别式模型（discriminative model）的目标都是得到条件分布 $p(y|x)$，但生成式模型通过拟合联合分布 $p(x,\ y)$，即拟合 $p(x|y)$ 和 $p(y)$，再通过贝叶斯定理——$p(y|x) = \frac{p(x|y) p(y)}{p(x)}$ 得到，而判别式模型则直接拟合目标条件分布 $p(y|x)$。识别模型则是生成式模型中用来估计 $p(x|y)$ 的模型。
 
 识别模型和真实后验分布的KL散度为
@@ -48,6 +49,7 @@ $$
 
 当固定参数 $\theta$，最小化KL散度即最大化变分下界 $\mathcal{L}(\theta,\ \phi;\ x) = \mathrm{E}_{q_{\phi}(z|x)} \left( \log \frac{p_{\theta}(z,\ x)}{q_{\phi}(z|x)} \right)$。
 
+> [!TIP|label:提示]
 > KL散度是非负的，因此有 $\log p_{\theta}(x) \geqslant \mathrm{E}_{q_{\phi}(z|x)} \left( \log \frac{p_{\theta}(z,\ x)}{q_{\phi}(z|x)} \right)$，故称变分下界。
 
 变分下界可以进一步写成

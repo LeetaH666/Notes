@@ -134,7 +134,57 @@ $$
 
 ### 实验
 
-haha
+1. 机械臂完成不同的随机任务，包括开门、拉开抽屉、抓取物体等，机械臂并不能提前知道自己要完成什么任务，也不能提前知道目标的位置；
+
+<div align='center'>
+
+![](image/2022-10-20-13-27-05.png)
+Sawyer Reaching
+</div align='center'>
+
+2. 一个具有8个节点和9个连接的“猎豹”试图学会奔跑，环境中风速和方向会变化，目标奔跑速度也会改变；
+
+<div align='center'>
+
+![](image/half_cheetah.gif)
+Half Cheetah WindVel
+</div align='center'>
+
+3. 训练机器人的发动机和腿让它跑得越快越好，负重会随时间改变；
+
+<div align='center'>
+
+![](image/2022-10-20-13-31-39.png)
+Minitaur
+</div align='center'>
+
+4. 智能体在2D的无尽世界中绕过障碍收集小球，其中会有未知的随机扰动。
+
+<div align='center'>
+
+![](image/2022-10-20-13-34-40.png)
+2D Open World
+</div align='center'>
+
+我们对比了SAC、SLAC（对隐变量建模但没有解决非平稳问题）、PPO（Proximal Policy Optimization）的效果，针对前两个实验，在告诉机器人目标（位置或速度）的情况下，用SAC训练，作为Oracle进行比较。结果如下：
+
+<div align='center'>
+
+![](image/2022-10-20-13-38-42.png)
+实验结果1
+</div align='center'>
+
+可以发现我们的算法是全面占优的，在前两个任务中已经逼近Oracle。
+
+接着针对第一个实验，我们又测试了在不同非平稳变化程度下（目标旋转不同弧度）的效果：
+
+<div align='center'>
+
+![](image/2022-10-20-13-45-29.png)
+实验结果2
+</div align='center'>
+
+可以看到变化程度对我们的模型并没有太大影响。在平稳环境下，我们的模型和SAC基本趋同。
 
 ### 参考文献
 
