@@ -1,3 +1,3 @@
-- [Prospect Theory and Stock Market Anomalies (Nicholas Barberis et al., 2021)](papers/prospect_theory_and_stock_market_anomalies.md)
-- [Cumulative Prospect Theory Meets Reinforcement Learning: Prediction and Control (Prashanth L.A. et al., 2016)](papers/CPT_meets_RL.md)
+- [1.基本概念](rl/1_basic_concepts.md)
+- [9.用推断的眼光看待控制问题](rl/9_control_as_inference.md)
 - [Back to Homepage](README.md)

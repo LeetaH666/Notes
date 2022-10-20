@@ -24,68 +24,120 @@ Annie Xie, James Harrison, Chelsea Finn
 
 #### 平稳环境下强化学习变分推断
 
-考虑时间$t = 1,\ 2,\ \cdots,\ T$，智能体的轨迹（状态动作序列）为$(s_1,\ a_1,\ s_2,\ \cdots,\ s_{T}, a_{T})$，奖励函数为$r(s_t,\ a_t)$，定义最优变量$\mathcal{O}_t$，当在$s_t$下选择$a_t$是最优时$\mathcal{O}_t = 1$，否则为$0$。定义
-
-$$
-p(\mathcal{O}_t = 1 | s_t,\ a_t) = e^{r(s_t,\ a_t)}
-$$
-
-在这个定义下，奖励函数必须为非正的，当奖励最大，即$r(s_t,\ a_t) = 0$时最优概率为$1$。我们想要推断的后验分布为$p(s_{1:T},\ a_{1:T} | \mathcal{O}_{1:T} = 1)$。
-
-假设动作的先验分布是均匀分布，我们有
-
-$$
-\begin{aligned}
- p(s_{1:T},\ a_{1:T},\ \mathcal{O}_{1:T} = 1) &= p(s_1) \prod_{t=1}^{T} p(\mathcal{O}_t = 1 | s_t,\ a_t) p(a_t | s_t) p(s_{t+1} | s_t,\ a_t) \\
- &= p(s_1) \prod_{t=1}^{T} e^{r(s_t,\ a_t)} p(s_{t+1} | s_t,\ a_t) \\
-\end{aligned}
-$$
-
-则$\mathcal{O}_t = 1$的证据下界为
-
-$$
-\mathrm{E}_{q} \left( \log \frac{p(s_{1:T},\ a_{1:T},\ \mathcal{O}_{1:T} = 1)}{q(s_{1:T},\ a_{1:T})} \right) = \mathrm{E}_{q} \left( \log \frac{p(s_1) \prod_{t=1}^{T} e^{r(s_t,\ a_t)} p(s_{t+1} | s_t,\ a_t)}{q(s_{1:T},\ a_{1:T})} \right)
-$$
-
-为了方便估计，选取$q(s_{1:T},\ a_{1:T}) = p(s_1) \prod_{t=1}^{T} q(a_t | s_t) p(s_{t+1} | s_t,\ a_t)$，则证据下界简化为
-
-$$
-\mathrm{E}_q \left[ \log \left( \prod_{t=1}^{T} \frac{e^{r(s_t,\ a_t)}}{q(a_t | s_t)} \right) \right] = \mathrm{E}_q \left[ \sum\limits_{t=1}^{T} \left( r(s_t,\ a_t) - \log q(a_t | s_t) \right) \right] 
-$$
-
-这里的$q$其实就是强化学习中的策略$\pi$，即给定状态下决策的概率分布。则这个需要最大化的泛函可以写成
-
-$$
-\mathrm{E}_{\pi} \left[ \sum\limits_{t=1}^{T} \left( r(s_t,\ a_t) - \log \pi(a_t | s_t) \right) \right] = \sum\limits_{t=1}^{T} \mathrm{E}_{\pi} \left( r(s_t,\ a_t) \right) + \sum\limits_{t=1}^{T} \mathrm{E}_{\pi} \left( - \log \pi(a_t | s_t) \right) 
-$$
-
-第一项是标准的强化学习目标，即最大化奖励；第二项为最大化策略的信息熵，即鼓励探索。
+见[用推断的眼光看待控制问题](rl/9_control_as_inference.md)。
 
 ### 非平稳环境下强化学习变分推断
 
 #### 设定
 
-将环境分解成两个马尔可夫过程，一个是由用来描述非平稳的潜在变量$z^{i}$组成的马尔可夫链，其中$i = 1,\ 2,\ \cdots,\ N$是不同的时间段，另一个是在每个时间段内平稳的马尔可夫决策过程。
+将环境分解成两个马尔可夫过程，一个是由用来描述非平稳的隐变量 $z^{i}$ 组成的马尔可夫链，其中 $i = 1,\ 2,\ \cdots,\ N$ 是不同的时间段，另一个是在每个时间段内平稳的马尔可夫决策过程。
 
 <div align='center'>
 
 ![](image/2022-10-06-12-51-54.png)
 </div align='center'>
 
-每个时间段$i$中，定义动作序列$u^{i} = a_{1:T}^{i}$，轨迹$\tau^{i} = (s_1^{i},\ a_1^{i},\ r_1^{i},\ s_2^{i},\ a_2^{i},\ \cdots,\ r_{T}^{i})$。则后验分布$p(z^{1:N},\ \tau^{1:N} | u^{1:N})$可以写成
+隐变量 $z^{i}$ 的转移概率是 $p_z \left( z^{i+1}|z^{1:i} \right) $。 每个时间段 $i$ 中，定义动作序列 $u^{i} = a_{1:T}^{i}$，轨迹 $\tau^{i} = \left( s_1^{i},\ a_1^{i},\ r_1^{i},\ s_2^{i},\ a_2^{i},\ \cdots,\ r_{T}^{i} \right) $。则我们有
 
 $$
-p(z^{1:N},\ \tau^{1:N} | u^{1:N}) = p(z^{1}) p(\tau^{1} | z^{1},\ u^{1}) \prod_{i=1}^{N} p(z^{i} | z^{1:i-1}) p(\tau^{i} | z^{i},\ u^{i})
+p\left( z^{1:N},\ \tau^{1:N} | u^{1:N} \right)  = p\left( z^{1} \right)  p\left( \tau^{1} | z^{1},\ u^{1} \right)  \prod_{i=1}^{N} p\left( z^{i} | z^{1:i-1} \right)  p\left( \tau^{i} | z^{i},\ u^{i} \right) 
 $$
 
-其中对于每个时间段中的平稳马尔可夫决策过程，我们有
+其中对于每个时间段 $i$ 中的平稳马尔可夫决策过程，我们有
 
 $$
-p(\tau | z,\ u) = p(s_1;\ z) \prod_{t=1}^{T} e^{r(s_t,\ a_t;\ z)} p(s_{t+1} | s_t,\ a_t;\ z)
+p\left( \tau^{i} | z^{i},\ u^{i} \right)  = p\left( s_{1:T}^{i},\ a_{1:T}^{i},\ r_{1:T}^{i}|z^{i},\ a_{1:T}^{i} \right)  = p\left( s_1^{i};\ z^{i} \right)  \prod_{t=1}^{T} p\left( r_t^{i},\ s_{t+1}^{i} | s_t^{i},\ a_t^{i};\ z^{i} \right) \\
+s_{T+1}^{i} = s_1^{i+1}
 $$
 
-在非平稳环境下，我们要推断的是过去时间段的轨迹$\tau^{1:i-1}$和当前最优变量$\mathcal{O}_{1:T}^{i} = 1$在给定动作序列下的后验分布，即$p(\tau^{1:i-1},\ \mathcal{O}_{1:T}^{i} | u^{1:i-1})$
+#### 变分推断
+
+还记得在平稳环境下，我们需要最大化 $\log p(\mathcal{O}_{1:T})$ 的变分下界；而在非平稳环境下，我们既要关注当前平稳片段下是否最优，还要关注对隐变量建模的好坏程度，也即能否很好地还原轨迹，因为这关系到之后能否继续找到最优策略，所以我们要最大化的是联合先验 $p\left( \tau^{1:i-1},\ \mathcal{O}_{1:T}^{i} | u^{1:i-1} \right) $ 的变分下界。这个联合先验的对数似然可以写成两项：
 
 $$
-p(s_{t+1} | s_t,\ a_t)
+\log p\left( \tau^{1:i-1},\ \mathcal{O}_{1:T}^{i} | u^{1:i-1} \right) = \log \left( p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1} \right) p\left( \tau^{1:i-1}|u^{1:i-1} \right) \right) = \log p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1} \right) + \log p\left( \tau^{1:i-1}|u^{1:i-1} \right)
 $$
+
+> [!TIP|label:提示]
+> 最优变量 $\mathcal{O}$ 的设定参见[用推断的眼光看待控制问题](rl/9_control_as_inference.md#最优变量的引入)。
+> 
+> 由于给定动作序列才能得到轨迹，联合先验需要conditioning on过去的动作。
+> 
+> $p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1},\ u^{1:i-1} \right) = p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1} \right)$，因为动作序列包含在轨迹当中。
+
+对于第一项，我们有
+
+$$
+\begin{aligned}
+ \log p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1} \right) &= \log \int p\left( \mathcal{O}_{1:T}^{i},\ z^{i}|\tau^{1:i-1} \right) ~ \mathrm{d}z^{i} \\
+ &= \log \int p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) p\left( z^{i}|\tau^{1:i-1} \right) ~ \mathrm{d}z^{i} \\
+ &\geqslant \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) }\left( \log p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) \right) \\
+ &\geqslant \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) }\left[ \mathrm{E}_{\pi\left( a_t|s_t,\ z^{i} \right) } \left( \sum\limits_{t=1}^{T} \left( r\left( s_t,\ a_t;\ z^{i} \right) - \log \pi\left( a_t|s_t,\ z^{i} \right) \right) \right) \right] \\
+ &= \mathcal{L}_{\text{RL}}
+\end{aligned}
+$$
+
+> [!TIP|label:提示]
+> $p\left( \mathcal{O}_{1:T}^{i}|z^{i},\ \tau^{1:i-1} \right) = p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right)$，因为 $\mathcal{O}_{1:T}^{i}|z^{i}$ 与 $\tau^{1:i-1}$ 独立（如果不给定隐变量是不独立的）。
+> 
+> 注意到期望中的 $\log p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) $ 实际上就是每个平稳过程中想要最大化的对数似然函数。
+
+则第一项的下界实际上是最大熵强化学习要最大化的目标函数在隐变量分布下的期望。
+
+对于第二项，我们有
+
+$$
+\begin{aligned}
+ \log p\left( \tau^{1:i-1}|u^{1:i-1} \right) &= \log \int p\left( \tau^{1:i-1},\ z^{1:i-1}|u^{1:i-1} \right) ~ \mathrm{d}z^{1:i-1} \\
+ &= \log \int q\left( z^{1:i-1} \right) \frac{p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) p\left( z^{1:i-1}|u^{1:i-1} \right)  }{q\left( z^{1:i-1} \right) } ~ \mathrm{d}z^{1:i-1} \\
+ &= \log \mathrm{E}_{q\left( z^{1:i-1} \right) }\left( \frac{p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) p\left( z^{1:i-1} \right)  }{q\left( z^{1:i-1} \right) } \right) \\
+ &\geqslant \mathrm{E}_{q\left( z^{1:i-1} \right) }\left( \log \frac{p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) p\left( z^{1:i-1} \right)  }{q\left( z^{1:i-1} \right) } \right) \\
+ &= \mathrm{E}_{q\left( z^{1:i-1} \right) }\left( \log \frac{p\left( z^{1:i-1} \right)}{q\left( z^{1:i-1} \right) } + \log p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) \right) \\
+ &= \mathrm{E}_{q\left( z^{1:i-1} \right) }\left( \log p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) \right) - D_{\text{KL}}\left( q\left( z^{1:i-1} \right) || p\left( z^{1:i-1} \right) \right) \\
+ &= \mathcal{L}_{\text{rep}}
+\end{aligned}
+$$
+
+这个最大化的目标跟VAE（Kingma & Welling，2014）是相同的，即最小化KL正则下的重构误差。按照设定，我们还可以继续写成
+
+$$
+\begin{aligned}
+ \log p\left( \tau^{1:i-1}|u^{1:i-1} \right) &= \mathrm{E}_{q\left( z^{1:i-1} \right) }\left( \log p\left( \tau^{1:i-1}|z^{1:i-1},\ u^{1:i-1} \right) \right) - D_{\text{KL}}\left( q\left( z^{1:i-1} \right) || p\left( z^{1:i-1} \right) \right) \\
+ &= \mathrm{E}_{q\left( z^{1:i-1} \right) }\left(\sum\limits_{j=1}^{i} \sum\limits_{t=1}^{T} \log p\left( s_{t+1}^{j},\ r_t^{j}|s_t^{j},\ a_t^{j},\ z^{j} \right) \right) - \sum\limits_{j=1}^{i} D_{\text{KL}}\left( q\left( z^{j}|\tau^{j} \right) || p\left( z^{j}|z^{1:j-1} \right) \right) \\
+\end{aligned}
+$$
+
+最终整个目标函数可以写成
+
+$$
+\begin{aligned}
+ \mathcal{L} &= \mathcal{L}_{\text{RL}} + \mathcal{L}_{\text{rep}} \\
+ &= \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) }\left[ \mathrm{E}_{\pi\left( a_t|s_t,\ z^{i} \right) } \left( \sum\limits_{t=1}^{T} \left( r\left( s_t,\ a_t;\ z^{i} \right) - \log \pi\left( a_t|s_t,\ z^{i} \right) \right) \right) \right] \\ &\qquad + \mathrm{E}_{q\left( z^{1:i-1} \right) }\left(\sum\limits_{j=1}^{i} \sum\limits_{t=1}^{T} \log p\left( s_{t+1}^{j},\ r_t^{j}|s_t^{j},\ a_t^{j},\ z^{j} \right) \right) - \sum\limits_{j=1}^{i} D_{\text{KL}}\left( q\left( z^{j}|\tau^{j} \right) || p\left( z^{j}|z^{1:j-1} \right) \right)
+\end{aligned}
+$$
+
+#### 网络结构与优化算法
+
+<div align='center'>
+
+![](image/2022-10-20-11-23-29.png)
+网络结构
+</div align='center'>
+
+参照上图，我们首先从编码器 $q_{\phi}\left( z^{i}|\tau^{i} \right) $ 中用VAE的重参数化得到 $z^{i}$，输进LSTM得到 $z^{i+1}$，从LSTM得到的先验 $z^{i+1}$ 会在下一个循环中与编码器得到的后验 $z^{i+1}$ 进行KL正则项的计算，而 $z^{i}$ 经过解码器 $p_{\phi}$ 后得到重构的轨迹 $\hat{\tau}^{i}$，即得到重构误差项；策略网络在 $z^{i}$ 下得到一串轨迹 $\tau^{i}$ 并存入replay buffer，而前面编码器用到的输入 $\tau^{i}$ 就来自于这个replay buffer；由于使用SAC（Soft Actor-Critic）算法来优化 $\mathcal{L}_{\text{RL}}$，我们还需要一个评价网络，这个网络中隐变量也是变量，而不是像策略网络中是given的，因此编码器在更新参数的时候需要加上评价网络计算出的误差。具体算法流程如下：
+
+<div align='center'>
+
+![](image/2022-10-20-11-02-44.png)
+算法流程
+</div align='center'>
+
+### 实验
+
+
+
+### 参考文献
+
+Xie, A., Harrison, J., & Finn, C. (2021). Deep Reinforcement Learning amidst Continual Structured Non-Stationarity. Proceedings of the 38th International Conference on Machine Learning, 139, 11393–11403.
+
+Kingma, D. P., & Welling, M. (2014). Auto-Encoding Variational Bayes (arXiv:1312.6114). arXiv. http://arxiv.org/abs/1312.6114
