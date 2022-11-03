@@ -71,6 +71,7 @@ $$
 \begin{aligned}
  \log p\left( \mathcal{O}_{1:T}^{i}|\tau^{1:i-1} \right) &= \log \int p\left( \mathcal{O}_{1:T}^{i},\ z^{i}|\tau^{1:i-1} \right) ~ \mathrm{d}z^{i} \\
  &= \log \int p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) p\left( z^{i}|\tau^{1:i-1} \right) ~ \mathrm{d}z^{i} \\
+ &= \log \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) } \left( p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) \right)  \\
  &\geqslant \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) }\left( \log p\left( \mathcal{O}_{1:T}^{i}|z^{i} \right) \right) \\
  &\geqslant \mathrm{E}_{p\left( z^{i}|\tau^{1:i-1} \right) }\left[ \mathrm{E}_{\pi\left( a_t|s_t,\ z^{i} \right) } \left( \sum\limits_{t=1}^{T} \left( r\left( s_t,\ a_t;\ z^{i} \right) - \log \pi\left( a_t|s_t,\ z^{i} \right) \right) \right) \right] \\
  &= \mathcal{L}_{\text{RL}}

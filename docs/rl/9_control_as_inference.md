@@ -246,3 +246,5 @@ $$
 ### 参考文献
 
 [UC Berkeley CS285 2020 Fall](https://www.bilibili.com/video/BV12341167kL?p=83)
+
+Levine, S. (2018). Reinforcement Learning and Control as Probabilistic Inference: Tutorial and Review (arXiv:1805.00909). arXiv. http://arxiv.org/abs/1805.00909
