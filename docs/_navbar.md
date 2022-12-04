@@ -1,3 +1,3 @@
 - Markdown guide
-    - [Markdown preview enhanced for vscode](https://leetah666.github.io/Notes/mpe_guide)
-    - [Markdown for docsify](https://docsify.js.org/#/)
+    - [Markdown Preview Enhanced for VSCode](https://leetah666.github.io/Notes/mpe_guide)
+    - [Markdown for Docsify](https://docsify.js.org/#/)

@@ -5,169 +5,256 @@ html:
 
 # Markdown Preview Enhanced for VSCode {ignore}
 
-### 目录
-
-`Ctrl + Shift + P`打开功能搜索，输入`toc`可以看到`Markdown Preview Enhanced: Create TOC`，回车并`Ctrl + S`保存即可。在标题后加`{ignore}`即可忽略该标题不放入目录。
+*[MPE]: Markdown Preview Enhanced
+*[TOC]: Table of Contents
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Markdown Preview Enhanced for VSCode {ignore}](#markdown-preview-enhanced-for-vscode-ignore)
-    - [目录](#目录)
-    - [打印分页 {ignore}](#打印分页-ignore)
-    - [语言规则](#语言规则)
-    - [结构体](#结构体)
-      - [列表](#列表)
-      - [引用](#引用)
-      - [警告](#警告)
-      - [表格](#表格)
-      - [代码块](#代码块)
-      - [行内代码](#行内代码)
-    - [文字效果](#文字效果)
-      - [斜体](#斜体)
-      - [加粗](#加粗)
-      - [删除线](#删除线)
-      - [高亮](#高亮)
-      - [下划线](#下划线)
-      - [分割线](#分割线)
-      - [上标](#上标)
-      - [下标](#下标)
-      - [定义缩写](#定义缩写)
-      - [LaTeX](#latex)
-      - [Emoji](#emoji)
-    - [快捷键](#快捷键)
-    - [链接](#链接)
-      - [网页](#网页)
-      - [标题](#标题)
-      - [图片](#图片)
-    - [导入外部文件](#导入外部文件)
-    - [其他常用HTML语言](#其他常用html语言)
-      - [空行](#空行)
-      - [占位符](#占位符)
-    - [自定义](#自定义)
-      - [表格居中](#表格居中)
-      - [图片居中](#图片居中)
-    - [输出文件](#输出文件)
-      - [HTML（推荐）](#html推荐)
-      - [PDF](#pdf)
-    - [其他](#其他)
+- [语言规则](#语言规则)
+- [结构体](#结构体)
+  - [标题：`#`](#标题)
+  - [列表](#列表)
+    - [无序列表： `-`](#无序列表-)
+    - [有序列表：`数字 + .`](#有序列表数字)
+    - [任务列表：`- [ ]` 与 `- [x]`](#任务列表-与-x)
+  - [引用：`>`](#引用)
+  - [便签块：`!!! + 类型 + 标题`](#便签块-类型-标题)
+  - [表格：`|`](#表格)
+  - [代码块：\`\`\` + 代码 + \`\`\`](#代码块-代码)
+  - [行内代码：\` + 代码 + \`](#行内代码-代码)
+- [文字效果](#文字效果)
+  - [斜体：`*` 或 `_`](#斜体-或-_)
+  - [加粗：`**` 或 `__`](#加粗-或-__)
+  - [删除线：`~~`](#删除线~~)
+  - [高亮：`==`](#高亮)
+  - [上标：`^`](#上标)
+  - [下标：`~`](#下标~)
+- [排版功能](#排版功能)
+  - [目录](#目录)
+  - [分割线：`---`](#分割线-)
+  - [打印分页](#打印分页)
+- [其他功能](#其他功能)
+  - [LaTeX：`$` 与 `$$`](#latex-与)
+  - [链接：`[文字]` + `(链接)`](#链接文字-链接)
+    - [网页](#网页)
+    - [标题](#标题-1)
+  - [图片：`![](图片地址)`](#图片图片地址)
+  - [Emoji](#emoji)
+  - [绘图](#绘图)
+  - [定义缩写：`*[缩写]: 全称`](#定义缩写缩写-全称)
+  - [导入外部文件：`@import "文件名"`](#导入外部文件import-文件名)
+    - [代码](#代码)
+    - [Markdown 文件](#markdown-文件)
+    - [表格](#表格-1)
+    - [CSS 样式](#css-样式)
+- [HTML 语言与 CSS 样式](#html-语言与-css-样式)
+  - [空行：`<br>`](#空行br)
+  - [空格](#空格)
+    - [半方占位符：`&ensp;`](#半方占位符ensp)
+    - [全方占位符：`&emsp;`](#全方占位符emsp)
+  - [居中：`<center>`](#居中center)
+  - [下划线：`<u>`](#下划线u)
+  - [折叠内容：`<details>`](#折叠内容details)
+  - [CSS 样式](#css-样式-1)
+    - [自定义全局样式](#自定义全局样式)
+    - [模板样式](#模板样式)
+    - [局部样式](#局部样式)
+- [输出文件](#输出文件)
+  - [元数据](#元数据)
+  - [HTML](#html)
+  - [PDF](#pdf)
+  - [Word](#word)
+- [更多](#更多)
 
 <!-- /code_chunk_output -->
 
-!!! note 注意
-    *[TOC]: Table of Contents
-    当需要输出为 HTML 文件时，`{ignore}`对主体的 TOC 失效（如上），即仍会显示被忽略的标题，但对侧边栏依旧生效。
-
-### 打印分页 {ignore}
-
-输入pagebreak并`Ctrl + /`注释。
-
-    <!-- pagebreak -->
 <!-- pagebreak -->
 
-### 语言规则
+## 语言规则
 
-`Enter`起到换行或结构体分块的作用，但不能实现空行，也就是多次`Enter`是无效的。
-`Space`只能空一格，不能连续空格。
-`Tab`用来改变结构体层级。
+`Enter` 起到换行或结构体分块的作用，但不能实现空行，也就是多次 `Enter` 是无效的。
+`Space` 只能空一格，不能连续空格，通常也起到声明结构体的作用。
+`Tab` 用来改变结构体层级。
+
 实现其他的需求需要使用[HTML语言](#其他常用html语言)。
 
 <!-- pagebreak -->
 
-### 结构体
+## 结构体
 
-#### 列表
+不同的符号可以声明不同的结构体，比如列表、引用、便签块等等。每一个声明结构体的符号后都需要空一格再写后续内容，结构体与结构体之间的层级关系用 `Tab` 来控制。
 
-- **无序列表**
+### 标题：`#`
 
-      - 无序列表
-      - 用横杠表示
-        - 用`Tab`控制层级
+用 `#` 来表示一级标题，`##` 表示二级标题，以此类推。
 
-  - 无序列表
-  - 用横杠表示
-    - 用`Tab`控制层级
-
-- **有序列表**
-
-        1. 数字标号
-        2. `Enter`自动编号
-
-    1. 数字标号
-    2. `Enter`自动编号
-
-#### 引用
-
-    > 一个大于号
-
-> 一个大于号
-
-#### 警告
-
-    !!! note 标题
-        标题前不要忘了加`note`
-
-!!! note 标题
-    标题前不要忘了加`note`
-
-#### 表格
-
-    |         表头1          | 表头2          |          表头3 |
-    | :--------------------: | :------------- | -------------: |
-    |      两个冒号居中      | 冒号在左左对齐 | 冒号在右右对齐 |
-    |           >            | 合并左边单元格 | 合并下方单元格 |
-    | 空着不写合并右边单元格 |                |              ^ |
-
-|         表头1          | 表头2          |          表头3 |
-| :--------------------: | :------------- | -------------: |
-|      两个冒号居中      | 冒号在左左对齐 | 冒号在右右对齐 |
-|           >            | 合并左边单元格 | 合并下方单元格 |
-| 空着不写合并右边单元格 |                |              ^ |
-
-#### 代码块
-
-    ```python
-    print('三个键盘左上角类似顿号的符号，后面接语言类型。')
+!!! example 例子
+    ```markdown
+    ### 三级标题
     ```
 
-```python
-print('三个键盘左上角类似顿号的符号，后面接语言类型。')
-```
+    ### 三级标题
 
-> 支持语言类型后自定义`class`和`attribute`。
+### 列表
+
+#### 无序列表： `-`
+
+!!! example 例子
+    ```markdown
+    - 第一点
+    - 第二点
+        - 第二点中的第一小点
+    ```
+
+    - 第一点
+    - 第二点
+        - 第二点中的第一小点
+
+!!! note 注意
+    如果安装了 Markdown All in One 插件，默认 `Tab` 是只空2格而非4格，但不影响改变层级的效果。如果想改成4格，需要在设置中的 `Markdown › Extension › List: Indentation Size` 中选择 `inherit`。
+
+#### 有序列表：`数字 + .`
+
+!!! example 例子
+    ```markdown
+    1. 第一点
+    2. 第二点
+        1. 第二点中的第一小点
+    ```
+
+    1. 第一点
+    2. 第二点
+        1. 第二点中的第一小点
+    
+!!! tip 提示
+    如果安装了 Markdown All in One 插件，回车即可自动按顺序编号，再次回车可以取消编号。
+
+#### 任务列表：`- [ ]` 与 `- [x]`
+
+用 `- [ ]` 表示未完成的任务，用 `- [x]` 表示已完成的任务。
+
+!!! example 例子
+    \- [&ensp;] 任务一
+    \- [x] 任务二
+
+    - [ ] 任务一
+    - [x] 任务二
+
+### 引用：`>`
+
+!!! example 例子
+    ```markdown
+    > MPE 是最好的 Markdown 插件。
+    > ——鲁迅
+    ```
+
+    > MPE 是最好的 Markdown 插件。
+    > ——鲁迅
+
+### 便签块：`!!! + 类型 + 标题`
+
+!!! example 例子
+    ```markdown
+    !!! note 注意
+        明天开会。
+    ```
+
+    !!! note 注意
+        明天开会。
+
+支持以下类型的便签块：
+
+<center>
+
+![](image/2022-12-02-13-56-35.png)
+</center>
+
+### 表格：`|`
+
+表格的声明相对比较复杂，第一行是表头，第二行是控制对应列的文字排版，第三行及以下是表格的内容。
+
+!!! example 例子
+    ```markdown
+    |         表头1          | 表头2              |              表头3 |
+    | :--------------------: | :----------------- | -----------------: |
+    |      两个冒号居中      | 冒号在左左对齐     |     冒号在右右对齐 |
+    |           >            | `>` 合并左边单元格 | `^` 合并下方单元格 |
+    | 空着不写合并右边单元格 |                    |                  ^ |
+    ```
+
+    |         表头1          | 表头2              |              表头3 |
+    | :--------------------: | :----------------- | -----------------: |
+    |      两个冒号居中      | 冒号在左左对齐     |     冒号在右右对齐 |
+    |           >            | `>` 合并左边单元格 | `^` 合并下方单元格 |
+    | 空着不写合并右边单元格 |                    |                  ^ |
+
+!!! tip 提示
+    由于表格的书写过于繁琐，如果有书写表格的需求，建议安装 HyperSnips for Math 插件，在 snippet 文件中加入以下代码，即可通过输入 `table + 行数 + 列数` 来生成表格。
+
+    ```json
+    function createTable(rows, cols) {
+        let ret = "";
+        for (let i = 0; i < parseInt(rows) + 2; i++) {
+            for (let j = 0; j < parseInt(cols); j++) {
+                if (i === 1) {
+                    ret += "|:---:";
+                } else {
+                    ret += "|  ";
+                }
+            }
+            ret += "|\n"
+        }
+        return ret;
+    }
+
+    priority 300
+    snippet `table(\d)(\d)` "create table with rows and columns" wA
+    ``
+    rv = createTable(m[1], m[2]);
+    ``
+    endsnippet
+    ```
+
+### 代码块：\`\`\` + 代码 + \`\`\`
+
+用三个键盘左上角类似顿号的符号来声明代码块的开始与结束，起始符后面接语言类型，比如 python、json、markdown 等等。
+
+!!! example 例子
+        ```python
+        print('Hello world!')
+        ```
+
+    ```python
+    print('Hello world!')
+    ```
+
+通过在语言类型后自定义 `class` 和 `attribute`，可以对代码块进行一些自定义操作，例如：
 
 - **添加行号**
 
+    !!! example 例子
+            ```python {.line-numbers}
+                def add(x, y):
+                return x+y
+            ```
+
         ```python {.line-numbers}
-            def add(x, y):
+        def add(x, y):
             return x+y
         ```
-
-    ```python {.line-numbers}
-    def add(x, y):
-        return x+y
-    ```
 
 - **高亮某几行**
 
-        ```python {highlight=1-3}
-        def add(x, y):
-            return x+y
+    !!! example 例子
+            ```python {highlight=[1-3, 5]}
+            def add(x, y):
+                return x+y
 
-        def multiply(x, y):
-            return x*y
-        ```
-
-    ```python {highlight=1-3}
-    def add(x, y):
-        return x+y
-
-    def multiply(x, y):
-        return x*y
-    ```
-
-    或者
+            def multiply(x, y):
+                return x*y
+            ```
 
         ```python {highlight=[1-3, 5]}
         def add(x, y):
@@ -177,119 +264,241 @@ print('三个键盘左上角类似顿号的符号，后面接语言类型。')
             return x*y
         ```
 
-    ```python {highlight=[1-3, 5]}
-    def add(x, y):
-        return x+y
-
-    def multiply(x, y):
-        return x*y
-    ```
-
-> 添加了`cmd`后可以`Ctrl + Shift + P`搜索`code chunk`执行代码（需要在 VSCode 设置中开启`Markdown-preview-enhanced: Enable Script Execution`）。
 
 - **执行代码**
 
-        ```python {.line-numbers cmd}
-            def add(x, y):
-                return x+y
+    !!! example 例子
 
-            print(add(1, 2))
+            ```python {cmd}
+                def add(x, y):
+                    return x+y
+
+                print(add(1, 2))
+            ```
+
+        ```python {cmd}
+        def add(x, y):
+            return x+y
+
+        print(add(1, 2))
         ```
 
-    ```python {.line-numbers cmd}
-    def add(x, y):
-        return x+y
+    !!! note 注意
+        需要按 `F1` 选择 `Markdown Preview Enhanced: Run All Code Chunks` 执行代码，如果执行不了，在设置中勾选 `Markdown-preview-enhanced: Enable Script Execution`。
 
-    print(add(1, 2))
+### 行内代码：\` + 代码 + \`
+
+!!! example 例子
+    ```markdown
+    欢迎来到 python 的世界，输入 `print('Hello World!')` 打个招呼吧！
     ```
 
-#### 行内代码
-
-    代码两边加键盘左上角类似顿号的符号即可：`print('Hello World!')`
-
-代码两边加键盘左上角类似顿号的符号即可：`print('Hello World!')`
+    欢迎来到 python 的世界，输入 `print('Hello World!')` 打个招呼吧！
 
 <!-- pagebreak -->
 
-### 文字效果
+## 文字效果
 
-#### 斜体
+在文字两边加上不同的符号，可以有不同的文字效果，比如加粗、斜体、上下标等等。
 
-    *一个星号* 或者 _一个下划线_
+### 斜体：`*` 或 `_`
 
-*一个星号* 或者 _一个下划线_
+!!! example 例子
+    ```markdown
+    *一个星号* 或 _一个下划线_
+    ```
 
-#### 加粗
+    *一个星号* 或 _一个下划线_
 
-    **两个星号** 或者 __两个下划线__
+!!! tip 提示
+    如果安装了 Markdown All in One 插件，可以选中文字按 `Ctrl + I` 达到斜体的效果。
 
-**两个星号** 或者 __两个下划线__
+### 加粗：`**` 或 `__`
 
-> 平时单独加粗或者单独斜体用`*`，如果要组合，即既要加粗又要斜体则`*`与`_`组合使用。
+!!! example 例子
+```markdown
+**两个星号** 或 __两个下划线__
+```
 
-#### 删除线
+**两个星号** 或 __两个下划线__
+
+!!! tip 提示
+    如果安装了 Markdown All in One 插件，可以选中文字按 `Ctrl + B` 达到加粗的效果。
+
+平时单独加粗或者单独斜体用 `*` 或 `_` 都可以，但如果既要加粗又要斜体，则需要 `*` 与 `_` 组合使用：
+
+!!! example 例子
+    ```markdown
+    **_组合使用_**
+    ```
+
+    **_组合使用_**
+
+### 删除线：`~~`
+
+!!! example 例子
+    ```markdown
+    ~~两个波浪线~~
+    ```
 
     ~~两个波浪线~~
 
-~~两个波浪线~~
+### 高亮：`==`
 
-#### 高亮
+!!! example 例子
+    ```markdown
+    ==两个等于号==
+    ```
 
     ==两个等于号==
 
-==两个等于号==
+### 上标：`^`
 
-#### 下划线
-
-    <u>html u 标签</u>
-
-<u>html u 标签</u>
-
-#### 分割线
-
-    ---
-
----
-
-#### 上标
+!!! example 例子
+    ```markdown
+    2^th^
+    ```
 
     2^th^
 
-2^th^
+### 下标：`~`
 
-#### 下标
+!!! example 例子
+    ```markdown
+    x~1~
+    ```
 
     x~1~
 
-x~1~
+## 排版功能
 
-#### 定义缩写
+### 目录
 
-    *[CNN]: Convolutional Neuraul Network
+按 `F1` 打开功能搜索，选择 `Markdown Preview Enhanced: Create TOC`， `Ctrl + S` 保存即可。在标题后加 `{ignore}` 即可忽略该标题不放入目录。
 
-    Chairman Zheng is proficient in CNN.
+```markdown
+#### 不在目录中显示 {ignore}
+```
 
-*[CNN]: Convolutional Neuraul Network
+#### 不在目录中显示 {ignore}
 
-Chairman Zheng is proficient in CNN.
+!!! note 注意
+    如果安装了 Markdown All in One 插件，需要在设置中取消 `Markdown > Extension > TOC: Update On Save` 的勾选，因为这个设置会导致保存时用的是 Markdown All in One 的目录生成功能而不是 MPE 的。
 
-> 鼠标悬浮即可看到全称（pdf不支持该效果）。
+### 分割线：`---`
 
-#### LaTeX
+!!! example 例子
+    ```markdown
+    ---
+    ```
 
-    $\text{行内公式}$
+    ---
+
+### 打印分页
+
+输入 `pagebreak` 并 `Ctrl + /` 注释，即可在打印成 pdf 的时候在相应位置分页。
+
+```markdown
+<!-- pagebreak -->
+```
+
+<!-- pagebreak -->
+
+## 其他功能
+
+### LaTeX：`$` 与 `$$`
+
+MPE 的 LaTeX 语句用 KaTeX 渲染，一个美元符号代表行内公式，两个则代表块公式。
+
+!!! example 例子
+    ```markdown
+    $1 + 1 = 2$
 
     $$
-    \text{块公式}
+    1 + 1 = 2
+    $$
+    ```
+
+    $1 + 1 = 2$
+
+    $$
+    1 + 1 = 2
     $$
 
-$\text{行内公式}$
+!!! tip 提示
+    如果安装了 Markdown All in One 插件，按一下 `Ctrl + M` 即进入行内公式模式，按两下则进入块公式模式。
 
-$$
-\text{块公式}
-$$
+### 链接：`[文字]` + `(链接)`
 
-#### Emoji
+用 `[文字](链接)` 的形式可以制作一个“传送门”，在文中以文字的形式出现，点击可以前往对应的链接，链接的形式包括网页和标题。
+
+#### 网页
+
+用 `[文字](网址)` 来生成网页链接。
+
+
+!!! example 例子
+    ```markdown
+    你不会[百度](https://www.baidu.com)吗？
+    ```
+
+    你不会[百度](https://www.baidu.com)吗？
+
+#### 标题
+
+用 `[文字](#标题)` 来生成标题链接。
+
+
+!!! example 例子
+    ```markdown
+    [点击此处前往文字效果](#文字效果)
+    ```
+
+    [点击此处前往文字效果](#文字效果)
+
+!!! note 注意
+    英文均为小写，空格换成 `-`。如果有同名标题，第二个出现的标题需要在标题后加 `-1`，第三个需要加 `-2`，以此类推。
+    
+    !!! example 例子
+        ```markdown
+        [第一个“CSS 样式”](#css-样式)
+        [第二个“CSS 样式”](#css-样式-1)
+        ```
+
+        [第一个“CSS 样式”](#css-样式)
+        [第二个“CSS 样式”](#css-样式-1)
+
+### 图片：`![](图片地址)`
+
+*[URL]: Uniform Resource Locator
+
+图片地址可以是本地路径（绝对路径或相对路径均可），也可以是 URL。
+
+!!! example 例子
+    ```markdown
+    ![](https://static.wikia.nocookie.net/sonicpokemon/images/b/b2/Psyduck_AG_anime.png/revision/latest?cb=20130626041931)
+    ```
+
+    ![](https://static.wikia.nocookie.net/sonicpokemon/images/b/b2/Psyduck_AG_anime.png/revision/latest?cb=20130626041931)
+
+如果觉得复制路径麻烦，可以按 `F1` 选择 `Markdown Preview Enhanced: Image Helper`，以图形界面的形式上传图片。
+
+!!! tip 提示
+    如果安装了 Paste Image 插件，即可复制图片后通过 `Ctrl + Alt + V` 的快捷键直接粘贴图片。
+
+### Emoji
+
+支持 emoji 表情显示，表情代码可查找[emoji表](https://www.webfx.com/tools/emoji-cheat-sheet/)。
+
+
+!!! example 例子
+    ```markdown
+    :smile: :flushed: :sweat: :sob: :joy:
+
+    :+1: :ok_hand: :point_down: :clap: :muscle: :pray:
+
+    :heart: :fire: :boom: :star2: :shit: :zzz:
+    ```
 
     :smile: :flushed: :sweat: :sob: :joy:
 
@@ -297,52 +506,43 @@ $$
 
     :heart: :fire: :boom: :star2: :shit: :zzz:
 
-:smile: :flushed: :sweat: :sob: :joy:
+### 绘图
 
-:+1: :ok_hand: :point_down: :clap: :muscle: :pray:
+MPE 支持好几种绘图语言，见[官方文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/diagrams)。个人认为 [Mermaid](https://mermaid-js.github.io/mermaid/#/) 算是比较常用且方便的，可以绘制流程图等。
 
-:heart: :fire: :boom: :star2: :shit: :zzz:
+MPE 中内置了三个 Mermaid 主题，可以在设置中找到 `Markdown-preview-enhanced: Mermaid Theme` 进行更改。
 
-更多emoji可查找[emoji表](https://www.webfx.com/tools/emoji-cheat-sheet/)。
+### 定义缩写：`*[缩写]: 全称`
 
-<!-- pagebreak -->
+!!! example 例子
+    ```markdown
+    *[CNN]: Convolutional Neuraul Network
+    
+    Chairman Zheng is proficient in CNN.
+    ```
 
-### 快捷键
+    *[CNN]: Convolutional Neuraul Network
 
-- **Ctrl + B**: 选中的文本加粗
-- **Ctrl + I**: 选中的文本斜体
-- **Ctrl + M**: 进入数学模式（一下行内，两下块）
-- **lm**: 进入行内数学模式
-- **dm**: 进入块数学模式
-- **Ctrl + Alt + V**: 将剪贴板的图片粘贴到笔记中 
-- **table + m + n**: 生成mxn的表格（行数不包括表头）
-- **Alt + Shift + F**: 代码整理
+    Chairman Zheng is proficient in CNN.
 
-> 其中某些快捷键需要安装 *HyperSnips for Math* 与 *Paste Image* 。
+!!! note 注意
+    鼠标悬浮即可看到全称（pdf 不支持该效果）且全局生效（即整篇文章出现这一字样都会有下划虚线，不管是定义前还是定义后）。
+    
+!!! note 注意
+    如果中英夹杂，英文与中文之间需要有空格才会生效，与标点符号之间不需要有空格。
 
-<!-- pagebreak -->
+### 导入外部文件：`@import "文件名"`
 
-### 链接
+可以通过 `@import "文件名"` 导入外部文件，比如导入代码、图片、css样式等等，但不可以有层级关系，即不能在其他结构体下导入。
 
-#### 网页
+#### 代码
 
-    [想显示的文字](https://www.baidu.com)
+导入代码形成代码块，同样可以在后面声明 `class` 和 `attribute`。
 
-[想显示的文字](https://www.baidu.com)
+<center>
 
-#### 标题
-
-    [想显示的文字](#代码块)
-
-[想显示的文字](#代码块)
-
-#### 图片
-
-    !\[](图片地址)
-
-> 用[快捷键](#快捷键)粘贴图片即可。
-
-### 导入外部文件
+![](image/2022-12-02-16-58-41.png)
+</center>
 
 ```markdown
 @import "test.py" {.line-numbers}
@@ -350,12 +550,52 @@ $$
 
 @import "test.py" {.line-numbers}
 
-> 还支持图片，csv，html，js，pdf（需要装 *pdf2svg*），md等格式的文件，也就是可以直接嵌入别人的笔记:grin:。
+#### Markdown 文件
 
-### 其他常用HTML语言
+导入 Markdown 文件即可做到重复利用某个文字片段。
 
-#### 空行
+<center>
 
+![](image/2022-12-02-17-13-31.png)
+</center>
+
+```markdown
+@import "test.md"
+```
+
+@import "test.md"
+
+#### 表格
+
+导入 csv 格式的表格可以避免繁琐的表格输入。
+
+<center>
+
+![](image/2022-12-02-17-21-17.png)
+</center>
+
+```markdown
+@import "test.csv"
+```
+
+@import "test.csv"
+
+#### CSS 样式
+
+见 [HTML 语言与 CSS 样式-CSS 样式](#css-样式-1)。
+
+<!-- pagebreak -->
+
+## HTML 语言与 CSS 样式
+
+Markdown 是 HTML 的简化版，因此也支持 HTML 语句，但 Markdown 本身就是为了注重内容而生，用 HTML 语句实际上破坏了 Markdown 的初衷，所以尽量只用 CSS 样式来控制排版。
+
+### 空行：`<br>`
+
+由于 Markdown 中回车键最多只能空一行，如果想要空多行，需要用 HTML 语句实现。
+
+!!! example 例子
+    ```markdown
     第一行
 
     第二行
@@ -363,40 +603,83 @@ $$
     <br>
 
     第四行
+    ```
+    第一行
 
-第一行
+    第二行
 
-第二行
+    <br>
 
-<br>
+    第四行
 
-第四行
+### 空格
 
-#### 占位符
+#### 半方占位符：`&ensp;`
 
-- **半方占位符（一个英文字符大小）**
+半方占位符相当于一个英文字符的大小，比 Markdown 中的空格要大一点点。
 
-        ab
-        &ensp;a
-
+!!! example 例子
+    ```markdown
     ab
-    &ensp;a
+    a b
+    a&ensp;b
+    ```
+    ab
+    a b
+    a&ensp;b
 
-- **全方占位符（一个中文字符大小）**
+#### 全方占位符：`&emsp;`
 
-        哈哈
-        &emsp;哈哈
+全方占位符相当于一个中文字符的大小。
 
+!!! example 例子
+    ```markdown
+    哈哈
+    &emsp;哈哈
+    ```
     哈哈
     &emsp;哈哈
 
-- **折叠内容**
+### 居中：`<center>`
 
-        <details>
-        <summary>展开查看</summary>
+用 `<center>` 标签可以对文字或图片进行居中，但不能对表格进行居中。
 
-        内容要与上面空一行！
-        </details>
+!!! example 例子
+    ```markdown
+    <center>
+        
+    与头标签空一行
+    </center>
+    ```
+
+    <center>
+        
+    与头标签空一行
+    </center>
+
+### 下划线：`<u>`
+
+可以使用 `<u></u>` 对文字添加下划线。
+
+!!! example 例子
+    ```markdown
+    <u>html u 标签</u>
+    ```
+
+    <u>html u 标签</u>
+
+### 折叠内容：`<details>`
+
+可以通过 `<details></details>` 来折叠文字，并用 `<summary></summary>` 来显示简要文字。
+
+!!! example 例子
+    ```markdown
+    <details>
+    <summary>展开查看</summary>
+
+    内容要与上面空一行！
+    </details>
+    ```
 
     <details>
     <summary>展开查看</summary>
@@ -404,92 +687,150 @@ $$
     内容要与上面空一行！
     </details>
     
-    > pdf 不适用。
+!!! note 注意
+    输出 pdf 的话，折叠块是打不开的。
 
-### 自定义
+### CSS 样式
 
-#### 表格居中
+MPE 的 CSS 样式分为全局（对所有文件生效）和局部（只对指定文件生效），全局样式又分模板样式和自定义样式，一般调整样式的顺序为
 
-`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在括号外加入以下代码：
-```less
-.centertable {
-  width: auto;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-}
+<center>
+
+```mermaid
+graph LR
+    自定义全局样式 --> 模板样式 --> 自定义局部样式;
 ```
+</center>
 
-> `centertable`可以换成别的名字。
+#### 自定义全局样式
 
-接着在你需要居中的表格前后加上标签`<div class='centertable'></div>`：
+全局的自定义样式需要按 `F1` 选择 `Markdown Preview Enhanced: Customize CSS` 来打开。
 
-    <div class='centertable'>
-    
-    |           注意           |          注意          |
-    | :----------------------: | :--------------------: |
-    | 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
-    </div>
+其中以 `.` 开头的为类（class），默认的 `.markdown-preview.markdown-preview` 即为全局类，在其中写的样式会应用到全局。
 
-<div class='centertable'>
-
-|           注意           |          注意          |
-| :----------------------: | :--------------------: |
-| 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
-</div>
-
-#### 图片居中
-
-如果希望所有图片都居中，`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在括号内加入以下代码即可：
-```less
-img {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-```
-
-如果只希望某些图片居中，在需要居中的图片前后加上标签`<div align='center'></div>`即可，这个标签对文字和公式也是生效的，所以题注也可以写在标签中间。
-
-> 此外还有各种风格可以自定义，包括字体、颜色、表格样式等等；
-> 还可以通过定义id指定使用某一个css文件，即可以为不同文件设置不同的风格。
-> 具体方法这里不做赘述。
-
-### 输出文件
-
-#### HTML（推荐）
-
-在`Preview`中右键选择`HTML`中的`HTML (cdn hosted)`。
-
-- **侧边栏设置**
-
-    输出 HTML 时默认侧边栏收缩，如果需要默认展开，则可以在 md 文件顶端输入如下 yaml 语言：
-        
-        ---
-        html:
-            toc: true
-        ---
-
-    如果不需要侧边栏，则为`false`。默认是`undefined`。
-
-#### PDF
-
-在`Preview`中右键选择`Chrome (Puppeteer)`中的`PDF`。
-
-`Puppeteer`默认`printBackground`的属性是`false`，即在`Preview`中设置的主题并不会打印出来，如果想要打印主题，可以`Ctrl + Shift + P`输入`setting json`选择`Prefrences: Open Settings (JSON)`，在里面加入`"markdown-preview-enhanced.printBackground": true`的设置。
-
-如果设置的主题是除白色以外的其他颜色，打印出来的 PDF 四周会有空白，一种解决办法是`Ctrl + Shift + P`输入`css`选择`Markdown Preview Enhanced: Customize CSS`，在其中加入如下代码：
-
-```less
-@media print {
-    @page {
-        margin: 0;
+!!! example 例子
+    ```less
+    .markdown-preview.markdown-preview {
+        mark {
+            background-color: #f8aba6;// 梅色
+        }
     }
-}
+    ```
+
+    这个 `mark` 样式让我所有文件中的[高亮](#高亮)都变成梅色。
+
+除了默认应用的全局类，还可以自定义手动调用的类。
+
+!!! example 例子
+    ```less
+    .centertable {
+        width: auto;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+        }
+    ```
+
+    这个类可以对表格进行居中显示，只需在要居中的表格前后加上容器标签 `<div class='centertable'></div>`。
+
+    !!! example 例子
+        ```markdown
+        <div class='centertable'>
+    
+        |           注意           |          注意          |
+        | :----------------------: | :--------------------: |
+        | 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
+        </div>
+        ```
+
+        <div class='centertable'>
+
+        |           注意           |          注意          |
+        | :----------------------: | :--------------------: |
+        | 头标签与表格之间需要空行 | 标签与上下文也需要空行 |
+        </div>
+
+#### 模板样式
+
+模板样式可以在预览窗口中右键选择 `Preview Theme`：
+
+<center>
+
+![](image/2022-12-04-14-28-06.png)
+</center>
+
+#### 局部样式
+
+局部样式需要通过 `@import` 的操作来导入，可以在[元数据](#元数据)区声明要用的类。具体使用方式可以参考[官方文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/customize-css?id=%e6%9c%ac%e5%9c%b0%e6%a0%b7%e5%bc%8f)。
+
+<!-- pagebreak -->
+
+## 输出文件
+
+### 元数据
+
+在 Markdown 文件的顶端输入
+
+```markdown
+---
+
+---
 ```
 
-但是出来的效果有点丑。欢迎使用HTML:grin:！
+这两条虚线区域内的代码被称为元数据（metadata），为 YAML 语言。元数据控制着输出的效果。
 
-### 其他
+### HTML
 
-更多的功能可以参考MPE的作者给出的[文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)。
+由于 Markdown 是 HTML 语言的简化版本，html 文件能最大程度地接近预览的效果。在预览窗口中右键选择 `HTML > HTML (cdn hosted)` 即可生成对应的 html 文件。
+
+!!! tip 提示
+    输出 html 时默认侧边栏收缩，如果需要默认展开，则可以输入以下元数据：
+
+    ```yaml
+    ---
+    html:
+        toc: true
+    ---
+    ```
+
+    如果不需要侧边栏，则为 `false`。默认是 `undefined`。
+
+### PDF
+
+如果安装了 Chrome 浏览器，直接在预览窗口中右键选择 `Chrome (Puppeteer) > PDF` 即可导出 pdf。
+
+如果没有安装 Chrome 浏览器，但有使用 Chromium 内核的浏览器（比如 Edge），你需要找到该浏览器对应的执行文件（比如 Edge 的执行文件路径为 `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`），在设置中将这个路径输入 `Markdown-preview-enhanced: Chrome Path`，即可按上面相同的操作导出 pdf。
+
+!!! note 注意
+    Puppeteer 默认 `printBackground` 的属性是 `false`，即在预览中设置的主题（模板样式）并不会打印出来，如果想要打印主题，可以按 `F1` 选择`Prefrences: Open Settings (JSON)`，在里面加入`"markdown-preview-enhanced.printBackground": true`的设置。
+
+!!! note 注意
+    在文件中包含 LaTeX 公式时，输出成 pdf 可能导致公式不显示，这是因为输出的速度太快了，公式还没来得及渲染。可以输入以下元数据来延迟输出：
+
+    ```yaml
+    ---
+    puppeteer:
+        timeout: 3000
+    ---
+    ```
+
+!!! tip 提示
+    如果想针对性地调整更多的设置，比如页边距之类的，可以在预览窗口右键选择 `Open in Browser`，在浏览器的 `打印` 选项中进行调整。
+
+### Word
+
+想要输出成 Word 格式的文件，需要安装 [Pandoc](https://pandoc.org/)，并输入以下元数据：
+
+```yaml
+---
+output: word_document
+---
+```
+
+但 Pandoc 对于很多 HTML 语言以及 CSS 样式都不太支持，因此输出成 Word 基本上只能对内容进行一个保留。
+
+<!-- pagebreak -->
+
+## 更多
+
+更多的功能可以参考[官方文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)。
