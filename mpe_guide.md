@@ -479,7 +479,7 @@ MPE 的 LaTeX 语句用 KaTeX 渲染，一个美元符号代表行内公式，�
 
 !!! example 例子
     ```markdown
-    ![](https://static.wikia.nocookie.net/sonicpokemon/images/b/b2/Psyduck_AG_anime.png/revision/latest?cb=20130626041931)
+    ![](https://static.wikia.nocookie.net/sonicpokemon/images/b/b2/Psyduck_AG_anime.png)
     ```
 
     ![](https://static.wikia.nocookie.net/sonicpokemon/images/b/b2/Psyduck_AG_anime.png/revision/latest?cb=20130626041931)
@@ -759,7 +759,7 @@ graph LR
 
 <center>
 
-![](image/2022-12-04-14-28-06.png)
+![](https://github.com/LeetaH666/Notes/blob/master/image/2022-12-04-14-28-06.png?raw=true)
 </center>
 
 #### 局部样式
