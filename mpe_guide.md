@@ -1,7 +1,10 @@
 ---
+id: mpe
 html:
     toc: true
 ---
+
+@import "mpe_guide_style.less"
 
 # Markdown Preview Enhanced for VSCode {ignore}
 
@@ -168,7 +171,7 @@ html:
 
 <center>
 
-![](image/2022-12-02-13-56-35.png)
+![](https://github.com/LeetaH666/Notes/blob/master/image/2022-12-02-13-56-35.png?raw=true)
 </center>
 
 ### 表格：`|`
@@ -541,7 +544,7 @@ MPE 中内置了三个 Mermaid 主题，可以在设置中找到 `Markdown-previ
 
 <center>
 
-![](image/2022-12-02-16-58-41.png)
+![](https://github.com/LeetaH666/Notes/blob/master/image/2022-12-02-16-58-41.png?raw=true)
 </center>
 
 ```markdown
@@ -556,7 +559,7 @@ MPE 中内置了三个 Mermaid 主题，可以在设置中找到 `Markdown-previ
 
 <center>
 
-![](image/2022-12-02-17-13-31.png)
+![](https://github.com/LeetaH666/Notes/blob/master/image/2022-12-02-17-13-31.png?raw=true)
 </center>
 
 ```markdown
@@ -571,7 +574,7 @@ MPE 中内置了三个 Mermaid 主题，可以在设置中找到 `Markdown-previ
 
 <center>
 
-![](image/2022-12-02-17-21-17.png)
+![](https://github.com/LeetaH666/Notes/blob/master/image/2022-12-02-17-21-17.png?raw=true)
 </center>
 
 ```markdown
