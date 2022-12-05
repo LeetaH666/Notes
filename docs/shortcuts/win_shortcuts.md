@@ -1,12 +1,16 @@
-### 默认
+# Windows 快捷键
+
+## 默认
+
 - **win + D**: 显示桌面
 - **win + E**: 打开资源管理器
+- **win + I**：打开系统设置
 - **win + S**: 搜索
 - **win + 方向键**：向对应方向分屏
-- **win + Alt + X**：窗口最大化
 
-### 自定义
+## 自定义
+
 - **Ctrl + Alt + S**：打开VSCode
-- **Ctrl + Alt + C**：打开Chrome
-- **Ctrl + Alt + W**：打开微信
-- **Ctrl + Alt + N**：打开网易有道词典
+- **Ctrl + Alt + E**：打开Edge
+- **Ctrl + Alt + C**：打开Clash
+- **Ctrl + Alt + F**：打开飞书
