@@ -10,7 +10,9 @@
 
 ## 自定义
 
-- **Ctrl + Alt + S**：打开VSCode
-- **Ctrl + Alt + E**：打开Edge
-- **Ctrl + Alt + C**：打开Clash
+- **Ctrl + Alt + S**：打开 VSCode
+- **Ctrl + Alt + E**：打开 Edge
+- **Ctrl + Alt + C**：打开 Clash
 - **Ctrl + Alt + F**：打开飞书
+- **Ctrl + Alt + Z**：打开 Zotero
+- **Ctrl + Alt + W**：打开微信

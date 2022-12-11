@@ -1,35 +1,109 @@
-### Established by Usage
+# 一、基本概念
 
-Uppercase for random variables and lowercase for specific values.
+> [!NOTE|label:注意]
+> 大写字母代表随机变量，小写字母代表特定的值。
 
-### Terminology
+## 基本元素
 
-- State $S$: a state $S=s$ describes current environment;
-- Action $A$: an action $A=a$ can get response from the environment and may change the environment;
-- Agent: an agent is the one who takes action at a given state.
-- Policy (function) $\pi: (s,\ a) \to [0,\ 1]$: probability of taking action $a$ given state $s$, i.e., 
-
-  $$
-  \pi(a|s) = \mathrm{P}(A=a|S=s)
-  $$
-
-    > Actions have randomness!
-
-- Reward $R$: reward is set to encourage the agent to take some actions;
-- State transition (can be random):
+- 状态（State）$S$：一个状态 $S = s$ 描述当前的环境；
+- 动作（Action）$A$：一个动作 $A = a$ 会引起环境的反应，甚至有可能改变环境；
+- 智能体（Agent）：一个智能体会在给定的状态下执行动作；
+- 策略（Policy）$\pi$：策略是智能体在某一状态下选择不同动作的概率分布，本质上是一个函数，把状态和动作映射到概率空间，即
 
   $$
-  p(s^{\prime}|s,\ a) = \mathrm{P}(S^{\prime}=s^{\prime}|S=s,\ A=a)
+  \pi(a|s) := \mathrm{P}(A = a|S = s)
   $$
 
-  where $s^{\prime}$ is a new state after taking action $a$ at the old state $s$.
+  > [!NOTE|label:注意]
+  > 策略是一个概率分布说明策略具有随机性，即同一个状态下智能体执行的动作可能不同。
 
-- Discounted return $U$ at time $t$: 
-  
+- 奖励（Reward）$R$：环境会根据当前状态以及智能体的动作给予一些奖励来引导智能体优化自己的策略，因此奖励通常是一个关于状态和动作的函数；
+- 状态转移（State transition）$p$：从一个状态变到另一个状态的概率，即
+
   $$
-  U_t = R_t + \gamma R_{t+1} + \gamma^{2} R_{t+2} + \cdots
+  p\left(s^{\prime}|s,\ a \right)  := \mathrm{P}\left(S^{\prime} = s^{\prime}|S = s,\ A = a \right) 
   $$
 
-  is the present value of the following return, where $\gamma$ is the discount factor.
+  其中 $s^{\prime}$ 是在旧状态 $s$ 下执行动作 $a$ 达到的新状态。
 
-- Action-value function $Q(s,\ a)$
+## 智能体与环境的互动
+
+<div align='center'>
+
+![](image/2022-12-06-20-22-07.png)
+</div align='center'>
+
+智能体看到环境表现出来的状态，选择动作来让环境给出下一个状态，同时环境还会根据当前状态和智能体执行的动作给予智能体相应的奖励，如此循环往复直到结束。
+
+### 轨迹
+
+轨迹（Trajectory）描述了智能体与环境互动的过程与结果，用一个序列来表示：
+
+$$
+(s_1,\ a_1,\ r_1,\ s_2,\ a_2,\ r_2,\ \cdots)
+$$
+
+## 回报与价值函数
+
+### 回报
+
+$t$ 时刻的回报（Return）$U_t$ 是**未来的**累积奖励，即
+
+$$
+U_t := R_t + R_{t+1} + R_{t+2} + \cdots
+$$
+
+但是现在拿到100块跟未来拿到100块是不一样的，因此通常我们需要对未来的奖励进行折现：
+
+$$
+U_t := R_t + \gamma R_{t+1} + \gamma^{2} R_{t+2} + \cdots
+$$
+
+其中 $\gamma \in [0,\ 1]$ 为折现率。
+
+> [!NOTE|label:注意]
+> $U_t$ 是一个随机变量，取值与未来的状态和动作有关。
+
+### 价值函数
+
+价值函数（Value function）衡量某一动作或某一状态的价值，分为动作价值函数（Action-value function）和状态价值函数（State-value function）。
+
+#### 动作价值函数
+
+动作价值是给定状态和动作下的期望回报，用来衡量某一状态下不同动作的好坏，即
+
+$$
+Q_{\pi}(s_t,\ a_t) := \mathrm{E}(U_t|S_t = s_t,\ A_t = a_t)
+$$
+
+动作价值函数与策略 $\pi$ 有关，不同的策略对应不同的动作价值函数，因为策略会影响未来的动作选择。
+
+#### 状态价值函数
+
+状态价值是给定状态下的期望回报，用来衡量不同状态的好坏，即
+
+$$
+V_{\pi}(s_t) := \mathrm{E}(U_t|S_t = s_t)
+$$
+
+状态价值函数也与策略 $\pi$ 有关，因为策略会影响未来的动作选择，而动作选择的不同又会导致状态的不同。
+
+同时，状态价值也是动作价值关于动作的期望，即
+
+$$
+V_{\pi}(s_t) = \mathrm{E}(U_t|S_t = s_t) = \mathrm{E}_{A\sim \pi(\cdot|s_t)}[Q_{\pi}(s_t,\ A)]
+$$
+
+可以理解为，智能体采取策略 $\pi$ 时，当前状态的价值是执行不同动作得到的动作价值的加权平均，加权依据就是策略 $\pi$，选哪个动作的概率高，哪个动作价值的权重就高。
+
+如果动作空间是离散的，我们可以写成
+
+$$
+V_{\pi}(s_t) = \mathrm{E}_{A\sim \pi(\cdot|s_t)}[Q_{\pi}(s_t,\ A)] = \sum\limits_{a} \pi(a|s_t) \cdot Q_{\pi}(s_t,\ a)
+$$
+
+如果动作空间是连续的，我们可以写成
+
+$$
+V_{\pi}(s_t) = \mathrm{E}_{A\sim \pi(\cdot|s_t)}[Q_{\pi}(s_t,\ A)] = \int_{\mathcal{A}} \pi(a|s_t) \cdot Q_{\pi}(s_t,\ a) ~ \mathrm{d}a
+$$
