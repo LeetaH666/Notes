@@ -43,3 +43,18 @@
 ### 本地下拉远程更新
 
 1. git pull
+
+## 常见问题与解决方案
+
+### 无法 push
+
+有时候我们 commit 完之后 push 遇到如下问题（比如在 VSCode 的非当前文件夹下进行 commit & push）：
+
+<div align='center'>
+
+![](image/2022-12-27-14-51-53.png)
+</div align='center'>
+
+一个解决方案就是重新上传一个同名分支覆盖掉原先的分支：
+
+1. git push -u origin head

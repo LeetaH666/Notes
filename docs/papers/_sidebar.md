@@ -3,4 +3,5 @@
 - [Auto-Encoding Variational Bayes (Kingma & Welling, 2014)](papers/auto_encoding_variational_bayes.md)
 - [Deep Reinforcement Learning amidst Continual Structured Non-Stationarity (Xie et al., 2021)](papers/drl_amidst_continual_structured_nonstationarity.md)
 - [Characteristics are Covariances: A Unified Model of Risk and Return (Kelly et al., 2019)](papers/characteristics_are_covariances.md)
+- [Shrinking the Cross-Section (Kozak et al., 2020)](papers/shrinking_the_cross-section.md)
 - [Back to Homepage](README.md)
