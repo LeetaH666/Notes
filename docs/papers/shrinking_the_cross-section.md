@@ -368,7 +368,7 @@ $$
 
 基于特征的定价模型通常用特征来表示 SDF 载荷，即 $b_{t-1} = Z_{t-1} b$，其中 $Z_{t-1}$ 是 $N$ 个资产 $H$ 个特征组成的 $N \times H$ 矩阵，$b$ 是 $H \times 1$ 的不随时间变化的 SDF 系数。
 
-我们把基于特征的因子表示成 $F_t = Z_t^{\mathsf{T}} R_t^{e}$，则 SDF 可以写成
+我们把基于特征的因子表示成 $F_t = Z_{t-1}^{\mathsf{T}} R_t^{e}$，则 SDF 可以写成
 
 $$
 m_t = 1 - b^{\mathsf{T}}[F_t - \mathrm{E}(F_t)] \\
@@ -378,7 +378,7 @@ $$
 > [!TIP|label:提示]
 > 这里从条件期望 $\mathrm{E}_{t-1}$ 变成没有条件的期望 $\mathrm{E}$，是认为 $Z_{t-1}$ 已经蕴含了条件信息。
 >
-> $F_t = Z_t^{\mathsf{T}} R_t^{e}$ 实际上是 [managed portfolios](papers/characteristics_are_covariances.md#工具变量和-managed-portfolio) 的收益率，本文对 $Z_t$ 做了截面上的 demean，因此这些 managed portfolios 实际上都是多空组合，而 $F_t$ 既是因子也是超额收益率。这个模型的 test assets 就是 $F_t$。
+> $F_t = Z_{t-1}^{\mathsf{T}} R_t^{e}$ 实际上是 [managed portfolios](papers/characteristics_are_covariances.md#工具变量和-managed-portfolio) 的收益率，本文对 $Z_{t-1}$ 做了截面上的 demean，因此这些 managed portfolios 实际上都是多空组合，而 $F_t$ 既是因子也是超额收益率。这个模型的 test assets 就是 $F_t$。
 
 把 SDF 代入约束可得
 
