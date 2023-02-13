@@ -23,7 +23,7 @@ $$
  &= \mathrm{E}_{\pi}(R_t + \gamma G_{t+1} | S_t = s) \\
  &= \mathrm{E}_{\pi}[R_t + \gamma \mathrm{E}_{\pi}(G_{t+1}|S_{t+1})|S_t = s] \\
  &= \mathrm{E}_{\pi}[R_t + \gamma V_{\pi}(S_{t+1})|S_t = s] \\
- &= \sum\limits_{a \in \mathcal{A}} \pi(a|s) \sum\limits_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V_{\pi}\left(s^{\prime} \right) \right] 
+ &= \sum\limits_{a \in \mathcal{A}(s)} \pi(a|s) \sum\limits_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V_{\pi}\left(s^{\prime} \right) \right] 
 \end{aligned}
 $$
 
@@ -39,7 +39,7 @@ $$
     2. 对 $\forall s \in \mathcal{S}$ 循环：
    
         1. $V \leftarrow V^{\prime}(s)$；
-        2. $V^{\prime}(s) \leftarrow \sum\limits_{a \in \mathcal{A}} \pi(a|s) \sum\limits_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
+        2. $V^{\prime}(s) \leftarrow \sum\limits_{a \in \mathcal{A}(s)} \pi(a|s) \sum\limits_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
         3. $\Delta \leftarrow \max \left(\Delta,\ \left\vert V - V^{\prime}(s) \right\vert \right)$；
 
     直到 $\Delta < \theta$。
@@ -63,7 +63,7 @@ $$
 
 1. $\text{is\_policy\_stable} \leftarrow \text{True}$；
 2. $\forall s \in \mathcal{S}$：
-    1. $\pi^{\prime}(s) \leftarrow \underset{a \in \mathcal{A}}{\mathop{\arg\max}} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
+    1. $\pi^{\prime}(s) \leftarrow \underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
     2. 如果 $\pi^{\prime}(s) \neq \pi(s)$：
         1. $\text{is\_policy\_stable} \leftarrow \text{False}$；
 
@@ -82,8 +82,8 @@ $$
 
 $$
 \begin{aligned}
- V^{*}(s) &= \underset{a \in \mathcal{A}}{\max} ~ \mathrm{E}\left[R_t + \gamma V^{*}(S_{t+1}) | S_t = s,\ A_t = a \right] \\
- &= \underset{a \in \mathcal{A}}{\max} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{*}\left(s^{\prime} \right) \right]\\
+ V^{*}(s) &= \underset{a \in \mathcal{A}(s)}{\max} ~ \mathrm{E}\left[R_t + \gamma V^{*}(S_{t+1}) | S_t = s,\ A_t = a \right] \\
+ &= \underset{a \in \mathcal{A}(s)}{\max} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{*}\left(s^{\prime} \right) \right]\\
 \end{aligned}
 $$
 
@@ -97,12 +97,12 @@ $$
     1. $\Delta \leftarrow 0$； 
     2. 对所有 $s \in \mathcal{S}$ 循环：
         1. $V \leftarrow V^{\prime}(s)$
-        2. $V^{\prime}(s) \leftarrow \underset{a \in \mathcal{A}}{\max} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
+        2. $V^{\prime}(s) \leftarrow \underset{a \in \mathcal{A}(s)}{\max} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
         3. $\Delta \leftarrow \max \left(\Delta,\ \left\vert V - V^{\prime}(s) \right\vert \right)$；
 
     直到 $\Delta < \theta$。
 
-3. 输出确定性策略 $\pi(s) = \underset{a \in \mathcal{A}}{\mathop{\arg\max}} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$
+3. 输出确定性策略 $\pi(s) = \underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$
 
 这个确定性策略就是最优策略 $\pi^{*}$ 的贪婪估计。
 

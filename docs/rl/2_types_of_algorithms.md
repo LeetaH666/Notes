@@ -16,20 +16,20 @@
 
 ### 区别
 
-Model-based 算法会对状态转移概率 $p$ 进行建模，并用估计出的 $p$ 直接进行规划或改进策略，还可以利用它学一个价值函数出来（因此 model-based 中既有 policy-based 算法，也有 value-based 算法）；不对 $p$ 进行建模的算法统称 model-free。
+Model-based 算法会对环境机制 $p$ 进行建模，并用估计出的 $p$ 直接进行规划或改进策略，还可以利用它学一个价值函数出来（因此 model-based 中既有 policy-based 算法，也有 value-based 算法）；不对 $p$ 进行建模的算法统称 model-free。
 
 ### 例子
 
 - Model-based：Dyna
 - Model-free：DQN
 
-## Off-Policy VS. On-Policy
+## On-Policy VS. Off-Policy
 
 ### 区别
 
-Off-policy 算法在改进策略时不需要用这个策略来生成样本；而 on-policy 算法每改进一次策略，就需要用新的策略来生成新的样本。
+On-policy 算法生成样本用的策略和做策略提升用的策略是同一个策略；而 off-policy 算法使用不同的策略来生成样本和迭代策略，通常生成样本需要更具探索性的策略，而迭代策略时我们想要找到最优的策略（不一定需要探索性）。由于用到了两个不同的策略，off-policy 算法的波动会比较大，收敛也比较慢，但效果会更强。
 
 ### 例子
 
-- Off-policy：Q-learning
 - On-policy：SARSA
+- Off-policy：Q-learning

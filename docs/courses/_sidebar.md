@@ -1,4 +1,5 @@
 - [博弈论](/courses/game_theory/README.md)
 - [数理金融](/courses/mathematical_finance/README.md)
 - [财务报表分析](/courses/financial_statements_analysis/README.md)
+- [随机分析及其在金融中的应用](/courses/stochastic_calculus/README.md)
 - [Back to Homepage](README.md)
