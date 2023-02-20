@@ -217,3 +217,10 @@ $\mathrm{E}(X|Y)$ 是 $X$ 在 $L^{2}(\Omega,\ \sigma(Y),\ \mathrm{P})$ 上的希
 
 
 Tower property：大筛子和小筛子，谁先谁后都一样，只用小筛子也一样。
+
+## $L^{+}$ 情形
+
+1. If $X \in L^{+} \cap L^{2}$, $Z \in L^{+}$, $Z_n = \min (Z,\ n) \in L^{+} \cap L^{2}$, obviously $Z_n \uparrow Z$, then $\mathrm{E}(X Z_n) = \mathrm{E}[\mathrm{E}(X|\mathcal{G})|Z_n]$. From MCT we know $\mathrm{E}(X Z) = \lim\limits_{n \to \infty} \mathrm{E}(X Z_n) = \mathrm{E}[\mathrm{E}(X|\mathcal{G})|Z]$.
+2. If $X,\ Z \in L^{+}$, $X_n = \min (X,\ n) \in L^{+} \cap L^{2} \uparrow X$, then from MCT we know $\mathrm{E}(X Z) = \lim\limits_{n \to \infty}  \mathrm{E}(X_n Z) = \lim\limits_{n \to \infty} \mathrm{E}[\mathrm{E}(X_n|\mathcal{G})|Z] = \mathrm{E}[\mathrm{E}(X|\mathcal{G})|Z]$.
+3. $X_1 \geqslant X_2 \geqslant 0$.
+4. $X \in L^{+}$, suppose $U$ and $V$ are 2 versions of $\mathrm{E}(X|\mathcal{G})$. W.T.S. $\mathrm{P}(U = V) = 1 \implies $ W.T.S $\mathrm{P}(U \neq V) = 0 \implies$ W.T.S. $\mathrm{P}(U < V) = \mathrm{P}(U > V) = 0$ (symmetric, only consider one side). Let $\Lambda_n = \bigcup_{n=1}^{\infty} \left\{U < V \leqslant n \right\} $

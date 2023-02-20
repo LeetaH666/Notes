@@ -13,7 +13,7 @@
 
 ### 策略评估
 
-策略评估指的是**从任意策略 $\pi$ 得到对应的状态价值函数 $V_{\pi}$**。
+策略评估指的是<strong>从任意策略 $\pi$ 得到对应的状态价值函数 $V_{\pi}$</strong>。
 
 回顾状态价值函数的定义，我们有
 
@@ -66,7 +66,6 @@ $$
     1. $\pi^{\prime}(s) \leftarrow \underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ \sum\limits_{s^{\prime} \in \mathcal{S},\ r \in \mathcal{R}} p\left(s^{\prime},\ r | s,\ a \right) \left[r + \gamma V^{\prime}\left(s^{\prime} \right) \right]$；
     2. 如果 $\pi^{\prime}(s) \neq \pi(s)$：
         1. $\text{is\_policy\_stable} \leftarrow \text{False}$；
-
 3. 如果 $\text{is\_policy\_stable}$，策略迭代停止并输出策略 $\pi^{\prime}$，否则进行策略评估。
 
 这个输出的确定性策略就是最优策略 $\pi^{*}$ 的贪婪估计。

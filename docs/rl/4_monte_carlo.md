@@ -1,6 +1,6 @@
 # 四、蒙特卡洛（Monte Carlo，MC）
 
-蒙特卡洛算法不需要知道环境的机制，只需要智能体不断地与环境交互来产生样本，因此属于 model-free 算法。
+DP 算法需要知道环境机制，而对于复杂问题来说，环境机制通常又是未知的，因此我们需要一些 model-free 的算法，蒙特卡洛算法就是其中之一。MC 不需要知道环境的机制，只需要智能体不断地与环境交互来产生样本，利用产生的样本来得到某些估计。
 
 ## 估计状态价值
 
@@ -42,6 +42,47 @@
 
 **在实践中，每次访问 MC 更常被用到**，因为它不需要每次判断状态是否被访问过，速度更快，且更容易扩展。
 
+### 增量更新与 Constant-α MC
+
+在[首次访问 MC](#首次访问-mc（first-visit-mc）)的算法中，我们每次都对列表中的所有回报进行重新平均，但其实我们可以用增量更新的办法来替代这一操作。
+
+假设我们有一个回报序列 $G_1,\ G_2,\ \cdots,\ G_{n-1}$，则均值估计为
+
+$$
+V_n = \frac{\sum\limits_{k=1}^{n-1} G_k}{n - 1},\quad n \geqslant 2
+$$
+
+> [!TIP|label:提示]
+> 我们要随机初始化一个 $V_1$，因此 $n$ 从 $2$ 开始。
+
+当增加一个回报 $G_n$ 后，我们可以得到更新后的估计 $V_{n+1}$，更新后与更新前的差为
+
+$$
+\begin{aligned}
+ V_{n+1} - V_n &= \frac{\sum\limits_{k=1}^{n} G_k}{n} - V_n \\
+ &= \frac{\sum\limits_{k=1}^{n-1} G_k + G_n - n V_n}{n} \\
+ &= \frac{(n-1) V_n + G_n - n V_n}{n} \\
+ &= \frac{G_n - V_n}{n} \\
+\end{aligned}
+$$
+
+即想要把 $V_n$ 更新到 $V_{n+1}$，只需要让
+
+$$
+V_{n+1} = V_n + \frac{1}{n} (G_n - V_n)
+$$
+
+不难发现，循环的次数越多，更新的步长会越小。对于平稳的环境，这样做是没问题的，但当环境不是平稳的，越来越小的步长并不会得到很好的结果，使用固定的步长才是更好的选择，于是我们有 constant-α MC：
+
+$$
+V_{n+1} = V_n + \alpha (G_n - V_n)
+$$
+
+其中步长 $\alpha \in (0,\ 1]$ 是一个固定的常数。
+
+> [!TIP|label:提示]
+> 使用固定步长意味着我们可以从最近的 episode 中得到更多的更新，比如在股票市场，我们人为地按时间先后分出若干个 episode（时间窗口），离当前越近的 episode 理应更为重要。
+
 ## 估计动作价值
 
 如果我们知道环境机制，那么用状态价值就足以得到一个策略；但**当我们不知道环境机制的时候，只知道状态价值并不能指导我们选择动作，因此估计动作价值更为有效**。
@@ -56,7 +97,10 @@ $$
 \pi^{\prime}(s) = \underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ Q_{\pi}(s,\ a)
 $$
 
-来实现。在这个过程并不需要用到环境机制。
+来实现。这个过程叫做**蒙特卡洛控制**。
+
+> [!NOTE|label:注意]
+> 相比普通的 DP 算法，在蒙特卡洛控制中我们并不需要用到环境机制。
 
 为了保证每个状态-动作对都能被访问，我们需要在这个 GPI 中使用一些保持探索的方法。
 
@@ -69,9 +113,11 @@ $$
 
 如果我们在首次访问 MC 的基础上加上 ES 假设来保证探索，就得到了蒙特卡洛 ES，具体过程如下：
 
+- 参数：循环次数 $n$
+
 1. 随机初始化策略 $\pi$；
 2. $\forall s \in \mathcal{S},\ a \in \mathcal{A}(s)$：随机初始化 $Q(s,\ a) \in \mathbb{R}$，初始化空列表 $\text{returns}(s,\ a)$；
-3. 循环：
+3. 循环 $n$ 次：
     1. 选择初始状态 $s_1 \in \mathcal{S}$ 和初始动作 $a_1 \in \mathcal{A}(s_1)$，使得所有状态-动作对的出现概率非零；
     2. 在 $(s_1,\ a_1)$ 和策略 $\pi$ 下生成一个 episode：$s_1,\ a_1,\ r_1,\ s_2,\ \cdots,\ a_{T},\ r_{T}$；
     3. $G \leftarrow 0$；
@@ -86,15 +132,15 @@ $$
 
 还有一种方法是让初始策略 $\pi$ 在每个状态下选择任一动作概率都非零，然后随着策略提升渐渐地向确定性（贪婪）策略靠拢。
 
-想要让 $\pi(a|s)$ 都非零，那么可以让它大于等于某个比较小的数。设定一个 $\varepsilon > 0$，$\pi(a|s) \geqslant \frac{\varepsilon}{\left\vert \mathcal{A}(s) \right\vert}$ 被称为**ε-soft 策略**。当策略逐渐变得贪婪，只有一个动作会被大概率选择，其他动作只有 $\frac{\varepsilon}{\left\vert \mathcal{A}(s) \right\vert}$ 的概率被选择时，这个策略被称作**ε-贪婪策略**。
+想要让 $\pi(a|s)$ 都非零，那么可以让它大于等于某个比较小的数。设定一个 $\varepsilon > 0$，$\pi(a|s) \geqslant \frac{\varepsilon}{\left\vert \mathcal{A}(s) \right\vert}$ 被称为**ε-软策略（ε-soft policies）**。当策略逐渐变得贪婪，只有一个动作会被大概率选择，其他动作只有 $\frac{\varepsilon}{\left\vert \mathcal{A}(s) \right\vert}$ 的概率被选择时，这个策略被称作**ε-贪婪策略**。
 
 于是我们可以在首次访问 MC 的基础上使用ε-贪婪策略：
 
-- 参数：$\epsilon > 0$
+- 参数：$\epsilon > 0$，循环次数 $n$
 
 1. 随机初始化ε-软策略 $\pi$；
 2. $\forall s \in \mathcal{S},\ a \in \mathcal{A}(s)$：随机初始化 $Q(s,\ a) \in \mathbb{R}$，初始化空列表 $\text{returns}(s,\ a)$；
-3. 循环：
+3. 循环 $n$ 次：
     1. 在策略 $\pi$ 下生成一个 episode：$s_1,\ a_1,\ r_1,\ s_2,\ \cdots,\ a_{T},\ r_{T}$；
     2. $G \leftarrow 0$；
     3. 对 $t = T-1,\ T-2,\ \cdots 1$ 循环：
@@ -171,6 +217,8 @@ $$
 
 其中 $T(t)$ 代表在 $t$ 时刻后第一次遇到的终止时刻。这个估计方法被称为**普通重要性采样（ordinary importance sampling）**。
 
+#### 加权重要性采样（Weighted Importance Sampling）
+
 对于首次访问 MC 来说，**使用普通重要性采样得到的估计依然是无偏的，然而方差会随着目标策略 $\pi$ 与行为策略 $b$ 之间的差距变大而变大**：
 
 $$
@@ -186,7 +234,7 @@ $$
 \end{aligned}
 $$
 
-可以看到，比起目标策略的真实方差，使用普通重要性采样得到的估计方差多了一项重要性采样比，这就导致当两个策略之间差距很大时，估计方差会变得非常大，甚至趋于无穷。人们想要从普通重要性采样中消除重要性采样比对方差的影响，于是有了**加权重要性采样（weighted importance sampling）**：
+可以看到，比起目标策略的真实方差，使用普通重要性采样得到的估计方差多了一项重要性采样比，这就导致当两个策略之间差距很大时，估计方差会变得非常大，甚至趋于无穷。人们想要从普通重要性采样中消除重要性采样比对方差的影响，于是有了**加权重要性采样**：
 
 $$
 V_{\pi}(s) \approx \frac{\sum\limits_{t \in \mathcal{J}(s)} \rho_{t:T(t) - 1} G_t}{\sum\limits_{t \in \mathcal{J}(s)} \rho_{t:T(t) - 1}}
@@ -194,42 +242,21 @@ $$
 
 **尽管加权重要性采样的估计方差小了，但估计变得有偏**。假如我们使用首次访问 MC 来估计，且假设只有一个样本，那么得到的估计值为 $\frac{\rho_{t:T(t) - 1} G_t}{\rho_{t:T(t) - 1}} = G_t$，这个估计值的期望为 $V_b(s)$ 而非 $V_{\pi}(s)$，即估计是有偏的。
 
-当我们真正要实践重要性采样方法时，我们会发现需要用到太多的列表来存储不同状态下的重要性采样比 $\rho_{t:T-1}$ 和回报 $G_t$，最后才一次性得出估计。这样的算法占用内存大，同时也显得十分繁琐，于是我们希望能用一种增量更新的方式来避免用列表存值，即每个 episode 后状态价值都能更新，而不是所有 episode 遍历完才更新。
-
-假设我们有一个回报序列 $G_1,\ G_2,\ \cdots,\ G_{n-1}$ 和一个相对应的重要性采样比序列 $\rho_1,\ \rho_2,\ \cdots,\ \rho_{n-1}$，定义累积权重 $C_{n} := \sum\limits_{k=1}^{n} \rho_k$，则加权重要性采样的估计为
-
-$$
-V_n = \frac{\sum\limits_{k=1}^{n-1} \rho_k G_k}{\sum\limits_{k=1}^{n-1} \rho_k} = \frac{\sum\limits_{k=1}^{n-1} \rho_k G_k}{C_{n-1}},\quad n \geqslant 2
-$$
-
-> [!TIP|label:提示]
-> 我们要随机初始化一个 $V_1$，因此 $n$ 从 $2$ 开始。
-
-当增加一个回报 $G_n$ 和一个重要性采样比 $\rho_n$ 后，我们可以得到更新后的估计 $V_{n+1}$，更新后与更新前的差为
-
-$$
-\begin{aligned}
- V_{n+1} - V_n &= \frac{\sum\limits_{k=1}^{n} \rho_k G_k}{C_n} - V_n \\
- &= \frac{\sum\limits_{k=1}^{n-1} \rho_k G_k + \rho_n G_n - C_n V_n}{C_n} \\
- &= \frac{C_{n-1} V_n + \rho_n G_n - C_n V_n}{C_n} \\
- &= \frac{\rho_n G_n - \rho_n V_n}{C_n} \\
- &= \frac{\rho_n}{C_n} (G_n - V_n) \\
-\end{aligned}
-$$
-
-即想要把 $V_n$ 更新到 $V_{n+1}$，只需要让
+利用[增量更新](#增量更新与-constant-α-mc)的概念，我们可以得到加权重要性采样的增量估计：
 
 $$
 V_{n+1} = V_n + \frac{\rho_n}{C_n} (G_n - V_n)
 $$
 
+其中 $C_{n} := \sum\limits_{k=1}^{n} \rho_k$ 为累积权重。
+
 估计动作价值和估计状态价值的道理是相同的，于是在每次访问 MC 的基础上用加权重要性采样的策略评估算法如下：
 
 - 输入：任意目标策略 $\pi$
+- 参数：循环次数 $n$
 
-1. $\forall s \in \mathcal{S},\ a \in \mathcal{A}(s)$：随机初始化 $Q(s,\ a) \in \mathbb{R}$；
-2. $C(s,\ a) \leftarrow 0$；
-3. 循环：
+1. $\forall s \in \mathcal{S},\ a \in \mathcal{A}(s)$：随机初始化 $Q(s,\ a) \in \mathbb{R}$，$C(s,\ a) \leftarrow 0$；
+2. 循环 $n$ 次：
     1. 选取任意能被 $\pi$ 覆盖的行为策略 $b$；
     2. 在策略 $b$ 下生成一个 episode：$s_1,\ a_1,\ r_1,\ s_2,\ \cdots,\ a_{T},\ r_{T}$；
     3. $G \leftarrow 0$，$\rho \leftarrow 1$；
@@ -239,3 +266,31 @@ $$
             2. $C(s_t,\ a_t) \leftarrow C(s_t,\ a_t) + \rho$；
             3. $Q(s_t,\ a_t) \leftarrow Q(s_t,\ a_t) + \frac{\rho}{C(s_t,\ a_t)}[G - Q(s_t,\ a_t)]$；
             4. $\rho \leftarrow \rho \cdot \frac{\pi(a_t|s_t)}{b(a_t|s_t)}$。
+
+#### Off-Policy 蒙特卡洛控制
+
+通过使用两个不同的策略来分别完成样本生成和策略迭代的任务，重要性采样解决了ε-贪婪策略的两难困境。这时候我们可以用任意的软策略来作为行为策略 $b$，即保持探索，而让目标策略 $\pi$ 变成一个贪婪策略，即希望它收敛到最优策略。完整的 off-policy 蒙特卡洛控制算法如下：
+
+- 参数：循环次数 $n$
+
+1. $\forall s \in \mathcal{S},\ a \in \mathcal{A}(s)$：随机初始化 $Q(s,\ a) \in \mathbb{R}$，$C(s,\ a) \leftarrow 0$，$\pi(s) \leftarrow \underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ Q(s,\ a)$；
+2. 循环 $n$ 次：
+    1. 选取任意软策略 $b$；
+    2. 在策略 $b$ 下生成一个 episode：$s_1,\ a_1,\ r_1,\ s_2,\ \cdots,\ a_{T},\ r_{T}$；
+    3. $G \leftarrow 0$，$\rho \leftarrow 1$；
+    1. 对 $t = T-1,\ T-2,\ \cdots,\ 1$ 循环：
+        1. $G \leftarrow \gamma G + r_{t+1}$；
+        2. $C(s_t,\ a_t) \leftarrow C(s_t,\ a_t) + \rho$；
+        3. $Q(s_t,\ a_t) \leftarrow Q(s_t,\ a_t) + \frac{\rho}{C(s_t,\ a_t)}[G - Q(s_t,\ a_t)]$；
+        4. $\pi(s_t) \leftarrow \underset{a \in \mathcal{A}(s_t)}{\mathop{\arg\max}} ~ Q(s_t,\ a)$；
+        5. 如果 $a_t \neq \pi(s_t)$：
+            1. 结束循环。
+        6. $\rho \leftarrow \rho \cdot \frac{1}{b(a_t|s_t)}$。
+
+> [!NOTE|label:注意]
+> 当 $\underset{a \in \mathcal{A}(s)}{\mathop{\arg\max}} ~ Q(s,\ a)$ 的结果不止一个时，我们随机选取一个。
+
+> [!TIP|label:提示]
+> 上述算法中对重要性采样比 $\rho$ 的更新方式似乎与之前不同（原本是 $\rho \leftarrow \rho \cdot \frac{\pi(a_t|s_t)}{b(a_t|s_t)}$），但其实这是因为我们让 $\pi$ 变成一个贪婪策略，$\pi(a_t|s_t)$ 就是 $1$。
+
+当行为策略 $b$ 比较“软”时，也就是相同状态下给出的动作 $a_t$ 随机性比较强时，算法很容易结束在 episode 中的循环，因为 $\pi(s_t)$ 是确定的。在这种情况下，学习的速率会大大降低，特别是对于那些只在 episode 前面部分（比如 $t = 1,\ 2,\ 3$）出现的状态，由于循环是从后往前的，前面的部分可能很难被循环到，就更难更新了。下一章要介绍的 temporal-difference learning 可以解决这个问题。

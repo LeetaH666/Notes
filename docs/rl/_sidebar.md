@@ -2,5 +2,6 @@
 - [二、算法分类](rl/2_types_of_algorithms.md)
 - [三、动态规划](rl/3_dynamic_programming.md)
 - [四、蒙特卡洛](rl/4_monte_carlo.md)
+- [五、TD Learning](rl/5_td_learning.md)
 - [九、用推断的眼光看待控制问题](rl/9_control_as_inference.md)
 - [Back to Homepage](README.md)
