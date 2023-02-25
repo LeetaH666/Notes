@@ -1,3 +1,87 @@
+/* LM Roman 10 */
+@font-face {
+  font-family: 'LM Roman 10';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./latex_fonts/lmroman10-regular.otf');
+}
+
+@font-face {
+  font-family: 'LM Roman 10';
+  font-style: italic;
+  font-weight: normal;
+  src: url('./latex_fonts/lmroman10-italic.otf');
+}
+
+@font-face {
+  font-family: 'LM Roman 10';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./latex_fonts/lmroman10-bold.otf');
+}
+
+@font-face {
+  font-family: 'LM Roman 10';
+  font-style: italic;
+  font-weight: bold;
+  src: url('./latex_fonts/lmroman10-bolditalic.otf');
+}
+
+/* LM Mono 10 */
+@font-face {
+  font-family: 'LM Mono 10';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./latex_fonts/lmmono10-regular.otf');
+}
+
+@font-face {
+  font-family: 'LM Mono 10';
+  font-style: italic ;
+  font-weight: normal;
+  src: url('./latex_fonts/lmmono10-italic.otf');
+}
+
+/* 思源宋体 */ 
+@font-face {
+  font-family: 'Source Han Serif SC';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./latex_fonts/SourceHanSerifSC-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Source Han Serif SC';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./latex_fonts/SourceHanSerifSC-Bold.otf');
+}
+
+@font-face {
+  font-family: 'SimSum-ExtB';
+  src: url("./latex/simsun.ttc");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+p,
+li {
+  font-family: 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
+}
+
+code {
+  font-family: 'LM Mono 10', 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
 .centertable {
   width: auto;
   display: table;
