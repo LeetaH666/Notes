@@ -1,7 +1,7 @@
 // https://github.com/lxhyl/lxhyl.github.io/tree/master/components/backToTop
 const node = document.createElement('div')
 node.innerHTML = `<div class="lxhyl-to-top init-hide"
-style="position: fixed; width: 40px; height: 40px; background: rgb(66, 185, 131); cursor: pointer; z-index: 1; bottom: 52px; right: 25px; border-radius: 10px; display: block;">
+style="position: fixed; width: 40px; height: 40px; background: #0086b5; cursor: pointer; z-index: 1; bottom: 52px; right: 25px; border-radius: 10px; display: block;">
 <div class="goup-arrow"
   style="width: 0px; height: 0px; margin: 0px auto; padding-top: 13px; border-style: solid; border-width: 0px 10px 10px; border-color: transparent transparent rgb(255, 255, 255);">
 </div>

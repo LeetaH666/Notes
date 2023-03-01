@@ -2,7 +2,7 @@
 
 ![logo](九尾.png)
 
-Hope you can learn something.
+Any fool can know. The point is to understand. &mdash;Albert Einstein
 
 [Github](https://github.com/LeetaH666/Notes)
 [Start Learning](README.md)

@@ -59,7 +59,7 @@
 
 @font-face {
   font-family: 'SimSum-ExtB';
-  src: url("./latex/simsun.ttc");
+  src: url("./latex_fonts/simsun.ttc");
 }
 
 h1,
@@ -78,6 +78,10 @@ code {
   font-family: 'LM Mono 10', 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
 }
 
+strong {
+  font-weight: bolder;
+}
+
 .katex {
   font-size: 1.1em;
 }
@@ -91,4 +95,25 @@ code {
 
 mark {
   background-color: #f8aba6;
+}
+
+/* flexible-alert */
+.alert.flat.note {
+  background-color: #b0d9df !important;
+  border-color: #b0d9df !important;
+}
+
+.alert.flat.tip {
+  background-color: #cbddc8 !important;
+  border-color: #cbddc8 !important;
+}
+
+.alert.flat.warning {
+  background-color: #ffbdaa !important;
+  border-color: #ffbdaa !important;
+}
+
+.alert.flat.attention {
+  background-color: #ffbdaa !important;
+  border-color: #ffbdaa !important;
 }
