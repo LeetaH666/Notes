@@ -136,7 +136,7 @@ $$
 当 $X \in L^{1}$，任意 convex 函数 $\phi$ 都有
 
 $$
-\mathrm{E}[\phi(X)] \geqslant \phi[\mathrm{E}(x)]
+\mathrm{E}[\phi(X)] \geqslant \phi[\mathrm{E}(X)]
 $$
 
 ### Young 不等式

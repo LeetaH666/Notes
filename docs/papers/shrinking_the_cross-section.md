@@ -317,7 +317,7 @@ $$
 \implies \frac{\sigma(m)}{\mathrm{E}(m)} \geqslant \left\vert \frac{\mathrm{E}\left(R^{e} \right)}{\sigma\left(R^{e} \right)} \right\vert 
 $$
 
-这就是著名的 **Hansen-Jagannathan 边界**（Hansen 和 Jagannathan，1991），简称 HJ 边界。
+这就是著名的 **Hansen-Jagannathan 边界**（Hansen 和 Jagannathan，1991），简称 HJ 边界。任何一个**能够满足定价条件的** SDF，方差都应该大于 HJ 边界。
 
 资产定价领域的研究通常是为了找到一个接近真实 SDF 的 SDF，那么怎样算是接近呢？我们需要一个衡量 SDF 之间距离的工具。
 
@@ -355,7 +355,7 @@ $$
 
 ### SDF 系数与 PCA
 
-资产定价领域很多研究都是用两步法回归得到因子的风险溢价，从而检验因子是否有效。然而，想要让因子有显著的风险溢价非常简单，只需要这个因子与构成 SDF 的因子相关即可，并不需要这个因子是 SDF 的组成部分。相比之下，更为合理的检验因子有效程度的方式应当是求出因子在构建 SDF 时占的权重。这样的话，即使一个因子有显著的风险溢价，它在 SDF 的构成当中可能权重趋近于 $0$。
+资产定价领域很多研究都是用两步法回归得到因子的风险溢价，从而检验因子是否有效。然而，**想要让因子有显著的风险溢价非常简单，只需要这个因子与构成 SDF 的因子相关即可，并不需要这个因子是 SDF 的组成部分**。相比之下，更为合理的检验因子有效程度的方式应当是求出因子在构建 SDF 时占的权重。这样的话，<strong>即使一个因子有显著的风险溢价，它在 SDF 的构成当中可能权重趋近于 $0$</strong>。
 
 在任意时刻 $t$，SDF $m_t$ 可以由 $N$ 个股票的超额收益率向量 $R_t^{e}$ 线性构成：
 
@@ -496,7 +496,7 @@ $$
 
 则 $\mathrm{E}\left(b^{\mathsf{T}} b \right) = \frac{\kappa^{2}}{\tau} \sum\limits_{i=1}^{H} d_i^{\eta - 2}$，想要保证有界需要 $\eta - 2 \geqslant 0$，即 $\eta \geqslant 2$。因此作者选取了 $\eta = 2$ 作为先验分布的参数。
 
-假设似然函数也是多元正态分布，由于正态分布关于均值的[共轭先验](#先验分布后验分布与共轭分布)也是正态分布，我们得到 $\mu$ 的后验均值为
+假设似然函数也是多元正态分布，由于正态分布关于均值的[共轭先验](#先验分布、后验分布与共轭分布)也是正态分布，我们得到 $\mu$ 的后验均值为
 
 $$
 \hat{\mu} = \left(\frac{\tau}{\kappa^{2}} \Sigma^{-2} + T \Sigma^{-1} \right)^{-1} \left(0 + T \Sigma^{-1} \overline{\mu} \right) = \left(\frac{\tau}{\kappa^{2} T} I + \Sigma \right)^{-1} \Sigma \overline{\mu}
@@ -530,7 +530,7 @@ $$
 > b = -\left(2 \Sigma^{2} + 2 \gamma \Sigma \right)^{-1} \left(-2 \Sigma \overline{\mu} \right) = (\Sigma + \gamma I)^{-1} \overline{\mu}
 > $$
 
-同样也等价于解
+解上式同样也等价于解
 
 $$
 \underset{b}{\mathop{\arg\min}} ~ \left(\overline{\mu} - \Sigma b \right)^{\mathsf{T}} \Sigma^{-1} \left(\overline{\mu} - \Sigma b \right) + \gamma b^{\mathsf{T}} b
@@ -540,6 +540,14 @@ $$
 
 > [!TIP|label:提示]
 > $L^{2}$ 正则的作用是让一些参数的值趋近于 $0$，这也是“压缩（shrinkage）”的由来。而上面我们已经证明了，主成分对应的特征值越小，压缩力度越大。
+>
+> 如果回归系数的先验分布是同方差的，那么贝叶斯估计的等价目标函数是 MSE 加 $L^{2}$ 正则，也就是岭回归。我们可以把上述目标函数变形：
+> 
+> $$
+> \underset{b}{\mathop{\arg\min}} ~ \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right)^{\mathsf{T}} \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right) + \gamma b^{\mathsf{T}} b
+> $$
+> 
+> 就是将 $\Sigma^{-\frac{1}{2}} \overline{\mu}$ 岭回归到 $\Sigma^{\frac{1}{2}}$ 上。那么这其实是对原先的因变量 $\overline{\mu}$ 和自变量 $\Sigma$ 同时做了线性变换，目的就是让回归系数 $b$ 先验满足同方差的假定。
 
 有了 $L^{2}$ 正则，借鉴 elastic net 的想法，我们可以再加入 $L^{1}$ 正则来提供一些稀疏性。则目标函数变成
 
