@@ -2,3 +2,6 @@
     - [Markdown Preview Enhanced for VSCode](https://leetah666.github.io/Notes/mpe_guide)
     - [Markdown for Docsify](https://docsify.js.org/#/)
     - [Docsify Issues](docsify_issues.md)
+
+- Related links
+    - [He's Notes](https://hbs2000.github.io/Gpaper/#/)
