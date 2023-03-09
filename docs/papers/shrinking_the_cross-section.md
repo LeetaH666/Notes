@@ -445,6 +445,117 @@ $$
 
 即后验分布也是正态分布。因此正态分布（似然函数）关于均值（参数）的共轭先验为正态分布。
 
+### OLS、岭回归和 Lasso 回归
+
+#### OLS
+
+说到回归问题，我们最常见的就是 **OLS（Ordinary Least Squares，普通最小二乘法）**。假设有 $N$ 组观测值，我们研究因变量 $Y$ 与自变量 $X = (X_1,\ X_2,\ \cdots,\ X_{K})$ 之间的线性关系，那么可以写出以下模型：
+
+$$
+Y = X b + \epsilon
+$$
+
+其中 $Y$ 为 $N \times 1$ 的向量，$X$ 为 $N \times K$ 的矩阵，$b$ 为 $K \times 1$ 的系数向量，$\epsilon$ 为 $N \times 1$ 的噪声向量。
+
+最小化残差平方和让我们得到 OLS 估计量
+
+$$
+\hat{b}_{\text{OLS}} = \underset{b}{\mathop{\arg\min}} ~ (Y - X b)^{\mathsf{T}} (Y - X b) = \left(X^{\mathsf{T}} X \right) ^{-1} X^{\mathsf{T}} Y
+$$
+
+如果我们假设模型服从**高斯-马尔可夫假设**，即
+
+1. 参数线性：因变量是自变量的线性函数；
+2. 随机抽样：样本是随机抽样得到的；
+3. 无完全共线性：自变量之间不存在完全共线性；
+4. 零条件均值：噪声在给定观测值下的条件期望为0；
+5. 同方差：噪声在给定观测值下的条件方差相同。
+
+那么 $\hat{b}_{\text{OLS}}$ 是**最优线性无偏估计量（Best Linear Unbiased Estimator，BLUE）**。
+
+而如果我们对噪声添加**正态假设**，即假设 $\epsilon \overset{\text{i.i.d.}}{\sim} N(0,\ \sigma^{2})$，则此时 **OLS 估计与极大似然估计相同，而极大似然估计即使在非线性情况下也是最小方差且无偏的**。
+
+然而 OLS 估计量并非在所有情况下都适用。我们定义误差的平方距离为 $L^{2} = (\hat{b}_{\text{OLS}} - b)^{\mathsf{T}} (\hat{b}_{\text{OLS}} - b)$，则误差距离的期望和方差分别为
+
+$$
+\mathrm{E}(L^{2}) = \sigma^{2} \cdot \text{trace}[(X^{\mathsf{T}} X)^{-1}]
+$$
+
+$$
+\mathrm{Var}(L^{2}) = 2 \sigma^{4} \cdot \text{trace}[(X^{\mathsf{T}} X)^{-2}]
+$$
+
+这意味着**一旦 $X^{\mathsf{T}} X$ 的特征值中有很小的数，误差距离的期望和方差都会变得非常大**（Hoerl 和 Kennard，2000）。
+
+> [!NOTE|label:注意]
+> 以上讨论 $X^{\mathsf{T}} X$ 都是在处理成相关性矩阵后的讨论，因此尺度并不影响结果，下同。
+
+#### 岭回归
+
+岭回归（ridge regression）的估计量具有如下形式：
+
+$$
+\begin{aligned}
+ \hat{b}_{\text{ridge}} &= \underset{b}{\mathop{\arg\min}} ~ (Y - X b)^{\mathsf{T}} (Y - X b) + \gamma b^{\mathsf{T}} b \\
+ &= \left(X^{\mathsf{T}} X + \gamma I \right) ^{-1} X^{\mathsf{T}} Y \\
+ &= \left[I + \gamma (X^{\mathsf{T}} X)^{-1} \right] ^{-1} \hat{b}_{\text{OLS}} \\
+ &= Z \hat{b}_{\text{OLS}} \\
+\end{aligned}
+$$
+
+其中 $\gamma > 0$ 为某一常数，代表正则化的力度，$I$ 为单位矩阵，$Z := \left[I + \gamma (X^{\mathsf{T}} X)^{-1} \right] ^{-1}$。
+
+直观来讲，**如果 $X^{\mathsf{T}} X = I$，那么 OLS 估计的误差距离是最小的，因此岭回归是希望 $X^{\mathsf{T}} X$ 往单位矩阵上靠，以此缩小误差距离**。严格来讲，岭回归估计的误差距离期望为
+
+$$
+\mathrm{E}[L^{2}(\gamma)] = L_1^{2}(\gamma) + L_2^{2}(\gamma)
+$$
+
+其中
+
+$$
+\begin{aligned}
+ L_1^{2}(\gamma) :&= \mathrm{E}[(\hat{b}_{\text{ridge}} - Z b)^{\mathsf{T}} (\hat{b}_{\text{ridge}} - Z b)]\\
+ &= \sigma^{2} \sum\limits_{i = 1}^{K} \frac{\lambda_i}{(\lambda_i + \gamma)^{2}}
+\end{aligned}
+$$
+
+为岭回归估计量与有偏真实值之间的平方距离，$\lambda_i$ 为 $X^{\mathsf{T}} X$ 第 $i$ 个特征值；
+
+$$
+\begin{aligned}
+ L_2^{2}(\gamma) :&= (Z b - b)^{\mathsf{T}} (Zb - b) \\
+ &= \gamma^{2} b^{\mathsf{T}} (X^{\mathsf{T}} X + \gamma I)^{-2} b \\
+\end{aligned}
+$$
+
+为有偏真实值与无偏真实值之间的平方距离。随着正则系数 $\gamma$ 的增大，$L_1^{2}(\gamma)$ 减小而 $L_2^{2}(\gamma)$ 变大，所以是一个 tradeoff。
+
+从效果上来看，**岭回归会让无效的估计系数变得很小，但不会变成0**。
+
+岭回归的这一操作**等同于对回归系数 $b$ 有一个独立同分布的正态先验**，即 $b \overset{\text{i.i.d.}}{\sim} N(0,\ \frac{\sigma^{2}}{\gamma})$，再根据观测得到贝叶斯后验估计。
+
+#### Lasso 回归
+
+岭回归相当于在 OLS 的目标函数基础上增加了 $L^{2}$ 正则，而 Lasso 回归则是增加了 $L^{1}$ 正则：
+
+$$
+\hat{b}_{\text{Lasso}} = \underset{b}{\mathop{\arg\min}} ~ (Y - X b)^{\mathsf{T}} (Y - X b) + \gamma \sum\limits_{i=1}^{K} \left\vert b_i \right\vert
+$$
+
+其中 $b_i$ 为 $b$ 中的第 $i$ 个元素。
+
+> [!TIP|label:提示]
+> Lasso 回归可以将不重要的系数收敛成0，而岭回归不可以。
+
+将岭回归和 Lasso 回归结合起来，同时做 $L^{2}$ 正则和 $L^{1}$ 正则，我们得到了**弹性网（Elastic-Net）**：
+
+$$
+\hat{b}_{\text{E-Net}} = \underset{b}{\mathop{\arg\min}} ~ (Y - X b)^{\mathsf{T}} (Y - X b) + \gamma_1 b^{\mathsf{T}} b + \gamma_2 \sum\limits_{i=1}^{K} \left\vert b_i \right\vert
+$$
+
+其中常数 $\gamma_1$ 和 $\gamma_2$ 分别控制岭回归和 Lasso 回归的程度。
+
 ## 创新点
 
 ### SDF 系数的压缩估计量
@@ -640,6 +751,8 @@ $$
 ![](image/2022-12-27-17-34-08.png)
 </div align='center'>
 
+其中不加括号的数字代表 $\alpha$，越小越好；加括号的代表对应的 t 值。
+
 可以看到定价效果是 CAPM < FF 6-factor ≈ Char.-sparse < PC-sparse，即对 test assets（因子）做 PCA 再用本文的压缩估计量，效果是最好的。
 
 ## 参考文献
@@ -647,6 +760,8 @@ $$
 Hansen, L. P., & Jagannathan, R. (1991). Implications of Security Market Data for Models of Dynamic Economies. Journal of Political Economy, 99(2), 225–262. https://doi.org/10.1086/261749
 
 Hansen, L. P., & Jagannathan, R. (1997). Assessing Specification Errors in Stochastic Discount Factor Models. The Journal of Finance, 52(2), 557–590. https://doi.org/10.1111/j.1540-6261.1997.tb04813.x
+
+Hoerl, A. E., & Kennard, R. W. (2000). Ridge Regression: Biased Estimation for Nonorthogonal Problems. Technometrics, 42(1), 80–86. https://doi.org/10.1080/00401706.2000.10485983
 
 Kozak, S., Nagel, S., & Santosh, S. (2018). Interpreting Factor Models. The Journal of Finance, 73(3), 1183–1223. https://doi.org/10.1111/jofi.12612
 
