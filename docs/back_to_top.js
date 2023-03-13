@@ -28,8 +28,8 @@ window.onscroll = function () {
   tempTimer = setTimeout(hideShow, 50)
 }
 
- let timer;
- lxhylToTop.onclick = function () {
+let timer;
+lxhylToTop.onclick = function () {
   cancelAnimationFrame(timer);
   timer = requestAnimationFrame(function fn() {
     const oTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -43,3 +43,20 @@ window.onscroll = function () {
     }
   });
 }
+
+// 快捷键 `G + G` 来自 New Bing
+let lastPress = 0;
+// 监听keypress事件
+document.addEventListener("keypress", function(event) {
+  // 如果按的是g键
+  if (event.key === "g") {
+    // 获取当前时间
+    let now = Date.now();
+    // 如果当前时间和上一次按g键的时间差小于500毫秒，就认为是连续按了两次
+    if (now - lastPress < 500) {
+      lxhylToTop.onclick();
+    }
+    // 更新上一次按g键的时间
+    lastPress = now;
+  }
+});
