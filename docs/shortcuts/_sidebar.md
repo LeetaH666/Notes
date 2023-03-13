@@ -2,6 +2,8 @@
 - [Vim](shortcuts/vim_shortcuts.md)
 - [LaTeX](shortcuts/latex_shortcuts.md)
 - [VSCode](shortcuts/vscode_shortcuts.md)
+- [Edge](shortcuts/edge_shortcuts.md)
+- [ReadPaper](shortcuts/readpaper_shortcuts.md)
 - [Windows](shortcuts/win_shortcuts.md)
 - [Tmux](shortcuts/tmux_commands.md)
 - [Back to Homepage](README.md)

@@ -8,9 +8,9 @@
 > [!NOTE|label:注意]
 > mac的默认快捷键大部分是将 `Ctrl` 替换成 `Command`。
 
-- **F1 / Ctrl + Shift + P**: Show All Commands
+- **F1/Ctrl + Shift + P**: Show All Commands
   - 打开命令面板
-- **F2**: Rename Symbol / renameFile
+- **F2**: Rename Symbol/renameFile
   - 重命名（既可以重命名变量，又可以重命名文件）
 
   > [!ATTENTION|label:注意]
@@ -18,9 +18,9 @@
 
 - **F9**: Debug: Toggle Breakpoint
   - 在光标所在行添加或删除断点
-- **Alt + $\bm{\uparrow / \downarrow}$**: Move Line Up/Down
+- **Alt + ↑/↓**: Move Line Up/Down
   - 所在行或选取行与上/下一行交换顺序
-- **Ctrl + $\bm{= / -}$**: View: Zoom In/Out
+- **Ctrl + =/&ndash;**: View: Zoom In/Out
   - 放大/缩小
 - **Ctrl + `**: View: Toggle Terminal
   - 聚焦/隐藏 Terminal
@@ -44,15 +44,15 @@
 
   > [!TIP|label:聚焦文件管理器后的操作]
   > **非 Vim 用户**
-  > - **$\bm{\uparrow / \downarrow}$**: list.focusUp/Down 
+  > - **↑/↓**: list.focusUp/Down 
       - 上移/下移
   > - **Enter**: list.select
       - 打开文件
       - mac默认是`Space`。
   >
-  > - **$\bm{\rightarrow}$ / Space**: list.expand/list.toggleExpand
+  > - **→ / Space**: list.expand/list.toggleExpand
       - 打开文件（相当于把文件向右拖）或者展开文件夹
-  > - **$\bm{\leftarrow}$**: list.collapse
+  > - **←**: list.collapse
       - 收起文件夹
   >
   > **Vim 用户**

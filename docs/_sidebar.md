@@ -1,5 +1,5 @@
 - [Courses in SUSTech](/courses/README.md)
 - [Reinforcement Learning](/rl/README.md)
 - [Papers](/papers/README.md)
-- [Commands and Shortcuts](/shortcuts/README.md)
+- [Commands and Keyboard Shortcuts](/shortcuts/README.md)
 - [CFA](/CFA/README.md)
