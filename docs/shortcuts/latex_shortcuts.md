@@ -66,3 +66,10 @@
 ---
 
 - **Ctrl + Shift + Alt + E**: sympy 简化
+
+---
+
+align 与 alignat 对每一行都自动编号，aligned 不编号，在 equation 中嵌套 split 对整个 split 编号，想要取消某一行编号在对应行添加 `\notag`。
+
+当只用单列对齐时，即只需要一个 `&`，用 align 和用 alignat 是相同的，用 align 更方便因为 alignat 需要额外的参数（对齐列数）；但对于多列对齐，用 alignat 更为美观，不会像 align 一样有额外的空格。
+

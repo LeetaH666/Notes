@@ -35,6 +35,8 @@
 
 - `Ctrl + 1`: View: Focus First Editor Group
   - 聚焦第一个 Editor Group（同理 `Ctrl+2` 即聚焦第二个，以此类推）
+- `Ctrl + P`: Go to File
+  - 打开文件
 - `Ctrl + W`: View: Close Editor
   - 关闭文件
 - `Ctrl + \`: View: Split Editor
@@ -108,8 +110,6 @@
 
 - `Ctrl + K, Ctrl + N`: workbench.action.files.newFile
   - 在当前文件夹下新建文件
-- `Ctrl + K, Ctrl + S`: workbench.action.openSettings
-  - 打开设置
 - `Ctrl + K, Ctrl + T`: Terminal: Create New Terminal
   - 新建一个 Terminal
 - `Ctrl + K, Ctrl + W`: View: Close Primary Side Bar

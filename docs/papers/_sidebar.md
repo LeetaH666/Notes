@@ -4,4 +4,5 @@
 - [Deep Reinforcement Learning amidst Continual Structured Non-Stationarity (Xie et al., 2021)](papers/drl_amidst_continual_structured_nonstationarity.md)
 - [Characteristics are Covariances: A Unified Model of Risk and Return (Kelly et al., 2019)](papers/characteristics_are_covariances.md)
 - [Shrinking the Cross-Section (Kozak et al., 2020)](papers/shrinking_the_cross-section.md)
+- [Bayesian Solutions for the Factor Zoo: We Just Ran Two Quadrillion Models (Bryzgalova et al., 2023)](papers/bayesian_solutions_for_the_factor_zoo.md)
 - [Back to Homepage](README.md)

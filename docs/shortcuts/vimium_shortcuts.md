@@ -1,6 +1,9 @@
 # Vimium C 快捷键
 
-这是 Edge 中的一个扩展。大多快捷键的思路与 [Vim](shortcuts/vim_shortcuts.md) 相同。Chrome 也有类似的扩展。
+这是 Edge 中的一个扩展（任意 Chromium 内核都能用）。大多快捷键的思路与 [Vim](shortcuts/vim_shortcuts.md) 相同。
+
+> [!TIP|label:提示]
+> 如果需要在 PDF 中也使用该扩展，需要从 Chrome 商店安装 `PDF Viewer for Vimium C` 扩展。否则当切换到 PDF 页面，你无法使用 Vvimium C 地快捷键。
 
 ## 与 Vim 相似的快捷键
 
@@ -10,10 +13,6 @@
 - `gg/G`: 滚动到页面顶部/底部
 - `m + 标记`: 创建标记（可以为任意字符），<code>` + 标记</code> 可以移到标记处（只限当前页面）
 - `gt/gT`: 去到下/上一个标签页
-
-    > [!ATTENTION|label:注意]
-    > Edge 中很烦的一点是你的标签页有可能是 PDF，而 PDF 不能识别 Vimium C 的指令。这时就需要用 [Edge](shortcuts/edge_shortcuts.md) 本身的快捷键了。
-
 - `yy`: 复制当前标签页的网址
 - `yi`: 复制当前页面中的图片
 - `p/P`: 在当前页面/新标签页打开剪贴板中的链接
@@ -35,12 +34,15 @@
 - `o/O`: 打开 Vimium 搜索框，可以搜索包括常用网址、当前标签页、历史记录、收藏夹内容，在当前页面/新标签页打开
 - `T`: 打开 Vimium 搜索框，只搜索当前标签页，在新标签页打开
 - `b/B`: 打开 Vimium 搜索框，只搜索收藏夹内容，在当前页面/新标签页打开
+- `gi`: 选择文本框，按 `Tab` 切换不同文本框
+- `yv`: 选择 VISUAL 选区
 - `?`: 打开快捷键帮助
 - `F2`: 取消文本框焦点或恢复聚焦
 
 ## 自定义快捷键（仅供参考）
 
-在 Vimium C 的设置中可以对快捷键进行自定义，在此更改了一些默认的键位。
+在 Vimium C 的设置中可以对快捷键进行自定义，在此更改了一些默认的键位，也映射了一些键位。
 
 - `J/K`: nextTab/previousTab
     - 去到下/上一个标签页
+- `E` → `Esc`
