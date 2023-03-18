@@ -19,7 +19,7 @@
   <!-- Docsify default theme -->
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
 
-  <!-- Katex -->
+  <!-- KaTeX -->
   <!-- latest but not preferable font -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
   <!-- preferable font -->
@@ -102,6 +102,17 @@
         }
       },
 
+      // LaTeX
+      latex: {
+        overflowScroll: false,
+        customOptions: {
+          macros: {
+            "\\E": "\\, \\mathrm{E}",
+            "\\Var": "\\, \\mathrm{Var}",
+          }
+        }
+      },
+
     }
   </script>
 
@@ -110,13 +121,17 @@
   
   <!-- Full text search -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  
+
+  <!-- docsify-latex -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
+
   <!-- Dependencies of docsify-katex (must be front of the CDN files) -->
-  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/marked@4"></script>
+  <!-- <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/marked@4"></script> -->
 
   <!-- CDN files for docsify-katex -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <!-- <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script> -->
   <!-- or <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script> -->
 
   <!-- Flexible alerts -->
