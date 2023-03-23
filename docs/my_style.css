@@ -113,8 +113,14 @@ li {
   font-family: 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
 }
 
+/* 高亮 */
 mark {
   background-color: #f8aba6;
+}
+
+/* 加粗 */
+.markdown-section strong {
+  color: #e3620c;
 }
 
 /* flexible-alert */

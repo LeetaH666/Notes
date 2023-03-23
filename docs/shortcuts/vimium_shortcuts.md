@@ -1,6 +1,6 @@
 # Vimium C 快捷键
 
-这是 Edge 中的一个扩展（任意 Chromium 内核都能用）。大多快捷键的思路与 [Vim](shortcuts/vim_shortcuts.md) 相同。
+Vimium C 是 Edge 中的一个扩展（任意 Chromium 内核都能用）。大多快捷键的思路与 [Vim](shortcuts/vim_shortcuts.md) 相同。
 
 > [!TIP|label:提示]
 > 如果需要在 PDF 中也使用该扩展，需要从 Chrome 商店安装 `PDF Viewer for Vimium C` 扩展。否则当切换到 PDF 页面，你无法使用 Vvimium C 地快捷键。
@@ -23,7 +23,7 @@
     > [!ATTENTION|label:注意]
     > 上面的提示字符是大写，用小写进行操作就行。
 
-- `/`: 在页面内查找，用 `n/N` 查找下/上一个
+- `/`: 在页面内查找，用 `n/N` 查找下/上一个（在 PDF 中没有 `Ctrl + F` 精准，但比它快）
 - `i`: 暂停识别 Vimium 快捷键，按 `Esc` 退出
 - `v/V`: 选择单字/单行进入文字选择模式
 

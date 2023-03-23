@@ -27,3 +27,29 @@
 1. **()** 例子
 2. **（）** 例子
 3. <strong>()</strong>例子
+
+## docsify-latex 与 docsify-katex 语法区别
+
+docsify-latex 不支持对行间公式每一行前加 `>` 而 docsify-katex 支持。
+
+### 例子
+
+```
+> $$
+1 + 1 = 2
+$$
+
+> $$
+> 1 + 1 = 2
+> $$
+```
+
+> $$
+1 + 1 = 2
+$$
+
+> $$
+> 1 + 1 = 2
+> $$
+
+> 以上用 docsify-latex 渲染。
