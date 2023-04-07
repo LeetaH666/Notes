@@ -111,9 +111,8 @@ $$
 > $\lambda = -\alpha \mathrm{E}(m f)$ 说明因子的风险溢价与因子的“价格”呈负相关，因子“价格”越低，风险溢价越高。
 > 
 > 对于均值不为 $0$ 的因子，风险溢价可以写成
-> $$
-> \lambda = -\alpha \mathrm{E}[m(f - \mathrm{E}(f))] = \mathrm{E}(f) - \alpha \mathrm{E}(mf)
-> $$
+> 
+> $$\lambda = -\alpha \mathrm{E}[m(f - \mathrm{E}(f))] = \mathrm{E}(f) - \alpha \mathrm{E}(mf)$$
 
 ---
 
@@ -175,8 +174,8 @@ $$
 
 > [!TIP|label:提示]
 > $$
-> \text{proj}(y|x) := \frac{\mathrm{E}(xy)}{\mathrm{E}\left(x^{2} \right)} x
-> $$
+\text{proj}(y|x) := \frac{\mathrm{E}(xy)}{\mathrm{E}\left(x^{2} \right)} x
+$$
 > 
 > 代表 $y$ 在 $x$ 上的投影，也就是 $y$ 对 $x$ 做无常数项的线性回归所得到的 $y$ 的估计值，$\hat{y}$。
 
@@ -206,26 +205,26 @@ $$
 > 由于 $R^{*}$ 与 $\underline{R}^{e}$ 正交且共同张成回报空间 $\underline{X}$，当存在无风险总收益率 $R_f$ 时，我们有
 >
 > $$
-> 1 = \text{proj}\left(1|R^{*} \right) + \text{proj}\left(1|\underline{R}^{e*} \right)
-> $$
+1 = \text{proj}\left(1|R^{*} \right) + \text{proj}\left(1|\underline{R}^{e*} \right)
+$$
 > 
 > 因此 $R^{e*}$ 也可以表示为 
 > 
 > $$
-> \begin{aligned}
-> R^{e*} &= 1 - \text{proj}\left(1|R^{*} \right) \\
-> &= 1 - \frac{\mathrm{E}\left(R^{*} \right)}{\mathrm{E}\left(R^{*2} \right)} R^{*} \\
-> &= 1 - \frac{\mathrm{E}\left(x^{*} \right) / \mathrm{E}\left(x^{*2} \right)}{\mathrm{E}\left(x^{*2} \right) / \mathrm{E}^{2}\left(x^{*2} \right)} R^{*} \\
-> &= 1 - \mathrm{E}\left(x^{*} \right) R^{*} \\
-> &= 1 - \frac{1}{R_f} R^{*} \\
-> \end{aligned}
-> $$
+\begin{aligned}
+R^{e*} &= 1 - \text{proj}\left(1|R^{*} \right) \\
+&= 1 - \frac{\mathrm{E}\left(R^{*} \right)}{\mathrm{E}\left(R^{*2} \right)} R^{*} \\
+&= 1 - \frac{\mathrm{E}\left(x^{*} \right) / \mathrm{E}\left(x^{*2} \right)}{\mathrm{E}\left(x^{*2} \right) / \mathrm{E}^{2}\left(x^{*2} \right)} R^{*} \\
+&= 1 - \mathrm{E}\left(x^{*} \right) R^{*} \\
+&= 1 - \frac{1}{R_f} R^{*} \\
+\end{aligned}
+$$
 >
 > 当不存在无风险总收益率时，我们只需要把 $1$ 投射到回报空间得到 $\text{proj}(1|\underline{X})$（constant-mimicking portfolio），此时
 >
 > $$
-> R^{e*} = \text{proj}(1|\underline{X}) - \frac{\mathrm{E}\left(R^{*} \right)}{\mathrm{E}\left(R^{*2} \right)} R^{*}
-> $$
+R^{e*} = \text{proj}(1|\underline{X}) - \frac{\mathrm{E}\left(R^{*} \right)}{\mathrm{E}\left(R^{*2} \right)} R^{*}
+$$
 
 于是任意资产的总收益率都可以分解成三个互相正交的收益率：
 
@@ -346,8 +345,8 @@ $$
 > GMM 的基本目标函数是
 > 
 > $$
-> \underset{b}{\min} ~ g^{\mathsf{T}}_{T}(b) W g_{T}(b)
-> $$
+\underset{b}{\min} ~ g^{\mathsf{T}}_{T}(b) W g_{T}(b)
+$$
 > 
 > 其中 $g_{T}$ 为考虑 $T$ 个样本的误差函数，$b$ 为参数，$W$ 为权重矩阵，衡量不同矩条件的重要程度。
 >
@@ -638,8 +637,8 @@ $$
 > 
 > 二次函数 $a x^{2} + b x + c \ (a > 0)$ 的最小值点取在 $x = -\frac{b}{2 a}$ 处，因此上述目标函数的最小值点取在
 > $$
-> b = -\left(2 \Sigma^{2} + 2 \gamma \Sigma \right)^{-1} \left(-2 \Sigma \overline{\mu} \right) = (\Sigma + \gamma I)^{-1} \overline{\mu}
-> $$
+b = -\left(2 \Sigma^{2} + 2 \gamma \Sigma \right)^{-1} \left(-2 \Sigma \overline{\mu} \right) = (\Sigma + \gamma I)^{-1} \overline{\mu}
+$$
 
 解上式同样也等价于解
 
@@ -655,8 +654,8 @@ $$
 > 如果回归系数的先验分布是同方差的，那么贝叶斯估计的等价目标函数是 MSE 加 $L^{2}$ 正则，也就是岭回归。我们可以把上述目标函数变形：
 > 
 > $$
-> \underset{b}{\mathop{\arg\min}} ~ \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right)^{\mathsf{T}} \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right) + \gamma b^{\mathsf{T}} b
-> $$
+\underset{b}{\mathop{\arg\min}} ~ \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right)^{\mathsf{T}} \left(\Sigma^{-\frac{1}{2}}\overline{\mu} -  \Sigma^{\frac{1}{2}} b \right) + \gamma b^{\mathsf{T}} b
+$$
 > 
 > 就是将 $\Sigma^{-\frac{1}{2}} \overline{\mu}$ 岭回归到 $\Sigma^{\frac{1}{2}}$ 上。那么这其实是对原先的因变量 $\overline{\mu}$ 和自变量 $\Sigma$ 同时做了线性变换，目的就是让回归系数 $b$ 先验满足同方差的假定。
 

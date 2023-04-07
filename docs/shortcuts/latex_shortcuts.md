@@ -69,7 +69,10 @@
 
 ---
 
-align 与 alignat 对每一行都自动编号，aligned 不编号，在 equation 中嵌套 split 对整个 split 编号，想要取消某一行编号在对应行添加 `\notag`。
+`align` 与 `alignat` 对每一行都自动编号，`aligned` 不编号，在 `equation` 中嵌套 `split` 对整个 `split` 编号，想要取消某一行编号在对应行添加 `\notag`。
 
-当只用单列对齐时，即只需要一个 `&`，用 align 和用 alignat 是相同的，用 align 更方便因为 alignat 需要额外的参数（对齐列数）；但对于多列对齐，用 alignat 更为美观，不会像 align 一样有额外的空格。
+当只用单列对齐时，即只需要一个 `&`，用 `align` 和用 `alignat` 是相同的，用 `align` 更方便因为 `alignat` 需要额外的参数（对齐列数）；但对于多列对齐，用 `alignat` 更为美观，不会像 `align` 一样有额外的空格。
 
+某些字母用 `\bm` 加粗后，如果下标不加粗，下标与字母之间的距离会过大，可以使用 `\!` 为下标添加负距离。目前已知的字母有：$\bm{C},\ \bm{D},\ \bm{f},\ \bm{I},\ \bm{Y}$。
+
+大写字母和大写希腊字母用 `\widetilde`，小写字母和小写希腊字母用 `\tilde`；对于 bar 和 hat，统一使用 `\overline` 和 `\widehat`，因为 `\overline` 和 `\bar` 的 lineweight 差别很大，`\widehat` 和 `\hat` 在小写字母上差别不大。

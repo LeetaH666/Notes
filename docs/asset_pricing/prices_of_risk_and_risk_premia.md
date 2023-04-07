@@ -12,7 +12,7 @@
 
 ## 设定
 
-假设长度为 $T$ 的时间窗口内有 $K$ 个因子 $\bm{f} = (\bm{f_1},\ \bm{f_2},\ \cdots,\ \bm{f_{T}})^{\top}$，其中 $\bm{f_t} = (f_{1t},\ f_{2t},\ \cdots,\ f_{Kt})^{\top},\ t=1,\ 2,\ \cdots,\ T$。同时，考虑 $N$ 个 test assets（超额收益率）$\bm{R^{e}} = (\bm{R_1^{e}},\ \bm{R_2^{e}},\ \cdots,\ \bm{R_{T}^{e}})^{\top}$，其中 $\bm{R_t^{e}} = (R_{1t}^{e},\ R_{2t}^{e},\ \cdots,\ R_{Nt}^{e})^{\top}$。
+假设长度为 $T$ 的时间窗口内有 $K$ 个因子 $\bm{f} = (\bm{f}_{\! 1},\ \bm{f}_{\! 2},\ \cdots,\ \bm{f}_{\! T})^{\top}$，其中 $\bm{f}_{\! t} = (f_{1t},\ f_{2t},\ \cdots,\ f_{Kt})^{\top},\ t=1,\ 2,\ \cdots,\ T$。同时，考虑 $N$ 个 test assets（超额收益率）$\bm{R}^{e} = (\bm{R}_1^{e},\ \bm{R}_2^{e},\ \cdots,\ \bm{R}_{T}^{e})^{\top}$，其中 $\bm{R}_t^{e} = (R_{1t}^{e},\ R_{2t}^{e},\ \cdots,\ R_{Nt}^{e})^{\top}$。
 
 ### SDF
 
@@ -20,8 +20,8 @@
 
 $$
 \begin{align}
-&m_t = 1 - [\bm{f_t} - \E(\bm{f_t})]^{\top} \bm{b} \label{1} \\
-&\text{s.t.}\quad \E(m_t \bm{R_t^{e}}) = \bm{0_{N}} \label{2}
+&m_t = 1 - [\bm{f}_{\! t} - \E(\bm{f}_{\! t})]^{\top} \bm{b} \label{1} \\
+&\text{s.t.}\quad \E(m_t \bm{R}_t^{e}) = \bm{0}_{N} \label{2}
 \end{align}
 $$
 
@@ -31,11 +31,11 @@ $$
 
 $$
 \begin{align}
-\bm{\mu_{R^{e}}} = \bm{C} \bm{b} \label{3}\\
+\bm{\mu}_{\bm{R}}^{e} = \bm{C} \bm{b} \label{3}\\
 \end{align}
 $$
 
-其中 $\bm{\mu_{R^{e}}} := \E(\bm{R_t^{e}})$，$\bm{C}$ 为 $\bm{R_t^{e}}$ 与 $\bm{f_t}$ 之间的协方差矩阵。
+其中 $\bm{\mu}_{\bm{R}}^{e} := \E(\bm{R}_t^{e})$，$\bm{C}$ 为 $\bm{R}_t^{e}$ 与 $\bm{f}_{\! t}$ 之间的协方差矩阵。
 
 从 $\eqref{3}$ 式我们可以看出，**如果用协方差作为风险的度量，$\bm{b}$ 即每单位风险对应的期望收益率，因此可以被称作因子的风险价格。**
 
@@ -48,7 +48,7 @@ $$
 
 $$
 \begin{equation}
-\bm{\mu_{R^{e}}} = \bm{\beta} \bm{\lambda} \label{4} \\
+\bm{\mu}_{\bm{R}}^{e} = \bm{\beta} \bm{\lambda} \label{4} \\
 \end{equation}
 $$
 
@@ -68,31 +68,31 @@ $$
 
 $$
 \begin{equation}
-\bm{R_t^{e}} = \bm{a} + \bm{\beta} \bm{f_t} + \bm{\epsilon_t} \label{5}\\
+\bm{R}_t^{e} = \bm{a} + \bm{\beta} \bm{f}_{\! t} + \bm{\epsilon}_t \label{5}\\
 \end{equation}
 $$
 
-其中 $\bm{a}$ 为截距项，$\bm{\epsilon_t}$ 为噪声向量。
+其中 $\bm{a}$ 为截距项，$\bm{\epsilon}_t$ 为噪声向量。
 
-因此在 OLS 假设下，$\bm{\beta} = (\bm{f^{\top}} \bm{f})^{-1} \bm{f^{\top}} \bm{R}$。<strong>当我们假设 $\bm{\mu_f} = \bm{0_{K}}$</strong>，风险暴露可以写成更为简洁的形式：
+因此在 OLS 假设下，$\bm{\beta} = (\bm{f}^{\top} \bm{f})^{-1} \bm{f}^{\top} \bm{R}$。<strong>当我们假设 $\bm{\mu}_{\bm{f}} = \bm{0}_{K}$</strong>，风险暴露可以写成更为简洁的形式：
 
 $$
 \begin{equation}
-\bm{\beta} = \bm{\Sigma_f^{-1}} \bm{C} \label{6} \\
+\bm{\beta} = \bm{\Sigma}_{\bm{f}}^{-1} \bm{C} \label{6} \\
 \end{equation}
 $$
 
-其中 $\bm{\Sigma_f}$ 为因子之间的协方差矩阵。
+其中 $\bm{\Sigma}_{\bm{f}}$ 为因子之间的协方差矩阵。
 
 #### 因子的风险溢价
 
-先给出结论：**假设 $\bm{f}$ 中一个因子 $\bm{f_k}$ 是收益率（不是超额收益率），对应的 $\lambda_k$ 就是因子的风险溢价。**
+先给出结论：**假设 $\bm{f}$ 中一个因子 $\bm{f}_{\! k}$ 是收益率（不是超额收益率），对应的 $\lambda_k$ 就是因子的风险溢价。**
 
 对 $\eqref{5}$ 式取期望，我们有
 
 $$
 \begin{equation}
-\bm{\mu_{R^{e}}} = \bm{a} + \bm{\beta} \bm{\mu_f} \label{7}\\
+\bm{\mu}_{\bm{R}}^{e} = \bm{a} + \bm{\beta} \bm{\mu}_{\bm{f}} \label{7}\\
 \end{equation}
 $$
 
@@ -100,27 +100,27 @@ $$
 
 $$
 \begin{equation}
-\bm{R_t^{e}} = \bm{\mu_{R^{e}}} + \bm{\beta} (\bm{f_t} - \bm{\mu_f}) + \bm{\epsilon_t} \label{8}\\
+\bm{R}_t^{e} = \bm{\mu}_{\bm{R}}^{e} + \bm{\beta} (\bm{f}_{\! t} - \bm{\mu}_{\bm{f}}) + \bm{\epsilon}_t \label{8}\\
 \end{equation}
 $$
 
-假设存在无风险收益率 $\bm{R^{f}} = (R_1^{f},\ R_2^{f},\ \cdots,\ R_{T}^{f})^{\top}$，$\bm{f_k} - \bm{R^{f}}$ 也是超额收益率，那么它同样应该被定价：
+假设存在无风险收益率 $\bm{R}^{f} = (R_1^{f},\ R_2^{f},\ \cdots,\ R_{T}^{f})^{\top}$，$\bm{f}_{\! k} - \bm{R}^{f}$ 也是超额收益率，那么它同样应该被定价：
 
 $$
 \begin{equation}
-f_{kt} - R_t^{f} = (\mu_k - R_t^{f}) + \bm{\beta_k} (\bm{f_t} - \bm{\mu_f}) + \epsilon_t \label{9}\\
+f_{kt} - R_t^{f} = (\mu_k - R_t^{f}) + \bm{\beta}_k (\bm{f}_{\! t} - \bm{\mu}_{\bm{f}}) + \epsilon_t \label{9}\\
 \end{equation}
 $$
 
-其中 $\mu_k:= \E(\bm{f_k})$，$\bm{\beta_k}$ 是 $\bm{f_k} - \bm{R^{f}}$ 在不同因子上的风险暴露，是一个 $1 \times K$ 的行向量。
+其中 $\mu_k:= \E(\bm{f}_{\! k})$，$\bm{\beta}_k$ 是 $\bm{f}_{\! k} - \bm{R}^{f}$ 在不同因子上的风险暴露，是一个 $1 \times K$ 的行向量。
 
-$\eqref{9}$ 式成立的条件为：$\bm{f_k} - \bm{R^{f}}$ 在 $\bm{f_k}$ 上的风险暴露 $\beta_{kk} = 1$ 而其他风险暴露为 $0$，这意味着
+$\eqref{9}$ 式成立的条件为：$\bm{f}_{\! k} - \bm{R}^{f}$ 在 $\bm{f}_{\! k}$ 上的风险暴露 $\beta_{kk} = 1$ 而其他风险暴露为 $0$，这意味着
 
 $$
-f_{kt} - R_t^{f} = \beta_{kk} (f_{kt} - R_t^{f}) + \bm{\epsilon_t} \implies \mu_k - \mu_{R^{f}} = \beta_{kk} (\mu_k - \mu_{R^{f}})\\
+f_{kt} - R_t^{f} = \beta_{kk} (f_{kt} - R_t^{f}) + \epsilon_t \implies \mu_k - \mu_{R^{f}} = \beta_{kk} (\mu_k - \mu_{R^{f}})\\
 $$
 
-说明 $\bm{\beta_{k}}$ 在 $\eqref{4}$ 式中的系数 $\lambda_k = \mu_k - \mu_{R^{f}}$，即 $\bm{\lambda}$ 是因子的风险溢价。
+说明 $\bm{\beta}_{k}$ 在 $\eqref{4}$ 式中的系数 $\lambda_k = \mu_k - \mu_{R^{f}}$，即 $\bm{\lambda}$ 是因子的风险溢价。
 
 以上推导都建立在**因子是收益率**的情况下，**当因子不是收益率时，$\bm{\lambda}$ 实际上并不是因子的风险溢价**，只是我们为了方便或者区分风险价格而统称它为风险溢价。
 
@@ -137,17 +137,20 @@ $$
 
 $$
 \begin{equation}
-\bm{\lambda} = \bm{\Sigma_f} \bm{b} \label{10} \\
+\bm{\lambda} = \bm{\Sigma}_{\bm{f}} \bm{b} \label{10} \\
 \end{equation}
 $$
 
-当因子之间是正交的，$\bm{\Sigma_f}$ 是对角阵，对于每个因子 $i$，$\lambda_i = 0$ 当且仅当 $b_i = 0$；当因子之间具有相关性，$\lambda_i$ 可以不为 $ 0$ 即使 $b_i = 0$，即因子 $i$ 的风险溢价可能来自于某个构成 SDF 的因子 $j$。
+当因子之间是正交的，$\bm{\Sigma}_{\bm{f}}$ 是对角阵，对于每个因子 $i$，$\lambda_i = 0$ 当且仅当 $b_i = 0$；当因子之间具有相关性，$\lambda_i$ 可以不为 $ 0$ 即使 $b_i = 0$，即因子 $i$ 的风险溢价可能来自于某个构成 SDF 的因子 $j$。
+
+> [!TIP|label:思考]
+> 当然，同样也可能存在 $\lambda_i = 0$ 但 $b_i \neq 0$ 的情况，只是目前查阅的文献当中没有出现此类情况的说明。如果出现这样的情况意味着什么呢？
 
 $\eqref{10}$ 式还可以被写成
 
 $$
 \begin{align}
-\bm{\lambda} &= \E(\bm{f^{\top}} \bm{f}) \bm{b} = \E[\bm{f^{\top}} (\bm{f} \bm{b})] = - \E(\bm{f^{\top}} \bm{m}) \label{11} \\
+\bm{\lambda} &= \E(\bm{f}^{\top} \bm{f}) \bm{b} = \E[\bm{f}^{\top} (\bm{f} \bm{b})] = - \E(\bm{f}^{\top} \bm{m}) \label{11} \\
 \end{align}
 $$
 
@@ -167,7 +170,7 @@ $$
 \end{equation}
 $$
 
-对于每个因子 $i$，我们有 $\lambda_i = - \Cov(\bm{f_i},\ \bm{m})$，代表将 SDF **单独回归**到因子 $i$ 上的回归系数（和回归系数成比例）。因此**当我们看一个因子的风险溢价是否为 $0$ 时，实际上是在看它是否与 SDF 相关。**
+对于每个因子 $i$，我们有 $\lambda_i = - \Cov(\bm{f}_{\! i},\ \bm{m})$，代表将 SDF **单独回归**到因子 $i$ 上的回归系数（和回归系数成比例）。因此**当我们看一个因子的风险溢价是否为 $0$ 时，实际上是在看它是否与 SDF 相关。**
 
 而从 $\eqref{1}$ 式我们可以看出，$\bm{b}$ 代表着将 SDF **多元回归**到所有因子上的回归系数（和回归系数成比例）。因此**当我们看一个因子的风险价格是否为 $0$ 时，实际上在看有其他因子的情况下是否仍应该囊括这个因子。**
 

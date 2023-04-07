@@ -149,10 +149,7 @@ $$
             1. 将 $G$ 放进 $\text{returns}(s_t,\ a_t)$；
             2. $Q(s_t,\ a_t) \leftarrow \text{average}(\text{returns}(s_t,\ a_t))$；
             3. $a^{*} \leftarrow \underset{a \in \mathcal{A}(s_t)}{\mathop{\arg\max}} ~ Q(s_t,\ a)$；
-            4. $\forall a \in \mathcal{A}(s_t)$：$\pi(a|s_t) \leftarrow \begin{cases}
-                1 - \varepsilon + \frac{\varepsilon}{\left\vert \mathcal{A}(s_t) \right\vert},\ a = a^{*} \\
-                \frac{\varepsilon}{\left\vert \mathcal{A}(s_t) \right\vert},\ a \neq a^{*} \\
-            \end{cases}$。
+            4. $\forall a \in \mathcal{A}(s_t)$：$\pi(a|s_t) \leftarrow \begin{cases} 1 - \varepsilon + \frac{\varepsilon}{\left\vert \mathcal{A}(s_t) \right\vert},\ a = a^{*} \\ \frac{\varepsilon}{\left\vert \mathcal{A}(s_t) \right\vert},\ a \neq a^{*} \\ \end{cases}$。
 
 回顾之前的[策略提升定理](rl/3_dynamic_programming.md#策略提升)，我们现在采用ε-贪婪策略来提升ε-软策略同样满足这个定理的条件：
 
