@@ -342,7 +342,9 @@ $$
 注意到，上述贝叶斯估计等价于最小化 OLS 残差平方和的同时对模型隐含的最大夏普比的平方进行惩罚：
 
 $$
-\underset{b}{\mathop{\arg\min}} ~ \left(\overline{\mu} - \Sigma b \right)^{\top} \left(\overline{\mu} - \Sigma b \right) + \gamma b^{\top} \Sigma b
+\begin{equation}
+\underset{b}{\mathop{\arg\min}} ~ \left(\overline{\mu} - \Sigma b \right)^{\top} \left(\overline{\mu} - \Sigma b \right) + \gamma b^{\top} \Sigma b \label{8}
+\end{equation}
 $$
 
 > [!TIP|label:提示]
@@ -351,10 +353,12 @@ $$
 > 二次函数 $a x^{2} + b x + c \ (a > 0)$ 的最小值点取在 $x = -\frac{b}{2 a}$ 处，因此上述目标函数的最小值点取在
 > $$b = -\left(2 \Sigma^{2} + 2 \gamma \Sigma \right)^{-1} \left(-2 \Sigma \overline{\mu} \right) = (\Sigma + \gamma I)^{-1} \overline{\mu}$$
 
-解上式同样也等价于解
+解 $\eqref{8}$ 式同样也等价于解
 
 $$
+\begin{equation}
 \underset{b}{\mathop{\arg\min}} ~ \left(\overline{\mu} - \Sigma b \right)^{\top} \Sigma^{-1} \left(\overline{\mu} - \Sigma b \right) + \gamma b^{\top} b
+\end{equation}
 $$
 
 即最小化 [HJ 距离](asset_pricing/hj_bound_and_hj_distance.md#hj-距离)的同时做 $L^{2}$ 正则。
@@ -372,12 +376,14 @@ $$
 >
 > $$\underset{b_p}{\mathop{\arg\min}} ~ \left(D^{-\frac{1}{2}}\overline{\mu}_p -  D^{\frac{1}{2}} b_p \right)^{\top} \left(D^{-\frac{1}{2}}\overline{\mu}_p -  D^{\frac{1}{2}} b_p \right) + \gamma b_p^{\top} b_p$$
 >
-> 即对 $\overline{\mu}_{p}$ 做了标准化，变成方差为 $1$ 的变量，同时也变成了主成分组合的夏普比。
+> 即将主成分组合的夏普比做岭回归到主成分组合的标准差上。
 
 有了 $L^{2}$ 正则，借鉴 elastic net 的想法，我们可以再加入 $L^{1}$ 正则来提供一些稀疏性。则目标函数变成
 
 $$
+\begin{equation}
 \underset{b}{\mathop{\arg\min}} ~ \left(\overline{\mu} - \Sigma b \right)^{\top} \Sigma^{-1} \left(\overline{\mu} - \Sigma b \right) + \gamma_1 b^{\top} b + \gamma_2 \sum\limits_{i=1}^{H} \left\vert b_i \right\vert 
+\end{equation}
 $$
 
 其中 $b_i$ 是 $b$ 中第 $i$ 个元素，$\gamma_1$ 和 $\gamma_2$ 为超参，通过 K-fold 交叉验证来找到最优的一组参数。
