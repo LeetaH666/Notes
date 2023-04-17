@@ -80,8 +80,9 @@ a {
   font-family: 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
 }
 
+/* 代码的字体需要用!important强行修改 */
 code {
-  font-family: 'LM Mono 10', 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
+  font-family: 'LM Mono 10', 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB' !important;
 }
 
 /* 标题的 font-size 本身就是以 rem 的形式写的，所以只修改这两个。 */

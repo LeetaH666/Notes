@@ -200,7 +200,7 @@ $$
 2. 循环：依次对 $\bm{\Sigma}_{\bm{Y}},\ \bm{\mu}_{\bm{Y}},\ \bm{\lambda},\ \sigma^{2}$ 采样。
 
 > [!TIP|label:提示]
-> 在抽样得到 $\bm{\mu}_{\bm{Y}}$ 后，作者做了标准化的操作，即将 $\bm{\mu}_{\bm{Y}}$ 中每一个元素都除以对应的标准差，对于 test assets $\bm{R}$ 来说，这一操作相当于把它们的均值变成了夏普比，这与 [Shrinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中对夏普比做岭回归有异曲同工之妙。但在 [Shinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中，对因子（test assets）的均值先验方差为 $\Sigma^{2}$，而本文是 $\Sigma$，在先验上是不同的。
+> 在抽样得到 $\bm{\mu}_{\bm{Y}}$ 后，作者做了标准化的操作，即将 $\bm{\mu}_{\bm{Y}}$ 中每一个元素都除以对应的标准差，对于 test assets $\bm{R}$ 来说，这一操作相当于把它们的均值变成了夏普比，这与 [Shrinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中对夏普比做岭回归有异曲同工之妙。但在 [Shinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中，对因子（test assets）的均值先验方差为 $\Sigma^{2}$，而本文是均匀先验，在先验上是不同的。
 
 > [!NOTE|label:注意]
 > 接下来所有的 $\bm{\mu}_{\bm{Y}}$ 都是经过标准化处理后的。

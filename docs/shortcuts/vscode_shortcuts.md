@@ -116,7 +116,9 @@
   - 关闭侧边栏
 - `Ctrl + K, R`: Remote-SSh: Connect to Host
   - 在新窗口打开远程 SSH
-- `Q, F`: Quick Fix
+- `Ctrl + Q, C`: Notifications: Clear All Notifications
+  - 关闭右下角所有通知
+- `Ctrl + Q, F`: Quick Fix
   - 在问题处选择快速修复
 
 > [!TIP|label:提示]
