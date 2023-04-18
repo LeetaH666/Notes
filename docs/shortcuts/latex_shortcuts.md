@@ -196,7 +196,11 @@ LaTeX 的幻灯片由文档类 beamer 实现，即 `\documentclass{beamer}`。�
 \end{frame}
 ```
 
+> [!TIP|label:提示]
+> 通常 beamer 主题中会通过一些指令插入 shorttitle、shortauthor、shortdate 等，这些内容可以通过对应定义的 option 来指定，比如 `\title[shorttitle]{title}` 就明确了 shorttitle 应该是什么，否则默认 shorttitle = title。
+
 同样地，section 和 subsection 也可以在 beamer 中定义，但需要在 figure 环境外定义。目录的生成也与其他文档类相同，用 `\tableofcontents` 即可。
+
 
 ### 自定义主题
 
@@ -204,7 +208,33 @@ beamer 的主题由四部分构成：内部元素主题 innertheme、外部框�
 
 当然，如果想要制作一个长期使用的自定义模板，最好是自己仿照着写一个。TeXLive 中的 beamer 主题源码在 `C:\texlive\2023\texmf-dist\tex\latex\beamer` 下（如果版本不同或者安装位置不同自行寻找）。
 
-colortheme 中一般会定义调色盘 palette，即事先定义好一些颜色组合，方便后面调用或是在 innertheme 和 outertheme 中调用。
+> [!TIP|label:提示]
+> colortheme 中一般会定义调色盘 palette，即事先定义好一些颜色组合，方便后面调用或是在 innertheme 和 outertheme 中调用。
+
+如果想要把自定义的主题放在其他文件夹，需要在使用主题的文档内写如下代码：
+
+```tex
+\makeatletter
+    \def\beamer@calltheme#1#2#3{%
+        \def\beamer@themelist{#2}
+        \@for\beamer@themename:=\beamer@themelist\do
+        {\usepackage[{#1}]{\beamer@themelocation/#3\beamer@themename}}}
+
+    \def\usefolder#1{
+        \def\beamer@themelocation{#1}
+    }
+    \def\beamer@themelocation{}
+\makeatother
+
+\usefolder{folderName}
+\usetheme{themeName}
+```
+
+上面这段代码指定了主题放置的位置，如果不这么做，直接在 `\usetheme{}` 中使用绝对路径，会导致报错。
+
+> [!TIP|label:提示]
+> `\makeatletter` 指令是对 `@` 进行编码转换，因为在 `.tex` 文件中，`@` 的编码与在 `.sty` 文件中不同；而 `\makeatother` 则是将编码转换回来。
+
 
 ### Logo
 
