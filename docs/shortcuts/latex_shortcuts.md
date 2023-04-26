@@ -83,8 +83,14 @@
     - `\citep{citekey}`：（作者，年份）
 - graphicx：插入图片
     - `\includegraphics[width=1\linewidth]{graphPath}`：插入某张图片，宽度为 1 倍页宽
+- booktabs：三线表
+    - `\toprule`：顶线
+    - `\midrule`：中线
+    - `\bottomrule`：底线
 - ragged2e：提供额外对齐方式
     - `\justifying`：左右对齐
+- calligra：提供 calligra 字体（一种花体），通常在 beamer 最后一页使用 `\Huge\calligra Thanks` 作为结尾
+    - `\calligra`：使用 calligra 字体
 
 ## 标点符号
 
@@ -142,8 +148,13 @@
 
 - `\caption{graphName}`：图注
 
-  > [!TIP|label:提示]
-  > 可以使用 `\usepackage[option]{caption}` 对图注进行一些设置，比如 `[labelfont=bf]` 会加粗图注中的 label。
+    > [!TIP|label:提示]
+    > 可以使用 `\usepackage[option]{caption}` 对图注进行一些设置，比如 `[labelfont=bf]` 会加粗图注中的 label。
+
+- `\begin{minipage}...\end{minipage}%`：minipage 环境，可以实现左右布局
+
+    > [!NOTE|label:注意]
+    > 一定要加 `%`，否则会因换行而导致依旧是垂直布局。
 
 ## 定理与证明
 
@@ -154,6 +165,10 @@ amsthm 宏包提供了更细致的定理环境以及证明环境（proof，无�
 ## 文献引用
 
 引用文献需要有文献库，即 `.bib` 文件，用来放置文献信息。如果使用 Zotero 进行文献管理，这个文件可以通过插件 Better BibTeX for Zotero 来导出。而在 VSCode 中进行引用时，扩展 Zotero LaTeX 可以很方便地从 Zotero 中找到对应的 citekey。
+
+## 计数器
+
+LaTeX 的自动编号是由计数器来实现的，可以对计数器进行修改而达到重新标号或从某值开始编号的目的。比如，`\setcounter{enumi}{3}` 可以让 enumerate 环境中的编号从 4 开始。
 
 ### Better BibTeX 设置
 

@@ -58,7 +58,7 @@ $$
 
 #### GMM
 
-上述截面回归的解通常可以用 <strong>GMM（Generalized Method of Moments，广义矩估计）</strong>得到。一般我们假设协方差矩阵的估计是准确的，且 $\bm{\alpha} = \bm{0}_{N}$，于是对因子的期望和收益率的期望有如下矩条件：
+上述截面回归的解通常可以用 <strong>GMM（Generalized Method of Moments，广义矩估计）</strong>得到。假设 $\bm{\alpha} = \bm{0}_{N}$，我们有如下矩条件：
 
 $$
 \E[\bm{g}_t(\lambda_c,\ \bm{\lambda}_{\bm{f}},\ \bm{\mu}_{\bm{f}})] = \E \begin{bmatrix} \bm{R}_t - \lambda_c \bm{1}_{N} - \bm{R}_t (\bm{f}_{\! t} - \bm{\mu}_{\bm{f}})^{\top} \bm{\lambda}_{\bm{f}} \\ \bm{f}_{\! t} - \bm{\mu}_{\bm{f}} \\\end{bmatrix} = \begin{bmatrix}	\bm{0}_{N} \\	\bm{0}_{K} \\\end{bmatrix}
@@ -107,7 +107,7 @@ $$
 
 假设在 $K$ 个因子中有 $K_1$ 个可交易的因子和 $K_2$ 个不可交易的因子，记 $\bm{f}_{\! t} = \left(\bm{f}_{\! t}^{(1) \top},\ \bm{f}_{\! t}^{(2) \top} \right) ^{\top}$，$\bm{f}_{\! t}^{(1) \top}$ 为可交易的因子，$\bm{f}_{\! t}^{(2) \top}$ 为不可交易的因子。令 $\bm{Y}_{\! t}$ 表示因子和 test assets 收益率的并，由于可交易的因子其实也可以作为 test assets 的收益率，我们不用重复列出，因此 $\bm{Y}_{\! t}^{\top} := \left(\bm{R}_t^{\top},\ \bm{f}_{\! t}^{(2) \top} \right) ^{\top}$ 是一个 $N + K_2$ 维的向量。
 
-> [!TIP|label:思考]
+> [!TIP|label:提示]
 > 将可交易的因子作为 test assets 的收益率，说明这些可交易的因子都是超额收益率。
 
 ### 使用分层贝叶斯估计因子的风险溢价
@@ -126,7 +126,14 @@ $$
 p(\bm{Y} \mid \bm{\mu}_{\bm{Y}},\ \bm{\Sigma}_{\bm{Y}}) \propto \left\vert\bm{\Sigma}_{\bm{Y}}\right\vert^{-\frac{T}{2}} \exp \left\{-\frac{1}{2} \operatorname{tr}\left[\bm{\Sigma}_{\bm{Y}}^{-1} \sum_{t=1}^T \left(\bm{Y}_{\! t} - \bm{\mu}_{\bm{Y}}\right) \left(\bm{Y}_{\! t} - \bm{\mu}_{\bm{Y}}\right)^{\top}\right]\right\}
 $$
 
-从贝叶斯的角度，我们需要对参数有一些先验假设，因此作者使用了一个 NIW（Normal Inverse Wishart）的扩散先验（diffuse prior）$\pi(\bm{\mu}_{\bm{Y}},\ \bm{\Sigma}_{\bm{Y}}) \propto \left\vert \bm{\Sigma}_{\bm{Y}} \right\vert^{-\frac{p+1}{2}} $，在这个先验下的参数后验为
+从贝叶斯的角度，我们需要对参数有一些先验假设，因此作者使用了一个 NIW（Normal Inverse Wishart）的扩散先验（diffuse prior）$\pi(\bm{\mu}_{\bm{Y}},\ \bm{\Sigma}_{\bm{Y}}) \propto \left\vert \bm{\Sigma}_{\bm{Y}} \right\vert^{-\frac{p+1}{2}} $，也就是均值先验为均匀分布，方差先验为逆 Wishart 分布。
+
+> [!TIP|label:提示]
+> 扩散先验又被称为无信息先验（uninformative prior），指分布比较平坦的先验。均匀分布是最简单的扩散先验，NIW 也可以作为扩散先验。
+> 
+> 不对方差使用均匀先验是因为方差矩阵本身就具有结构&mdash;对称且元素非负，Wishart 分布正是定义在对称且非负定的随机矩阵上，而逆 Wishart 分布又是正态分布关于方差的[共轭分布](/papers/shrinking_the_cross-section.md#先验分布、后验分布与共轭分布)，因此对方差采用逆 Wishart 分布的先验。
+
+在这个先验下的参数后验为
 
 $$
 \bm{\mu}_{\bm{Y}} \mid \bm{\Sigma}_{\bm{Y}},\ \bm{Y} \sim \mathcal{N}(\bm{\widehat{\mu}}_{\bm{Y}},\ \bm{\Sigma}_{\bm{Y}} / T)
@@ -137,9 +144,6 @@ $$
 $$
 
 其中 $\bm{\widehat{\mu}}_{\bm{Y}} := \frac{1}{T} \sum\limits_{t=1}^{T} \bm{Y}_{\! t}$，$\mathcal{W}^{-1}$ 为逆 Wishart 分布。
-
-> [!TIP|label:提示]
-> 扩散先验又被称为无信息先验（uninformative prior），指分布比较平坦的先验。均匀分布是最简单的扩散先验，NIW 也可以作为扩散先验。这里使用 NIW 是因为**对于服从多元正态的似然函数，NIW 是[共轭](/papers/shrinking_the_cross-section.md#先验分布、后验分布与共轭分布)的**。注意到这个扩散先验只与 $\bm{\Sigma}_{\bm{Y}}$ 有关，说明我们**对 $\bm{\mu}_{\bm{Y}}$ 的先验是一个均匀分布**。
 
 通过时序贝叶斯，我们可以根据观测到的 $\bm{Y}_{\! t}$ 去构建 $\bm{\Sigma}_{\bm{Y}}$ 的后验分布，从而从分布中抽样得到 $\bm{\Sigma}_{\bm{Y}}$，而抽样得到 $\bm{\Sigma}_{\bm{Y}}$ 后我们又可以得到 $\bm{\mu}_{\bm{Y}}$ 的后验分布，从而从分布中抽样得到 $\bm{\mu}_{\bm{Y}}$。于是 $\bm{\mu}_{\bm{Y}}$ 和 $\bm{\Sigma}_{\bm{Y}}$ 都可以“观测”到了：
 
@@ -200,7 +204,7 @@ $$
 2. 循环：依次对 $\bm{\Sigma}_{\bm{Y}},\ \bm{\mu}_{\bm{Y}},\ \bm{\lambda},\ \sigma^{2}$ 采样。
 
 > [!TIP|label:提示]
-> 在抽样得到 $\bm{\mu}_{\bm{Y}}$ 后，作者做了标准化的操作，即将 $\bm{\mu}_{\bm{Y}}$ 中每一个元素都除以对应的标准差，对于 test assets $\bm{R}$ 来说，这一操作相当于把它们的均值变成了夏普比，这与 [Shrinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中对夏普比做岭回归有异曲同工之妙。但在 [Shinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中，对因子（test assets）的均值先验方差为 $\Sigma^{2}$，而本文是均匀先验，在先验上是不同的。
+> 在抽样得到 $\bm{\mu}_{\bm{Y}}$ 后，作者做了标准化的操作，即将 $\bm{\mu}_{\bm{Y}}$ 中每一个元素都除以对应的标准差，对于 test assets $\bm{R}$ 来说，这一操作相当于把它们的均值变成了夏普比。在 [Shrinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中也有类似的操作（对夏普比做岭回归），但在 Shinking the cross-section 中，对 test assets 的均值先验方差为 $\bm{\Sigma}^{2}$，后验方差不为 $\bm{\Sigma}$ 的倍数，因此处理成夏普比时并不等同于做标准化的操作，而是为了让风险价格独立同分布；而本文是均匀先验，后验方差为 $\bm{\Sigma} / T$，因此做标准化恰好可以得到夏普比。
 
 > [!NOTE|label:注意]
 > 接下来所有的 $\bm{\mu}_{\bm{Y}}$ 都是经过标准化处理后的。
@@ -377,43 +381,6 @@ $$
 \text{SSR} = (\bm{\mu}_{\bm{R}} - \bm{C} \bm{\lambda})^{\top} (\bm{\mu}_{\bm{R}} - \bm{C} \bm{\lambda}) + \bm{\lambda}^{\top} \bm{D} \bm{\lambda}
 \end{equation}
 $$
-
-<!-- <details>
-<summary>计算细节</summary>
-
-$\bm{\lambda}_{\bm{\gamma}}$ 的后验为
-
-$$
-\begin{aligned}
-p(\bm{\lambda} \mid \text{data},\ \sigma^{2},\ \bm{\gamma}) &\propto p(\text{data} \mid \bm{\lambda},\ \sigma^{2},\ \bm{\gamma}) \pi(\bm{\lambda} \mid \sigma^{2},\ \bm{\gamma}) \\
-&\propto (2 \pi)^{-\frac{p_{\bm{\gamma}}}{2}} \left\vert \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}} (\sigma^{2})^{-\frac{N + p_{\bm{\gamma}}}{2}} e^{-\frac{1}{2 \sigma^{2}}\left[(\bm{\mu}_{\bm{R}} - \bm{C}_{\! \bm{\gamma}})^{\top} (\bm{\mu}_{\bm{R}} - \bm{C}_{\! \bm{\gamma}}) + \bm{\lambda}_{\bm{\gamma}}^{\top} \bm{D}_{\! \bm{\gamma}}\bm{\lambda}_{\bm{\gamma}} \right] }  \\
-&= (2 \pi)^{-\frac{p_{\bm{\gamma}}}{2}} \left\vert \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}} (\sigma^{2})^{-\frac{N + p_{\bm{\gamma}}}{2}} e^{-\frac{(\bm{\lambda}_{\bm{\gamma}} - \bm{\widehat{\lambda}}_{\bm{\gamma}})^{\top} (\bm{C}_{\! \bm{\gamma}}^{\top}\bm{C}_{\! \bm{\gamma}} + \bm{D}_{\! \bm{\gamma}}) (\bm{\lambda}_{\bm{\gamma}} - \bm{\widehat{\lambda}}_{\bm{\gamma}})}{2 \sigma^{2}}} e^{-\frac{\text{SSR}_{\bm{\gamma}}}{2 \sigma^{2}}} \\
-\end{aligned}
-$$
-
-$\sigma^{2}$ 的后验为
-
-$$
-\begin{aligned}
-p(\sigma^{2} \mid \text{data},\ \bm{\gamma}) &\propto p(\text{data} \mid \sigma^{2},\ \bm{\gamma}) \pi(\sigma^{2}) \\ 
-&= \int p(\text{data} \mid \bm{\lambda},\ \sigma^{2},\ \bm{\gamma}) \pi(\bm{\lambda} \mid \sigma^{2},\ \bm{\gamma}) ~ \mathrm{d} \bm{\lambda} \cdot \pi(\sigma^{2}) \\
-&\propto (\sigma^{2})^{-\frac{N}{2}} \frac{\left\vert \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}} e^{-\frac{\text{SSR}_{\bm{\gamma}}}{2 \sigma^{2}}}}{\left\vert \bm{C}_{\! \bm{\gamma}}^{\top} \bm{C}_{\! \bm{\gamma}} + \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}}} \cdot \sigma^{-2} \\
-&\propto (\sigma^{2})^{-\frac{N}{2}-1} e^{-\frac{\text{SSR}_{\bm{\gamma}}}{2 \sigma^{2}}} \\
-\end{aligned}
-$$
-
-$\bm{\gamma}$ 的后验为
-
-$$
-\begin{aligned}
-p(\bm{\gamma} \mid \text{data}) &\propto p(\text{data} \mid \bm{\gamma}) \\
-&= \int p(\text{data} \mid \sigma^{2},\ \bm{\gamma}) \pi(\sigma^{2}) ~ \mathrm{d} \sigma^{2} \\
-&\propto \frac{\left\vert \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}}}{\left\vert \bm{C}_{\! \bm{\gamma}}^{\top} \bm{C}_{\! \bm{\gamma}} + \bm{D}_{\! \bm{\gamma}} \right\vert^{\frac{1}{2}}} \frac{1}{\left(\frac{\text{SSR}_{\bm{\gamma}}}{2} \right) ^{\frac{N}{2}}}
-\end{aligned}
-$$
-</details>
-
-> 看 A.6 后验推导更新计算细节！ -->
 
 **当因子 $j$ 与 test assets 的相关性弱（弱因子），$\psi_j \to 0$，$\bm{D}$ 对应的对角线元素 $r(\gamma_j)\psi_j ^{-1}$ 趋于无穷，那么 $(\bm{C}^{\top} \bm{C} + \bm{D})^{-1}$ 中的对应元素就会趋于 $0$，这样我们得到的 $\lambda_j$ 的后验均值 $\widehat{\lambda}_{j}$ 就趋于 $0$。而对于比较强的因子，$\bm{D}$ 的存在也为风险价格的估计提供了 shrinkage。**
 
