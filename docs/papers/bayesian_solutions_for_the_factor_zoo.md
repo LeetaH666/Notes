@@ -58,7 +58,7 @@ $$
 
 #### GMM
 
-上述截面回归的解通常可以用 <strong>GMM（Generalized Method of Moments，广义矩估计）</strong>得到。假设 $\bm{\alpha} = \bm{0}_{N}$，我们有如下矩条件：
+上述截面回归的解通常可以用 <strong>GMM（Generalized Method of Moments，广义矩估计）</strong>得到。假设 $\E(\bm{\alpha}) = \bm{0}_{N}$，我们有如下矩条件：
 
 $$
 \E[\bm{g}_t(\lambda_c,\ \bm{\lambda}_{\bm{f}},\ \bm{\mu}_{\bm{f}})] = \E \begin{bmatrix} \bm{R}_t - \lambda_c \bm{1}_{N} - \bm{R}_t (\bm{f}_{\! t} - \bm{\mu}_{\bm{f}})^{\top} \bm{\lambda}_{\bm{f}} \\ \bm{f}_{\! t} - \bm{\mu}_{\bm{f}} \\\end{bmatrix} = \begin{bmatrix}	\bm{0}_{N} \\	\bm{0}_{K} \\\end{bmatrix}
@@ -91,7 +91,7 @@ $$
 由 GMM 目标函数 $\eqref{5}$ 解出来的估计分别为
 
 $$
-\bm{\widehat{\lambda}}_{\text{OLS}} = \left(\bm{\widehat{C}}^{\top} \bm{\widehat{C}} \right) \bm{\widehat{C}}^{\top} \bm{\overline{R}},\quad \bm{\widehat{\lambda}}_{\text{GLS}} = \left(\bm{\widehat{C}}^{\top} \bm{\Sigma}_{\bm{R}}^{-1} \bm{\widehat{C}} \right) \bm{\widehat{C}}^{\top} \bm{\Sigma}_{\bm{R}}^{-1} \bm{\overline{R}}
+\bm{\widehat{\lambda}}_{\text{OLS}} = \left(\bm{\widehat{C}}^{\top} \bm{\widehat{C}} \right)^{-1} \bm{\widehat{C}}^{\top} \bm{\overline{R}},\quad \bm{\widehat{\lambda}}_{\text{GLS}} = \left(\bm{\widehat{C}}^{\top} \bm{\Sigma}_{\bm{R}}^{-1} \bm{\widehat{C}} \right)^{-1} \bm{\widehat{C}}^{\top} \bm{\Sigma}_{\bm{R}}^{-1} \bm{\overline{R}}
 $$
 
 <strong>不同的权重矩阵从回归的角度来看其实是不同的误差分布假设。</strong>对于 OLS 来说，我们假设误差服从 iid 的正态分布，也就是 $\bm{\alpha} \sim \mathcal{N}(\bm{0}_{N},\ \sigma^{2}\bm{I}_{\! N})$；而 **GLS 则是考虑了截面上误差的相关性，即假设 $\bm{\alpha} \sim \mathcal{N}(\bm{0}_{N},\ \sigma^{2} \bm{\Sigma}_{\bm{R}})$。**

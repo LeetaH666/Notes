@@ -144,7 +144,7 @@ $$
 当因子之间是正交的，$\bm{\Sigma}_{\bm{f}}$ 是对角阵，对于每个因子 $i$，$\lambda_i = 0$ 当且仅当 $b_i = 0$；当因子之间具有相关性，$\lambda_i$ 可以不为 $ 0$ 即使 $b_i = 0$，即因子 $i$ 的风险溢价可能来自于某个构成 SDF 的因子 $j$。
 
 > [!TIP|label:思考]
-> 当然，同样也可能存在 $\lambda_i = 0$ 但 $b_i \neq 0$ 的情况，只是目前查阅的文献当中没有出现此类情况的说明。如果出现这样的情况意味着什么呢？
+> 当然，同样也可能存在 $\lambda_i = 0$ 但 $b_i \neq 0$ 的情况，比如意淫一个例子：存货周转率因子没有风险溢价，即与 SDF 不相关，但如果控制市值，这个因子又与 SDF 相关了（在大公司和小公司中有相反的效应），这可能导致非 0 的风险价格。目前查阅的文献当中没有出现此类情况的说明，如果出现这样的情况意味着什么呢？
 
 $\eqref{10}$ 式还可以被写成
 
@@ -177,6 +177,9 @@ $$
 > $\lambda_j$ is proportional to the **single regression** coefficient of $m$ on $f_j$. $\lambda_j = 0$ asks the corresponding single regression coefficient question&mdash;"is factor $j$ correlated with the true discount factor?"
 > 
 > $b_j$ is the **multiple regression** coefficient of $m$ on $f_j$ given all the other factors. ... When you want to ask the question, "should I include factor $j$ given the other factors?" you want to ask the multiple regression question. &mdash;Cochrane (2009, p.242)
+
+> [!TIP|label:单变量回归与多元回归的系数区别]
+> 单变量回归是 $\Cov(\bm{f},\ \bm{m})$ 中每个因子的 Cov 除上 $\Var(\bm{f})$ 中的对角线元素；而多元回归是 $\Cov(\bm{f},\ \bm{m})$ 乘上 $[\Var(\bm{f})]^{-1}$，是对所有因子的 Cov 做了不同的线性组合得到不同因子的回归系数。
 
 ## 参考文献
 
