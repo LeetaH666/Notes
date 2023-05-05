@@ -7,5 +7,6 @@
 - [Snipaste](shortcuts/snipaste_shortcuts.md)
 - [ReadPaper](shortcuts/readpaper_shortcuts.md)
 - [Windows](shortcuts/win_shortcuts.md)
+- [Ubuntu](shortcuts/ubuntu_commands.md)
 - [Tmux](shortcuts/tmux_commands.md)
 - [Back to Homepage](README.md)
