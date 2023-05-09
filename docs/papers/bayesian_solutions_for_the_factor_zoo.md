@@ -610,6 +610,12 @@ Shrinking the Cross-Section（Kozak 等，2020）也是通过一个相似的先�
 2. 本文对因子风险价格的先验是正态分布，可以扩展到一些厚尾的分布比如柯西分布；
 3. 可以加入一些时变的参数，但这会让计算复杂度大大提高。
 
+## 可能存在的问题
+
+1. 由于有不可交易因子的存在，风险价格并不能和切点组合的权重联系起来，无法直接指导投资，而 KNS（2020）可以；
+2. 因子和 test assets 收益率是同期的？
+3. 均值 $\bm{\mu}$ 和协方差 $\bm{C}$ 都是抽样得到的，也就是说真实值是抽样得到的，这样计算 R 方是否有点流氓？
+
 ## 参考文献
 
 Daniel, K., Hirshleifer, D., & Sun, L. (2020). Short- and Long-Horizon Behavioral Factors. The Review of Financial Studies, 33(4), 1673–1736. https://doi.org/10.1093/rfs/hhz069
