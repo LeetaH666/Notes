@@ -199,7 +199,7 @@ $$
 \text{Predictive } R^{2} = 1 - \frac{\sum\limits_{t=1}^{T-1} \left(r_{t+1} - Z_t \Gamma_{\beta} \hat{\lambda} \right)^{\mathsf{T}}\left(r_{t+1} - Z_t \Gamma_{\beta} \hat{\lambda} \right)}{\sum\limits_{t=1}^{T-1} r_{t+1}^{2}}
 $$
 
-其中风险价格（risk prices）的估计 $\hat{\lambda} = \sum\limits_{t=1}^{T-1} \hat{f}_{t+1}$ 是因子实现值的样本均值。
+其中风险价格（risk prices）的估计 $\hat{\lambda} = \sum\limits_{\tau=1}^{t-1} \hat{f}_{\tau+1}$ 是因子实现值的样本均值。
 
 ### 结果
 
