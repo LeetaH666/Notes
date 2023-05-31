@@ -65,7 +65,7 @@
 
 记录一些常用包以及对应参数或指令：
 
-- amsmath：只要涉及公式就最好把这个包加上
+- amsmath，amssymb：只要涉及公式就最好把这些包加上
 - amsthm：只要涉及定理和证明就最好把这个包加上
 - indentfirst：让每个 section 后的第一段文字缩进
 - setspace：修改行距
@@ -81,6 +81,8 @@
 
     - `\citet{citekey}`：作者（年份）
     - `\citep{citekey}`：（作者，年份）
+- gbt7714：中文格式引用（国标 GB/T 7714-2015）
+    - `\cite{author1, author2}`：可同时引用多位作者
 - graphicx：插入图片
     - `\includegraphics[width=1\linewidth]{graphPath}`：插入某张图片，宽度为 1 倍页宽
 - booktabs：三线表
