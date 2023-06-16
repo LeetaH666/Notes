@@ -6,6 +6,7 @@
     - [Snipaste](shortcuts/snipaste_shortcuts.md)
     - [Tmux](shortcuts/tmux_commands.md)
     - [VSCode](shortcuts/vscode_shortcuts.md)
+    - [Zotero](shortcuts/zotero_shortcuts.md)
 - Extensions
     - [LaTeX](shortcuts/latex_shortcuts.md)
     - [Vim](shortcuts/vim_shortcuts.md)
