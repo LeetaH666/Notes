@@ -42,9 +42,9 @@ JF2023
 > [!TIP|label:提示]
 > PEAD 在 *Bayesian Solutions for the Factor Zoo*（Bryzgalova 等，2023）中也是后验概率最高的因子。
 >
-> 质量因子中的“质量”其实包括三个维度：盈利性、成长性和安全性，每个维度都由不同的公司特征构成。这个因子相当于一个因子集合体，表现好似乎是应该的？
+> 质量因子中的“质量”其实包括三个维度：盈利性、成长性和安全性，每个维度都由不同的公司特征构成（Asness 等，2019）。这个因子相当于一个因子集合体，表现好似乎是应该的？
 >
-> 中介收益因子中的“中介”用美联储指定的 primary dealer 来做代理，primary dealer 是美联储的交易对手，在货币政策中扮演重要角色。
+> 中介收益因子中的“中介”用美联储指定的 primary dealer 来做代理，primary dealer 是美联储的交易对手，在货币政策中扮演重要角色（He 等，2017）。
 
 > Evidence shows that unconditional models record near-zero probabilities, while postearnings announcement drift, quality-minus-junk, and intermediary capital are potent factors in conditional asset pricing. Out-of-sample, the integrated model performs well, tilting away from subsequently underperforming factors.
 
@@ -53,6 +53,8 @@ JF2023
 1. 模型的不确定性让股票的风险变大；
 2. 模型对期望收益率的预测分歧在市场崩盘的时期激增；
 3. 预测分歧张成了所有收益率的成分，包括：错误定价、因子载荷、风险溢价。
+
+> Model uncertainty makes equities appear considerably riskier, while model disagreement about expected returns spikes during crash episodes. Disagreement spans all return components involving mispricing, factor loadings, and risk premia.
 
 ## 模型的不确定性
 
@@ -80,7 +82,7 @@ $$
 
 $$
 \begin{equation}
-    \bm{f}_{\! t+1} = \bm{\alpha}_f + \bm{a}_F \bm{z}_t + \bm{u}_{f,\ t+1}
+    \bm{f}_{\! t+1} = \bm{\alpha}_f + \bm{a}_F \bm{z}_t + \bm{u}_{f,\ t+1} \label{2}
 \end{equation}
 $$
 
@@ -229,11 +231,14 @@ $$
 
 经验贝叶斯是根据历史数据建立先验的贝叶斯方法。
 
-作者假设在长度为 $T_0$ 的先验样本中，各变量（$\bm{r},\ \bm{f},\ \bm{z}$）自身的期望和协方差矩阵分别等于样本均值和样本协方差，且 $\bm{r}$ 与 $\bm{f}$ 之间的协方差矩阵也等于它们的样本协方差。在这个假设下，对历史数据做 $\eqref{4}$ 式的回归，会得到 $\bm{\widehat{\alpha}}_{0} = \bm{\widehat{\alpha}}_{1} = \bm{\widehat{\beta}}_{1} = 0$。也就是说，本文的先验为：$\bm{\alpha}_{0},\ \bm{\alpha}_{1},\ \bm{\beta}_{1}$ 都在 0 左右徘徊。随着样本长度 $T_0$ 的增加，这个先验还会更紧，也就是这些变量收缩到 0 的力度会更大。
+作者假设在长度为 $T_0$ 的先验样本中，各变量（$\bm{r},\ \bm{f},\ \bm{z}$）自身的期望和协方差矩阵分别等于样本均值和样本协方差，且 $\bm{r}$ 与 $\bm{f}$ 之间的协方差矩阵也等于它们的样本协方差。在这个假设下，对样本数据做 $\eqref{4}$ 式的回归，会得到 $\bm{\widehat{\alpha}}_{0} = \bm{\widehat{\alpha}}_{1} = \bm{\widehat{\beta}}_{1} = 0$。也就是说，本文的先验为：$\bm{\alpha}_{0},\ \bm{\alpha}_{1},\ \bm{\beta}_{1}$ 都在 0 左右徘徊。随着样本长度 $T_0$ 的增加，这个先验还会更紧，也就是这些变量收缩到 0 的力度会更大。
 
-> 为什么？
+> [!TIP|label:提示]
+> 先验样本的长度并不代表真实的样本长度，只是假设在这个长度的样本内满足我们的先验。
 
-> The prior distribution is based on a hypothetical sample of length $T_0$. In that sample, the means and the covariance matrices of stock returns, factors, and predictors are set equal to the actual sample counterparts given by ... The prior sample is also weighted against predictability by macro variables and against mispricing. Thus, on the basis of equation $\eqref{4}$, regressing $\bm{r}_{t}$ on a constant term, $\bm{z}_{t-1}$, $\bm{f}_{t}$, and the interaction terms $\bm{f}_{t} \otimes \bm{z}_{t-1}$ yields zero estimates for $\bm{\alpha}_{0}$, $\bm{\alpha}_{1}$,and $\bm{\beta}_{1}$ in the prior sample. Hence, the prior densities of $\bm{\alpha}_{0}$, $\bm{\alpha}_{1}$,and $\bm{\beta}_{1}$ are centered around zero.
+> 为什么这个假设能推出 $\bm{\widehat{\alpha}}_{0} = \bm{\widehat{\alpha}}_{1} = \bm{\widehat{\beta}}_{1} = 0$？
+
+> The prior distribution is based on a hypothetical sample of length $T_0$. In that sample, the means and the covariance matrices of stock returns, factors, and predictors are set equal to the actual sample counterparts given by ... The prior sample is also weighted against predictability by macro variables and against mispricing. Thus, on the basis of equation $\eqref{4}$, regressing $\bm{r}_{t}$ on a constant term, $\bm{z}_{t-1}$, $\bm{f}_{t}$, and the interaction terms $\bm{f}_{t} \otimes \bm{z}_{t-1}$ yields zero estimates for $\bm{\alpha}_{0}$, $\bm{\alpha}_{1}$,and $\bm{\beta}_{1}$ in the prior sample. Hence, the prior densities of $\bm{\alpha}_{0}$, $\bm{\alpha}_{1}$,and $\bm{\beta}_{1}$ are centered around zero. Moreover, as $T_0$ increases, the informed prior about underlying parameters becomes tighter.
 
 根据这一先验可以计算出不同框架下的边际似然，这里以包含最多变量的 $\mathbb{M}_{4}$ 为例：
 
@@ -252,17 +257,17 @@ $$
 
 #### 确定先验样本长度
 
-要用上面的经验贝叶斯计算边际似然，我们还需要确定用多长的历史数据（$T_0$）。
+要用上面的经验贝叶斯计算边际似然，我们还需要确定先验样本的长度（$T_0$）。
 
 根据[上面](#经验贝叶斯)的先验，我们可以得到定价误差的方差为
 
 $$
 \begin{equation}
-    \Var(\bm{\alpha}(\bm{z}_t) \mid \bm{\Sigma}_{RR},\ D) = \frac{\bm{\Sigma}_{RR}}{T_0} (1 + m) (1 + \text{SR}_{\text{max}}^{2}) \label{10}
+    \Var[\bm{\alpha}(\bm{z}_t) \mid \bm{\Sigma}_{RR},\ D] = \frac{\bm{\Sigma}_{RR}}{T_0} (1 + m) (1 + \text{SR}^{2}(F)) \label{10}
 \end{equation}
 $$
 
-其中 $m$ 是选择的宏观变量个数（$0 < m < M$），$\text{SR}_{\text{max}}^{2} = \bm{\overline{f}}^{\top} \bm{\widehat{V}}_{\! f}^{-1} \bm{\overline{f}}$ 代表用所有因子构建的切点组合的夏普比，即最大夏普比。
+其中 $m$ 是选择的宏观变量个数（$0 < m < M$），$\text{SR}^{2}(F) = \bm{\overline{f}}^{\top} \bm{\widehat{V}}_{\! f}^{-1} \bm{\overline{f}}$ 代表用因子构建的切点组合的夏普比。
 
 > 具体推导见论文。
 
@@ -294,13 +299,13 @@ $$
 
 在本文设定中，由于每个模型选中了 $k$ 个因子后，剩余的 $K - k$ 个“冗余”因子会被归到 test assets 里，所以最大夏普比 $\text{SR}(R,\ F) = \text{SR}_{\text{max}}$ 都是一样的，不一样的是第二项。又因为本文设定所有模型都包含市场因子，最小的 $\text{SR}(F)$ 为 $\text{SR}(\text{Mkt})$，记最大夏普比 $\text{SR}_{\text{max}} = \tau \text{SR}(\text{Mkt})$，比如 $\tau = 1.5$ 就代表我们先验的认为最大夏普比是市场组合夏普比的 $1.5$ 倍。
 
-则 $\eqref{12}$ 式又可以写成
+当 benchmark 是 CAPM 的时候，$\eqref{12}$ 式又可以写成
 
 $$
 \begin{align}
-    \E[\bm{\alpha}^{\top} \bm{\Sigma}_{RR}^{-1} \bm{\alpha}] =& \eta(N + K - k) = (\tau^{2} - 1) \text{SR}^{2}(\text{Mkt}) \notag \\
+    \E[\bm{\alpha}^{\top} \bm{\Sigma}_{RR}^{-1} \bm{\alpha}] &= \eta(N + K - k) = (\tau^{2} - 1) \text{SR}^{2}(\text{Mkt}) \notag \\
     {} \notag \\
-    \implies& \eta = \frac{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})}{N + K - k}
+    \implies& \phantom{=} \eta = \frac{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})}{N + K - k}
 \end{align}
 $$
 
@@ -308,12 +313,12 @@ $$
 
 $$
 \begin{align}
-    \frac{\bm{\Sigma}_{RR}}{T_0} (1 + m) (1 + \text{SR}_{\text{max}}^{2}) &= \frac{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})}{N + K - k} \bm{\Sigma}_{RR} \notag \\
-    T_0 &= \frac{(N + K - k) (1 + m) (1 + \text{SR}_{\text{max}}^{2})}{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})} \label{14} \\
+    \frac{\bm{\Sigma}_{RR}}{T_0} (1 + m) (1 + \text{SR}^{2}(F)) &= \frac{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})}{N + K - k} \bm{\Sigma}_{RR} \notag \\
+    T_0 &= \frac{(N + K - k) (1 + m) (1 + \text{SR}^{2}(F))}{(\tau^{2} - 1) \text{SR}^{2}(\text{Mkt})} \label{14} \\
 \end{align}
 $$
 
-从 $\eqref{14}$ 式可以看出，$T_0$ 与 $m$ 是正相关的，即选择更多的宏观变量就需要更长的先验样本，而在[前面](#经验贝叶斯)我们提过，$T_0$ 越大，先验就越紧，这就说明选择更多的宏观变量会导致时变 α 和 β &mdash; $\bm{\alpha}_{1},\ \bm{\beta}_1$ 收缩到 0 的力度更大（防过拟合）。如果我们设定更高的最大夏普比，即增大 $\tau$，$T_0$ 也会变大，即错误定价 $\bm{\alpha}_{0}$ 和 $\bm{\alpha}_{1}$ 收缩到 0 的力度变大。这跟 $\eqref{9}$ 式的边际似然所体现的 trade-off 有异曲同工之妙，根据 $\eqref{8}$ 式，后验概率正比于边际似然和先验概率，因此最终我们会倾向于给与 CAPM 相似的模型更高的后验概率。
+从 $\eqref{14}$ 式可以看出，$T_0$ 与 $m$ 是正相关的，即选择更多的宏观变量就需要更长的先验样本，而在[前面](#经验贝叶斯)我们提过，$T_0$ 越大，先验就越紧，这就说明选择更多的宏观变量会导致时变 α 和 β &mdash; $\bm{\alpha}_{1},\ \bm{\beta}_1$ 收缩到 0 的力度更大（防过拟合）。同样地，如果可得的最大夏普比 $\text{SR}^{2}(F)$ 增大，$T_0$ 也会增大，说明选择更多的因子会使错误定价 $\bm{\alpha}_{0}$ 和 $\bm{\alpha}_{1}$ 收缩到 0 的力度变大。这跟 $\eqref{9}$ 式的边际似然所体现的对模型复杂度的惩罚有异曲同工之妙，根据 $\eqref{8}$ 式，后验概率正比于边际似然和先验概率，因此最终我们会倾向于给与 CAPM 相似的模型更高的后验概率。
 
 > 这里还没完全看懂。
 
@@ -323,7 +328,7 @@ $$
 
 ### 数据
 
-*Which Alpha?*（Barillas 和 Shanken，2017）认为 test assets 的选取与模型的比较无关，因此作者没有选取除了因子以外的任何 test assets，即 $N = 0$。
+<i>Which Alpha?</i>（Barillas 和 Shanken，2017）认为 test assets 的选取与模型的比较无关，因此作者没有选取除了因子以外的任何 test assets，即 $N = 0$。
 
 > Our choice of test assets draws on Barillas and Shanken (2017), who suggest that the set of test assets is irrelevant for model comparison, that is, whether each model can price the factors in another model. Instead, only factor returns are required to conduct a relative test of model performance.
 
@@ -348,10 +353,162 @@ $$
 
 样本从 1977 年 6 月到 2016 年 12 月，共 475 个月。样本的 summary 如下：
 
+<div align='center'>
+
 ![](image/2023-06-27-15-20-00.png)
+</div align='center'>
+
+- 所有的因子都有正的月频收益，其中市值因子 SMB 最低（0.22\%），中介收益因子 ICR 最高（1.13\%）；
+- 除了 ICR 和动量因子 MOM 以外，其他因子的波动都比市场因子 MKT 小；
+- 除了 SMB 以外，其他因子都有显著的 CAPM α，其中 BAB 的 α 最大；
+- MKT 与 ICR 的相关性是最高的（0.81）；
+- 价值因子和投资因子之间的相关性是意料之内的高：HML、CMA、FIN、MGMT 之间的相关性都比较高；
+- 动量因子和盈利因子之间的相关性也比较高：RMW、QMJ、MOM、PERF 之间的相关性比较高；
+- 除了 svar、ltr、infl 以外，其他的宏观变量 AR（1）系数都接近 1，说明大多数宏观变量都是一阶自相关的。
 
 ### 实证
 
+#### 选择什么宏观变量来预测收益率
+
+做预测的时候，我们会将 $\eqref{4}$ 式和 $\eqref{2}$ 式合并，得到
+
+$$
+\begin{equation}
+    \begin{split}
+    \E[\bm{r}_{t+1} \mid \bm{z}_{t},\ \theta] &= \underbrace{(\bm{\alpha}_{0} + \bm{\beta}_{0} \bm{\alpha}_{f})}_{\bm{B}_{0}} + \underbrace{[\bm{\alpha}_{1} + \bm{\beta}_{0} \bm{a}_{F} + \bm{\beta}_{1}(\bm{\alpha}_{f} \otimes \bm{I}_{\! M})]}_{\bm{B}_{1}} \bm{z}_{t} \\
+    &\phantom{=} + \underbrace{\bm{\beta}_{1} (\bm{a}_{F} \otimes \bm{I}_{\! M})}_{\bm{B}_{2}} (\bm{z}_{t} \otimes \bm{z}_{t})
+    \end{split}\label{15}
+\end{equation}
+$$
+
+考虑三种情况：
+- No Interaction：$\bm{B}_{1} \neq 0,\ \bm{B}_{2} = 0$；
+- With Interaction：$\bm{B}_{1} \neq 0,\ \bm{B}_{2} \neq 0$；
+- Combined：$\bm{B}_{1} \neq 0$，$\bm{B}_{2}$ 不限制，即前面两种情况的结合。
+
+13 个宏观变量在这三种情况下的后验概率如下：
+
+<div align='center'>
+
+![](image/2023-06-27-16-07-50.png)
+</div align='center'>
+
+- 在 No Interaction 的情况下，模型告诉我们 Dividend Yield（dy）和 Stock Variance（svar）几乎是必须包含的变量，Earnings Price Ratio（ep）、Dividend Payout Ratio（de）还有 Long-term Rate of Returns（ltr）需要包含的概率也都很高（85\%）；
+- 在 With Interaction 的情况下，Dividend Yield（dy）和 Stock Variance（svar）仍然是必须包含的变量，新增了一个 Default Yield Spread（dfy）也必须包含，而 Book-to-market Ratio（bm）、Treasury Bill（tbl）、ltr 还有 Term Spread（tms）的后验概率都降到了很低的程度；
+- With Interaction 的后验概率和 Combined 的后验概率是一致的，说明股票未来的收益就应该与宏观变量的交互项有关。
+
+#### 选择什么因子和宏观变量来解释收益率
+
+设定不同的最大夏普比（$\tau$ 代表最大夏普比是市场组合夏普比的多少倍），模型的后验概率如下所示：
+
+<div align='center'>
+
+![](image/2023-06-27-16-45-53.png)
+</div align='center'>
+
+对于因子（Panel A）：
+
+- 当 $\tau = 1.5$（baseline），模型告诉我们必须包含 PEAD 和 QMJ，CMA、SMB、ICR 和 MGMT 也都有 90+\% 的后验概率，而这其中只有 SMB 是 2015 年以前提出来的，其他的都是后来的新因子；
+- PEAD、QMJ 和 ICR 这三个因子在各个情况下都有很高的后验概率，几乎是必选的因子；
+- SMB、CMA 和 MGMT 在 $\tau$ 比较小的时候都有很高的后验概率，但当要求很高的最大夏普比，它们的后验概率大幅下降；
+- BAB 这个因子比较奇怪，$\tau$ 小的时候不怎么重要，到 $\tau = 3$ 的时候反而有 95\% 的后验概率；
+- 盈利因子 RMW 好像比较冗余，这可能是因为它和 QMJ 的相关系数高达 0.75；
+- 在所有的情况下，高于 90\% 后验概率的因子数量在 5 到 7 之间，说明因子模型确实不需要太多的因子。
+
+对于宏观变量（Panel B）：
+
+- 与[选择宏观变量预测收益率](#选择什么宏观变量来预测收益率)不同，解释收益率时由于有定价因子的存在，宏观变量的重要性没有在预测的时候那么强；
+- 当 $\tau = 1.5$（baseline），lty 有 97\% 的后验概率，排名第二的 dy 只有 68\% 的后验概率；
+- 当要求很高的最大夏普比（$\tau = 3$），更多的宏观变量会变得重要起来，ntis、dy、tbl、tms 都有 90+\% 的后验概率，这说明只需要样本外一点点的预测能力就可以在样本内达到很好的效果（理解可能有误）；
+
+    > The rising inclusion probability with practically infeasible Sharpe ratios provides important evidence suggesting strong in-sample predictive power of macro items could be associated with only mild forecasting power out-of-sample.
+
+- 在所有情况下，bm、ltr、dfy、infl 后验概率都几乎是 0，也就是它们对于解释收益率没用。
+
+从 Panel C 我们可以看出：
+
+- 在不断惩罚模型复杂度的情况下，conditional 的模型（$\mathbb{M}_{3}$ 和 $\mathbb{M}_{4}$）在所有情况下仍然是必须选择的；
+- 除了 infeasible 的最大夏普比（$\tau = 3$），模型包含 α 的后验概率在 58\% 到 69\% 之间，说明 α 很重要；
+- 除了 $\tau = 3$ 外，平均的 $T_0$ 都超过了真实样本长度 $T = 475$，$T_0$ 随 $\tau$ 的增大而减小，符合 $\eqref{14}$ 式；
+- 收缩强度 $\frac{T_0}{T^{*}} = \frac{T_0}{T_0 + T}$ 可以理解为是先验样本的权重，即我们先验地认为有 $\frac{T_0}{T_0 + T}$ 的概率 $\bm{\widehat{\alpha}}_{0} = \bm{\widehat{\alpha}}_{1} = \bm{\widehat{\beta}}_{1} = 0$，收缩强度随 $\tau$ 的增大而减小，$\tau$ 越大代表样本内越容易过拟合，这也是符合我们预期的。
+
+#### 样本外表现
+
+在 baseline（$\tau = 1.5$）下，用宏观变量预测出的收益率期望和收益率协方差矩阵构建切点组合（或最小方差组合），得到的样本内外夏普比如下（EST 是样本内，OOS 是样本外，$\frac{T}{2}$ 和 $\frac{2T}{3}$ 分别为不同的样本内长度）：
+
+<div align='center'>
+
+![](image/2023-06-27-20-15-20.png)
+</div align='center'>
+
+> [!TIP|label:Regulation-T]
+> Regulation-T 是 SEC 颁布的规定，规定股票交易中杠杆的最大比例是 50\%，即投资者只能借等同于自己资产的金额来投资，自己有 1 块钱就最多只能借 1 块钱。在本文相当于限制投资权重的绝对值之和 $\sum_{i=1}^{14} \left\vert w_i \right\vert  \leqslant 2$。
+
+可以看到不管是样本内还是样本外，不管是切点组合还是最小方差组合，BMA 在夏普比方面都是全面击败 benchmark。Top3 的三个模型在样本外也都有比较稳健的表现，$\tau$ 取其他数值也是如此。作者还看了最大回撤，同样 BMA 也是击败所有 benchmark，在此就不放太多的图了。下图是 BMA 在不同样本内长度下的表现：
+
+<div align='center'>
+
+![](image/2023-06-27-20-33-21.png)
+</div align='center'>
+
+可以看到样本外的表现居然和样本内相差无几（也有可能是图比例的原因）：红色的线代表用 $\frac{2T}{3}$ 的样本训练，即第二条蓝虚线后面是对应的测试集，居然和橙色的样本内表现差不太多！
+
+#### 方差预测
+
+回顾我们之前推导出的模型预测的方差，即 $\eqref{6}$ 式，在 baseline（$\tau = 1.5$）的情况下，预测（拟合）结果如下（OBS 为样本方差）：
+
+<div align='center'>
+
+![](image/2023-06-27-20-53-39.png)
+</div align='center'>
+
+可以看到样本内都差不太多，样本外的表现则值得讨论：作者提到，使用 $\frac{2T}{3}$ 的训练集时，14 个因子中有 8 个预测方差是高于样本方差的，且平均下来 14 个因子的预测方差高出样本方差 53\%，这是因为投资者并不知道真实的因子模型是什么，也不知道参数的真实值，导致他们认为股票比过去更有风险（模型预测方差 $>$ 样本方差）。然而作者并没有提，当使用 $\frac{T}{2}$ 的训练集时，所有因子的预测方差都小于样本方差，不过只用一半数据做训练确实有点为难模型了。
+
+#### 模型预测分歧
+
+Van Nieuwerburgh 和 Veldkamp（2010）用 $\frac{\left\vert \bm{\Sigma} \right\vert}{\left\vert \bm{\Sigma} \mid D \right\vert}$ 来衡量 entropy reduction，其中 $\bm{\Sigma}$ 是数据 $D$ 还没被观测到时的协方差矩阵，而 $\bm{\Sigma} \mid D$ 代表观测到数据 $D$ 后的协方差矩阵，$\left\vert \cdot \right\vert$ 代表行列式。因为观测到数据 $D$ 会减少不确定性，$\frac{\left\vert \bm{\Sigma} \right\vert}{\left\vert \bm{\Sigma} \mid D \right\vert}$ 越高则代表减少的越多。
+
+作者借鉴他们的思路，用以下公式来衡量模型预测分歧 $\bm{\Omega}_{t}$ 带来的 entropy increase：
+
+$$
+\begin{equation}
+    \text{EI}_{t} = \frac{\left\vert \bm{V}_t + \bm{\Omega}_t \right\vert}{\left\vert \bm{V}_{t} \right\vert}
+\end{equation}
+$$
+
+下图展示了 EI 随时间变化的变化：
+
+<div align='center'>
+
+![](image/2023-06-27-21-31-23.png)
+</div align='center'>
+
+作者认为 EI 的两处突然增大分别与 1987 年 10 月的 Black Monday 和 2008 年 9 月的金融危机有关。因此在市场崩盘的时候考虑模型的预测分歧 $\bm{\Omega}_{t}$ 是很重要的，这也符合 BMA 能减小切点组合和最小方差组合的下行风险的实证结果。
+
+作者还研究了哪些因子对 EI 的贡献大，在此不赘述，结论是 MKT、MGMT 和 ICR 的贡献大。
+
+作者还想看预测分歧主要来自于模型的哪一部分，从 $\eqref{15}$ 式中可以看出期望收益率可以分解为以下 7 个部分：
+
+1. 时不变的定价误差：$\bm{\alpha}_{0}$；
+2. 时变的定价误差：$\bm{\alpha}_{1} \bm{z}_{t}$；
+3. 时不变的 β 和时不变的风险溢价：$\bm{\beta}_{0} \bm{\alpha}_{f}$；
+4. 时不变的 β 和时变的风险溢价：$\bm{\beta}_0 \bm{a}_{F} \bm{z}_{t}$；
+5. 时变的 β 和时不变的风险溢价：$\bm{\beta}_{1} (\bm{I} \otimes \bm{z}_{t}) \bm{\alpha}_{f}$；
+6. 时变的 β 和时变的风险溢价：$\bm{\beta}_{1} (\bm{I} \otimes \bm{z}_{t}) \bm{a}_{F} \bm{z}_{t}$；
+7. 时变的风险溢价：$\bm{a}_{F} \bm{z}_{t}$。
+
+每部分的标准差如下表（$\frac{2T}{3}$ 的训练集，$\tau = 1.5$）：
+
+<div align='center'>
+
+![](image/2023-06-27-22-07-03.png)
+</div align='center'>
+
+而在市场崩盘的时候（Black Monday 和金融危机之后的 6 个月窗口），上述第 2、5、7、4 部分的标准差分别增加了 88\%、65\%、27\% 以及 21\%，且。这说明在市场崩盘的时候，模型预测对定价误差、β、风险溢价都有更大的分歧，它们合在一起可以解释整个 EI 的变化，也就是[摘要](#摘要)中说的“预测分歧张成了收益率的所有成分”。
+
+## Takeaway
+
+- 
 
 ## 参考文献
 
@@ -363,6 +520,6 @@ Barillas, F., & Shanken, J. (2017). Which Alpha? The Review of Financial Studies
 
 Barillas, F., & Shanken, J. (2018). Comparing Asset Pricing Models. The Journal of Finance, 73(2), 715–754. https://doi.org/10.1111/jofi.12607
 
-Daniel, K., Hirshleifer, D., & Sun, L. (2020). Short- and Long-Horizon Behavioral Factors. The Review of Financial Studies, 33(4), 1673–1736. https://doi.org/10.1093/rfs/hhz069
-
 He, Z., Kelly, B., & Manela, A. (2017). Intermediary asset pricing: New evidence from many asset classes. Journal of Financial Economics, 126(1), 1–35. https://doi.org/10.1016/j.jfineco.2017.08.002
+
+Van Nieuwerburgh, S., & Veldkamp, L. (2010). Information Acquisition and Under-Diversification. Review of Economic Studies, 77(2), 779–805. https://doi.org/10.1111/j.1467-937X.2009.00583.x
