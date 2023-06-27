@@ -6,4 +6,5 @@
 - [Shrinking the Cross-Section (Kozak et al., 2020)](papers/shrinking_the_cross-section.md)
 - [Bayesian Solutions for the Factor Zoo: We Just Ran Two Quadrillion Models (Bryzgalova et al., 2023)](papers/bayesian_solutions_for_the_factor_zoo.md)
 - [Concept Drift](papers/concept_drift/README.md)
+- [Integrating Factor Models (Avramov et al., 2023)](papers/integrating_factor_models.md)
 - [Back to Homepage](README.md)

@@ -13,7 +13,7 @@
 - `Ctrl + C`：终止命令
 - `du -h dirName/fileName`：查看目录/文件占用内存
 - `free -h`：查看服务器内存
-- `df -aTh`：查看挂载内存
+- `top`：查看 CPU 内存占用
 - `lscpu`：查看 CPU 信息
 - `... | grep Target`：查找指定信息，比如：
     - `dpkg -l | grep libicu`：查找包含 libicu 字样的包信息
@@ -27,7 +27,11 @@
 - `cat /etc/group`：查看所有组
 - `adduser/deluser User`：添加/删除用户
 - `gpasswd -a/-d User Group`：在组中添加/删除某用户
-- `top`：查看内存占用
+- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
+- `df -aTh`：查看磁盘空间
+- `fdisk -l`：查看所有盘符
+- `lsblk`：查看各个内存块的基本信息
+- `blkid`：查看各个内存块的 UUID
 - `chmod modeNumber dirName/fileName`：更改目录/文件的权限
 
     > [!TIP|label:提示]

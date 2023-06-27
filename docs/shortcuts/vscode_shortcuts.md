@@ -65,6 +65,8 @@
   > - `H`: list.collapse
       - 收起文件夹
 
+- `Ctrl + Shift + G`：View: Show Source Control
+  - 打开侧边栏的 Git 管理界面
 - `Ctrl + Shift + L`: Search Editor: Select All Matches
   - 选中相同单词（进入 VISUAL-BLOCK 模式，可以批量修改变量）
 - `Ctrl + Shift + N`: New Window

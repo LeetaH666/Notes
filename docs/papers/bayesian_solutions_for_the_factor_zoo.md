@@ -553,7 +553,7 @@ $$
 
 #### 对比 KNS（2020）
 
-Shrinking the Cross-Section（Kozak 等，2020）也是通过一个相似的先验去对后验估计进行 shrinking，它们在时序上的样本外效果比传统模型强，因此本文直接与 KNS（2020）进行对比。
+*Shrinking the Cross-Section*（Kozak 等，2020，以下简称 KNS）也是通过一个相似的先验去对后验估计进行 shrinking，它们在时序上的样本外效果比传统模型强，因此本文直接与 KNS（2020）进行对比。
 
 ![](image/2023-04-06-21-42-18.png)
 
