@@ -14,9 +14,13 @@ JF2023
 
 ## 解决什么问题
 
-在因子动物园设定下，哪些因子更重要。
+面对未知的因子模型：
 
-> However, the collection of factors that matter most remains subject to research controversy.
+1. 哪些因子更重要？
+2. 哪些宏观变量更重要？
+3. 模型是否应该包含错误定价 α？
+
+> However, the collection of factors that matter most remains subject to research controversy. Significant uncertainty also extends to the choice of macro variables that potentially govern time-varying investment opportunities. Moreover, even if the econometrician has prior information about the identity of asset pricing factors and macro predictors, there is still uncertainty about whether the underlying model holds exactly or instead admits the possibility of mispricing.
 
 ## 摘要
 
@@ -40,7 +44,7 @@ JF2023
 3. 本文的 integrated 模型在样本外也表现得很好，成功排除了在样本外表现不好的因子。
 
 > [!TIP|label:提示]
-> PEAD 在 *Bayesian Solutions for the Factor Zoo*（Bryzgalova 等，2023）中也是后验概率最高的因子。
+> PEAD 在 *Bayesian Solutions for the Factor Zoo*（Bryzgalova 等，2023，以下简称 BHJ2023）中也是后验概率最高的因子。
 >
 > 质量因子中的“质量”其实包括三个维度：盈利性、成长性和安全性，每个维度都由不同的公司特征构成（Asness 等，2019）。这个因子相当于一个因子集合体，表现好似乎是应该的？
 >
@@ -48,9 +52,9 @@ JF2023
 
 > Evidence shows that unconditional models record near-zero probabilities, while postearnings announcement drift, quality-minus-junk, and intermediary capital are potent factors in conditional asset pricing. Out-of-sample, the integrated model performs well, tilting away from subsequently underperforming factors.
 
-本文还研究了模型的不确定性与预测分歧对定价的影响：
+本文还研究了模型的不确定性（或预测分歧）对定价的影响：
 
-1. 模型的不确定性让股票的风险变大；
+1. 模型的不确定性让股票的风险看起来很大；
 2. 模型对期望收益率的预测分歧在市场崩盘的时期激增；
 3. 预测分歧张成了所有收益率的成分，包括：错误定价、因子载荷、风险溢价。
 
@@ -185,12 +189,12 @@ $$
 \end{equation}
 $$
 
-其中 $\bm{V}_{\! t}$ 是不同模型得到的协方差矩阵的后验均值，而 $\bm{\Omega}_{t}$ 则是不同模型得到的期望收益率之间的协方差，即反映了模型预测分歧带来的波动。
+其中 $\bm{V}_{\! t}$ 是**不同模型得到的协方差矩阵的后验均值**，而 $\bm{\Omega}_{t}$ 则是**不同模型得到的期望收益率之间的协方差**，即反映了**模型预测分歧带来的波动**。
 
 > [!TIP|label:提示]
 > $\eqref{6}$ 式成立是因为**方差等于条件方差的期望 + 条件期望的方差**。
 
-如果我们限制 $\bm{\Omega}_{t}$ 是对角阵，则 $\Var[\bm{r}_{t+1} \mid D]$ 可以很容易做到可逆（即使 $\bm{V}_{\! t}$ 不可逆），且在这个条件下 $\bm{\Omega}_{t}$ 跟岭回归的正则项很相似，相当于对协方差的后验均值做了 asset-specific 的收缩，收缩的比例取决于模型对这个 test asset 的预测分歧。
+如果我们限制 $\bm{\Omega}_{t}$ 是对角阵，则 $\Var[\bm{r}_{t+1} \mid D]$ 可以很容易做到可逆（即使 $\bm{V}_{\! t}$ 不可逆），且在这个条件下 $\bm{\Omega}_{t}$ 跟岭回归的正则项很相似，**相当于对协方差的后验均值做了 asset-specific 的收缩，收缩的比例取决于模型对这个 test asset 的预测分歧。**
 
 > the posterior predictive variance imposes asset-specific shrinkage toward the grand mean, $\bm{V}_{\! t}$, in proportion to the general agreement among candidate models about mean returns.
 
@@ -211,7 +215,7 @@ $$
 $$
 
 > [!TIP|label:提示]
-> 似然、先验、后验，本质上都是概率，只是换了个专有名词而已，可以把对应的符号都想成概率 $p$。
+> 似然、先验、后验，**本质上都是概率**，只是换了个专有名词而已，可以把对应的符号都想成概率 $p$。
 >
 > $\eqref{7}$ 式成立是因为
 > 
@@ -253,7 +257,7 @@ $$
 \end{equation}
 $$
 
-不用管这些字母是什么，我们只需要知道，最后两项，也就是第二行和第三行，反映了截面的拟合效果（拟合得越好边际似然越大）；而第一行的其他项反映的是模型复杂度带来的惩罚（因子或宏观变量越多边际似然越小）。因此这个边际似然反映了拟合效果与模型复杂度之间的 trade-off。
+不用管这些字母是什么，我们只需要知道，最后两项，也就是第二行和第三行，反映了截面的拟合效果（**拟合得越好边际似然越大**）；而第一行的其他项反映的是模型复杂度带来的惩罚（**因子或宏观变量越多边际似然越小**）。因此这个边际似然反映了**拟合效果与模型复杂度之间的 trade-off**。
 
 #### 确定先验样本长度
 
@@ -394,8 +398,8 @@ $$
 </div align='center'>
 
 - 在 No Interaction 的情况下，模型告诉我们 Dividend Yield（dy）和 Stock Variance（svar）几乎是必须包含的变量，Earnings Price Ratio（ep）、Dividend Payout Ratio（de）还有 Long-term Rate of Returns（ltr）需要包含的概率也都很高（85\%）；
-- 在 With Interaction 的情况下，Dividend Yield（dy）和 Stock Variance（svar）仍然是必须包含的变量，新增了一个 Default Yield Spread（dfy）也必须包含，而 Book-to-market Ratio（bm）、Treasury Bill（tbl）、ltr 还有 Term Spread（tms）的后验概率都降到了很低的程度；
-- With Interaction 的后验概率和 Combined 的后验概率是一致的，说明股票未来的收益就应该与宏观变量的交互项有关。
+- 在 With Interaction 的情况下，**Dividend Yield（dy）和 Stock Variance（svar）仍然是必须包含的变量，新增了一个 Default Yield Spread（dfy）也必须包含**，而 Book-to-market Ratio（bm）、Treasury Bill（tbl）、ltr 还有 Term Spread（tms）的后验概率都降到了很低的程度；
+- With Interaction 的后验概率和 Combined 的后验概率是一致的，说明**股票未来的收益就应该与宏观变量的交互项有关。**
 
 #### 选择什么因子和宏观变量来解释收益率
 
@@ -409,17 +413,17 @@ $$
 对于因子（Panel A）：
 
 - 当 $\tau = 1.5$（baseline），模型告诉我们必须包含 PEAD 和 QMJ，CMA、SMB、ICR 和 MGMT 也都有 90+\% 的后验概率，而这其中只有 SMB 是 2015 年以前提出来的，其他的都是后来的新因子；
-- PEAD、QMJ 和 ICR 这三个因子在各个情况下都有很高的后验概率，几乎是必选的因子；
+- **PEAD、QMJ 和 ICR 这三个因子在各个情况下都有很高的后验概率，几乎是必选的因子；**
 - SMB、CMA 和 MGMT 在 $\tau$ 比较小的时候都有很高的后验概率，但当要求很高的最大夏普比，它们的后验概率大幅下降；
 - BAB 这个因子比较奇怪，$\tau$ 小的时候不怎么重要，到 $\tau = 3$ 的时候反而有 95\% 的后验概率；
 - 盈利因子 RMW 好像比较冗余，这可能是因为它和 QMJ 的相关系数高达 0.75；
-- 在所有的情况下，高于 90\% 后验概率的因子数量在 5 到 7 之间，说明因子模型确实不需要太多的因子。
+- **在所有的情况下，高于 90\% 后验概率的因子数量在 5 到 7 之间，说明因子模型确实不需要太多的因子**（也有可能是本文选取的因子数量不够多）。
 
 对于宏观变量（Panel B）：
 
 - 与[选择宏观变量预测收益率](#选择什么宏观变量来预测收益率)不同，解释收益率时由于有定价因子的存在，宏观变量的重要性没有在预测的时候那么强；
-- 当 $\tau = 1.5$（baseline），lty 有 97\% 的后验概率，排名第二的 dy 只有 68\% 的后验概率；
-- 当要求很高的最大夏普比（$\tau = 3$），更多的宏观变量会变得重要起来，ntis、dy、tbl、tms 都有 90+\% 的后验概率，这说明只需要样本外一点点的预测能力就可以在样本内达到很好的效果（理解可能有误）；
+- **当 $\tau = 1.5$（baseline），Long Term Yield（lty）有 97\% 的后验概率**，排名第二的 dy 只有 68\% 的后验概率；
+- **当要求很高的最大夏普比（$\tau = 3$），更多的宏观变量会变得重要起来**，ntis、dy、tbl、tms 都有 90+\% 的后验概率，这说明只需要样本外一点点的预测能力就可以在样本内达到很好的效果（理解可能有误）；
 
     > The rising inclusion probability with practically infeasible Sharpe ratios provides important evidence suggesting strong in-sample predictive power of macro items could be associated with only mild forecasting power out-of-sample.
 
@@ -427,8 +431,8 @@ $$
 
 从 Panel C 我们可以看出：
 
-- 在不断惩罚模型复杂度的情况下，conditional 的模型（$\mathbb{M}_{3}$ 和 $\mathbb{M}_{4}$）在所有情况下仍然是必须选择的；
-- 除了 infeasible 的最大夏普比（$\tau = 3$），模型包含 α 的后验概率在 58\% 到 69\% 之间，说明 α 很重要；
+- **在不断惩罚模型复杂度的情况下，conditional 的模型（$\mathbb{M}_{3}$ 和 $\mathbb{M}_{4}$）在所有情况下仍然是必须选择的；**
+- 除了 infeasible 的最大夏普比（$\tau = 3$），**模型包含 α 的后验概率在 58\% 到 69\% 之间，说明 α 很重要；**
 - 除了 $\tau = 3$ 外，平均的 $T_0$ 都超过了真实样本长度 $T = 475$，$T_0$ 随 $\tau$ 的增大而减小，符合 $\eqref{14}$ 式；
 - 收缩强度 $\frac{T_0}{T^{*}} = \frac{T_0}{T_0 + T}$ 可以理解为是先验样本的权重，即我们先验地认为有 $\frac{T_0}{T_0 + T}$ 的概率 $\bm{\widehat{\alpha}}_{0} = \bm{\widehat{\alpha}}_{1} = \bm{\widehat{\beta}}_{1} = 0$，收缩强度随 $\tau$ 的增大而减小，$\tau$ 越大代表样本内越容易过拟合，这也是符合我们预期的。
 
@@ -444,14 +448,19 @@ $$
 > [!TIP|label:Regulation-T]
 > Regulation-T 是 SEC 颁布的规定，规定股票交易中杠杆的最大比例是 50\%，即投资者只能借等同于自己资产的金额来投资，自己有 1 块钱就最多只能借 1 块钱。在本文相当于限制投资权重的绝对值之和 $\sum_{i=1}^{14} \left\vert w_i \right\vert  \leqslant 2$。
 
-可以看到不管是样本内还是样本外，不管是切点组合还是最小方差组合，BMA 在夏普比方面都是全面击败 benchmark。Top3 的三个模型在样本外也都有比较稳健的表现，$\tau$ 取其他数值也是如此。作者还看了最大回撤，同样 BMA 也是击败所有 benchmark，在此就不放太多的图了。下图是 BMA 在不同样本内长度下的表现：
+可以看到**不管是样本内还是样本外，不管是切点组合还是最小方差组合（GMVP），BMA 在夏普比方面都是全面击败 benchmark。**Top3 的三个模型在样本外也都有比较稳健的表现，$\tau$ 取其他数值也是如此。**作者还看了最大回撤，同样 BMA 也是击败所有 benchmark**，在此就不放太多的图了。
+
+> [!TIP|label:为什么要关注最小方差组合]
+> 最小方差组合只由预测协方差决定，观察最小方差组合的表现可以剥离开对期望得预测，既可以判断协方差预测得好不好，又可以看考虑模型的不确定性是否会降低下行风险（最大回撤）。
+
+下图是 BMA 切点组合在不同样本内长度下的表现：
 
 <div align='center'>
 
 ![](image/2023-06-27-20-33-21.png)
 </div align='center'>
 
-可以看到样本外的表现居然和样本内相差无几（也有可能是图比例的原因）：红色的线代表用 $\frac{2T}{3}$ 的样本训练，即第二条蓝虚线后面是对应的测试集，居然和橙色的样本内表现差不太多！
+可以看到样本外的表现居然和样本内**相差无几**（也有可能是图比例的原因）：红色的线代表用 $\frac{2T}{3}$ 的样本训练，即第二条蓝虚线后面是对应的测试集，居然和橙色的样本内表现差不太多！
 
 #### 方差预测
 
@@ -462,7 +471,9 @@ $$
 ![](image/2023-06-27-20-53-39.png)
 </div align='center'>
 
-可以看到样本内都差不太多，样本外的表现则值得讨论：作者提到，使用 $\frac{2T}{3}$ 的训练集时，14 个因子中有 8 个预测方差是高于样本方差的，且平均下来 14 个因子的预测方差高出样本方差 53\%，这是因为投资者并不知道真实的因子模型是什么，也不知道参数的真实值，导致他们认为股票比过去更有风险（模型预测方差 $>$ 样本方差）。然而作者并没有提，当使用 $\frac{T}{2}$ 的训练集时，所有因子的预测方差都小于样本方差，不过只用一半数据做训练确实有点为难模型了。
+首先样本方差是 unconditional 的，$\bm{\overline{V}}_{\! t} + \bm{\overline{\Omega}}_{t}$ 是考虑了宏观变量的 conditional，因此**样本方差本来就应该比 conditional 的方差大**，我们可以在 $\frac{T}{2}$ 的结果中看到这一点。
+
+然而在使用 $\frac{2T}{3}$ 的训练集时，**14 个因子中有 8 个预测方差（conditional）是高于样本方差（unconditional）的，且平均下来 14 个因子的预测方差高出样本方差 53\%。**作者认为这是因为 heterogeneous 的投资者（每一个模型）并不知道真实的因子模型是什么，也不知道参数的真实值，导致贝叶斯 agent（BMA）认为股票比过去更有风险（模型预测方差 $>$ 样本方差）。
 
 #### 模型预测分歧
 
@@ -508,7 +519,21 @@ $$
 
 ## Takeaway
 
-- 
+- 真正的因子模型长什么样？我们不知道。面对未知，我们不应该只考虑因子的不确定性（BHJ2023），**还应该考虑因子模型框架的不确定性**（是否允许有定价误差 α，unconditional 还是 conditional）；
+
+    <div align='center'>
+
+    ![](image/2023-06-22-17-57-36.png)
+    </div align='center'>
+
+    对于这个问题，实证给出的结果说明：**conditional 是必要的，定价误差 α 同样很重要，需要定价模型去考虑。**
+
+- 在隐因子的框架下，conditional 的信息由 β 提供（比如 *Characteristics are Covariances*（Kelly 等，2019））；在传统因子模型下，conditional 的信息可以由因子本身提供（比如 *Shrinking the Cross-section*（Kozak 等，2020））；本文虽然也在传统因子模型下，但 **conditional 的信息来源于因子与宏观变量，尤其在做预测的时候，宏观变量是 conditional 信息的主要来源，并且模型考虑了收益率与宏观变量之间的非线性关系**（平方项和交互项，见 $\eqref{15}$ 式）；
+- 对模型的不确定会带来预测分歧
+    - 预测分歧可以看作是 heterogeneous 的投资者对未来不同的预期，尤其**在市场崩盘的时候，预测分歧带来的熵增会激增；**
+    - **考虑预测分歧相当于对方差做了 asset-specific 的收缩，收缩的比例取决于模型对这个 test asset 的预测分歧，预测分歧越大，收缩力度越大；**
+    - **考虑预测分歧可以有效地减少策略的下行风险**（实际上使用 BMA 就会考虑预测分歧）；
+- **假设先验样本上期望和协方差分别等于样本均值和样本协方差可以天然地对一些参数进行收缩**（原因未知）。
 
 ## 参考文献
 
@@ -521,5 +546,9 @@ Barillas, F., & Shanken, J. (2017). Which Alpha? The Review of Financial Studies
 Barillas, F., & Shanken, J. (2018). Comparing Asset Pricing Models. The Journal of Finance, 73(2), 715–754. https://doi.org/10.1111/jofi.12607
 
 He, Z., Kelly, B., & Manela, A. (2017). Intermediary asset pricing: New evidence from many asset classes. Journal of Financial Economics, 126(1), 1–35. https://doi.org/10.1016/j.jfineco.2017.08.002
+
+Kelly, B. T., Pruitt, S., & Su, Y. (2019). Characteristics are covariances: A unified model of risk and return. Journal of Financial Economics, 134(3), 501–524. https://doi.org/10.1016/j.jfineco.2019.05.001
+
+Kozak, S., Nagel, S., & Santosh, S. (2020). Shrinking the cross-section. Journal of Financial Economics, 135(2), 271–292. https://doi.org/10.1016/j.jfineco.2019.06.008
 
 Van Nieuwerburgh, S., & Veldkamp, L. (2010). Information Acquisition and Under-Diversification. Review of Economic Studies, 77(2), 779–805. https://doi.org/10.1111/j.1467-937X.2009.00583.x
