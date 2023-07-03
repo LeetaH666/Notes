@@ -44,6 +44,12 @@
 
 1. `git pull`
 
+### 修改上次 commit 的信息
+
+1. `git commit --ammend`
+2. 修改信息并保存退出
+3. `git push -f`
+
 ## 常见问题与解决方案
 
 ### 无法 push
