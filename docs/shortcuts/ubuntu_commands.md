@@ -52,6 +52,7 @@
     > 本地文件上传服务器时如果是 root 权限就没法传，需要先放松权限，上传后再改回来。
 
 - `chmod -R modeNumber dirName`：更改目录下所有文件的权限
+- `shutdown -h now`：关机
 
 ### 软件 RAID1
 

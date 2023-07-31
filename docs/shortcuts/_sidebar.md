@@ -2,6 +2,7 @@
     - [Conda](shortcuts/conda_commands.md)
     - [Edge](shortcuts/edge_shortcuts.md)
     - [Git](shortcuts/git_commands.md)
+    - [Pip](shortcuts/pip_commands.md)
     - [ReadPaper](shortcuts/readpaper_shortcuts.md)
     - [Snipaste](shortcuts/snipaste_shortcuts.md)
     - [Tmux](shortcuts/tmux_commands.md)

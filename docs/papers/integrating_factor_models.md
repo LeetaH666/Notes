@@ -537,18 +537,18 @@ $$
 
 ## 参考文献
 
-Asness, C. S., Frazzini, A., & Pedersen, L. H. (2019). Quality minus junk. Review of Accounting Studies, 24(1), 34–112. https://doi.org/10.1007/s11142-018-9470-2
+Asness, C. S., Frazzini, A., & Pedersen, L. H. (2019). Quality minus junk. *Review of Accounting Studies*, 24(1), 34–112. https://doi.org/10.1007/s11142-018-9470-2
 
-Avramov, D., Cheng, S., Metzker, L., & Voigt, S. (2023). Integrating Factor Models. The Journal of Finance, 78(3), 1593–1646. https://doi.org/10.1111/jofi.13226
+Avramov, D., Cheng, S., Metzker, L., & Voigt, S. (2023). Integrating Factor Models. *The Journal of Finance*, 78(3), 1593–1646. https://doi.org/10.1111/jofi.13226
 
-Barillas, F., & Shanken, J. (2017). Which Alpha? The Review of Financial Studies, 30(4), 1316–1338. https://doi.org/10.1093/rfs/hhw101
+Barillas, F., & Shanken, J. (2017). Which Alpha? *The Review of Financial Studies*, 30(4), 1316–1338. https://doi.org/10.1093/rfs/hhw101
 
-Barillas, F., & Shanken, J. (2018). Comparing Asset Pricing Models. The Journal of Finance, 73(2), 715–754. https://doi.org/10.1111/jofi.12607
+Barillas, F., & Shanken, J. (2018). Comparing Asset Pricing Models. *The Journal of Finance*, 73(2), 715–754. https://doi.org/10.1111/jofi.12607
 
-He, Z., Kelly, B., & Manela, A. (2017). Intermediary asset pricing: New evidence from many asset classes. Journal of Financial Economics, 126(1), 1–35. https://doi.org/10.1016/j.jfineco.2017.08.002
+He, Z., Kelly, B., & Manela, A. (2017). Intermediary asset pricing: New evidence from many asset classes. *Journal of Financial Economics*, 126(1), 1–35. https://doi.org/10.1016/j.jfineco.2017.08.002
 
-Kelly, B. T., Pruitt, S., & Su, Y. (2019). Characteristics are covariances: A unified model of risk and return. Journal of Financial Economics, 134(3), 501–524. https://doi.org/10.1016/j.jfineco.2019.05.001
+Kelly, B. T., Pruitt, S., & Su, Y. (2019). Characteristics are covariances: A unified model of risk and return. *Journal of Financial Economics*, 134(3), 501–524. https://doi.org/10.1016/j.jfineco.2019.05.001
 
-Kozak, S., Nagel, S., & Santosh, S. (2020). Shrinking the cross-section. Journal of Financial Economics, 135(2), 271–292. https://doi.org/10.1016/j.jfineco.2019.06.008
+Kozak, S., Nagel, S., & Santosh, S. (2020). Shrinking the cross-section. *Journal of Financial Economics*, 135(2), 271–292. https://doi.org/10.1016/j.jfineco.2019.06.008
 
 Van Nieuwerburgh, S., & Veldkamp, L. (2010). Information Acquisition and Under-Diversification. Review of Economic Studies, 77(2), 779–805. https://doi.org/10.1111/j.1467-937X.2009.00583.x

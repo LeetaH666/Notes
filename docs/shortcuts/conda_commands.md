@@ -6,7 +6,7 @@
 - `conda create -n envName r-essentials r-base`：创建新的环境并安装 r-essentials 和 r-base（R 语言）
 - `conda activate envName`：激活某一环境
 - `conda list`：列出当前环境下用 conda 装的包
-- `conda `：删除环境
+- `conda remove -n envName --all`：删除环境
 
 ## 镜像源
 
@@ -16,7 +16,10 @@
 - `conda config --set show_channel_urls yes`：安装包时显示包来源
 
 > [!TIP|label:好用的镜像源]
-> https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2/
+> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 
 ## 包管理
 

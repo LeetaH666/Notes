@@ -112,6 +112,8 @@
 
 - `Ctrl + K, Ctrl + N`: workbench.action.files.newFile
   - 在当前文件夹下新建文件
+- `Ctrl + K, Ctrl + P`: Project Manager: List Projects to Open
+  - 列出 Project Manager 中的文件夹
 - `Ctrl + K, Ctrl + T`: Terminal: Create New Terminal
   - 新建一个 Terminal
 - `Ctrl + K, Ctrl + W`: View: Close Primary Side Bar
