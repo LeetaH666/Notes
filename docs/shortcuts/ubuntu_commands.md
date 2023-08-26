@@ -25,6 +25,8 @@
     - `dpkg -l | grep libicu`：查找包含 libicu 字样的包信息
     - `conda list | grep stringi`：查找包含 stringi 字样的 conda 包
 
+- `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
+
 ### Ctrl
 
 - `Ctrl + C`：终止命令

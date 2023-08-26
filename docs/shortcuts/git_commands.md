@@ -8,8 +8,9 @@
 - `git status`：查看当前文件夹下的状态，比如缓冲区中是否有需要 commit 的文件。
 - `git commit + (文件名) + -m + (内容)` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
 - `git reset`：重置缓冲区。
-- `git remote -v`：列出所有远程主机以及对应网址。
+- `git remote -v`：列出所有远程主机以及对应 url。
 - `git remote add + 远程主机名 + 远程仓库链接`：把当前文件夹与远程仓库连接起来，并给它命名一个代号，通常我们会将它命名为 `origin`，因为使用 `git clone` 命令时 git 会自动命名远程主机为 `origin`。
+- `git remote set-url + 远程主机名 + 远程仓库链接`：修改远程仓库的 url。
 - `git branch -a`：列出所有仓库分支。
 - `git push (-u) + (远程主机名) + (本地分支名)`：将本地仓库推送到远程，远程主机名通常为 `origin`，远程分支名通常为 `master`。第一次推送需要用 `-u` 指令，之后就不需要了；如果本地和远程存在追踪关系且只有一个分支，主机名和分支名都可以省略。
 - `git pull + (远程主机名) + (远程分支名)`：将远程仓库的内容下拉到本地并与本地分支合并，如果存在追踪关系且只有一个分支，主机名和分支名都可以省略。
@@ -52,7 +53,7 @@
 
 ## 常见问题与解决方案
 
-### 无法 push
+### 无法 push / pull
 
 有时候我们 commit 完之后 push 遇到如下问题（比如在 VSCode 的非当前文件夹下进行 commit & push）：
 
@@ -64,3 +65,15 @@
 一个解决方案就是重新上传一个同名分支覆盖掉原先的分支：
 
 1. `git push -u origin head`
+
+即使正常操作，pull/push 的时候还有可能遇到如下问题（未知原因）：
+
+<div align='center'>
+
+![](image/2023-08-22-23-58-21.png)
+</div align='center'>
+
+此时应该改用 ssh 而不是 http 作为传输方式：
+
+1. `git remote set-url origin + 远程仓库 SSH 链接`
+2. `git pull / git push origin master`
