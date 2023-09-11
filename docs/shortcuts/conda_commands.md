@@ -24,7 +24,7 @@
 ## 包管理
 
 - `conda install packageName`：在当前环境下通过 conda 安装某包
-- `conda install -c r r-packageName`：在当前环境下通过 conda 安装 R 包
+- `conda install -c r r-packageName`：在当前环境下通过 conda 安装 R 包（`-c r` 即指定 `r` 作为获取安装包的 channel）
 - `conda uninstall packageName`：卸载当前环境下 conda 中某包
 
 ## 常用流程与问题

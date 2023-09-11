@@ -91,6 +91,8 @@
 - **Jupyter Notebook**
   - `Ctrl + J`: Jupyter: Create New Jupyter Notebook
     - 新建 Notebook
+  - `Ctrl + K, Ctrl + V`: Jupyter: Focus on Variables View
+    - 将光标移到 Jupyter 的变量查看
   - `Esc` (default)：Notebook: Stop Editting Cell
     - 停止编辑代码块，光标可使用方向键或 Vim 方向键在代码块间移动，并且可使用以下快捷键
   - `C`: Notebook: Change Cell to Code
