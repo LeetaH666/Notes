@@ -106,6 +106,13 @@ li {
   font-size: 1.1em;
 }
 
+/* summary 里的字体 */
+details summary {
+  font-family: 'LM Roman 10', 'Times New Roman', 'Arial', 'Source Han Serif SC', 'SimSum-ExtB';
+  font-size: 1rem;
+}
+
+/* 让表格居中显示 */
 .centertable {
   width: auto;
   display: table;
@@ -122,6 +129,11 @@ mark {
 /* 加粗 */
 .markdown-section strong {
   color: #e3620c;
+}
+
+/* 斜体 */
+.markdown-section em {
+  color: #0b7f86;
 }
 
 /* flexible-alert */
