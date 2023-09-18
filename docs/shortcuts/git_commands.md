@@ -14,6 +14,7 @@
 - `git branch -a`：列出所有仓库分支。
 - `git push (-u) + (远程主机名) + (本地分支名)`：将本地仓库推送到远程，远程主机名通常为 `origin`，远程分支名通常为 `master`。第一次推送需要用 `-u` 指令，之后就不需要了；如果本地和远程存在追踪关系且只有一个分支，主机名和分支名都可以省略。
 - `git pull + (远程主机名) + (远程分支名)`：将远程仓库的内容下拉到本地并与本地分支合并，如果存在追踪关系且只有一个分支，主机名和分支名都可以省略。
+- `git config -l`：列出所有 git 的参数设置。
 
 ## Git 常用操作流程
 
@@ -44,6 +45,15 @@
 ### 本地下拉远程更新
 
 1. `git pull`
+
+### 向远程添加 ssh 公钥
+
+1. `cd ~/.ssh`
+2. `ssh-keygen -t rsa -C "注册 git 用的邮箱"`
+3. 一直回车（如果之前已有公钥 id_rsa 的话，提示是否 overwrite 的时候需要输 `yes` 而不能回车）
+4. `cat id_rsa.pub`
+5. 复制输出的公钥
+6. 打开 github / gitlab / gitee 的设置，找到 ssh public key 之类的选项，添加公钥，将刚刚复制的公钥粘贴即可
 
 ### 修改上次 commit 的信息
 
@@ -77,3 +87,5 @@
 
 1. `git remote set-url origin + 远程仓库 SSH 链接`
 2. `git pull / git push origin master`
+
+改用 ssh 需要在远程有 ssh 公钥，具体添加方法见[Git常用操作流程](#向远程添加-ssh-公钥)。
