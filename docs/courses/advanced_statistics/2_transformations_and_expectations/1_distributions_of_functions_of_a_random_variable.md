@@ -1,1 +1,0 @@
-# 2.1 Distributions of Functions of a Random Variable
