@@ -434,7 +434,20 @@ MPE 的 LaTeX 语句默认用 KaTeX 渲染（可以在设置中切换 MathJax）
 
 #### 渲染设置
 
-在 `C:\Users\用户名\.mume` 中的 `katex_config.js` 或 `mathjax_config.js` 中可以添加自定义的设置。
+`Ctrl + Shift + P` 选择 `Markdown Preview Enhancd: Open Config Script (Global)`，在打开的 `config.js` 中可以修改对应的 config，比如 `katexConfig`，`mathjaxConfig` 等等。比如在 `katexConfig` 的 `macro` 中自定义 macro 环境：
+
+!!! example 例子：在 KaTeX 中支持 `\eqref` 公式链接
+    ```js
+    katexConfig: {
+        "macros": {
+            "\\eqref": "\\href{###1}{(\\text{#1})}",
+            "\\ref": "\\href{###1}{\\text{#1}}",
+            "\\label": "\\htmlId{#1}{}",
+        }
+    }
+    ```
+
+如果 MPE 是老版本，没有上述的选项，则可以在 `C:\Users\用户名\.mume` 中的 `katex_config.js` 或 `mathjax_config.js` 中可以添加自定义的设置。
 
 !!! example 例子：在 KaTeX 中支持 `\eqref` 公式链接
     ```js

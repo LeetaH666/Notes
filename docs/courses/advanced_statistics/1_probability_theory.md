@@ -186,7 +186,6 @@
         $$
 
         Then, using the conclusion in 1 we finish the proof.
-
     </details>
 
 ## 1.3 Conditional Probability and Independence
@@ -271,7 +270,6 @@ $$
 > $$\bigcup_{n=1}^{\infty} \left\{x \leqslant x_0 - \frac{1}{n} \right\} = \bigcup_{n=1}^{\infty} \left\{x < x_0 - \frac{1}{n} \right\} = \left\{x < x_0 \right\}.$$
 >
 > So if we change the definition of cdf, we can get the left-continuity (see the following exercise).
-
 </details>
 
 ### Exercises

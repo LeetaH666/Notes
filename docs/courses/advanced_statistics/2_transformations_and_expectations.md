@@ -140,6 +140,9 @@ The theorem above can be proved by using the chain rule on the conclusions of pr
 > 
 > $$f_{Y}(y) = \begin{cases} \sum\limits_{i=1}^{k} f_{X}(g_i ^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g_i ^{-1}(y) \right\vert,\ &y\in \mathcal{Y}, \\ 0,\ &\text{otherwise}. \end{cases}$$
 
+> [!NOTE]
+> We require the partition to have the same $\mathcal{Y}$ here.
+
 This theorem deals with cases that $g(\cdot)$ is not continuous or monotone on the whole support set. We only require *piece-wise* continuity and monotonicity for the nice conclusion.
 
 > [!EXAMPLE]
@@ -491,9 +494,20 @@ which means $G_n(x)$ converges to the cdf of standard normal distribution.
 
 (a) $Y = X^{2}$ and $f_{X}(x) = 1,\ 0 < x < 1$
 
-Solution: 
+<details>
+<summary>Solution: </summary>
 
+Denote the transformation from $X$ to $Y$ by $g(\cdot)$, which is an increasing function in $(0,\ 1)$. It is trivial that $g ^{-1}(y) = \sqrt{y},\ 0 < y < 1$. Then, we have 
 
+$$
+\begin{aligned}
+    f_{Y}(y) &= f_{X}(g ^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g ^{-1}(y) \right\vert \\
+    &= \frac{1}{2\sqrt{y}},\quad 0 < y < 1,
+\end{aligned}
+$$
+
+and $f_{Y}(y) = 0$ elsewhere.
+</details>
 
 (b) $Y = -\log X$ and X has pdf
 
@@ -501,11 +515,43 @@ $$
 f_{X}(x) = \frac{(n + m + 1)!}{n! m!} x^{n}(1 - x)^{m},\quad 0 < x < 1,\quad m,\ n \text{ positive integers}
 $$
 
+<details>
+<summary>Solution: </summary>
+
+Denote the transformation from $X$ to $Y$ by $g(\cdot)$, which is a decreasing function in $(0,\ 1)$. It is trivial that $g ^{-1}(y) = e^{-y},\ 0 < y < \infty$. Then, we have 
+
+$$
+\begin{aligned}
+    f_{Y}(y) &= f_{X}(g ^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g ^{-1}(y) \right\vert \\
+    &= \frac{(n + m + 1)!}{n! m!} e^{-ny}(1 - e^{-y})^{m} e^{-y} \\
+    &= \frac{(n + m + 1)!}{n! m!} e^{-(n + 1) y}(1 - e^{-y})^{m},\quad 0 < y < \infty,
+\end{aligned}
+$$
+
+and $f_{Y}(y) = 0$ elsewhere.
+</details>
+
 (c) $Y = e^{X}$ and X has pdf 
 
 $$
 f_{X}(x) = \frac{1}{\sigma^{2}} x e^{-(x / \sigma)^{2} / 2},\quad 0 < x < \infty,\quad \sigma^{2} \text{ a positive constant}
 $$
+
+<details>
+<summary>Solution: </summary>
+
+Denote the transformation from $X$ to $Y$ by $g(\cdot)$, which is an increasing function in $(0,\ \infty)$. It is trivial that $g ^{-1}(y) = \log y,\ 1 < y < \infty$. Then, we have 
+
+$$
+\begin{aligned}
+    f_{Y}(y) &= f_{X}(g ^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g ^{-1}(y) \right\vert \\
+    &= \frac{1}{\sigma^{2}} \log y e^{-[(\log y) / \sigma]^{2} / 2} \frac{1}{y} \\
+    &= \frac{1}{\sigma^{2}} \frac{\log y}{y} e^{-[(\log y) / \sigma]^{2} / 2},\quad 1 < y < \infty,
+\end{aligned}
+$$
+
+and $f_{Y}(y) = 0$ elsewhere.
+</details>
 
 *2.14* (p.78)
 
@@ -517,6 +563,25 @@ $$
 
 where $F_{X}(x)$ is the cdf of $X$.
 
+> [!TIP]
+> Sometimes if it is hard from LHS to RHS, try from RHS to LHS.
+
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \int_{0}^{\infty} [1 - F_{X}(x)] ~\mathrm{d}x &= \int_{0}^{\infty} P(X > x) ~\mathrm{d}x \\
+    &= \int_{0}^{\infty} \int_{x}^{\infty} f_{X}(y) ~\mathrm{d}y ~\mathrm{d}x \\
+    &= \int_{0}^{\infty} \int_{0}^{y} f_{X}(y) ~\mathrm{d}x ~\mathrm{d}y \\
+    &= \int_{0}^{\infty} y f_{X}(y) ~\mathrm{d}y \\
+    &= \E X \\
+\end{aligned}
+$$
+
+where $f_{X}(x)$ is the pdf of $X$.
+</details>
+
 (b) Let $X$ be a discrete random variable whose range is the nonnegative integers. Show that 
 
 $$
@@ -524,6 +589,22 @@ $$
 $$
 
 where $F_{X}(k) = P(X \leqslant k)$. Compare this with part (a).
+
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \sum\limits_{k=0}^{\infty} (1 - F_{X}(k)) &= \sum\limits_{k=0}^{\infty} P(X > k) \\
+    &= \sum\limits_{k=0}^{\infty} \sum\limits_{m=k+1}^{\infty} P(X = m) \\
+    &= \sum\limits_{m=0}^{\infty} \sum\limits_{k=0}^{m - 1} P(X = m) \\
+    &= \sum\limits_{m=0}^{\infty} m P(X = m) \\
+    &= \E X,
+\end{aligned}
+$$
+
+which is similar to (a).
+</details>
 
 *2.15* (p.78) Betteley (1977) provides an interesting addition law for expectations. Let $X$ and $Y$ be any two random variables and define 
 
@@ -539,19 +620,183 @@ $$
 
 (*Hint*: Establish that $X + Y = (X \vee Y) + (X \wedge Y)$.)
 
+<details>
+<summary>Proof: </summary>
+
+Assume $X \leqslant Y$, we have $X \vee Y = Y$ and $X \wedge Y = X$. Thus, 
+
+$$
+\begin{aligned}
+    \E(X + Y) &= \E(X \vee Y + X \wedge Y) \\
+    \E X + \E Y &= \E(X \vee Y) + \E (X \wedge Y) \\
+    \E(X \vee Y) &= \E X + \E Y - \E (X \wedge Y).
+\end{aligned}
+$$
+
+Then, if $X > Y$, we have $X \vee Y = X$ and $X \wedge Y = Y$, which leads to the same conclusion.
+</details>
+
 *2.32* (p.80) Let $M_{X}(t)$ be the moment generating function of $X$, and define $S(t) = \log(M_{X}(t))$. Show that 
 
 $$
 \frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \E X \quad \text{and} \quad \frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t)\bigg\vert_{t=0} = \Var X.
 $$
 
+<details>
+<summary>Proof: </summary>
+
+The derivatives of $S(t)$ w.r.t. $t$ are 
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}S(t) = \frac{\mathrm{d}}{\mathrm{d}t}\log(M_{X}(t)) = \frac{M_{X}'(t)}{M_{X}(t)}
+$$
+
+and 
+
+$$
+\frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t) = \frac{\mathrm{d}}{\mathrm{d}t}\frac{M_{X}'(t)}{M_{X}(t)} = \frac{M_{X}''(t) M_{X}(t) - (M_{X}'(t))^{2}}{(M_{X}(t))^{2}}.
+$$
+
+Let $t = 0$, we have 
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \frac{\E X}{1} = \E X
+$$
+
+and 
+
+$$
+\frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t) \bigg\vert_{t=0} = \frac{\E X^{2} \cdot 1 - (\E X)^{2}}{1^{2}} = \Var X.
+$$
+</details>
+
 *2.33* (p.80-81) In each of the following cases verify the expression given for the moment generating function, and in each case use the mgf to calculate $\E X$ and $\Var X$.
 
 (a) $P(X = x) = \frac{e^{-\lambda} \lambda^{x}}{x!},\ M_{X}(t) = e^{\lambda (e^{t} - 1)},\ x = 0,\ 1,\ \cdots;\ \lambda > 0$
 
+<details>
+<summary>Solution: </summary>
+
+$$
+\begin{aligned}
+    M_{X}(t) = \E[e^{tX}] &= \sum\limits_{x=0}^{\infty} e^{tx} \frac{e^{-\lambda} \lambda^{x}}{x!} \\
+    &= e^{\lambda e^{t} - \lambda} \sum\limits_{x=0}^{\infty} e^{-\lambda e^{t}}\frac{(\lambda e^{t})^{x}}{x!} \\
+    &= e^{\lambda (e^{t} - 1)}.
+\end{aligned}
+$$
+
+The derivatives of the mgf w.r.t. $t$ are 
+
+$$
+M_{X}'(t) = \lambda e^{t} e^{\lambda (e^{t} - 1)} = \lambda e^{\lambda(e^{t} - 1) + t}
+$$
+
+and 
+
+$$
+M_{X}''(t) = \frac{\mathrm{d}}{\mathrm{d}t} \left[\lambda e^{\lambda(e^{t} - 1) + t}\right] = \lambda (\lambda e^{t} + 1) e^{\lambda(e^{t} - 1) + t}.
+$$
+
+Let $t = 0$, we have 
+
+$$
+\E X = M_{X}'(0) = \lambda \quad \text{and} \quad \E X^{2} = M_{X}''(0) = \lambda (\lambda + 1),
+$$
+
+which means 
+
+$$
+\Var X = \E X^{2} - (\E X)^{2} = \lambda (\lambda + 1) - \lambda^{2} = \lambda.
+$$
+</details>
+
 (b) $P(X = x) = p (1 - p)^{x},\ M_{X}(t) = \frac{p}{1 - (1 - p) e^{t}},\ x = 0,\ 1,\ \cdots;\ 0 < p < 1$
 
+<details>
+<summary>Solution: </summary>
+
+$$
+\begin{aligned}
+    M_{X}(t) = \E[e^{tX}] &= \sum\limits_{x=0}^{\infty} e^{tx} p (1-p)^{x} \\
+    &= \sum\limits_{x=0}^{\infty} p [(1-p)e^{t}]^{x} \\
+    &= \frac{p \left[1 - \lim_{x \to \infty} [(1-p)e^{t}]^{x} \right]}{1 - (1 - p)e^{t}} \\
+    &= \frac{p}{1 - (1 - p)e^{t}},\quad  t < - \log (1 - p),
+\end{aligned}
+$$
+
+and $M_{X}(t)$ does not exist elsewhere.
+
+The derivatives of the mgf w.r.t. $t$ are 
+
+$$
+M_{X}'(t) = - \frac{p \left[- (1 - p) e^{t} \right]}{\left[1 - (1 - p) e^{t} \right]^{2}} = \frac{p (1 - p) e^{t}}{\left[1 - (1 - p) e^{t} \right]^{2}}
+$$
+
+and 
+
+$$
+\begin{aligned}
+    M_{X}''(t) &= \frac{\mathrm{d}}{\mathrm{d}t} \frac{p (1 - p) e^{t}}{\left[1 - (1 - p) e^{t} \right]^{2}} \\
+    &= p (1 - p) \frac{e^{t} \left[1 - (1 - p) e^{t} \right]^{2} - e^{t} \cdot 2 \left[1 - (1 - p) e^{t} \right] \left[- (1 - p) e^{t} \right]}{\left[1 - (1 - p) e^{t} \right]^{4}} \\
+    &= p (1 - p) e^{t} \frac{1 + (1 - p) e^{t}}{\left[1 - (1 - p) e^{t} \right]^{3}} \\
+\end{aligned}
+$$
+
+Let $t = 0$, we have 
+
+$$
+\E X = M_{X}'(0) = \frac{1 - p}{p} \quad \text{and} \quad \E X^{2} = M_{X}''(0) = \frac{(1 - p) (2 - p)}{p^{2}},
+$$
+
+which means 
+
+$$
+\Var X = \E X^{2} - (\E X)^{2} = \frac{(1 - p) (2 - p)}{p^{2}} - \frac{(1 - p)^{2}}{p^{2}} = \frac{1 - p}{p^{2}}.
+$$
+</details>
+
 (c) $f_{X}(x) = \frac{e^{-(x - \mu)^{2} / (2 \sigma^{2})}}{\sqrt{2 \pi} \sigma},\ M_{X}(t) = e^{\mu t + \sigma^{2} t^{2} / 2},\ -\infty < x < \infty;\ -\infty < \mu < \infty,\ \sigma > 0$
+
+<details>
+<summary>Solution: </summary>
+
+$$
+\begin{aligned}
+    M_{X}(t) = \E[e^{tX}] &= \int_{-\infty}^{\infty} e^{t x} \frac{e^{-(x - \mu)^{2} / (2 \sigma^{2})}}{\sqrt{2 \pi} \sigma} ~\mathrm{d}x \\
+    &= \int_{-\infty}^{\infty} e^{\mu t + \sigma^{2} t^{2} / 2} \frac{e^{\left[-(x - \mu)^{2} + 2 \sigma^{2} t x + \mu^{2} - \left(\mu + \sigma^{2} t \right)^{2}\right] / (2 \sigma^{2})}}{\sqrt{2 \pi} \sigma} ~\mathrm{d}x \\
+    &= e^{\mu t + \sigma^{2} t^{2} / 2} \int_{-\infty}^{\infty} \frac{e^{-\left[x - \left(\mu + \sigma^{2}t\right) \right]^{2} / (2 \sigma^{2})}}{\sqrt{2 \pi} \sigma} ~\mathrm{d}x \\
+    &= e^{\mu t + \sigma^{2} t^{2} / 2}.
+\end{aligned}
+$$
+
+The derivatives of the mgf w.r.t. $t$ are 
+
+$$
+M_{X}'(t) = \left(\mu + \sigma^{2} t \right) e^{\mu t + \sigma^{2} t^{2} / 2}
+$$
+
+and 
+
+$$
+\begin{aligned}
+    M_{X}''(t) &= \frac{\mathrm{d}}{\mathrm{d}t} \left[\left(\mu + \sigma^{2} t \right) e^{\mu t + \sigma^{2} t^{2} / 2} \right] \\
+    &= \sigma^{2} e^{\mu t + \sigma^{2} t^{2} / 2} + \left(\mu + \sigma^{2} t \right)^{2} e^{\mu t + \sigma^{2} t^{2} / 2} \\
+    &= \left[\sigma^{2} + \left(\mu + \sigma^{2} t \right)^{2} \right]  e^{\mu t + \sigma^{2} t^{2} / 2}.
+\end{aligned}
+$$
+
+Let $t = 0$, we have 
+
+$$
+\E X = M_{X}'(0) = \mu\quad \text{and} \quad \E X^{2} = M_{X}''(0) = \sigma^{2} + \mu^{2},
+$$
+
+which means 
+
+$$
+\Var X = \E X^{2} - (\E X)^{2} = \sigma^{2} + \mu^{2} - \mu^{2} = \sigma^{2}.
+$$
+</details>
 
 *2.38* (p.82) Let $X$ have the negative binomial distribution with pmf 
 
@@ -563,11 +808,46 @@ where $0 < p < 1$ and $r > 0$ is an integer.
 
 (a) Calculate the mgf of $X$.
 
+<details>
+<summary>Solution: </summary>
+
+The mgf of $X$ is given by 
+
+$$
+\begin{aligned}
+    M_{X}(t) = \E[e^{t X}] &= \sum\limits_{x=0}^{\infty} e^{t x} \tbinom{r + x - 1}{x} p^{r} (1 - p)^{x} \\
+    &= \sum\limits_{x=0}^{\infty} \tbinom{r + x - 1}{x} p^{r} \left[(1 - p)e^{t} \right]^{x} \\
+    &= \left[\frac{p}{1 - (1 - p)e^{t}} \right]^{r} \sum\limits_{x=0}^{\infty} \tbinom{r + x - 1}{x} \left[1 - (1 - p)e^{t} \right]^{r} \left[(1 - p)e^{t} \right]^{x} \\
+    &= \left[\frac{p}{1 - (1 - p)e^{t}} \right]^{r}.
+\end{aligned}
+$$
+</details>
+
 (b) Define a new random variable by $Y = 2pX$. Show that, as $p \downarrow 0$, the mgf of $Y$ converges to that of a chi squared random variable with $2r$ degrees of freedom by showing that 
 
 $$
 \lim\limits_{p \to \infty} M_{Y}(t) = \left(\frac{1}{1 - 2t} \right)^{r},\quad \left\vert t \right\vert < \frac{1}{2}.
 $$
+
+<details>
+<summary>Proof: </summary>
+
+The mgf of $Y$ is given by 
+
+$$
+M_{Y}(t) = M_{X}(2pt) = \left[\frac{p}{1 - (1 - p)e^{2pt}} \right]^{r}.
+$$
+
+Thus, we have 
+
+$$
+\begin{aligned}
+    \lim\limits_{p \to 0} M_{Y}(t) &= \lim\limits_{p \to 0} \left[\frac{p}{1 - (1 - p)e^{2pt}} \right]^{r} \\
+    &= \lim\limits_{p \to 0} \left[\frac{1}{1 \cdot e^{2pt} + (p - 1) \cdot 2t e^{2pt}} \right]^{r} \\
+    &= \left(\frac{1}{1 - 2t} \right)^{r},\quad \left\vert t \right\vert < \frac{1}{2}.
+\end{aligned}
+$$
+</details>
 
 *2.40* (p.82) Prove 
 
@@ -577,13 +857,114 @@ $$
 
 (*Hint*: Integrate by parts or differentiate both sides with respect to $p$.)
 
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \text{RHS} := I_x &= \tbinom{n}{x} \int_{0}^{1 - p} (n - x) t^{n - x - 1}(1 - t)^{x} ~\mathrm{d}t \\
+    &= \tbinom{n}{x} t^{n - x} (1 - t)^{x} \Big\vert_{t = 0}^{1 - p} - \frac{n!}{x! (n - x)!} \int_{0}^{1 - p} \left[- x t^{n - x}(1 - t)^{x - 1} \right] ~\mathrm{d}t \\
+    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + \frac{n!}{(x - 1)! (n - x)!} \int_{0}^{1 - p} t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
+    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + \tbinom{n}{x - 1} \int_{0}^{1 - p} (n - x + 1) t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
+    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + I_{x - 1} \\
+    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + \tbinom{n}{0} \int_{0}^{1 - p} n t^{n - 1} ~\mathrm{d}t \\
+    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + t^{n} \Big\vert_{t = 0}^{1 - p} \\
+    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + (1 - p)^{n} \\
+    &= \sum\limits_{k=0}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} \\
+    &= \text{LHS}.
+\end{aligned}
+$$
+</details>
+
 ### Additional Exercises
 
 1. Let $X$ have pdf $f_{X}(x) = \frac{2}{9}(x + 1),\ -1 \leqslant x \leqslant 2$.
 
-   (a) Find the pdf of $Y = X^{2}$ by proper partition using Theorem 2.1.8.
+    (a) Find the pdf of $Y = X^{2}$ by proper partition using Theorem 2.1.8.
 
-   (b) Find a monotone function $u(y)$ such that random variable $Z = u(Y)$ has a $\text{uniform}(0,\ 1)$ distribution.
+    <details>
+    <summary>Solution: </summary>
+
+    Denote the transformation by $g(x) = x^{2}$, which is monotone in $[-1,\ 0)$ and $(0,\ 2]$. For $x \in [-1,\ 1]$, let $\mathcal{A}_0 = \left\{0 \right\}$, $\mathcal{A}_1 = [-1,\ 0)$ and $\mathcal{A}_2 = (0,\ 1]$, the corresponding inverse transformations are $g_1 ^{-1}(y) = -\sqrt{y}$ and $g_2 ^{-1}(y) = \sqrt{y}$. Then, the pdf of $Y$ is given by 
+
+    $$
+    \begin{aligned}
+        f_{Y}(y) &= \sum\limits_{i=1}^{2} f_{X}(g_i^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g_i^{-1}(y) \right\vert \\
+        &= \frac{2}{9}(-\sqrt{y} + 1) \frac{1}{2\sqrt{y}} + \frac{2}{9}(\sqrt{y} + 1) \frac{1}{2\sqrt{y}} \\
+        &= \frac{2}{9} \frac{1}{\sqrt{y}},\quad 0 \leqslant y \leqslant  1 \\
+    \end{aligned}
+    $$
+
+    For $x \in (1,\ 2]$, by monotonicity we have 
+
+    $$
+    \begin{aligned}
+        f_{Y}(y) &= f_{X}(g_i^{-1}(y)) \left\vert \frac{\mathrm{d}}{\mathrm{d}y}g_i^{-1}(y) \right\vert \\
+        &= \frac{2}{9}(\sqrt{y} + 1) \frac{1}{2\sqrt{y}} \\
+        &= \frac{1}{9} \left(1 + \frac{1}{\sqrt{y}} \right),\quad 1 < y \leqslant 4.
+    \end{aligned}
+    $$
+
+    Finally, we have 
+
+    $$
+    f_{Y}(y) = \begin{cases}
+        \frac{2}{9} \frac{1}{\sqrt{y}},\ &0 \leqslant y \leqslant  1, \\
+        \frac{1}{9} \left(1 + \frac{1}{\sqrt{y}} \right),\ &1 < y \leqslant 4, \\
+        0,\ &\text{otherwise}.
+    \end{cases}
+    $$
+
+    > [!ATTENTION]
+    > Do not try to split the support set of $X$ to be $[-1,\ 0)$ and $(0,\ 2]$! Although $g(x)$ is monotone in these 2 intervals, their support sets of $Y$ are different, i.e., we need the partition to have the same support set of $Y$.
+    </details>
+
+    (b) Find a monotone function $u(y)$ such that random variable $Z = u(Y)$ has a $\text{uniform}(0,\ 1)$ distribution.
+
+    <details>
+    <summary>Solution: </summary>
+
+    We know that the cdf transformation, i.e., $u(y) = F_{Y}(y)$ would make a r.v. uniformly distributed in $(0,\ 1)$. So our goal is to calculate the cdf of $Y$: 
+
+    $$
+    \begin{aligned}
+        F_{Y}(y) &= \int_{-\infty}^{y} f_{Y}(x) ~\mathrm{d}x \\
+        &= \begin{cases}
+            0,\ &y < 0 \\
+            \int_{0}^{y} \frac{2}{9}\frac{1}{\sqrt{x}} ~\mathrm{d}x,\ &0 \leqslant y \leqslant 1 \\
+            \int_{0}^{1} \frac{2}{9}\frac{1}{\sqrt{x}} ~\mathrm{d}x + \int_{1}^{y} \frac{1}{9}\left(1 + \frac{1}{\sqrt{x}} \right) ~\mathrm{d}x,\ &1 < y \leqslant 4 \\
+            1,\ &y > 4 \\
+        \end{cases} \\
+        &= \begin{cases}
+            0,\ &y < 0 \\
+            \frac{4}{9} \sqrt{x} \Big\vert_{x=0}^{y},\ &0 \leqslant y \leqslant 1 \\
+            \frac{4}{9} \sqrt{x} \Big\vert_{x=0}^{1} + \left(\frac{1}{9}x + \frac{2}{9}\sqrt{x} \right) \Big\vert_{x=1}^{y},\ &1 < y \leqslant 4 \\
+            1,\ &y > 4 \\
+        \end{cases} \\
+        &= \begin{cases}
+            0,\ &y < 0 \\
+            \frac{4}{9}\sqrt{y},\ &0 \leqslant y \leqslant 1 \\
+            \frac{1}{9} + \frac{1}{9}y + \frac{2}{9}\sqrt{y},\ &1 < y \leqslant 4 \\
+            1,\ &y > 4.
+        \end{cases} \\
+    \end{aligned}
+    $$
+
+    So the transformation is given by 
+
+    $$
+    u(y) = \begin{cases}
+            0,\ &y < 0 \\
+            \frac{4}{9}\sqrt{y},\ &0 \leqslant y \leqslant 1 \\
+            \frac{1}{9} + \frac{1}{9}y + \frac{2}{9}\sqrt{y},\ &1 < y \leqslant 4 \\
+            1,\ &y > 4.
+        \end{cases}
+    $$
+
+    > [!ATTENTION]
+    > Do not forget the $0$ and $1$ cases, i.e., when the pdf is $0$!
+    </details>
+
 
 2. A median of a distribution is a value $m$ such that $P(X \leqslant m) \geqslant \frac{1}{2}$ and $P(X \geqslant m) \geqslant \frac{1}{2}$ (If $X$ is continuous, $m$ satisfies $\int_{-\infty}^{m} f(x) ~\mathrm{d}x = \int_{m}^{\infty} f(x) ~\mathrm{d}x = \frac{1}{2}$).
 
@@ -593,6 +974,31 @@ $$
 
     &emsp;&emsp;(ii) $f(x) = \frac{1}{\pi\sigma} \frac{\sigma^{2}}{\sigma^{2} + (x - \theta)^{2}} (-\infty < x < \infty,\ -\infty < \theta < \infty,\ \sigma > 0)$
 
+    <details>
+    <summary>Solution: </summary>
+
+    (i) Let 
+
+    $$
+    \int_{0}^{m} a x^{a-1} ~\mathrm{d}x = x^{a} \Big\vert_{x=0}^{2}{m} = m^{a} = \frac{1}{2},
+    $$
+
+    we get $m = 2^{-\frac{1}{a}}$.
+
+    (ii) Let 
+
+    $$
+    \begin{aligned}
+        \int_{-\infty}^{m} \frac{1}{\pi\sigma} \frac{\sigma^{2}}{\sigma^{2} + (x - \theta)^{2}} ~\mathrm{d}x &= \frac{1}{\pi} \int_{-\infty}^{m} \frac{1}{1 + (x - \theta)^{2} / \sigma^{2}} ~\mathrm{d}\left(\frac{x - \theta}{\sigma} \right) \\
+        &= \frac{1}{\pi} \left(\arctan \left(\frac{m - \theta}{\sigma} \right) - \lim\limits_{x \to -\infty} \arctan \left(\frac{x - \theta}{\sigma} \right) \right) \\
+        &= \frac{1}{\pi} \arctan \left(\frac{m - \theta}{\sigma} \right) + \frac{1}{2} \\
+        &= \frac{1}{2},
+    \end{aligned}
+    $$
+
+    we get $m = \theta$.
+    </details>
+
     (b) Show that if $X$ is a continuous random variable, then 
 
     $$
@@ -601,4 +1007,53 @@ $$
 
     &emsp;&emsp;where $m$ is the median of $X$.
 
-    
+    <details>
+    <summary>Proof: </summary>
+
+    Since 
+
+    $$
+    \begin{aligned}
+        \E \left\vert X - a \right\vert &= \int_{-\infty}^{\infty} \left\vert x - a \right\vert f(x) ~\mathrm{d}x \\
+        &= \int_{-\infty}^{a} (a - x) f(x) ~\mathrm{d}x + \int_{a}^{\infty} (x - a) f(x) ~\mathrm{d}x,
+    \end{aligned}
+    $$
+
+    we can calculate the derivative of it w.r.t. $a$: 
+
+    $$
+    \begin{aligned}
+        \frac{\mathrm{d}}{\mathrm{d}a} \E \left\vert X - a \right\vert &= \frac{\mathrm{d}}{\mathrm{d}a} \left[\int_{-\infty}^{a} (a - x) f(x) ~\mathrm{d}x + \int_{a}^{\infty} (x - a) f(x) ~\mathrm{d}x \right] \\
+        &= \int_{-\infty}^{a} f(x) ~\mathrm{d}x - \int_{a}^{\infty} f(x) ~\mathrm{d}x.
+    \end{aligned}
+    $$
+
+    When $\int_{-\infty}^{a} f(x) ~\mathrm{d}x = \int_{a}^{\infty} f(x) ~\mathrm{d}x$, i.e., $a$ equals the median $m$, the derivative is $0$, which means $a = m$ is a critial point. Now we check the second order derivative: 
+
+    $$
+    \begin{aligned}
+        \frac{\mathrm{d}^{2}}{\mathrm{d}a^{2}} \E \left\vert X - a \right\vert &= \frac{\mathrm{d}}{\mathrm{d}a} \left(\int_{-\infty}^{a} f(x) ~\mathrm{d}x - \int_{a}^{\infty} f(x) ~\mathrm{d}x \right) \\
+        &= \frac{\mathrm{d}}{\mathrm{d}a} \left[F(a) - (1 - F(a)) \right] \\
+        &= 2 f(a) \\
+        &> 0,
+    \end{aligned}
+    $$
+
+    which means the critical point is the minimum point and thus we have 
+
+    $$
+    \underset{a}{\min} ~ \E\left\vert X - a \right\vert = \E\left\vert X - m \right\vert.
+    $$
+    </details>
+
+3. Let $X$ be a random variable with finite mgf $M_{X}(t)$. Prove that 
+   
+    $$
+    \lim\limits_{n \to \infty} \left[M_{X} \left(\frac{t}{n} \right) \right]^{n} = e^{t \E[X]}.
+    $$
+
+    <details>
+    <summary>Proof: </summary> 
+
+    See [Exercises in 2.3](#exercises-1).
+    </details>
