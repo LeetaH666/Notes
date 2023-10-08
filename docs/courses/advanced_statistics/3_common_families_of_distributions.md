@@ -580,7 +580,8 @@ which means the former is better.
 
     (b) By question (a) we have $P(X \geqslant 0) \leqslant \E[e^{tX}]$ for all $t \geqslant 0$. What are general conditions on a function $h(t,\ x)$ such that $P(X \geqslant 0) \leqslant \E[h(t,\ X)]$ for all $t \geqslant 0$ for which $\E[h(t,\ X)]$ exists?
 
-    Solution:
+    <details>
+    <summary>Solution: </summary>
 
     Suppose $h(t,\ x)$ is nonnegative for all $t \geqslant 0$, then we have 
 
@@ -598,6 +599,7 @@ which means the former is better.
 
     1. $h(t,\ x) \geqslant 0,\ \forall t \geqslant 0,\ \forall x$;
     2. $h(t,\ x) \geqslant 1,\ \forall t \geqslant 0,\ \forall x \geqslant 0$.
+    </details>
 
 5. Stein’s Lemma applications and analogs.
 
