@@ -118,7 +118,7 @@ The continuity of $X$ is used to obtain the last equality, because we need to sw
 
 The theorem above can be proved by using the chain rule on the conclusions of previous theorem.
 
-> [!EXAMPLE]
+> [!EXAMPLE|label:Example：Transform Gamma to Inverted Gamma]
 > Let $f_{X}(x)$ be the *Gamma pdf*: 
 > 
 > $$f(x) = \frac{1}{(n-1)! \beta^{n}} x^{n-1} e^{-x / \beta},\quad 0 < x < \infty, $$
@@ -145,7 +145,7 @@ The theorem above can be proved by using the chain rule on the conclusions of pr
 
 This theorem deals with cases that $g(\cdot)$ is not continuous or monotone on the whole support set. We only require *piece-wise* continuity and monotonicity for the nice conclusion.
 
-> [!EXAMPLE]
+> [!EXAMPLE|label:Example：Transform Normal to Chi Squared]
 > Let $X$ have the *standard normal distribution*, 
 > 
 > $$f_{X}(x) = \frac{1}{\sqrt{2 \pi}} e^{- x^{2} / 2},\quad -\infty < x < \infty. $$
@@ -274,13 +274,13 @@ which means when $b = \E[X]$, $\E[(X - b)^{2}]$ would reach the minimum, and thu
 > - the $n$-th **central moment**: $\mu_n = \E[(X - \mu)^{n}]$ with $\mu = \mu_1' = \E[X]$;
 > - **variance**: $\Var(X) = \mu_2 = \E[(X - \mu)^{2}]$.
 
-> [!EXAMPLE]
-> The mean and variance of some common distributions: 
-> 
-> - If $X \sim \exp(\lambda)$ with $f_{X}(x) = \frac{1}{\lambda} e^{-\frac{x}{\lambda}}$, then $\E[X] = \lambda$ and $\Var(X) = \lambda^{2}$;
+> [!EXAMPLE|label:Mean and Variance of Common Distributions]
+> - If $X \sim \text{Exponential}(\lambda)$ with $f_{X}(x) = \frac{1}{\lambda} e^{-\frac{x}{\lambda}}$, then $\E[X] = \lambda$ and $\Var(X) = \lambda^{2}$;
 > - if $X \sim \text{Binomial}(n,\ p)$, then $\E[X] = np$ and $\Var(X) = np(1-p)$;
 > - if $X \sim \text{Cauchy}(0,\ 1)$ with $f_{X}(x) = \frac{1}{\pi} \frac{1}{1 + x^{2}},\ -\infty < x < \infty$, then both $\E[X]$ and $\Var(X)$ do not exist;
 > - if $X \sim \text{Poisson}(\lambda)$ with $P(X = k) = \frac{\lambda^{k}}{k!} e^{-\lambda},\ k=0,\ 1,\ \cdots,\ \infty$, then $\E[X] = \Var(X) = \lambda$.
+
+<span id="mgf"></span>
 
 > [!DEFINITION]
 > Let $X$ be a r.v. with cdf $F_{X}$. The **moment generating function (mgf)** of $X$, denoted by $M_{X}(t)$, is 
@@ -296,7 +296,7 @@ which means when $b = \E[X]$, $\E[(X - b)^{2}]$ would reach the minimum, and thu
 
 <span id='example'></span>
 
-> [!EXAMPLE]
+> [!EXAMPLE|label:Example：Mgf of Binomial Distribution]
 > Consider a r.v. $X \sim \text{Binomial}(n,\ p)$, we have 
 > 
 > $$P(X = x) = C_n^{x} p^{x} (1 - p)^{n-x},\quad x=0,\ 2,\ \cdots,\ n. $$
@@ -307,9 +307,9 @@ which means when $b = \E[X]$, $\E[(X - b)^{2}]$ would reach the minimum, and thu
 > 
 > where the last equality holds by the binomial formula.
 
-The major usefulness of the mgf is not in its ability to generate moments. Rather, its usefulness stems from the fact that, in many cases, the mgf function can *characterize a distribution*. *However*, there are still some cases that different distributions have the same moments. 
+The major usefulness of the mgf is not in its ability to generate moments. Rather, its usefulness stems from the fact that, in many cases, the mgf can *characterize a distribution*. *However*, there are still some cases that different distributions have the same moments. 
 
-> [!EXAMPLE]
+> [!EXAMPLE|label:Example：Different Distributions With Same Moments]
 > Consider 2 pdfs given by 
 > 
 > $$f_1(x) = \frac{1}{\sqrt{2 \pi} x}e^{-(\log x)^{2} / 2},\quad 0\leqslant x \leqslant \infty,$$
@@ -338,7 +338,9 @@ Under some conditions, we can guarantee that an mgf can give a unique distributi
 > - If $X$ and $Y$ have *bounded support*, then $F_{X}(u) = F_{Y}(u),\ \forall u$ *iff* $\E[X^{r}] = \E[Y^{r}],\ \forall r = 0,\ 1,\ \cdots$.
 > - If the mgf exist and $M_{X}(t) = M_{Y}(t),\ \forall t$ in some neighborhood of $0$, then $F_{X}(u) = F_{Y}(u),\ \forall u$.
 
-Now we want to give the convergence of mgf, which we want to use to prove the CLT (Central Limit Theorem).
+Now we want to give the convergence theorem of mgf, which we want to use to prove the CLT (Central Limit Theorem).
+
+<span id="convergence-theorem-of-mgf"></span>
 
 > [!THEOREM]
 > Suppose $\left\{X_{i},\ i = 1,\ 2,\ \cdots \right\} $ is a sequence of random variables, each with mgf $M_{X_{i}}(t)$. Futhermore, suppose the sequence of mgfs is *convergent for $t$ in a neighborhood of $0$*, i.e., $\exists \delta > 0$ s.t. 
@@ -373,7 +375,7 @@ Now we want to give the convergence of mgf, which we want to use to prove the CL
 
 Now we start to prove the CLT.
 
-> [!THEOREM]
+> [!THEOREM|label:Central Limit Theorem]
 > Let $X_1,\ X_2,\ \cdots$ be a sequence of i.i.d. random variables whose mgf exists in a neighborhood of $0$, say, $M_{X}(t)$ exists for $\left\vert t \right\vert < \delta$. Let 
 > - $\E[X_1] = \mu$,
 > - $\Var(X_1) = \sigma^{2} > 0$,
@@ -482,9 +484,250 @@ which means $G_n(x)$ converges to the cdf of standard normal distribution.
 
 ## 2.3' Characteristic Functions
 
+From section [2.3](#_23-moments-and-moment-generating-functions) we have known that mgf cannot always characterize a distribution. To characterize a distribution uniquely, we introduce the *characteristic function*.
 
+> [!DEFINITION]
+> The *characteristic function* of r.v. $X$ is defined by 
+> 
+> $$\phi_{X}(t) = \E[e^{itX}].$$
+>
+
+> [!EXAMPLE|label:Example：Characteristic Function of Standard Normal]
+> For a normal r.v. $X \sim N(\mu,\ \sigma^{2})$, its characteristic function is 
+> 
+> $$\phi_{X}(t) = \E[e^{itX}] = e^{it \mu - \frac{1}{2} \sigma^{2} t^{2}}.$$
+> 
+> Particularly, the characteristic function of a standard normal r.v. is $\phi(t) = e^{-t^{2} / 2}$.
+
+> [!THEOREM]
+> Let $X$ be a r.v. with characteristic function $\phi_{X}(t)$. Like mgf, the derivative of characteristic function w.r.t. $t=0$ can be expressed by moments of the r.v.: 
+>
+> $$\phi_{X}^{(k)}(0) = i^{k} \E[X^{k}].$$
+
+> [!THEOREM]
+> For any r.v. $X$, its cdf has a unique characteristic function. Since $e^{itX} = \cos(tX) + i \sin(tX)$, like the Fourier transform, the pdf $f_{X}(x)$ can be inversely transformed from the characteristic function, i.e., 
+> 
+> $$f_{X}(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-itx}\phi_{X}(t) ~\mathrm{d}t.$$
+
+Like the [convergence theorem of mgf](#convergence-theorem-of-mgf), there is also a convergence theorem of characteristic function, which we will also use to prove the CLT.
+
+> [!THEOREM]
+> Suppose $\left\{X_{i},\ i = 1,\ 2,\ \cdots \right\} $ is a sequence of random variables, each with characteristic function $M_{X_{i}}(t)$. Futhermore, suppose the sequence of characteristic functions is *convergent for $t$ in a neighborhood of $0$*, i.e., $\exists \delta > 0$ s.t. 
+> 
+> $$\lim\limits_{i \to \infty} \phi_{X_{i}}(t) = \phi_{X}(t),\quad \forall t \in (-\delta,\ \delta),$$
+> 
+> where $\phi_{X}(t)$ is a characteristic function. Then, $\forall x$ where $F_{X}(x)$ is continuous, we have 
+> 
+> $$\lim\limits_{i \to \infty} F_{X_{i}}(x) = F_{X}(x),$$
+> 
+> i.e., *convergence of characteristic functions in a neighborhood of 0 implies convergence of cdfs*.
+
+Now we start to prove the CLT (Lindeberg-Lévy version).
+
+> [!THEOREM|label:Lindeberg-Lévy’s Central Limit Theorem]
+> Suppose $\left\{X_{i} \right\}_{i=1}^{n} $ is a sequence of random variables with $\E[X_i] = \mu$ and $\Var(X_{i}) = \sigma^{2} < \infty$, $i = 1,\ 2,\ \cdots,\ n$. Denote the sample average by $S_n := \frac{1}{n} \sum_{i=1}^{n} X_{i}$, then 
+> 
+> $$Z_n := \frac{\sqrt{n}(S_n - \mu)}{\sigma} \stackrel{d}{\to} N(0,\ 1),$$
+> 
+> where $\stackrel{d}{\to}$ denotes convergence in distribution, which means $Z_n$ converges pointwise to the standard normal cdf, i.e., 
+> 
+> $$\lim\limits_{n \to \infty} P(Z_n \leqslant z) = \phi(z),\quad \forall z \in \mathbb{R},$$
+> 
+> where $\phi(\cdot)$ is the standard normal cdf.
+
+<details>
+<summary>Proof: </summary>
+
+We want to prove the convergence of cdfs of $Z_n$ by proving the convergence of the corresponding characteristic functions in a neighborhood of $0$. Note that the characteristic function of a standard normal r.v. is $e^{-t^{2} / 2}$.
+
+Let $Y_i := \frac{X_{i} - \mu}{\sigma}$ (also i.i.d.), the r.v. $Z_n$ can be written as 
+
+$$
+Z_n = \frac{\sqrt{n}(S_n - \mu)}{\sigma} = \sum\limits_{i=1}^{n} \frac{X_{i} - \mu}{\sqrt{n}\sigma} = \sum\limits_{i=1}^{n} \frac{1}{\sqrt{n}}Y_i,
+$$
+
+which means the characteristic function of $Z_n$ can be given by 
+
+$$
+\phi_{Z_n}(t) = \E[e^{it Z_n}] = \prod_{i=1}^{n} \E[e^{it \frac{1}{\sqrt{n}} Y_i}] = \left[\phi_{Y}\left(\frac{t}{\sqrt{n}} \right) \right]^{n},
+$$
+
+where $\phi_{Y}(\cdot)$ is the common characteristic funcion of $Y_i,\ i=1,\ 2,\ \cdots,\ n$.
+
+By doing Taylor expansion around $0$, we have 
+
+$$
+\phi_{Y}\left(\frac{t}{\sqrt{n}} \right) = \sum\limits_{k=0}^{\infty} \phi_{Y}^{(k)}(0) \frac{(t / \sqrt{n})^{k}}{k!}
+$$
+
+By definition we have $\phi_{Y}(0) = 1$, $\phi_{Y}'(0) = i\E[Y] = 0$ and $\phi_{Y}''(0) = - \E[Y^{2}] = - 1$. Then, we can write 
+
+$$
+\phi_{Y}\left(\frac{t}{\sqrt{n}} \right) = 1 - \frac{t^{2}}{2n} + \omicron\left(\frac{t^{2}}{n} \right).
+$$
+
+Thus, we have 
+
+$$
+\begin{aligned}
+    \lim\limits_{n \to \infty} \phi_{Z_n}(t) &= \left(1 - \frac{t^{2}}{2n} + \omicron\left(\frac{t^{2}}{n} \right)\right)^{n} \\
+    &= \left[1 + \frac{1}{n}\left(- \frac{t^{2}}{2} + \omicron\left(t^{2} \right) \right)\right]^{n} \\
+    &= e^{-\frac{t^{2}}{2}},
+\end{aligned}
+$$
+
+which means the cdf of $Z_n$ converges to the standard normal cdf.
+</details>
 
 ## 2.4 Differentiating Under an Integral Sign
+
+In section [2.3](#_23-moments-and-moment-generating-functions) and [2.3'](#_2339-characteristic-functions), when we calculate the derivative of an mgf or a characteristic function, we automatically *interchange the order of differentiation and integration* (expecation is integration). However, this operation is *not* always correct. In this section, we would give the conditions that we can do this operation.
+
+> [!THEOREM]
+> If $f(x,\ \theta)$, $a(\theta)$, and $b(\theta)$ are differentiable w.r.t. $\theta$, then 
+> 
+> $$\begin{aligned} \frac{\mathrm{d}}{\mathrm{d}\theta}\int_{a(\theta)}^{b(\theta)} f(x,\ \theta) ~\mathrm{d}x &= f(b(\theta),\ \theta) b'(\theta) - f(a(\theta),\ \theta) a'(\theta) \\&\quad + \int_{a(\theta)}^{b(\theta)} \frac{\partial}{\partial \theta}f(x,\ \theta) ~\mathrm{d}x, \end{aligned}$$
+> 
+> where $b'(\theta) := \frac{\mathrm{d}}{\mathrm{d}\theta}b(\theta)$ and $a'(\theta) := \frac{\mathrm{d}}{\mathrm{d}\theta}a(\theta)$.
+> 
+> Note that if $a(\theta)$ and $b(\theta)$ are constant, we can just interchange the order of differentiation and integration: 
+> 
+> $$\frac{\mathrm{d}}{\mathrm{d}\theta}\int_{a(\theta)}^{b(\theta)} f(x,\ \theta) ~\mathrm{d}x = \int_{a(\theta)}^{b(\theta)} \frac{\partial}{\partial \theta}f(x,\ \theta) ~\mathrm{d}x.$$
+
+> [!NOTE]
+> When we say some variable is constant, we automatically exclude the *infinite* cases. If the range of integration is *infinite*, problems can arise, and we need some other theorem.
+
+Now let's introduce the well-known *DCT (Dominated Convergence Theorem)*, to help us solve the infinite cases.
+
+> [!THEOREM|label:Dominated Convergence Theorem]
+> Suppose the function $f(x,\ y)$ is continuous at $y_0$ for each $x$, and $\exists $ a function $g(x)$ satisfying
+> 
+> 1. $\left\vert f(x,\ y) \right\vert \leqslant g(x),\ \forall x,\ \forall y$,
+> 2. $\int_{-\infty}^{\infty} g(x) ~\mathrm{d}x < \infty$.
+> 
+> Then 
+> 
+> $$\lim\limits_{y \to y_0} \int_{-\infty}^{\infty} f(x,\ y) ~\mathrm{d}x = \int_{-\infty}^{\infty} \lim\limits_{y \to y_0} f(x,\ y) ~\mathrm{d}x.$$
+
+Applying the DCT to the differentiation cases, we get the following theorem.
+
+> [!THEOREM]
+> Suppose $f(x,\ \theta)$ is differentiable at $\theta = \theta_0$, i.e., 
+> 
+> $$\lim\limits_{\delta \to \infty} \frac{f(x,\ \theta_0 + \delta) - f(x,\ \theta_0)}{\delta} = \frac{\partial }{\partial \theta}f(x,\ \theta)\bigg\vert_{\theta=\theta_0}$$
+> 
+> exists for every $x$, and $\exists $ a function $g(x,\ \theta_0)$ and a constant $\delta_0 > 0$ s.t. 
+> 
+> 1. $\left\vert \frac{f(x,\ \theta_0 + \delta) - f(x,\ \theta_0)}{\delta} \right\vert \leqslant g(x,\ \theta_0),\ \forall x$ and $\left\vert \delta \right\vert \leqslant \delta_0$,
+> 2. $\int_{-\infty}^{\infty} g(x,\ \theta_0) ~\mathrm{d}x < \infty$.
+> 
+> Then 
+> 
+> $$\frac{\mathrm{d}}{\mathrm{d}\theta}\int_{-\infty}^{\infty} f(x,\ \theta) ~\mathrm{d}x \bigg\vert_{\theta=\theta_0} = \int_{-\infty}^{\infty} \left[\frac{\partial }{\partial \theta}f(x,\ \theta)\bigg\vert_{\theta=\theta_0} \right] ~\mathrm{d}x.$$
+> 
+> Typically, if the conditions above are satisfied not only at one value $\theta_0$, but at all other $\theta$ as well, then we have 
+> 
+> $$\frac{\mathrm{d}}{\mathrm{d}\theta}\int_{-\infty}^{\infty} f(x,\ \theta) ~\mathrm{d}x = \int_{-\infty}^{\infty} \frac{\partial }{\partial \theta}f(x,\ \theta) ~\mathrm{d}x. $$
+
+Actually, finding the bound $g(x,\ \theta)$ is cumbersome. We just need to know that interchange the order of differentiation and integration is not always automatic. In most situations, just do it!
+
+Apart from integration, we also have theorem for *interchanging the order of differentiation and summation*.
+
+> [!THEOREM]
+> Suppose that the series $\sum_{x=0}^{\infty} f(\theta,\ x)$ converges for all $\theta$ in an interval $(a,\ b)$ of real numbers and 
+> 
+> 1. $\frac{\partial }{\partial \theta}f(\theta,\ x)$ is <em>continuous</em> in $\theta$ for each $x$,
+> 2. $\sum_{x=0}^{\infty} \frac{\partial }{\partial \theta}f(\theta,\ x)$ <em>converges uniformly</em> on every closed bounded subinterval of $(a,\ b)$.
+> 
+> Then 
+> 
+> $$\frac{\mathrm{d}}{\mathrm{d}\theta}\sum\limits_{x=0}^{\infty} f(\theta,\ x) = \sum\limits_{x=0}^{\infty} \frac{\partial }{\partial \theta}f(\theta,\ x).$$
+
+> [!TIP]
+> Uniform convergence: given $\epsilon > 0$, $\exists N \in \mathbb{N}$ s.t. $\underset{\theta}{\sup} ~ \left\{\left\vert f(\theta,\ x) - f(\theta) \right\vert \right\} < \epsilon$ for $x \geqslant N$, where $f(\theta)$ is some function.
+>
+> The difference between uniform and pointwise convergence is that uniform convergence require an *overall* speed of convergence, while pointwise convergence implies that different points have *different* speed of convergence.
+
+Also, we have theorem for *interchanging the order of summation and integration*.
+
+> [!THEOREM]
+> Suppose the series $\sum_{x=0}^{\infty} f(\theta,\ x)$ *converges uniformly* on $[a,\ b]$ and that, for each $x$, $f(\theta,\ x)$ is a *continuous* function of $\theta$. Then 
+> 
+> $$\int_{a}^{b} \sum\limits_{x=0}^{\infty} f(\theta,\ x) ~\mathrm{d}\theta = \sum\limits_{x=0}^{\infty} \int_{a}^{b} f(\theta,\ x) ~\mathrm{d}\theta.$$
+
+### Exercises
+
+1. Let $X$ be a standard normal r.v. and set $Y = e^{X}$.
+
+    (a) Find the distribution of $Y$.
+
+    <details>
+    <summary>Solution: </summary>
+
+    Since the transformation $g(x) = e^{x}$ is increasing in $(-\infty,\ \infty)$, the pdf of $Y$ is given by 
+
+    $$
+    f_{Y}(y) = f_{X}(\log y) \frac{\mathrm{d}}{\mathrm{d}y}\log y = \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{-\frac{(\log y)^{2}}{2}}.
+    $$
+    </details>
+
+    (b) Show that all the moments of $Y$ exist.
+
+    <details>
+    <summary>Proof: </summary>
+
+    The $n$-th moment of $Y$ is 
+
+    $$
+    \E[Y^{n}] = \E[e^{nX}] = M_{X}(n) = e^{\frac{n^{2}}{2}},
+    $$
+
+    where $M_{X}(\cdot)$ is the mgf of $X$. Thus, all the moments of $Y$ exist.
+    </details>
+
+    (c) Show that the r.v. $Y$ does not have a moment generating function.
+
+    <details>
+    <summary>Proof: </summary>
+
+    Suppose $Y$ have a mgf denoted by $M_{Y}(t)$, by [definition](#mgf) we want to show that the expectation $\E[e^{tY}]$ does not exist for $t$ in some neighborhood of $0$. $\forall t < 0$, $\E[e^{tY}] \leqslant 1$ since $Y$ is positive. So we will focus on cases when $t > 0$.
+    
+    For $t > 0$, we have 
+
+    $$
+    \begin{aligned}
+        M_{Y}(t) = \E\left[e^{tY} \right] &= \int_{0}^{\infty} e^{t y} \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{-\frac{(\log y)^{2}}{2}} ~\mathrm{d}y \\
+        &= \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{ty - \frac{(\log y)^{2}}{2}} ~\mathrm{d}y.
+    \end{aligned}
+    $$
+
+    Since 
+
+    $$
+    \begin{aligned}
+        \lim\limits_{y \to \infty} \frac{ty - (\log y)^{2}}{ty} &= \lim\limits_{y \to \infty} \frac{t - 2 (\log y) / y}{t} \\
+        &= \lim\limits_{y \to \infty} \frac{ty - 2 \log y}{ty} \\
+        &= \lim\limits_{y \to \infty} \frac{t - 2 / y}{t} \\
+        &= \lim\limits_{y \to \infty} \frac{ty - 2}{ty} \\
+        &= \lim\limits_{y \to \infty} \frac{t}{t} \\
+        &= 1,
+    \end{aligned}
+    $$
+
+    we have
+    
+    $$
+    \lim\limits_{y \to \infty} ty - (\log y)^{2} = \lim\limits_{y \to \infty} ty = \infty,\quad t > 0.
+    $$
+
+    Thus, for any $k > 0$, $\exists $ a positive constant $c$ s.t. 
+
+    $$
+    \int_{k}^{\infty} \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{ty - \frac{(\log y)^{2}}{2}} ~\mathrm{d}y \geqslant c \int_{k}^{\infty} \frac{1}{y} ~\mathrm{d}y = c \log y \big\vert_{y=k}^{\infty} = \infty,
+    $$
+
+    which means $M_{Y}(t)$ does not exist for $t > 0$.
+    </details>
 
 ## Assignments
 
@@ -558,7 +801,7 @@ and $f_{Y}(y) = 0$ elsewhere.
 (a) Let $X$ be a continuous, nonnegative random variable $[f(x) = 0 \text{ for } x < 0]$. Show that 
 
 $$
-\E X = \int_{0}^{\infty} [1 - F_{X}(x)] ~\mathrm{d}x,
+\E[X] = \int_{0}^{\infty} [1 - F_{X}(x)] ~\mathrm{d}x,
 $$
 
 where $F_{X}(x)$ is the cdf of $X$.
@@ -575,7 +818,7 @@ $$
     &= \int_{0}^{\infty} \int_{x}^{\infty} f_{X}(y) ~\mathrm{d}y ~\mathrm{d}x \\
     &= \int_{0}^{\infty} \int_{0}^{y} f_{X}(y) ~\mathrm{d}x ~\mathrm{d}y \\
     &= \int_{0}^{\infty} y f_{X}(y) ~\mathrm{d}y \\
-    &= \E X \\
+    &= \E[X] \\
 \end{aligned}
 $$
 
@@ -585,7 +828,7 @@ where $f_{X}(x)$ is the pdf of $X$.
 (b) Let $X$ be a discrete random variable whose range is the nonnegative integers. Show that 
 
 $$
-\E X = \sum\limits_{k=0}^{\infty} (1 - F_{X}(k)),
+\E[X] = \sum\limits_{k=0}^{\infty} (1 - F_{X}(k)),
 $$
 
 where $F_{X}(k) = P(X \leqslant k)$. Compare this with part (a).
@@ -599,7 +842,7 @@ $$
     &= \sum\limits_{k=0}^{\infty} \sum\limits_{m=k+1}^{\infty} P(X = m) \\
     &= \sum\limits_{m=0}^{\infty} \sum\limits_{k=0}^{m - 1} P(X = m) \\
     &= \sum\limits_{m=0}^{\infty} m P(X = m) \\
-    &= \E X,
+    &= \E[X],
 \end{aligned}
 $$
 
@@ -615,7 +858,7 @@ $$
 Analogous to the probability law $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, show that 
 
 $$
-\E(X \vee Y) = \E X + \E Y - \E(X \wedge Y).
+\E[X \vee Y] = \E[X] + \E[Y] - \E[X \wedge Y].
 $$
 
 (*Hint*: Establish that $X + Y = (X \vee Y) + (X \wedge Y)$.)
@@ -627,9 +870,9 @@ Assume $X \leqslant Y$, we have $X \vee Y = Y$ and $X \wedge Y = X$. Thus,
 
 $$
 \begin{aligned}
-    \E(X + Y) &= \E(X \vee Y + X \wedge Y) \\
-    \E X + \E Y &= \E(X \vee Y) + \E (X \wedge Y) \\
-    \E(X \vee Y) &= \E X + \E Y - \E (X \wedge Y).
+    \E[X + Y] &= \E[X \vee Y + X \wedge Y] \\
+    \E[X] + \E[Y] &= \E[X \vee Y] + \E[X \wedge Y] \\
+    \E[X \vee Y] &= \E[X] + \E[Y] - \E[X \wedge Y].
 \end{aligned}
 $$
 
@@ -639,7 +882,7 @@ Then, if $X > Y$, we have $X \vee Y = X$ and $X \wedge Y = Y$, which leads to th
 *2.32* (p.80) Let $M_{X}(t)$ be the moment generating function of $X$, and define $S(t) = \log(M_{X}(t))$. Show that 
 
 $$
-\frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \E X \quad \text{and} \quad \frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t)\bigg\vert_{t=0} = \Var X.
+\frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \E[X] \quad \text{and} \quad \frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t)\bigg\vert_{t=0} = \Var(X).
 $$
 
 <details>
@@ -660,17 +903,17 @@ $$
 Let $t = 0$, we have 
 
 $$
-\frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \frac{\E X}{1} = \E X
+\frac{\mathrm{d}}{\mathrm{d}t}S(t) \bigg\vert_{t=0} = \frac{\E[X]}{1} = \E[X]
 $$
 
 and 
 
 $$
-\frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t) \bigg\vert_{t=0} = \frac{\E X^{2} \cdot 1 - (\E X)^{2}}{1^{2}} = \Var X.
+\frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t) \bigg\vert_{t=0} = \frac{\E[X^{2}] \cdot 1 - (\E[X])^{2}}{1^{2}} = \Var(X).
 $$
 </details>
 
-*2.33* (p.80-81) In each of the following cases verify the expression given for the moment generating function, and in each case use the mgf to calculate $\E X$ and $\Var X$.
+*2.33* (p.80-81) In each of the following cases verify the expression given for the moment generating function, and in each case use the mgf to calculate $\E[X]$ and $\Var(X)$.
 
 (a) $P(X = x) = \frac{e^{-\lambda} \lambda^{x}}{x!},\ M_{X}(t) = e^{\lambda (e^{t} - 1)},\ x = 0,\ 1,\ \cdots;\ \lambda > 0$
 
@@ -700,13 +943,13 @@ $$
 Let $t = 0$, we have 
 
 $$
-\E X = M_{X}'(0) = \lambda \quad \text{and} \quad \E X^{2} = M_{X}''(0) = \lambda (\lambda + 1),
+\E[X] = M_{X}'(0) = \lambda \quad \text{and} \quad \E[X^{2}] = M_{X}''(0) = \lambda (\lambda + 1),
 $$
 
 which means 
 
 $$
-\Var X = \E X^{2} - (\E X)^{2} = \lambda (\lambda + 1) - \lambda^{2} = \lambda.
+\Var(X) = \E[X^{2}] - \E^{2}[X] = \lambda (\lambda + 1) - \lambda^{2} = \lambda.
 $$
 </details>
 
@@ -745,13 +988,13 @@ $$
 Let $t = 0$, we have 
 
 $$
-\E X = M_{X}'(0) = \frac{1 - p}{p} \quad \text{and} \quad \E X^{2} = M_{X}''(0) = \frac{(1 - p) (2 - p)}{p^{2}},
+\E[X] = M_{X}'(0) = \frac{1 - p}{p} \quad \text{and} \quad \E[X^{2}] = M_{X}''(0) = \frac{(1 - p) (2 - p)}{p^{2}},
 $$
 
 which means 
 
 $$
-\Var X = \E X^{2} - (\E X)^{2} = \frac{(1 - p) (2 - p)}{p^{2}} - \frac{(1 - p)^{2}}{p^{2}} = \frac{1 - p}{p^{2}}.
+\Var(X) = \E[X^{2}] - \E^{2}[X] = \frac{(1 - p) (2 - p)}{p^{2}} - \frac{(1 - p)^{2}}{p^{2}} = \frac{1 - p}{p^{2}}.
 $$
 </details>
 
@@ -788,20 +1031,20 @@ $$
 Let $t = 0$, we have 
 
 $$
-\E X = M_{X}'(0) = \mu\quad \text{and} \quad \E X^{2} = M_{X}''(0) = \sigma^{2} + \mu^{2},
+\E[X] = M_{X}'(0) = \mu\quad \text{and} \quad \E[X^{2}] = M_{X}''(0) = \sigma^{2} + \mu^{2},
 $$
 
 which means 
 
 $$
-\Var X = \E X^{2} - (\E X)^{2} = \sigma^{2} + \mu^{2} - \mu^{2} = \sigma^{2}.
+\Var(X) = \E[X^{2}] - \E^{2}[X] = \sigma^{2} + \mu^{2} - \mu^{2} = \sigma^{2}.
 $$
 </details>
 
 *2.38* (p.82) Let $X$ have the negative binomial distribution with pmf 
 
 $$
-f(x) = \tbinom{r + x - 1}{x} p^{r} (1 - p)^{x},\quad x = 0,\ 1,\ 2,\ \cdots,
+f(x) = \binom{r + x - 1}{x} p^{r} (1 - p)^{x},\quad x = 0,\ 1,\ 2,\ \cdots,
 $$
 
 where $0 < p < 1$ and $r > 0$ is an integer.
@@ -815,9 +1058,9 @@ The mgf of $X$ is given by
 
 $$
 \begin{aligned}
-    M_{X}(t) = \E[e^{t X}] &= \sum\limits_{x=0}^{\infty} e^{t x} \tbinom{r + x - 1}{x} p^{r} (1 - p)^{x} \\
-    &= \sum\limits_{x=0}^{\infty} \tbinom{r + x - 1}{x} p^{r} \left[(1 - p)e^{t} \right]^{x} \\
-    &= \left[\frac{p}{1 - (1 - p)e^{t}} \right]^{r} \sum\limits_{x=0}^{\infty} \tbinom{r + x - 1}{x} \left[1 - (1 - p)e^{t} \right]^{r} \left[(1 - p)e^{t} \right]^{x} \\
+    M_{X}(t) = \E[e^{t X}] &= \sum\limits_{x=0}^{\infty} e^{t x} \binom{r + x - 1}{x} p^{r} (1 - p)^{x} \\
+    &= \sum\limits_{x=0}^{\infty} \binom{r + x - 1}{x} p^{r} \left[(1 - p)e^{t} \right]^{x} \\
+    &= \left[\frac{p}{1 - (1 - p)e^{t}} \right]^{r} \sum\limits_{x=0}^{\infty} \binom{r + x - 1}{x} \left[1 - (1 - p)e^{t} \right]^{r} \left[(1 - p)e^{t} \right]^{x} \\
     &= \left[\frac{p}{1 - (1 - p)e^{t}} \right]^{r}.
 \end{aligned}
 $$
@@ -852,7 +1095,7 @@ $$
 *2.40* (p.82) Prove 
 
 $$
-\sum\limits_{k=0}^{x} \tbinom{n}{k} p^{k} (1 - p)^{n-k} = (n - x) \tbinom{n}{x} \int_{0}^{1 - p} t^{n - x - 1}(1 - t)^{x} ~\mathrm{d}t.
+\sum\limits_{k=0}^{x} \binom{n}{k} p^{k} (1 - p)^{n-k} = (n - x) \binom{n}{x} \int_{0}^{1 - p} t^{n - x - 1}(1 - t)^{x} ~\mathrm{d}t.
 $$
 
 (*Hint*: Integrate by parts or differentiate both sides with respect to $p$.)
@@ -862,15 +1105,15 @@ $$
 
 $$
 \begin{aligned}
-    \text{RHS} := I_x &= \tbinom{n}{x} \int_{0}^{1 - p} (n - x) t^{n - x - 1}(1 - t)^{x} ~\mathrm{d}t \\
-    &= \tbinom{n}{x} t^{n - x} (1 - t)^{x} \Big\vert_{t = 0}^{1 - p} - \frac{n!}{x! (n - x)!} \int_{0}^{1 - p} \left[- x t^{n - x}(1 - t)^{x - 1} \right] ~\mathrm{d}t \\
-    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + \frac{n!}{(x - 1)! (n - x)!} \int_{0}^{1 - p} t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
-    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + \tbinom{n}{x - 1} \int_{0}^{1 - p} (n - x + 1) t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
-    &= \tbinom{n}{x} (1 - p)^{n - x} p^{x} + I_{x - 1} \\
-    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + \tbinom{n}{0} \int_{0}^{1 - p} n t^{n - 1} ~\mathrm{d}t \\
-    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + t^{n} \Big\vert_{t = 0}^{1 - p} \\
-    &= \sum\limits_{k=1}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} + (1 - p)^{n} \\
-    &= \sum\limits_{k=0}^{x} \tbinom{n}{k} (1 - p)^{n - k} p^{k} \\
+    \text{RHS} := I_x &= \binom{n}{x} \int_{0}^{1 - p} (n - x) t^{n - x - 1}(1 - t)^{x} ~\mathrm{d}t \\
+    &= \binom{n}{x} t^{n - x} (1 - t)^{x} \big\vert_{t = 0}^{1 - p} - \frac{n!}{x! (n - x)!} \int_{0}^{1 - p} \left[- x t^{n - x}(1 - t)^{x - 1} \right] ~\mathrm{d}t \\
+    &= \binom{n}{x} (1 - p)^{n - x} p^{x} + \frac{n!}{(x - 1)! (n - x)!} \int_{0}^{1 - p} t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
+    &= \binom{n}{x} (1 - p)^{n - x} p^{x} + \binom{n}{x - 1} \int_{0}^{1 - p} (n - x + 1) t^{n - x}(1 - t)^{x - 1} ~\mathrm{d}t \\
+    &= \binom{n}{x} (1 - p)^{n - x} p^{x} + I_{x - 1} \\
+    &= \sum\limits_{k=1}^{x} \binom{n}{k} (1 - p)^{n - k} p^{k} + \binom{n}{0} \int_{0}^{1 - p} n t^{n - 1} ~\mathrm{d}t \\
+    &= \sum\limits_{k=1}^{x} \binom{n}{k} (1 - p)^{n - k} p^{k} + t^{n} \big\vert_{t = 0}^{1 - p} \\
+    &= \sum\limits_{k=1}^{x} \binom{n}{k} (1 - p)^{n - k} p^{k} + (1 - p)^{n} \\
+    &= \sum\limits_{k=0}^{x} \binom{n}{k} (1 - p)^{n - k} p^{k} \\
     &= \text{LHS}.
 \end{aligned}
 $$
@@ -937,8 +1180,8 @@ $$
         \end{cases} \\
         &= \begin{cases}
             0,\ &y < 0 \\
-            \frac{4}{9} \sqrt{x} \Big\vert_{x=0}^{y},\ &0 \leqslant y \leqslant 1 \\
-            \frac{4}{9} \sqrt{x} \Big\vert_{x=0}^{1} + \left(\frac{1}{9}x + \frac{2}{9}\sqrt{x} \right) \Big\vert_{x=1}^{y},\ &1 < y \leqslant 4 \\
+            \frac{4}{9} \sqrt{x} \big\vert_{x=0}^{y},\ &0 \leqslant y \leqslant 1 \\
+            \frac{4}{9} \sqrt{x} \big\vert_{x=0}^{1} + \left(\frac{1}{9}x + \frac{2}{9}\sqrt{x} \right) \big\vert_{x=1}^{y},\ &1 < y \leqslant 4 \\
             1,\ &y > 4 \\
         \end{cases} \\
         &= \begin{cases}
@@ -980,7 +1223,7 @@ $$
     (i) Let 
 
     $$
-    \int_{0}^{m} a x^{a-1} ~\mathrm{d}x = x^{a} \Big\vert_{x=0}^{2}{m} = m^{a} = \frac{1}{2},
+    \int_{0}^{m} a x^{a-1} ~\mathrm{d}x = x^{a} \big\vert_{x=0}^{2}{m} = m^{a} = \frac{1}{2},
     $$
 
     we get $m = 2^{-\frac{1}{a}}$.
@@ -1002,7 +1245,7 @@ $$
     (b) Show that if $X$ is a continuous random variable, then 
 
     $$
-    \underset{a}{\min} ~ \E\left\vert X - a \right\vert = \E\left\vert X - m \right\vert 
+    \underset{a}{\min} ~ \E[\left\vert X - a \right\vert] = \E[\left\vert X - m \right\vert] 
     $$
 
     &emsp;&emsp;where $m$ is the median of $X$.
@@ -1014,7 +1257,7 @@ $$
 
     $$
     \begin{aligned}
-        \E \left\vert X - a \right\vert &= \int_{-\infty}^{\infty} \left\vert x - a \right\vert f(x) ~\mathrm{d}x \\
+        \E[\left\vert X - a \right\vert] &= \int_{-\infty}^{\infty} \left\vert x - a \right\vert f(x) ~\mathrm{d}x \\
         &= \int_{-\infty}^{a} (a - x) f(x) ~\mathrm{d}x + \int_{a}^{\infty} (x - a) f(x) ~\mathrm{d}x,
     \end{aligned}
     $$
@@ -1023,7 +1266,7 @@ $$
 
     $$
     \begin{aligned}
-        \frac{\mathrm{d}}{\mathrm{d}a} \E \left\vert X - a \right\vert &= \frac{\mathrm{d}}{\mathrm{d}a} \left[\int_{-\infty}^{a} (a - x) f(x) ~\mathrm{d}x + \int_{a}^{\infty} (x - a) f(x) ~\mathrm{d}x \right] \\
+        \frac{\mathrm{d}}{\mathrm{d}a} \E[\left\vert X - a \right\vert] &= \frac{\mathrm{d}}{\mathrm{d}a} \left[\int_{-\infty}^{a} (a - x) f(x) ~\mathrm{d}x + \int_{a}^{\infty} (x - a) f(x) ~\mathrm{d}x \right] \\
         &= \int_{-\infty}^{a} f(x) ~\mathrm{d}x - \int_{a}^{\infty} f(x) ~\mathrm{d}x.
     \end{aligned}
     $$
@@ -1032,7 +1275,7 @@ $$
 
     $$
     \begin{aligned}
-        \frac{\mathrm{d}^{2}}{\mathrm{d}a^{2}} \E \left\vert X - a \right\vert &= \frac{\mathrm{d}}{\mathrm{d}a} \left(\int_{-\infty}^{a} f(x) ~\mathrm{d}x - \int_{a}^{\infty} f(x) ~\mathrm{d}x \right) \\
+        \frac{\mathrm{d}^{2}}{\mathrm{d}a^{2}} \E[\left\vert X - a \right\vert] &= \frac{\mathrm{d}}{\mathrm{d}a} \left(\int_{-\infty}^{a} f(x) ~\mathrm{d}x - \int_{a}^{\infty} f(x) ~\mathrm{d}x \right) \\
         &= \frac{\mathrm{d}}{\mathrm{d}a} \left[F(a) - (1 - F(a)) \right] \\
         &= 2 f(a) \\
         &> 0,
@@ -1042,7 +1285,7 @@ $$
     which means the critical point is the minimum point and thus we have 
 
     $$
-    \underset{a}{\min} ~ \E\left\vert X - a \right\vert = \E\left\vert X - m \right\vert.
+    \underset{a}{\min} ~ \E[\left\vert X - a \right\vert] = \E[\left\vert X - m \right\vert].
     $$
     </details>
 

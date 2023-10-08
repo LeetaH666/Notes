@@ -80,7 +80,7 @@
 ### 1.2.2 The Calculus of Probabilities
 
 > [!THEOREM]
-> If $P$ is a probability function and $\mathcal{A}$ and $\mathcal{C}$ are any sets in $\mathcal{B}$, then 
+> If $P$ is a *probability function* and $\mathcal{A}$ and $\mathcal{C}$ are any sets in $\mathcal{B}$, then 
 > - $P(\mathcal{C} \cap \mathcal{A} ^{c}) = P(\mathcal{C}) - P(\mathcal{A} \cap \mathcal{C})$;
 > - $P(\mathcal{A} \cup \mathcal{C}) = P(\mathcal{A}) + P(\mathcal{C}) - P(\mathcal{A} \cap \mathcal{C})$;
 >   - Generally, $\forall \mathcal{A}_i \in \mathcal{B}$ ($i=1,\ 2,\ \cdots,\ n$), we have 
@@ -196,7 +196,7 @@
 > $$P(\mathcal{A} \mid \mathcal{C}) = \frac{P(\mathcal{A} \cap \mathcal{C})}{P(\mathcal{C})}.$$
 
 > [!THEOREM]
-> Let $\mathcal{A}_1,\ \mathcal{A}_2,\ \cdots,\ \mathcal{A}_n$ be a partition of the sample space $\mathcal{S}$, and $\mathcal{C}$ is an event, then we have the follwing formulae: 
+> Let $\mathcal{A}_1,\ \mathcal{A}_2,\ \cdots,\ \mathcal{A}_n$ be a *partition* of the sample space $\mathcal{S}$, and $\mathcal{C}$ is an event, then we have the follwing formulae: 
 > 
 > - Law of total probability: 
 > 
