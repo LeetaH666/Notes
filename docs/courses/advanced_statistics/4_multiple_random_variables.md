@@ -334,7 +334,8 @@ $$
 
 where $\Cov(X,\ Y \mid Z)$ is the covariance of $X$ and $Y$ under the pdf $f(x,\ y \mid z)$.
 
-Proof:
+<details>
+<summary>Proof: </summary>
 
 Let $U = X - \E[X]$, $V = Y - \E[Y]$, then 
 
@@ -349,6 +350,7 @@ $$
     &= \E[\Cov(X,\ Y \mid Z)] + \Cov(\E[X \mid Z],\ \E[Y \mid Z]).
 \end{aligned}
 $$
+</details>
 
 ## 4.5 Covariance and Correlation
 
@@ -459,6 +461,64 @@ However, the correlation we define can only capture the linear relationship and 
 ## 4.7 Inequalities
 
 ### 4.7.1 Numerical Inequalities
+
+> [!THEOREM]
+> Let $a,\ b > 0$, $p,\ q > 1$ and $\frac{1}{p} + \frac{1}{q} = 1$, then 
+> 
+> $$\frac{1}{p} a^{p} + \frac{1}{q} b^{q} \geqslant ab$$
+> 
+> with equality *iff* $a^{p} = b^{q}$.
+
+<details>
+<summary>Proof: </summary>
+
+Fix $b$, and consider the function 
+
+$$
+g(a) = \frac{1}{p} a^{p} + \frac{1}{q} b^{q} - a b.
+$$
+
+To minimize $g(a)$, differentiate and set equal to $0$: 
+
+$$
+a^{p - 1} - b = 0 \implies b = a^{p - 1}.
+$$
+
+A check of the second derivative will establish that this is indeed a minimum. Note that 
+
+$$
+\frac{1}{p} + \frac{1}{q} = 1 \implies 1 + \frac{p}{q} = p \implies (p - 1) q = p,
+$$
+
+so the value of the minimum can be given by 
+
+$$
+\frac{1}{p}a^{p} + \frac{1}{q}(a^{p-1})^{q} - a a^{p-1} = \frac{1}{p} a^{p} + \frac{1}{q} a^{p} - a^{p} = 0.
+$$
+
+Thus, we have 
+
+$$
+g(a) = \frac{1}{p} a^{p} + \frac{1}{q} b^{q} - a b \geqslant 0,
+$$
+
+which means 
+
+$$
+\frac{1}{p} a^{p} + \frac{1}{q} b^{q} \geqslant a b,
+$$
+
+with equality iff $b = a^{p - 1}$, i.e., $a^{p} = b^{q}$.
+</details>
+
+[!THEOREM|label:Hölder’s Inequality]
+Let $X$ and $Y$ be any 2 random variables. Let $p,\ q > 1$ and $\frac{1}{p} + \frac{1}{q} = 1$, then 
+
+$$
+\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert ^{p}])^{1 / p} (\E[\left\vert Y \right\vert ^{q}])^{1 / q}.
+$$
+
+Proof:
 
 
 
