@@ -621,9 +621,52 @@ $$
 
 find the marginal distribution, mean, and variance of $Y$. Show that the marginal distribution of $Y$ is a negative binomial if $\alpha$ is an integer.
 
-Solution:
+<details>
+<summary>Solution: </summary>
 
+The marginal distribution of $Y$ is given by 
 
+$$
+\begin{aligned}
+    f_{Y}(y) &= \int_{0}^{\infty} f_{Y \mid \Lambda}(y \mid \lambda) f_{\Lambda}(\lambda) ~\mathrm{d}\lambda \\
+    &= \int_{0}^{\infty} \frac{\lambda^{y} e^{-\lambda}}{y!} \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \lambda^{\alpha - 1} e^{-\lambda / \beta} ~\mathrm{d}\lambda \\
+    &= \frac{1}{\Gamma(\alpha) \beta^{\alpha} y!} \int_{0}^{\infty} \lambda^{y + \alpha - 1} e^{-\lambda (1 / \beta + 1)} ~\mathrm{d}\lambda \\
+    &= \frac{\Gamma(y + \alpha) [\beta / (\beta + 1)]^{y + \alpha}}{\Gamma(\alpha) \beta^{\alpha} y!} \int_{0}^{\infty} \frac{1}{\Gamma(y + \alpha) [\beta / (\beta + 1)]^{y + \alpha}} \lambda^{y + \alpha - 1} e^{-\lambda / [\beta / (\beta + 1)]} ~\mathrm{d}\lambda \\
+    &= \frac{\Gamma(y + \alpha) [\beta / (\beta + 1)]^{y + \alpha}}{\Gamma(\alpha) \beta^{\alpha} y!},\quad y = 0,\ 1,\ \cdots.
+\end{aligned}
+$$
+
+The mean and variance of $Y$ can be calculated by 
+
+$$
+\E[Y] = \E[\E[Y \mid \Lambda]] = \E[\Lambda] = \alpha \beta
+$$
+
+and 
+
+$$
+\begin{aligned}
+    \Var(Y) &= \E[\Var(Y \mid \Lambda)] + \Var(\E[Y \mid \Lambda]) \\
+    &= \E[\Lambda] + \Var(\Lambda) \\
+    &= \alpha \beta + \alpha \beta^{2} \\
+    &= \alpha \beta (1 + \beta)
+\end{aligned}
+$$
+
+respectively.
+
+If $\alpha$ is an integer, then we have 
+
+$$
+\begin{aligned}
+    f_{Y}(y) &= \frac{\Gamma(y + \alpha) [\beta / (\beta + 1)]^{y + \alpha}}{\Gamma(\alpha) \beta^{\alpha} y!} \\
+    &= \frac{(y + \alpha - 1)! [\beta / (\beta + 1)]^{y + \alpha}}{(\alpha - 1)! \beta^{\alpha} y!} \\
+    &= \binom{y + \alpha - 1}{\alpha - 1} \left(\frac{1}{1 + \beta} \right)^{\alpha} \left(\frac{\beta}{1 + \beta} \right)^{y},\quad y = 0,\ 1,\ \cdots, \\
+\end{aligned}
+$$
+
+which means $Y \sim \text{Negative Binomial}(\alpha,\ 1 / (1 + \beta))$.
+</details>
 
 (b) Show that the three-stage model 
 
@@ -632,6 +675,41 @@ Y \mid N \sim \text{Binomial}(N,\ p),\quad N \mid \Lambda \sim \text{Poisson}(\L
 $$
 
 leads to the same marginal (unconditional) distribution of $Y$.
+
+<details>
+<summary>Proof: </summary>
+
+First we try to calculate the distribution of $Y \mid \Lambda$: 
+
+$$
+\begin{aligned}
+    P(Y = y \mid \Lambda = \lambda) &= \sum\limits_{n=y}^{\infty} P(Y = y \mid N = n,\ \Lambda = \lambda) P(N = n \mid \Lambda = \lambda) \\
+    &= \sum\limits_{n=y}^{\infty} \binom{n}{y} p^{y} (1 - p)^{n - y} \frac{e^{-\lambda} \lambda^{n}}{n!} \\
+    &= e^{-\lambda p} \sum\limits_{n=y}^{\infty} \frac{n!}{y! (n - y)!} \left(\frac{p}{1 - p} \right)^{y} \frac{e^{-\lambda (1 - p)} [\lambda (1 - p)]^{n}}{n!} \\
+    &= \left(\frac{p}{1 - p} \right)^{y} \frac{e^{-\lambda p} [\lambda (1 - p)]^{y}}{y!} \sum\limits_{n=y}^{\infty} \frac{e^{-\lambda (1 - p)} [\lambda (1 - p)]^{n - y}}{(n - y)!} \\
+    &= \frac{e^{-\lambda p} (\lambda p)^{y}}{y!},\quad y = 0,\ 1,\ \cdots,
+\end{aligned}
+$$
+
+which is the pmf of $\text{Poisson}(\Lambda p)$. Similar to (a), the distribution of $Y$ is given by 
+
+$$
+\begin{aligned}
+    f_{Y}(y) &= \int_{0}^{\infty} f_{Y \mid \Lambda}(y \mid \lambda) f_{\Lambda}(\lambda) ~\mathrm{d}\lambda \\
+    &= \int_{0}^{\infty} \frac{(\lambda p)^{y} e^{-\lambda p}}{y!} \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \lambda^{\alpha - 1} e^{-\lambda / \beta} ~\mathrm{d}\lambda \\
+    &= \frac{1}{\Gamma(\alpha) \beta^{\alpha} y!} p^{y} \int_{0}^{\infty} \lambda^{y + \alpha - 1} e^{-\lambda (1 / \beta + p)} ~\mathrm{d}\lambda \\
+    &= \frac{\Gamma(y + \alpha) [\beta / (1 + p \beta)]^{y + \alpha}}{\Gamma(\alpha) \beta^{\alpha} y!} p^{y} \int_{0}^{\infty} \frac{1}{\Gamma(y + \alpha) [\beta / (1 + p \beta)]^{y + \alpha}} \lambda^{y + \alpha - 1} e^{-\lambda / [\beta / (1 + p \beta)]} ~\mathrm{d}\lambda \\
+    &= \frac{\Gamma(y + \alpha) [p \beta / (1 + p \beta)]^{y + \alpha}}{\Gamma(\alpha) (p \beta)^{\alpha} y!},\quad y = 0,\ 1,\ \cdots,
+\end{aligned}
+$$
+
+which is similar to the form in (a). Also, if $\alpha$ is an integer, then using the conclusion in (a), we would have $Y \sim \text{Negative Binomial}(\alpha,\ 1 / (1 + p \beta))$. Therefore, the three-stage model also leads to the same marginal distribution of $Y$.
+
+> [!NOTE]
+> You cannot write $N$ as a negative binomial distribution because we do not assume $\alpha$ is an integer here.
+> 
+> The summation starts from $n = y$ instead of $n = 0$ because the binomial distribution requires $y \leqslant n$.
+</details>
 
 *4.35* (p.196-197)
 
@@ -643,6 +721,25 @@ $$
 
 (The first term reflects binomial variation with success probability $\E[P]$, and the second term is often called “extra-binomial” variation, showing how the hierarchical model has a variance that is larger than the binomial alone.)
 
+> [!TIP]
+> The hierarchy in Example 4.4.6 is 
+>
+> $$\begin{aligned} X \mid P &\sim \text{Binomial}(n,\ P), \\ P &\sim \text{Beta}(\alpha,\ \beta). \end{aligned}$$
+
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \Var(X) &= \E[\Var(X \mid P)] + \Var(\E[X \mid P]) \\
+    &= \E[n P (1 - P)] + \Var(n P) \\
+    &= n (\E[P] - \E[P^{2}]) + n^{2} \Var(P) \\
+    &= n (\E[P] - \Var(P) - \E^{2}[P]) + n^{2} \Var(P) \\
+    &= n \E[P] (1 - \E[P]) + n (n - 1) \Var(P).
+\end{aligned}
+$$
+</details>
+
 (b) For the hierarchy in Exercise 4.32, show that the variance of $Y$ can be written 
 
 $$
@@ -650,6 +747,20 @@ $$
 $$
 
 where $\mu = \E[\Lambda]$. Identify the “extra-Poisson” variation induced by the hierarchy.
+
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \Var(Y) &= \E[\Var(Y \mid \Lambda)] + \Var(\E[Y \mid \Lambda]) \\
+    &= \E[\Lambda] + \Var(\Lambda) \\
+    &= \alpha \beta + \alpha \beta^{2} \\
+    &= \alpha \beta + \frac{1}{\alpha} (\alpha \beta)^{2} \\
+    &= \mu + \frac{1}{\alpha} \mu^{2}.
+\end{aligned}
+$$
+</details>
 
 *4.36* (p.197) One generalization of the Bernoulli trials hierarchy in Example 4.4.6 is to allow the success probability to vary from trial to trial, keeping the trials independent. A standard model for this situation is 
 
@@ -666,7 +777,59 @@ A random variable of interest is $Y = \sum_{i=1}^{n} X_{i}$, the total number of
 
 (a) Show that $\E[Y] = n \alpha / (\alpha + \beta)$.
 
+<details>
+<summary>Proof: </summary>
+
+$$
+\begin{aligned}
+    \E[Y] &= \sum\limits_{i=1}^{n} \E[X_{i}] \\
+    &= \sum\limits_{i=1}^{n} \E[\E[X_{i} \mid P_{i}]] \\
+    &= \sum\limits_{i=1}^{n} \E[P_{i}] \\
+    &= \sum\limits_{i=1}^{n} \frac{\alpha}{\alpha + \beta} \\
+    &= n \frac{\alpha}{\alpha + \beta}.
+\end{aligned}
+$$
+</details>
+
 (b) Show that $\Var(Y) = n \alpha \beta / (\alpha + \beta)^{2}$, and hence $Y$ has the same mean and variance as a $\text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$ random variable. What is the distribution of $Y$?
+
+<details>
+<summary>Proof: </summary>
+
+Since the trials are independent, we have 
+
+$$
+\begin{aligned}
+    \Var(Y) &= \sum\limits_{i=1}^{n} \Var(X_{i}) \\
+    &= \sum\limits_{i=1}^{n} \E[\Var(X_{i} \mid P_{i})] + \Var(\E[X_{i} \mid P_{i}]) \\
+    &= \sum\limits_{i=1}^{n} \E[P_{i} (1 - P_{i})] + \Var(P_{i}) \\
+    &= \sum\limits_{i=1}^{n} \E[P_{i}] - \E[P_{i}^{2}] + \Var(P_{i}) \\
+    &= \sum\limits_{i=1}^{n} \E[P_{i}] - \E^{2}[P_{i}] \\
+    &= \sum\limits_{i=1}^{n} \frac{\alpha}{\alpha + \beta} - \frac{\alpha^{2}}{(\alpha + \beta)^{2}} \\
+    &= \sum\limits_{i=1}^{n} \frac{\alpha \beta}{(\alpha + \beta)^{2}} \\
+    &= n \frac{\alpha \beta}{(\alpha + \beta)^{2}},
+\end{aligned}
+$$
+
+which means the mean and variance of $Y$ is the same as the that of $\text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$.
+
+To see what the distribution of $Y$ is, we should first figure out the distribution of $X_{i}$: 
+
+$$
+\begin{aligned}
+    P(X_{i} = 1) &= \int_{0}^{1} P(X_{i} = 1 \mid P_{i} = p) f_{P_{i}}(p) ~\mathrm{d}p \\
+    &= \int_{0}^{1} p f_{P_{i}}(p) ~\mathrm{d}p \\
+    &= \E[P_{i}] \\
+    &= \frac{\alpha}{\alpha + \beta}.
+\end{aligned}
+$$
+
+$$
+P(X_{i} = 0) = 1 - \E[P_{i}] = \frac{\beta}{\alpha + \beta}.
+$$
+
+This means $X_{i} \sim \text{Bernoulli}(\frac{\alpha}{\alpha + \beta})$ and thus $Y \sim \text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$.
+</details>
 
 (c) Suppose now that the model is 
 
@@ -683,6 +846,31 @@ $$
 \Var(X_{i}) = n_i \frac{\alpha \beta (\alpha + \beta + n_i)}{(\alpha + \beta)^{2} (\alpha + \beta + 1)}.
 $$
 
+<details>
+<summary>Proof: </summary>
+
+Similar to (a) and (b), we have 
+
+$$
+\E[Y] = \sum\limits_{i=1}^{k} \E[\E[X_{i} \mid P_{i}]] = \sum\limits_{i=1}^{k} \E[n_i P_{i}] = \frac{\alpha}{\alpha + \beta} \sum\limits_{i=1}^{k} n_i
+$$
+
+and 
+
+$$
+\begin{aligned}
+    \Var(Y) &= \sum\limits_{i=1}^{k} \Var(X_{i}) \\
+    &= \sum\limits_{i=1}^{k} \E[\Var(X_{i} \mid P_{i})] + \Var(\E[X_{i} \mid P_{i}]) \\
+    &= \sum\limits_{i=1}^{k} \E[n_i P_{i} (1 - P_{i})] + \Var(n_i P_{i}) \\
+    &= \sum\limits_{i=1}^{k} n_i (\E[P_{i}] - \E[P_{i}^{2}]) + n_i^{2} \Var(P_{i}) \\
+    &= \sum\limits_{i=1}^{k} n_i (\E[P_{i}] - \Var(P_{i}) - \E^{2}[P_{i}]) + n_i^{2} \Var(P_{i}) \\
+    &= \sum\limits_{i=1}^{k} n_i \left[\frac{\alpha}{\alpha + \beta} - \frac{\alpha \beta}{(\alpha + \beta + 1) (\alpha + \beta)^{2}} - \frac{\alpha^{2}}{(\alpha + \beta)^{2}} \right] \\ &\qquad + n_i^{2} \frac{\alpha \beta}{(\alpha + \beta + 1) (\alpha + \beta)^{2}} \\
+    &= \sum\limits_{i=1}^{k} n_i \frac{\alpha \beta}{(\alpha + \beta + 1) (\alpha + \beta)} + n_i^{2} \frac{\alpha \beta}{(\alpha + \beta + 1) (\alpha + \beta)^{2}} \\
+    &= \sum\limits_{i=1}^{k} n_i \frac{\alpha \beta (\alpha + \beta + n_i)}{(\alpha + \beta + 1) (\alpha + \beta)^{2}}.
+\end{aligned}
+$$
+</details>
+
 *4.38* (p.198) (*The gamma as a mixture of exponentials*) Gleser (1989) shows that, in certain cases, the gamma distribution can be written as a scale mixture of exponentials, an identity suggested by different analyses of the same data. Let $f(x)$ be a $\text{Gamma}(r,\ \lambda)$ pdf.
 
 (a) Show that if $r \leqslant 1$, then $f(x)$ can be written 
@@ -698,6 +886,10 @@ p_{\lambda}(\nu) = \frac{1}{\Gamma(r) \Gamma(1 - r)} \frac{\nu^{r - 1}}{(\lambda
 $$
 
 (*Hint*: Make a change of variable from $\nu$ to $\mu$, where $\mu = x / \nu - x / \lambda$.)
+
+Proof:
+
+
 
 (b) Show that $p_{\lambda}(\nu)$ is a pdf, for $r \leqslant 1$, by showing that 
 
