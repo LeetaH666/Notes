@@ -324,7 +324,7 @@ $$
 $$
 </details>
 
-### Exercise
+### Exercises
 
 *4.59* (p.202) For any three random variables $X$, $Y$, and $Z$ with finite variances, prove (in the spirit of Theorem 4.4.7) the covariance identity
 
@@ -523,3 +523,217 @@ Proof:
 
 
 ### 4.7.2 Functional Inequalities
+
+
+## Assignments
+
+### Textbook Exercises
+
+*4.26* (p.195) $X$ and $Y$ are independent random variables with $X \sim \text{Exponential}(\lambda)$ and $Y \sim \text{Exponential}(\mu)$. It is impossible to obtain direct observations of $X$ and $Y$. Instead, we observe the random variables $Z$ and $W$, where 
+
+$$
+Z = \min \left\{X,\ Y \right\} \quad \text{ and } \quad W = \begin{cases}
+    1 &\text{if } Z = X \\
+    0 &\text{if } Z = Y.
+\end{cases}
+$$
+
+(This is a situation that arises, in particular, in medical experiments. The $X$ and $Y$ variables are *censored*.)
+
+(a) Find the joint distribution of $Z$ and $W$.
+
+<details>
+<summary>Solution: </summary>
+
+$$
+\begin{aligned}
+    P(Z \leqslant z,\ W = 1) &= P(X \leqslant z,\ X \leqslant Y) \\
+    &= \int_{0}^{z} \frac{1}{\lambda} e^{-x / \lambda} \left(\int_{x}^{\infty} \frac{1}{\mu} e^{-y / \mu} ~\mathrm{d}y \right) ~\mathrm{d}x \\
+    &= \int_{0}^{z} \frac{1}{\lambda} e^{-x / \lambda} \left(- e^{-y / \mu} \right) \bigg\vert_{y=x}^{\infty} ~\mathrm{d}x \\
+    &= \int_{0}^{z} \frac{1}{\lambda} e^{-x(1 / \lambda + 1 / \mu)} ~\mathrm{d}x \\
+    &= -\frac{1 / \lambda}{1 / \lambda + 1 / \mu} e^{-x(1 / \lambda + 1 / \mu)} \bigg\vert_{x=0}^{z} \\
+    &= \frac{\mu}{\mu + \lambda} \left(1 - e^{-(\mu + \lambda) / (\mu \lambda) z} \right).
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    P(Z \leqslant z,\ W = 0) &= P(Y \leqslant z,\ X \geqslant Y) \\
+    &= \int_{0}^{z} \frac{1}{\mu} e^{-y / \mu} \left(\int_{y}^{\infty} \frac{1}{\lambda} e^{-x / \lambda} ~\mathrm{d}x \right) ~\mathrm{d}y \\
+    &= \frac{\lambda}{\mu + \lambda} \left(1 - e^{-(\mu + \lambda) / (\mu \lambda) z} \right).
+\end{aligned}
+$$
+</details>
+
+(b) Prove that $Z$ and $W$ are independent. (*Hint*: Show that $P(Z \leqslant z \mid W = i) = P(Z \leqslant z)$ for $i = 0$ or $1$.)
+
+<details>
+<summary>Proof: </summary>
+
+First, we calculate the marginal distribution of $W$: 
+
+$$
+\begin{aligned}
+    P(W = 1) &= P(X \leqslant Y) \\
+    &= \int_{0}^{\infty} \frac{1}{\lambda} e^{-x / \lambda} \left(\int_{x}^{\infty} \frac{1}{\mu} e^{-y / \mu} ~\mathrm{d}y \right) ~\mathrm{d}x \\
+    &= \int_{0}^{\infty} \frac{1}{\lambda} e^{-x (1 / \mu + 1 / \lambda)} ~\mathrm{d}x \\
+    &= -\frac{1 / \lambda}{1 / \mu + 1 / \lambda} e^{-x(1 / \mu + 1 / \lambda)} \bigg\vert_{x=0}^{\infty} \\
+    &= \frac{\mu}{\mu + \lambda}.
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    P(W = 0) &= P(X \geqslant Y) \\
+    &= \int_{0}^{\infty} \frac{1}{\mu} e^{-y / \mu} \left(\int_{y}^{\infty} \frac{1}{\lambda} e^{-x / \lambda} ~\mathrm{d}x \right) ~\mathrm{d}y \\
+    &= \frac{\lambda}{\mu + \lambda}.
+\end{aligned}
+$$
+
+Then, we can calculate the distribution of $Z$: 
+
+$$
+P(Z \leqslant z) = P(Z \leqslant z,\ W = 1) + P(Z \leqslant z,\ W = 0) = 1 - e^{-(\mu + \lambda) / (\mu \lambda) z}.
+$$
+
+Since we have 
+
+$$
+P(Z \leqslant z,\ W = 1) = P(Z \leqslant z) P(W = 1),
+$$
+
+and 
+
+$$
+P(Z \leqslant z,\ W = 0) = P(Z \leqslant z) P(W = 0),
+$$
+
+we conclude that $Z$ and $W$ are independent.
+</details>
+
+*4.32* (p.196)
+
+(a) For the hierarchical model 
+
+$$
+Y \mid \Lambda \sim \text{Poisson}(\Lambda) \quad \text{ and } \quad \Lambda \sim \text{Gamma}(\alpha,\ \beta)
+$$
+
+find the marginal distribution, mean, and variance of $Y$. Show that the marginal distribution of $Y$ is a negative binomial if $\alpha$ is an integer.
+
+Solution:
+
+
+
+(b) Show that the three-stage model 
+
+$$
+Y \mid N \sim \text{Binomial}(N,\ p),\quad N \mid \Lambda \sim \text{Poisson}(\Lambda),\quad \text{ and } \quad \Lambda \sim \text{Gamma}(\alpha,\ \beta)
+$$
+
+leads to the same marginal (unconditional) distribution of $Y$.
+
+*4.35* (p.196-197)
+
+(a) For the hierarchy in Example 4.4.6, show that the variance of $X$ can be written 
+
+$$
+\Var(X) = n \E[P] (1 - \E[P]) + n(n - 1) \Var(P).
+$$
+
+(The first term reflects binomial variation with success probability $\E[P]$, and the second term is often called “extra-binomial” variation, showing how the hierarchical model has a variance that is larger than the binomial alone.)
+
+(b) For the hierarchy in Exercise 4.32, show that the variance of $Y$ can be written 
+
+$$
+\Var(Y) = \E[\Lambda] + \Var(\Lambda) = \mu + \frac{1}{\alpha} \mu^{2},
+$$
+
+where $\mu = \E[\Lambda]$. Identify the “extra-Poisson” variation induced by the hierarchy.
+
+*4.36* (p.197) One generalization of the Bernoulli trials hierarchy in Example 4.4.6 is to allow the success probability to vary from trial to trial, keeping the trials independent. A standard model for this situation is 
+
+$$
+\begin{aligned}
+    X_{i} \mid P_{i} &\sim \text{Bernoulli}(P_{i}),\quad i=1,\ 2,\ \cdots,\ n, \\
+    P_{i} &\sim \text{Beta}(\alpha,\ \beta).
+\end{aligned}
+$$
+
+This model might be appropriate, for example, if we are measuring the success of a drug on $n$ patients and, because the patients are different, we are reluctant to assume that the success probabilities are constant. (This can be thought of as an *empirical Bayes model*; see Miscellanea 7.5.6.)
+
+A random variable of interest is $Y = \sum_{i=1}^{n} X_{i}$, the total number of successes.
+
+(a) Show that $\E[Y] = n \alpha / (\alpha + \beta)$.
+
+(b) Show that $\Var(Y) = n \alpha \beta / (\alpha + \beta)^{2}$, and hence $Y$ has the same mean and variance as a $\text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$ random variable. What is the distribution of $Y$?
+
+(c) Suppose now that the model is 
+
+$$
+\begin{aligned}
+    X_{i} \mid P_{i} &\sim \text{Binomial}(n_i,\ P_{i}),\quad i=1,\ 2,\ \cdots,\ k, \\
+    P_{i} &\sim \text{Beta}(\alpha,\ \beta).
+\end{aligned}
+$$
+
+Show that for $Y = \sum_{i=1}^{k} X_{i}$, $\E[Y] = \frac{\alpha}{\alpha + \beta}\sum_{i=1}^{k} n_{i}$ and $\Var(Y) = \sum_{i=1}^{k} \Var(X_{i})$, where 
+
+$$
+\Var(X_{i}) = n_i \frac{\alpha \beta (\alpha + \beta + n_i)}{(\alpha + \beta)^{2} (\alpha + \beta + 1)}.
+$$
+
+*4.38* (p.198) (*The gamma as a mixture of exponentials*) Gleser (1989) shows that, in certain cases, the gamma distribution can be written as a scale mixture of exponentials, an identity suggested by different analyses of the same data. Let $f(x)$ be a $\text{Gamma}(r,\ \lambda)$ pdf.
+
+(a) Show that if $r \leqslant 1$, then $f(x)$ can be written 
+
+$$
+f(x) = \int_{0}^{\lambda} \frac{1}{\nu} e^{-x / \nu} p_{\lambda}(\nu) ~\mathrm{d}\nu, 
+$$
+
+where 
+
+$$
+p_{\lambda}(\nu) = \frac{1}{\Gamma(r) \Gamma(1 - r)} \frac{\nu^{r - 1}}{(\lambda - \nu)^{r}},\quad 0 < \nu < \lambda.
+$$
+
+(*Hint*: Make a change of variable from $\nu$ to $\mu$, where $\mu = x / \nu - x / \lambda$.)
+
+(b) Show that $p_{\lambda}(\nu)$ is a pdf, for $r \leqslant 1$, by showing that 
+
+$$
+\int_{0}^{\lambda} p_{\lambda}(\nu) ~\mathrm{d}\nu = 1.
+$$
+
+(c) Show that the restriction $r \leqslant 1$ is neccessary for the representation in part (a) to be valid; that is, there is no such representation if $r > 1$. (*Hint*: Suppose $f(x)$ can be written $f(x) = \int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu$ for some pdf $q_{\lambda}(\nu)$. Show that $\frac{\partial }{\partial x}\log(f(x)) > 0$ but $\frac{\partial }{\partial x}\log(\int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu) < 0$, a contradiction.)
+
+*4.47* (p.200) (*Marginal normality does not imply bivariate normality.*) Let $X$ and $Y$ be independent $N(0,\ 1)$ random variables, and define a new random variable $Z$ by 
+
+$$
+Z = \begin{cases}
+    X &\text{if } X Y > 0 \\
+    -X &\text{if } X Y < 0.
+\end{cases}
+$$
+
+(a) Show that $Z$ has a normal distribution.
+
+(b) Show that the joint distribution of $Z$ and $Y$ is not bivariate normal. (*Hint*: Show that $Z$ and $Y$ always have the same sign.)
+
+*4.59* (p.202) For any three random variables $X$, $Y$, and $Z$ with finite variances, prove (in the sprit of Theorem 4.4.7) the covariance identity 
+
+$$
+\Cov(X,\ Y) = \E[\Cov(X,\ Y \mid Z)] + \Cov(\E[X \mid Z],\ \E[Y \mid Z]),
+$$
+
+where $\Cov(X,\ Y \mid Z)$ is the covariance of $X$ and $Y$ under the pdf $f(x,\ y \mid z)$.
+
+<details>
+<summary>Proof: </summary>
+
+See [Exercises in 4.4](#exercises-1).
+</details>
+
+*4.61* (p.202) DeGroot (1986) gives the following example of the Borel Paradox (Miscellanea 4.9.3): Suppose that $X_1$ and $X_2$ are i.i.d. $\text{Exponential}(1)$ random variables, and define $Z = (X_2 - 1) / X_1$. The probability-zero sets $\left\{Z = 0 \right\}$ and $\left\{X_2 = 1 \right\}$ seem to be giving us the same information but lead to different conditional distributions.
+
+(a) Find the distribution of $X_1 \mid Z = 0$, and compare it to the distribution of $X_1 \mid X_2 = 1$.

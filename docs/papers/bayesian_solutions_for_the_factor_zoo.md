@@ -235,7 +235,7 @@ $$
 其中 $\mathcal{IG}$ 代表逆 Gamma 分布。Wishart 分布是 Gamma 分布在多元情况下的 generalization，这里 $\sigma^{2}$ 是一元的，因此我们得到的是 NIG（Normal Inverse Gamma）的后验。同样地，NIG 是多元正态分布关于均值和方差（前的系数）的[共轭分布](/papers/shrinking_the_cross-section.md#先验分布、后验分布与共轭分布)，于是我们依旧可以很方便地更新后验。
 
 > [!TIP|label:识别弱因子]
-> 假设没有 $\bm{\alpha}$，即 $\sigma^{2} \to 0$，风险价格 $\bm{\lambda}$ 的后验变成一个在 $(\bm{C}^{\top}\bm{C})^{-1}\bm{C}^{\top}\bm{\mu}_{\bm{R}}$ 处的 Dirac 分布，也就是说 $\bm{\lambda}$ 是一个常数向量。每一次对 $\bm{\mu}_{\bm{Y}}$ 和 $\bm{\Sigma}_{\bm{Y}}$ 抽样我们都可以得到一个确定的 $\bm{\lambda}$，抽多了我们就可以得到 $\bm{\lambda}$ 的置信区间。对于弱因子来说，尽管每次抽样会因为 $\bm{c}^{\top}\bm{c}$ 的 near singularity 而让 $\bm{\lambda}$ 变得很大，但由于抽样具有不确定性（不像频率派的确定估计），我们得到的 $\bm{\lambda}$ 可能是正的很大也有可能是负的很大，最终 $\bm{\lambda}$ 的置信区间有很大概率是包含 $\bm{0}$ 的，因此通过贝叶斯估计的方法得到 $\bm{\lambda}$ 能够达到识别弱因子的效果。
+> 假设没有 $\bm{\alpha}$，即 $\sigma^{2} \to 0$，风险价格 $\bm{\lambda}$ 的后验变成一个在 $(\bm{C}^{\top}\bm{C})^{-1}\bm{C}^{\top}\bm{\mu}_{\bm{R}}$ 处的 Dirac 分布，也就是说 $\bm{\lambda}$ 是一个常数向量。每一次对 $\bm{\mu}_{\bm{Y}}$ 和 $\bm{\Sigma}_{\bm{Y}}$ 抽样我们都可以得到一个确定的 $\bm{\lambda}$，抽多了我们就可以得到 $\bm{\lambda}$ 的置信区间。对于弱因子来说，尽管每次抽样会因为 $\bm{c}^{\top}\bm{c}$ 的 near singularity 而让 $\bm{\lambda}$ 变得很大，但由于 $\bm{c}$ 会在 $\bm{0}$ 附近抽样，抽样得到的 $\bm{c}$ 可能是正数也可能是负数，因此得到的 $\bm{\lambda}$ 可能是正的很大也有可能是负的很大，最终 $\bm{\lambda}$ 的置信区间有很大概率是包含 $\bm{0}$ 的；而对于强因子来说 $\bm{c}$ 并不会在 $\bm{0}$ 附近抽样，因此风险价格的符号不会变来变去，$\bm{0}$ 也就不太会被包含在置信区间内。所以通过贝叶斯估计的方法得到 $\bm{\lambda}$ 能够达到识别弱因子的效果。
 
 > [!TIP|label:提示]
 > 除了风险价格 $\bm{\lambda}$，截面回归的 $R^{2}$ 同样可以通过抽样计算出来（尽管本 Notes 不太关注 $R^{2}$）：
@@ -332,7 +332,7 @@ $$
 > [!TIP|label:提示]
 > 理论上钉先验应该是一个在 0 处的 Dirac 分布，但实际操作中为了分布的连续性我们通常使用一个方差极小的正态分布。
 
-对于板先验，通常的选择是一个 g-prior：
+对于板先验，通常的选择是一个 g-prior，这里则是借鉴 g-prior 设计了一个类似的先验：
 
 $$
 \begin{equation}
@@ -348,8 +348,6 @@ $$
 > 将相关系数进行 demean 处理就是为了解决水平因子（level factor）的问题。
 >
 > **有两种因子会导致 $\bm{C}_{\! \bm{\gamma}}^{\top} \bm{C}_{\! \bm{\gamma}}$ 的 near singularity**：一种是**弱因子**，弱因子和所有 test assets 都几乎没有相关性，也就是 $\bm{C}_{\! \bm{\gamma}}$ 对应的那一列都是 0，导致 $\bm{C}_{\! \bm{\gamma}}$ 不满秩；一种是**水平因子**，水平因子与所有 test assets 之间的相关性都很接近，也就是 $\bm{C}_{\! \bm{\gamma}}$ 中对应的那一列值都相同，这会导致这一列与截距那一列（全是 1）成比例，即 $\bm{C}_{\! \bm{\gamma}}$ 依旧不满秩。
-
-
 
 > [!TIP|label:g-prior]
 > 考虑一个简单的线性回归：
@@ -469,7 +467,7 @@ $$
 
 $$
 \begin{equation}
-    \sigma^{2} \mid \text{data},\ \bm{\gamma},\ \bm{\omega} \sim \mathcal{IG}\left(\frac{N + K + 1}{2},\ \frac{\text{SSR}}{2} \right) 
+    \sigma^{2} \mid \text{data},\ \bm{\lambda},\ \bm{\gamma},\ \bm{\omega} \sim \mathcal{IG}\left(\frac{N + K + 1}{2},\ \frac{\text{SSR}}{2} \right) 
 \end{equation}
 $$
 
@@ -488,7 +486,7 @@ $$
 
 有了以上后验，我们同样可以用 Gibbs sampling 的方法按顺序对变量进行交替采样：
 
-1. 为 $\bm{\lambda},\ \sigma^{2},\ \bm{\omega}$ 设定初值；
+1. 为 $\sigma^{2}$ 和 $\bm{\omega}$ 设定初值；
 2. 循环：依次对 $\bm{\Sigma}_{\bm{Y}},\ \bm{\mu}_{\bm{Y}},\ \bm{\lambda},\ \bm{\gamma},\ \bm{\omega},\ \sigma^{2}$ 采样。
 
 > [!NOTE|label:注意]
