@@ -887,9 +887,43 @@ $$
 
 (*Hint*: Make a change of variable from $\nu$ to $\mu$, where $\mu = x / \nu - x / \lambda$.)
 
-Proof:
+<details>
+<summary>Proof: </summary>
 
+$$
+\begin{aligned}
+    \int_{0}^{\lambda} \frac{1}{\nu} e^{-x / \nu} p_{\lambda}(\nu) ~\mathrm{d}\nu &= \int_{0}^{\lambda} \frac{1}{\nu} e^{-x / \nu} \frac{1}{\Gamma(r) \Gamma(1 - r)} \frac{\nu^{r - 1}}{(\lambda - \nu)^{r}} ~\mathrm{d}\nu \\
+    &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \int_{0}^{\lambda} \frac{e^{-x / \nu}}{\nu^{2}} \left(\frac{\nu}{\lambda - \nu} \right)^{r} ~\mathrm{d}\nu.
+\end{aligned}
+$$
 
+By making a change of variable from $\nu$ to $\mu$, where $\mu = x / \nu - x / \lambda$, we have 
+
+$$
+\nu = \frac{x}{\mu + x / \lambda}
+$$
+
+and 
+
+$$
+\frac{\nu}{\lambda - \nu} = \frac{x / (\mu + x / \lambda)}{\lambda - x / (\mu + x / \lambda)} = \frac{x}{\lambda \mu}.
+$$
+
+Then, we can write 
+
+$$
+\begin{aligned}
+    &\phantom{=} \int_{0}^{\lambda} \frac{1}{\nu} e^{-x / \nu} p_{\lambda}(\nu) ~\mathrm{d}\nu \\
+    &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \int_{\infty}^{0} \frac{e^{-(\mu + x / \lambda)}}{[x / (\mu + x / \lambda)]^{2}} \left(\frac{x}{\lambda \mu} \right)^{r} \frac{-x}{(\mu + x / \lambda)^{2}} ~\mathrm{d}\mu \\
+    &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \int_{0}^{\infty} \frac{e^{-(\mu + x / \lambda)}}{x} \left(\frac{x}{\lambda \mu} \right)^{r} ~\mathrm{d}\mu \\
+    &= \frac{x^{r - 1} e^{-x / \lambda}}{\Gamma(r) \Gamma(1 - r) \lambda^{r}} \int_{0}^{\infty} e^{-\mu} \mu^{-r} ~\mathrm{d}\mu \\
+    &= \frac{x^{r - 1} e^{-x / \lambda}}{\Gamma(r) \Gamma(1 - r) \lambda^{r}} \Gamma(1 - r) \\
+    &= \frac{x^{r - 1} e^{-x / \lambda}}{\Gamma(r) \lambda^{r}},
+\end{aligned}
+$$
+
+which is the pdf of $\text{Gamma}(r,\ \lambda)$.
+</details>
 
 (b) Show that $p_{\lambda}(\nu)$ is a pdf, for $r \leqslant 1$, by showing that 
 
@@ -897,7 +931,54 @@ $$
 \int_{0}^{\lambda} p_{\lambda}(\nu) ~\mathrm{d}\nu = 1.
 $$
 
+<details>
+<summary>Proof: </summary>
+
+Let $\mu = \frac{\nu}{\lambda}$, we have 
+
+$$
+\begin{aligned}
+    \int_{0}^{\lambda} p_{\lambda}(\nu) ~\mathrm{d}\nu &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \int_{0}^{\lambda} \frac{\nu^{r - 1}}{(\lambda - \nu)^{r}} ~\mathrm{d}\nu \\
+    &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \int_{0}^{1} \frac{(\lambda \mu)^{r - 1}}{(\lambda - \lambda \mu)^{r}} \lambda ~\mathrm{d}\mu \\
+    &= \frac{1}{\Gamma(r) \Gamma(1 - r)} \frac{\Gamma(r) \Gamma(1 - r)}{\Gamma(r + 1 - r)} \\
+    &= 1,
+\end{aligned}
+$$
+
+and thus $p_{\lambda}(\nu)$ is a pdf.
+</details>
+
 (c) Show that the restriction $r \leqslant 1$ is neccessary for the representation in part (a) to be valid; that is, there is no such representation if $r > 1$. (*Hint*: Suppose $f(x)$ can be written $f(x) = \int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu$ for some pdf $q_{\lambda}(\nu)$. Show that $\frac{\partial }{\partial x}\log(f(x)) > 0$ but $\frac{\partial }{\partial x}\log(\int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu) < 0$, a contradiction.)
+
+<details>
+<summary>Proof: </summary>
+
+The pdf of $\text{Gamma}(r,\ \lambda)$ is 
+
+$$
+f(x) = \frac{x^{r - 1} e^{-x / \lambda}}{\Gamma(r) \lambda^{r}},\quad x > 0.
+$$
+
+The partial derivative of $\log(f(x))$ is given by 
+
+$$
+\begin{aligned}
+    \frac{\partial }{\partial x}\log(f(x)) &= \frac{\partial }{\partial x} \left[(r - 1) \log x - \frac{x}{\lambda} - \log \Gamma(r) - r \log \lambda \right] \\
+    &= \frac{r - 1}{x} - \frac{1}{\lambda} \\
+    &> 0
+\end{aligned}
+$$
+
+since $r > 1$.
+
+Suppose $f(x)$ can be written $f(x) = \int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu$ for some pdf $q_{\lambda}(\nu)$. Then, we have 
+
+$$
+\frac{\partial }{\partial x}\log(f(x)) = \frac{\int_{0}^{\infty} -\frac{1}{\nu} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu}{f(x)} < 0,
+$$
+
+which is a contradiction. Hence, there is no such representation if $r > 1$.
+</details>
 
 *4.47* (p.200) (*Marginal normality does not imply bivariate normality.*) Let $X$ and $Y$ be independent $N(0,\ 1)$ random variables, and define a new random variable $Z$ by 
 
@@ -910,7 +991,52 @@ $$
 
 (a) Show that $Z$ has a normal distribution.
 
+<details>
+<summary>Proof: </summary>
+
+For $z < 0$, the cdf of $Z$ is given by 
+
+$$
+\begin{aligned}
+    F_{Z}(z) &= P(Z \leqslant z) \\
+    &= P(Z \leqslant z,\ X Y > 0) + P(Z \leqslant z,\ X Y < 0) \\
+    &= P(X \leqslant z,\ Y < 0) + P(X \geqslant -z,\ Y > 0) \\
+    &= P(X \leqslant z) P(Y < 0) + P(X \geqslant -z) P(Y > 0) \\
+    &= P(X \leqslant z) P(Y < 0) + P(X \leqslant z) P(Y > 0) \\
+    &= P(X \leqslant z).
+\end{aligned}
+$$
+
+Similarly, for $z > 0$, we have 
+
+$$
+\begin{aligned}
+    1 - F_{Z}(z) &= P(Z > z) \\
+    &= P(Z > z,\ X Y > 0) + P(Z > z,\ X Y < 0) \\
+    &= P(X > z,\ Y > 0) + P(X < -z,\ Y < 0) \\
+    &= P(X > z) P(Y > 0) + P(X < -z) P(Y < 0) \\
+    &= P(X > z) P(Y > 0) + P(X > z) P(Y < 0) \\
+    &= P(X > z),
+\end{aligned}
+$$
+
+which means $F_{Z}(z) = P(X \leqslant z),\ \forall z > 0$. Thus, $Z \sim N(0,\ 1)$.
+</details>
+
 (b) Show that the joint distribution of $Z$ and $Y$ is not bivariate normal. (*Hint*: Show that $Z$ and $Y$ always have the same sign.)
+
+<details>
+<summary>Proof: </summary>
+
+There are 4 cases for $Z$: 
+
+1. If $Z = X = x < 0$, then $Y < 0$;
+2. if $Z = X = x > 0$, then $Y > 0$;
+3. if $Z = -X = -x < 0$, then $X = x > 0$ and $Y < 0$;
+4. if $Z = -X = -x > 0$, then $X = x < 0$ and $Y > 0$.
+
+This means $Z$ and $Y$ always have the same sign, which further implies that the joint distribution of $Z$ and $Y$ cannot be bivariate normal.
+</details>
 
 *4.59* (p.202) For any three random variables $X$, $Y$, and $Z$ with finite variances, prove (in the sprit of Theorem 4.4.7) the covariance identity 
 
@@ -929,3 +1055,42 @@ See [Exercises in 4.4](#exercises-1).
 *4.61* (p.202) DeGroot (1986) gives the following example of the Borel Paradox (Miscellanea 4.9.3): Suppose that $X_1$ and $X_2$ are i.i.d. $\text{Exponential}(1)$ random variables, and define $Z = (X_2 - 1) / X_1$. The probability-zero sets $\left\{Z = 0 \right\}$ and $\left\{X_2 = 1 \right\}$ seem to be giving us the same information but lead to different conditional distributions.
 
 (a) Find the distribution of $X_1 \mid Z = 0$, and compare it to the distribution of $X_1 \mid X_2 = 1$.
+
+<details>
+<summary>Solution: </summary>
+
+Since the inverse transformation of $Z$ is $X_2 = Z X_1 + 1$, let $h_1(z,\ x_1) = z x_1 + 1$ and $h_2(z,\ x_1) = x_1$, we can get the joint pdf of $Z$ and $X_1$: 
+
+$$
+\begin{aligned}
+    f_{Z,\ X_1}(z,\ x_1) &= f_{X_1,\ X_2}(h_1(z,\ x_1),\ h_2(z,\ x_1)) \left\vert \begin{matrix} \frac{\partial h_1}{\partial z} & \frac{\partial h_1}{\partial x_1} \\ \frac{\partial h_2}{\partial z} & \frac{\partial h_2}{\partial x_1} \end{matrix} \right\vert \\
+    &= e^{-(z x_1 + 1)} e^{-x_1} \left\vert \begin{matrix} x_1 & z \\ 0 & 1 \end{matrix} \right\vert \\
+    &= x_1 e^{-[(z + 1) x_1 + 1]}.
+\end{aligned}
+$$
+
+Then, the marginal pdf of $Z$ is given by 
+
+$$
+\begin{aligned}
+    f_{Z}(z) &= \int_{0}^{\infty} f_{Z,\ X_1}(z,\ x_1) ~\mathrm{d}x_1 \\
+    &= \int_{0}^{\infty} x_1 e^{-[(z + 1) x_1 + 1]} ~\mathrm{d}x_1 \\
+    &= e^{-1} \int_{1}^{0} \frac{x_1}{-(z + 1)} ~\mathrm{d} e^{-(z + 1) x_1} \\
+    &= e^{-1} \left[\frac{x_1}{-(z + 1)} e^{-(z + 1) x_1} \bigg\vert_{x_1=0}^{\infty} - \int_{0}^{\infty} \frac{1}{-(z + 1)} e^{-(z + 1) x_1} ~\mathrm{d}x_1 \right] \\
+    &= e^{-1} \left[- \frac{1}{(z + 1)^{2}} e^{-(z + 1) x_1} \right]_{x_1=0}^{\infty} \\
+    &= \frac{e^{-1}}{(z + 1)^{2}}.
+\end{aligned}
+$$
+
+Thus, the conditional pdf of $X_1 \mid Z = 0$ is 
+
+$$
+\begin{aligned}
+    f_{X_1 \mid Z = 0}(x_1) &= \frac{f_{Z,\ X_1}(0,\ x_1)}{f_{Z}(0)} \\
+    &= \frac{x_1 e^{-(x_1 + 1)}}{e^{-1}} \\
+    &= x_1 e^{-x_1},\quad x_1 > 0.
+\end{aligned}
+$$
+
+However, since $X_1$ and $X_2$ are independent, the conditional pdf of $X_1 \mid X_2 = 1$ is just $e^{-x_1},\ x_1 > 0$, which is different from that of $X_1 \mid Z = 0$.
+</details>
