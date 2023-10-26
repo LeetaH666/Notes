@@ -27,6 +27,11 @@
 - `conda install -c r r-packageName`：在当前环境下通过 conda 安装 R 包（`-c r` 即指定 `r` 作为获取安装包的 channel）
 - `conda uninstall packageName`：卸载当前环境下 conda 中某包
 
+> [!NOTE|label:注意]
+> 如果遇到 CRAN 的包在 conda 里没有，可以在对应的 conda R 环境下使用 `install.packages('packageName')` 安装。使用这种方法安装的包无法在 `conda list` 中显示。
+> 
+> 有时这种安装方法会因为依赖安装失败而报错，可以看依赖是否在 conda 里有，如果有就用 conda 先装依赖。
+
 ## 常用流程与问题
 
 ### 在 Ubuntu 配置 R 环境

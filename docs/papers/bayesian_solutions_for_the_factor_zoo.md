@@ -208,7 +208,7 @@ $$
 \bm{\Sigma}_{\bm{Y}} \mid \bm{Y} \sim \mathcal{W}^{-1} \left(T-1,\ \sum\limits_{t=1}^{T} (\bm{Y}_{\! t} - \bm{\widehat{\mu}}_{\bm{Y}}) (\bm{Y}_{\! t} - \bm{\widehat{\mu}}_{\bm{Y}})^{\top} \right)
 $$
 
-其中 $\bm{\widehat{\mu}}_{\bm{Y}} := \frac{1}{T} \sum\limits_{t=1}^{T} \bm{Y}_{\! t}$，$\mathcal{W}^{-1}$ 表示逆 Wishart 分布。恰好 NIW 是多元正态分布关于均值和方差的[共轭分布](/papers/shrinking_the_cross-section.md#先验分布、后验分布与共轭分布)，于是我们可以很方便地进行后验的更新。
+其中 $\bm{\widehat{\mu}}_{\bm{Y}} := \frac{1}{T} \sum\limits_{t=1}^{T} \bm{Y}_{\! t}$，$\mathcal{W}^{-1}$ 表示逆 Wishart 分布。
 
 通过时序贝叶斯，我们可以根据观测到的 $\bm{Y}_{\! t}$ 去构建 $\bm{\Sigma}_{\bm{Y}}$ 的后验分布，从而从后验分布中抽样得到 $\bm{\Sigma}_{\bm{Y}}$，而抽样得到 $\bm{\Sigma}_{\bm{Y}}$ 后我们又可以得到 $\bm{\mu}_{\bm{Y}}$ 的后验分布，从而从分布中抽样得到 $\bm{\mu}_{\bm{Y}}$。于是 $\bm{\mu}_{\bm{Y}}$ 和 $\bm{\Sigma}_{\bm{Y}}$ 就都可以被“观测”到了：
 
@@ -232,7 +232,7 @@ $$
 \sigma^{2} \mid \bm{\mu}_{\bm{R}},\ \bm{C} \sim \mathcal{IG} \left(\frac{N - K - 1}{2},\ \frac{(\bm{\widehat{\mu}}_{\bm{R}} - \bm{C} \bm{\widehat{\lambda}})^{\top} (\bm{\widehat{\mu}}_{\bm{R}} - \bm{C} \bm{\widehat{\lambda}})}{2} \right) 
 $$
 
-其中 $\mathcal{IG}$ 代表逆 Gamma 分布。Wishart 分布是 Gamma 分布在多元情况下的 generalization，这里 $\sigma^{2}$ 是一元的，因此我们得到的是 NIG（Normal Inverse Gamma）的后验。同样地，NIG 是多元正态分布关于均值和方差（前的系数）的[共轭分布](/papers/shrinking_the_cross-section.md#先验分布、后验分布与共轭分布)，于是我们依旧可以很方便地更新后验。
+其中 $\mathcal{IG}$ 代表逆 Gamma 分布。Wishart 分布是 Gamma 分布在多元情况下的 generalization，这里 $\sigma^{2}$ 是一元的，因此我们得到的是 NIG（Normal Inverse Gamma）的后验。
 
 > [!TIP|label:识别弱因子]
 > 假设没有 $\bm{\alpha}$，即 $\sigma^{2} \to 0$，风险价格 $\bm{\lambda}$ 的后验变成一个在 $(\bm{C}^{\top}\bm{C})^{-1}\bm{C}^{\top}\bm{\mu}_{\bm{R}}$ 处的 Dirac 分布，也就是说 $\bm{\lambda}$ 是一个常数向量。每一次对 $\bm{\mu}_{\bm{Y}}$ 和 $\bm{\Sigma}_{\bm{Y}}$ 抽样我们都可以得到一个确定的 $\bm{\lambda}$，抽多了我们就可以得到 $\bm{\lambda}$ 的置信区间。对于弱因子来说，尽管每次抽样会因为 $\bm{c}^{\top}\bm{c}$ 的 near singularity 而让 $\bm{\lambda}$ 变得很大，但由于 $\bm{c}$ 会在 $\bm{0}$ 附近抽样，抽样得到的 $\bm{c}$ 可能是正数也可能是负数，因此得到的 $\bm{\lambda}$ 可能是正的很大也有可能是负的很大，最终 $\bm{\lambda}$ 的置信区间有很大概率是包含 $\bm{0}$ 的；而对于强因子来说 $\bm{c}$ 并不会在 $\bm{0}$ 附近抽样，因此风险价格的符号不会变来变去，$\bm{0}$ 也就不太会被包含在置信区间内。所以通过贝叶斯估计的方法得到 $\bm{\lambda}$ 能够达到识别弱因子的效果。
@@ -263,7 +263,11 @@ $$
 >
 > 由于 GLS 假设下的推导与 OLS 差不多，为了方便，接下来我们只讨论 OLS 假设下的情况，但在实证中用的是 GLS 假设下的估计。
 
-得到了 $\bm{\lambda}$ 和 $\sigma^{2}$ 的后验，我们可以通过 Gibbs sampling 的方法对它们进行交替采样：即依次对 $\bm{\Sigma}_{\bm{Y}},\ \bm{\mu}_{\bm{Y}},\ \sigma^{2},\ \bm{\lambda}$ 采样。
+得到了 $\bm{\lambda}$ 和 $\sigma^{2}$ 的后验，我们就可以通过 Gibbs sampling 的方法对它们进行序贯采样：即依次对 $\bm{\Sigma}_{\bm{Y}},\ \bm{\mu}_{\bm{Y}},\ \sigma^{2},\ \bm{\lambda}$ 采样。尽管 $\bm{\lambda}$ 的后验随着前面抽样得到的 $\text{data}$ 不同而不同，我们这样序贯采样实际上等价于从 $\bm{\lambda}$ 的 unconditional 分布中采样，因为
+
+$$
+p(\bm{\lambda} \mid \bm{Y}) = p(\bm{\lambda} \mid \text{data}) p(\sigma^{2} \mid \bm{\mu}_{\bm{Y}},\ \bm{\Sigma}_{\bm{Y}}) p(\bm{\mu}_{\bm{Y}} \mid \bm{\Sigma}_{\bm{Y}},\ \bm{Y}) p(\bm{\Sigma}_{\bm{Y}} \mid \bm{Y})
+$$
 
 > [!TIP|label:提示]
 > 在抽样得到 $\bm{\mu}_{\bm{Y}}$ 后，作者做了标准化的操作，即将 $\bm{\mu}_{\bm{Y}}$ 中每一个元素都除以对应的标准差，对于 test assets $\bm{R}$ 来说，这一操作相当于把它们的均值变成了夏普比。在 [Shrinking the cross-section](papers\shrinking_the_cross-section.md#因子风险价格的压缩估计) 中也有类似的操作（对夏普比做岭回归），但在 Shinking the cross-section 中，对 test assets 的均值先验方差为 $\bm{\Sigma}^{2}$，后验方差不为 $\bm{\Sigma}$ 的倍数，因此处理成夏普比时并不等同于做标准化的操作，而是为了让风险价格独立同分布；而本文是均匀先验，后验方差为 $\bm{\Sigma} / T$，因此做标准化恰好可以得到夏普比。
@@ -332,7 +336,7 @@ $$
 > [!TIP|label:提示]
 > 理论上钉先验应该是一个在 0 处的 Dirac 分布，但实际操作中为了分布的连续性我们通常使用一个方差极小的正态分布。
 
-对于板先验，通常的选择是一个 g-prior，这里则是借鉴 g-prior 设计了一个类似的先验：
+对于板先验，通常的选择是一个 g-prior，这里则是借鉴 g-prior 设计了一个类似的先验，**目的是能排除弱因子**：
 
 $$
 \begin{equation}
@@ -375,13 +379,6 @@ $$
 > </div align='center'>
 >
 > 则 $\bm{X}$ 越分散我们对 $\bm{\beta}$ 的先验越集中。
-
-> [!NOTE|label:注意]
-> 按照正常的 g-prior，我们应该将先验设为
-> 
-> $$\lambda_j \mid \gamma_j,\ \sigma^{2} \sim \mathcal{N}(0,\ \psi \sigma^{2} \bm{C}_{j}^{\top} \bm{C}_{j})$$
->
-> 但相关系数 $\bm{\rho}$ 有个好处就是不受 scale 的影响，而且作者对收益率和因子都做了标准化，用 $\bm{\rho}$ 还是用 $\bm{C}$ 差别不大。
 
 结合钉先验，整个钉板先验可以写成如下形式：
 
