@@ -462,8 +462,8 @@ However, the correlation we define can only capture the linear relationship and 
 
 ### 4.7.1 Numerical Inequalities
 
-> [!THEOREM]
-> Let $a,\ b > 0$, $p,\ q > 1$ and $\frac{1}{p} + \frac{1}{q} = 1$, then 
+> [!THEOREM|label:Young’s Inequality]
+> Let $a,\ b > 0$ and $p,\ q > 1$ be *conjugate indices*, i.e., $p,\ q > 1$ and $\frac{1}{p} + \frac{1}{q} = 1$, then 
 > 
 > $$\frac{1}{p} a^{p} + \frac{1}{q} b^{q} \geqslant ab$$
 > 
@@ -471,6 +471,8 @@ However, the correlation we define can only capture the linear relationship and 
 
 <details>
 <summary>Proof: </summary>
+
+**Method 1**: 
 
 Fix $b$, and consider the function 
 
@@ -509,21 +511,224 @@ $$
 $$
 
 with equality iff $b = a^{p - 1}$, i.e., $a^{p} = b^{q}$.
+
+**Method 2** (use Jensen’s Inequality in the next section):
+
+Take log for the LHS, since $\log(\cdot)$ is concave, we have 
+
+$$
+\log \left(\frac{1}{p} a^{p} + \frac{1}{q} b^{q} \right) \geqslant \frac{1}{p} \log a^{p} + \frac{1}{q} \log b^{q} = \log a + \log b = \log (a b)
+$$
+
+by Jensen’s Inequality (expectation is taken under a measure that assigns probability $\frac{1}{p}$ to $a^{p}$ and $\frac{1}{q}$ to $b^{q}$). Since $\log(\cdot)$ is monotonically increasing, we finish the proof.
 </details>
 
-[!THEOREM|label:Hölder’s Inequality]
-Let $X$ and $Y$ be any 2 random variables. Let $p,\ q > 1$ and $\frac{1}{p} + \frac{1}{q} = 1$, then 
+<br>
+
+> [!THEOREM|label:Hölder’s Inequality]
+> Let $X$ and $Y$ be any 2 random variables. Let $p,\ q$ be *conjugate indices*, then 
+> 
+> $$\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert ^{p}])^{1 / p} (\E[\left\vert Y \right\vert ^{q}])^{1 / q}.$$
+
+<details>
+<summary>Proof: </summary>
+
+Since expectation is an integral and the absolute value of an integral would not be greater than the integral of absolute function, we have 
 
 $$
-\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert ^{p}])^{1 / p} (\E[\left\vert Y \right\vert ^{q}])^{1 / q}.
+\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ].
 $$
 
-Proof:
+Then, define 
 
+$$
+a = \frac{\left\vert X \right\vert}{(\E[\left\vert X \right\vert^{p}])^{1 / p}} \quad \text{ and } \quad b = \frac{\left\vert Y \right\vert}{(\E[\left\vert Y \right\vert^{q}])^{1 / q}}.
+$$
 
+Using the [inequality](#471-numerical-inequalities) above, we obtain 
+
+$$
+\frac{1}{p} \frac{\left\vert X \right\vert^{p}}{\E[\left\vert X \right\vert^{p}]} + \frac{1}{q} \frac{\left\vert Y \right\vert^{q}}{\E[\left\vert Y \right\vert^{q}]} \geqslant \frac{\left\vert X \right\vert}{(\E[\left\vert X \right\vert^{p}])^{1 / p}} \frac{\left\vert Y \right\vert}{(\E[\left\vert Y \right\vert^{q}])^{1 / q}}.
+$$
+
+Taking expectations of both sides, we get 
+
+$$
+\frac{1}{p} + \frac{1}{q} = 1 \geqslant \frac{\E[\left\vert X Y \right\vert]}{(\E[\left\vert X \right\vert^{p}])^{1 / p} (\E[\left\vert Y \right\vert^{q}])^{1 / q}},
+$$
+
+which means 
+
+$$
+\E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert ^{p}])^{1 / p} (\E[\left\vert Y \right\vert ^{q}])^{1 / q}.
+$$
+</details>
+
+<br>
+
+The most famous special case of Hölder’s Inequality is $p = q = 2$, which is called the Cauchy-Schwarz Inequality.
+
+> [!THEOREM|label:Cauchy-Schwarz Inequality]
+> For any 2 random variables $X$ and $Y$,
+> $$\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert^{2}])^{1 / 2} (\E[\left\vert Y \right\vert^{2}])^{1 / 2}.$$
+
+> [!EXAMPLE|label:Covariance Inequality]
+> Suppose $X$ and $Y$ have means $\mu_{X}$ and $\mu_{Y}$ and variances $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$, respectively. Applying Cauchy-Schwarz Inequality, we have 
+> 
+> $$\left\vert \E[(X - \mu_{X}) (Y - \mu_{Y})] \right\vert \leqslant [\E[(X - \mu_{X})^{2}]]^{1 / 2} [\E[(Y - \mu_{Y})^{2}]]^{1 / 2},$$
+> 
+> which means 
+> 
+> $$\left\vert \Cov(X,\ Y) \right\vert \leqslant \sigma_{X} \sigma_{Y}.$$
+
+There are also some other special cases of Hölder’s Inequality. For example, if we set $Y = 1$, we get 
+
+$$
+\E[\left\vert X \right\vert] \leqslant (\E[\left\vert X \right\vert^{p}])^{1 / p},\quad 1 < p < \infty.
+$$
+
+For $1 < r < p$, if we replace $\left\vert X \right\vert$ by $\left\vert X \right\vert^{r}$, then we have 
+
+$$
+\E[\left\vert X \right\vert^{r}] \leqslant (\E[\left\vert X \right\vert^{r p}])^{1 / p},\quad 1 < p < \infty.
+$$
+
+Write $s = r p$, we obtain 
+
+$$
+(\E[\left\vert X \right\vert^{r}])^{1 / r} \leqslant (\E[\left\vert X \right\vert^{s}])^{1 / s},\quad 1 < r < s < \infty,
+$$
+
+which is known as *Liaponov’s Inequality*.
+
+Next inequality is similar inspirit to Hölder’s Inequality, and, in fact, follows from it.
+
+> [!THEOREM|label:Minkowski’s Inequality]
+> Let $X$ and $Y$ be any 2 random variables. Then for $1 \leqslant p < \infty$, 
+> $$(\E[\left\vert X + Y \right\vert^{p}])^{1 / p} \leqslant (\E[\left\vert X \right\vert^{p}])^{1 / p} + (\E[\left\vert Y \right\vert^{p}])^{1 / p}.$$
+
+<details>
+<summary>Proof: </summary>
+
+Write 
+
+$$
+\begin{aligned}
+    \E[\left\vert X + Y \right\vert^{p}] &= \E[\left\vert X + Y \right\vert \left\vert X + Y \right\vert^{p - 1}] \\
+    &\leqslant \E[(\left\vert X \right\vert + \left\vert Y \right\vert) \left\vert X + Y \right\vert^{p - 1}] \ (\text{triangle inequality})\\
+    &= \E[\left\vert X \right\vert \left\vert X + Y \right\vert^{p - 1}] + \E[\left\vert Y \right\vert \left\vert X + Y \right\vert^{p - 1}]
+\end{aligned}
+$$
+
+Then, applying Hölder’s Inequality to each term of RHS, we obtain 
+
+$$
+\begin{aligned}
+    \E[\left\vert X + Y \right\vert^{p}] &\leqslant (\E[\left\vert X \right\vert^{p}])^{1 / p} (\E[\left\vert X + Y \right\vert^{(p - 1) q}])^{1 / q} \\ &\qquad + (\E[\left\vert Y \right\vert^{p}])^{1 / p} (\E[\left\vert X + Y \right\vert^{(p - 1) q}])^{1 / q}.
+\end{aligned}
+$$
+
+Note that since $\frac{1}{p} + \frac{1}{q} = 1$, we have $(p - 1) q = p$ and thus, 
+
+$$
+\begin{aligned}
+    \E[\left\vert X + Y \right\vert^{p}] &\leqslant (\E[\left\vert X \right\vert^{p}])^{1 / p} (\E[\left\vert X + Y \right\vert^{p}])^{1 / q} \\ &\qquad + (\E[\left\vert Y \right\vert^{p}])^{1 / p} (\E[\left\vert X + Y \right\vert^{p}])^{1 - 1 / p},
+\end{aligned}
+$$
+
+which means 
+
+$$
+(\E[\left\vert X + Y \right\vert^{p}])^{1 / p} \leqslant (\E[\left\vert X \right\vert^{p}])^{1 / p} + (\E[\left\vert Y \right\vert^{p}])^{1 / p}.
+$$
+</details>
 
 ### 4.7.2 Functional Inequalities
 
+> [!DEFINITION]
+> A function $f(x)$ is **convex** if $f(\lambda x + (1 - \lambda) y) \leqslant \lambda f(x) + (1 - \lambda) f(y),\ \forall x,\ y$ and $ 0 < \lambda < 1$. The function $f(x)$ is **concave** if $-f(x)$ is *convex*.
+
+If the second derivative exists, then $f(x)$ is convex *iff* $f''(x) \geqslant 0,\ \forall x$.
+
+> [!THEOREM|label:Jensen’s Inequality]
+> For any random variable $X$, if $f(x)$ is a *convex* function, then 
+> 
+> $$f(\E[X]) \leqslant \E[f(X)].$$
+>
+> Equality holds *iff* for every line $a + b x$ that is tangent to $f(x)$ at $x = \E[X]$, $P(f(X) = a + b X) = 1$.
+
+> [!EXAMPLE|label:An inequality for means]
+> If $a_1,\ a_2,\ \cdots,\ a_n$ are positive numbers, define 
+> 
+> $$\begin{aligned} a_{A} &= \frac{1}{n}(a_1 + a_2 + \cdots + a_n),\quad (\text{arithmetic mean}) \\ a_{G} &= (a_1 a_2 \cdots a_n)^{1 / n},\quad (\text{geometric mean}) \\ a_{H} &= \frac{1}{\frac{1}{n} \left(\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n} \right) },\quad (\text{harmonic mean}).\end{aligned}$$
+> 
+> An inequality relating these means is 
+> 
+> $$a_{H} \leqslant a_{G} \leqslant a_{A}.$$
+> 
+> To see why, let $X$ be a r.v. with range $a_1,\ a_2,\ \cdots,\ a_n$ and $P(X = a_i) = \frac{1}{n}, i=1,\ 2,\ \cdots,\ n$. Since $\log x$ is a *concave* function, Jensen’s Inequality shows that $\E[\log X] \leqslant \log \E[X]$. Hence, 
+> 
+> $$\log a_{G} = \frac{1}{n} \sum\limits_{i=1}^{n} \log a_i = \E[\log X] \leqslant \log \E[X] = \log\left(\frac{1}{n} \sum\limits_{i=1}^{n} a_i \right) = \log a_{A},$$
+> 
+> which means $a_{G} \leqslant a_{A}$. Similarly, we have 
+> 
+> $$\log \frac{1}{a_{H}} = \log \left(\frac{1}{n} \sum\limits_{i=1}^{n} \frac{1}{a_i} \right) = \log \E\left[\frac{1}{X} \right] \geqslant \E\left[\log \frac{1}{X} \right] = - \E[\log X] = \log \frac{1}{a_{G}},$$
+> 
+> which means $a_{H} \leqslant a_{G}$.
+
+### Exercises
+
+1. A r.v. $X$ is defined by $Z = \log(X)$, where $\E(Z) = 0$. Is $\E(X)$ greater than, less than, or equal to $1$?
+
+    <details>
+    <summary>Solution: </summary>
+
+    Since $\log(\cdot)$ is concave, from Jensen’s Inequality we know that
+
+    $$
+    0 = \E(Z) = \E[\log(X)] \leqslant \log(\E[X]),
+    $$
+
+    which means $\E[X] \geqslant 1$.
+    </details>
+
+    <br>
+
+2. Let $\left\{(X_1,\ Y_1),\ \cdots,\ (X_n,\ Y_n) \right\}$ be a random sample s.t. $\E[\left\vert X_{i} \right\vert^{4}] < \infty$, $\E[\left\vert Y_{i} \right\vert^{4}] < \infty$ and $\E[Y_{i} \mid X_{i}] = 0$. Prove that for any $a_n \to \infty$, 
+
+    $$
+    P\left(\left\vert \frac{1}{n}\sum\limits_{i=1}^{n} X_{i} Y_{i} \right\vert > \sqrt{\frac{a_n}{n}} \right) \to 0.
+    $$
+
+    (*Hint*: Apply Chebychev’s Inequality and Cauchy-Schwarz Inequality.)
+
+    <details>
+    <summary>Proof: </summary>
+
+    By Chebychev’s Inequality, we have 
+
+    $$
+    \begin{aligned}
+        P\left(\left\vert \frac{1}{n}\sum\limits_{i=1}^{n} X_{i} Y_{i} \right\vert \geqslant \sqrt{\frac{a_n}{n}} \right) &= P\left[\left(\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} Y_{i} \right)^{2} \geqslant \frac{a_n}{n} \right] \\
+        &\leqslant \frac{\E\left[\left(\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} Y_{i} \right)^{2} \right]}{a_n / n} \\
+        &= \frac{\E\left[\sum\limits_{i=1}^{n} X_{i}^{2} Y_{i}^{2} + \sum\limits_{i=1}^{n} \sum\limits_{j\neq i}^{n} X_{i} Y_{i} X_{j} Y_{j} \right]}{n a_n}.
+    \end{aligned}
+    $$
+
+    Since these samples are i.i.d. and $\E[Y_{i} \mid X_{i}] = 0$, we have 
+
+    $$
+    \E[X_{i} Y_{i} X_{j} Y_{j}] = \E[X_{i} Y_{i}] \E[X_{j} Y_{j}] = \E[\E[X_{i} Y_{i} \mid X_{i}]] \E[X_{j} Y_{j}] = 0.
+    $$
+
+    Then, by Cauchy-Schwarz Inequality, we have 
+
+    $$
+    \frac{\sum\limits_{i=1}^{n} \E[X_{i}^{2} Y_{i}^{2}]}{n a_n} \leqslant \frac{\sum\limits_{i=1}^{n} \E^{1 / 2}[X_{i}^{4}] \E^{1 / 2}[Y_{i}^{4}]}{n a_n} \to 0
+    $$
+
+    when $a_n \to \infty$, since $\E[\left\vert X_{i} \right\vert^{4}] < \infty$, $\E[\left\vert Y_{i} \right\vert^{4}] < \infty$.
+    </details>
 
 ## Assignments
 
@@ -564,6 +769,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 (b) Prove that $Z$ and $W$ are independent. (*Hint*: Show that $P(Z \leqslant z \mid W = i) = P(Z \leqslant z)$ for $i = 0$ or $1$.)
 
@@ -610,6 +817,8 @@ $$
 
 we conclude that $Z$ and $W$ are independent.
 </details>
+
+<br>
 
 *4.32* (p.196)
 
@@ -668,6 +877,8 @@ $$
 which means $Y \sim \text{Negative Binomial}(\alpha,\ 1 / (1 + \beta))$.
 </details>
 
+<pr>
+
 (b) Show that the three-stage model 
 
 $$
@@ -711,6 +922,8 @@ which is similar to the form in (a). Also, if $\alpha$ is an integer, then using
 > The summation starts from $n = y$ instead of $n = 0$ because the binomial distribution requires $y \leqslant n$.
 </details>
 
+<br>
+
 *4.35* (p.196-197)
 
 (a) For the hierarchy in Example 4.4.6, show that the variance of $X$ can be written 
@@ -740,6 +953,8 @@ $$
 $$
 </details>
 
+<br>
+
 (b) For the hierarchy in Exercise 4.32, show that the variance of $Y$ can be written 
 
 $$
@@ -761,6 +976,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 *4.36* (p.197) One generalization of the Bernoulli trials hierarchy in Example 4.4.6 is to allow the success probability to vary from trial to trial, keeping the trials independent. A standard model for this situation is 
 
@@ -790,6 +1007,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 (b) Show that $\Var(Y) = n \alpha \beta / (\alpha + \beta)^{2}$, and hence $Y$ has the same mean and variance as a $\text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$ random variable. What is the distribution of $Y$?
 
@@ -831,6 +1050,8 @@ $$
 This means $X_{i} \sim \text{Bernoulli}(\frac{\alpha}{\alpha + \beta})$ and thus $Y \sim \text{Binomial}(n,\ \frac{\alpha}{\alpha + \beta})$.
 </details>
 
+<br>
+
 (c) Suppose now that the model is 
 
 $$
@@ -870,6 +1091,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 *4.38* (p.198) (*The gamma as a mixture of exponentials*) Gleser (1989) shows that, in certain cases, the gamma distribution can be written as a scale mixture of exponentials, an identity suggested by different analyses of the same data. Let $f(x)$ be a $\text{Gamma}(r,\ \lambda)$ pdf.
 
@@ -925,6 +1148,8 @@ $$
 which is the pdf of $\text{Gamma}(r,\ \lambda)$.
 </details>
 
+<br>
+
 (b) Show that $p_{\lambda}(\nu)$ is a pdf, for $r \leqslant 1$, by showing that 
 
 $$
@@ -947,6 +1172,8 @@ $$
 
 and thus $p_{\lambda}(\nu)$ is a pdf.
 </details>
+
+<br>
 
 (c) Show that the restriction $r \leqslant 1$ is neccessary for the representation in part (a) to be valid; that is, there is no such representation if $r > 1$. (*Hint*: Suppose $f(x)$ can be written $f(x) = \int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu$ for some pdf $q_{\lambda}(\nu)$. Show that $\frac{\partial }{\partial x}\log(f(x)) > 0$ but $\frac{\partial }{\partial x}\log(\int_{0}^{\infty} (e^{-x / \nu} / \nu) q_{\lambda}(\nu) ~\mathrm{d}\nu) < 0$, a contradiction.)
 
@@ -979,6 +1206,8 @@ $$
 
 which is a contradiction. Hence, there is no such representation if $r > 1$.
 </details>
+
+<br>
 
 *4.47* (p.200) (*Marginal normality does not imply bivariate normality.*) Let $X$ and $Y$ be independent $N(0,\ 1)$ random variables, and define a new random variable $Z$ by 
 
@@ -1023,6 +1252,8 @@ $$
 which means $F_{Z}(z) = P(X \leqslant z),\ \forall z > 0$. Thus, $Z \sim N(0,\ 1)$.
 </details>
 
+<br>
+
 (b) Show that the joint distribution of $Z$ and $Y$ is not bivariate normal. (*Hint*: Show that $Z$ and $Y$ always have the same sign.)
 
 <details>
@@ -1038,6 +1269,8 @@ There are 4 cases for $Z$:
 This means $Z$ and $Y$ always have the same sign, which further implies that the joint distribution of $Z$ and $Y$ cannot be bivariate normal.
 </details>
 
+<br>
+
 *4.59* (p.202) For any three random variables $X$, $Y$, and $Z$ with finite variances, prove (in the sprit of Theorem 4.4.7) the covariance identity 
 
 $$
@@ -1051,6 +1284,8 @@ where $\Cov(X,\ Y \mid Z)$ is the covariance of $X$ and $Y$ under the pdf $f(x,\
 
 See [Exercises in 4.4](#exercises-1).
 </details>
+
+<br>
 
 *4.61* (p.202) DeGroot (1986) gives the following example of the Borel Paradox (Miscellanea 4.9.3): Suppose that $X_1$ and $X_2$ are i.i.d. $\text{Exponential}(1)$ random variables, and define $Z = (X_2 - 1) / X_1$. The probability-zero sets $\left\{Z = 0 \right\}$ and $\left\{X_2 = 1 \right\}$ seem to be giving us the same information but lead to different conditional distributions.
 

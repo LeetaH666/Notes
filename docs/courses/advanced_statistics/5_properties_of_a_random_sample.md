@@ -1,5 +1,49 @@
 # 5 Properties of a Random Sample
 
+## 5.1 Basic Concepts of Random Samples
+
+> [!DEFINITION]
+> The random variables $X_1,\ X_2,\ \cdots X_n$ are called a **random sample** of size $n$ from the population $f(x)$ if $X_1,\ X_2,\ \cdots X_n$ are *mutually independent* and each has the *same* pdf or pmf $f(x)$. Alternatively, $X_1,\ X_2,\ \cdots,\ X_n$ are called **independent and identically distributed (i.i.d.)** random variables with pdf or pmf $f(x)$.
+
+## 5.2 Sums of Random Variables from a Random Sample
+
+> [!DEFINITION]
+> Let $X_1,\ X_2,\ \cdots,\ X_n$ be a *random sample* of size $n$ from a population and let $T(x_1,\ \cdots,\ x_n)$ be a real-valued or vector-valued function whose domain includes the sample space of $(X_1,\ X_2,\ \cdots,\ X_n)$. Then the r.v. or random vector $Y = T(X_1,\ X_2,\ \cdots,\ X_n)$ is called a **statistic**. The probability distribution of a statistic $Y$ is called the **sampling distribution** of $Y$.
+
+> [!THEOREM]
+> Let $X_1,\ X_2,\ \cdots,\ X_n$ be a random sample from a population with mean $\mu$ and variance $\sigma^{2} < \infty$. Denote the sample mean and sample variance by $\overline{X} = \frac{1}{n} \sum\limits_{i=1}^{n} X_{i}$ and $S^{2} = \frac{1}{n} \sum\limits_{i=1}^{n} (X_{i} - \overline{X})^{2}$, respectively. Then 
+> 
+> 1. $\E[\overline{X}] = \mu$,
+> 2. $\Var(\overline{X}) = \frac{\sigma^{2}}{n}$,
+> 3. $\E[S^{2}] = \sigma^{2}$.
+
+> [!THEOREM]
+> If $X$ and $Y$ are *independent continuous* random variables with pdfs $f_{X}(x)$ and $f_{Y}(y)$, then the pdf of $Z = X + Y$ is 
+>
+> $$f_{Z}(z) = \int_{-\infty}^{\infty} f_{X}(w) f_{Y}(z - w) ~\mathrm{d}w.$$
+
+
+
+## 5.3 Sampling from the Normal Distribution
+
+### 5.3.1 Properties of the Sample Mean and Variance
+
+### 5.3.2 The Derived Distributions: Student’s t and Snedecor’s F
+
+## 5.4 Order Statistics
+
+## 5.5 Convergence Concepts
+
+### 5.5.1 Convergence in Probability
+
+### 5.5.2 Almost Sure Convergence
+
+### 5.5.3 Convergence in Distribution
+
+### 5.5.4 The Delta Method
+
+> Exercise 2 曾经出现在博资考中。
+
 ## Assignments
 
 ### Textbook Exercises
@@ -35,6 +79,8 @@ $$
 $$
 </details>
 
+<br>
+
 (b) $Z = X Y$
 
 <details>
@@ -60,6 +106,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 (c) $Z = X / Y$
 
@@ -87,6 +135,8 @@ $$
 $$
 </details>
 
+<br>
+
 *5.8* (p.257) Let $X_1,\ \cdots,\ X_n$ be a random sample, where $\overline{X}$ and $S^{2}$ are calculated in the usual way.
 
 (a) Show that 
@@ -112,6 +162,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 (b) Show that $\Var(S^{2}) = \frac{1}{n}(\theta_4 - \frac{n - 3}{n - 1}\theta_2^{2})$.
 
@@ -234,6 +286,8 @@ $$
 Hence, by induction, the equality holds for all $n \geqslant 4$.
 </details>
 
+<br>
+
 (c) Find $\Cov(\overline{X},\ S^{2})$ in terms of $\theta_1,\ \cdots,\ \theta_4$. Under what conditions is $\Cov(\overline{X},\ S^{2}) = 0$?
 
 <details>
@@ -280,6 +334,8 @@ $$
 Hence, $\Cov(\overline{X},\ S^{2}) = 0$ *iff* $\theta_3 = 0$.
 </details>
 
+<br>
+
 *5.10* (p.257) Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\mu,\ \sigma^{2})$ population.
 
 (a) Find expressions for $\theta_1,\ \cdots,\ \theta_4$, as defined in Exercise 5.8, in terms of $\mu$ and $\sigma^{2}$.
@@ -302,6 +358,8 @@ $$
 $$
 </details>
 
+<br>
+
 (b) Use the results of Exercise 5.8, together with the results of part (a), to calculate $\Var(S^{2})$.
 
 <details>
@@ -311,6 +369,8 @@ $$
 \Var(S^{2}) = \frac{1}{n} \left(3 \sigma^{4} - \frac{n - 3}{n - 1} \sigma^{4} \right) = \frac{2}{n - 1} \sigma^{4}.
 $$
 </details>
+
+<br>
 
 (c) Calculate $\Var(S^{2})$ a completely different (and easier) way: Use the fact that $(n - 1)S^{2} / \sigma^{2} \sim \chi_{n - 1}^{2}$.
 
@@ -325,6 +385,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 *5.18* (p.258) Let $X$ be a random variable with a Student’s $t$ distribution with $p$ degrees of freedom.
 
@@ -348,6 +410,8 @@ $$
 which means $\Var(X) = \frac{p}{p - 2},\ p > 2$.
 </details>
 
+<br>
+
 (b) Show that $X^{2}$ has an $F$ distribution with $1$ and $p$ degrees of freedom.
 
 <details>
@@ -355,6 +419,8 @@ which means $\Var(X) = \frac{p}{p - 2},\ p > 2$.
 
 Since $Z^{2} \sim \chi^{2}(1)$, $X^{2} = \frac{Z^{2}}{Y / p} \sim F_{1,\ p}$.
 </details>
+
+<br>
 
 (c) Let $f(x \mid p)$ denote the pdf of $X$. Show that 
 
@@ -386,6 +452,8 @@ $$
 $$
 </details>
 
+<br>
+
 (d) Use the results of parts (a) and (b) to argue that, as $p \to \infty$, $X^{2}$ converges in distribution to a $\chi_1^{2}$ random variable.
 
 <details>
@@ -394,6 +462,8 @@ $$
 Since $X$ converges in distribution to an $N(0,\ 1)$ random variable as $p \to \infty$, $X^{2}$ converges in distribution to a $\chi_1^{2}$ random variable.
 </details>
 
+<br>
+
 (e) What might you conjecture about the distributional limit, as $p \to \infty$, of $q F_{q,\ p}$?
 
 <details>
@@ -401,6 +471,8 @@ Since $X$ converges in distribution to an $N(0,\ 1)$ random variable as $p \to \
 
 Let $X_{i} \sim t_{p},\ i=1,\ 2,\ \cdots,\ q$, then we have $\sum\limits_{i=1}^{q} X_{i}^{2} \sim q F_{q,\ p}$. From (d) we know that as $p \to \infty$, $X_{i}^{2}$ converges in distribution to a $\chi_1^{2}$ random variable. Thus, we conjecture that as $p \to \infty$, $q F_{q,\ p}$ converges in distribution to a $\chi_{q}^{2}$ random variable.
 </details>
+
+<br>
 
 *5.23* (p.259) Let $U_i,\ i=1,\ 2,\ \cdots$, be independent $\text{Uniform}(0,\ 1)$ random variables, and let $X$ have distribution 
 

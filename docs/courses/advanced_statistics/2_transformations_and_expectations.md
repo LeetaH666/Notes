@@ -670,6 +670,8 @@ Also, we have theorem for *interchanging the order of summation and integration*
     f_{Y}(y) = f_{X}(\log y) \frac{\mathrm{d}}{\mathrm{d}y}\log y = \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{-\frac{(\log y)^{2}}{2}}.
     $$
     </details>
+    
+    <br>
 
     (b) Show that all the moments of $Y$ exist.
 
@@ -684,6 +686,8 @@ Also, we have theorem for *interchanging the order of summation and integration*
 
     where $M_{X}(\cdot)$ is the mgf of $X$. Thus, all the moments of $Y$ exist.
     </details>
+    
+    <br>
 
     (c) Show that the r.v. $Y$ does not have a moment generating function.
 
@@ -752,6 +756,8 @@ $$
 and $f_{Y}(y) = 0$ elsewhere.
 </details>
 
+<br>
+
 (b) $Y = -\log X$ and X has pdf
 
 $$
@@ -774,6 +780,8 @@ $$
 and $f_{Y}(y) = 0$ elsewhere.
 </details>
 
+<br>
+
 (c) $Y = e^{X}$ and X has pdf 
 
 $$
@@ -795,6 +803,8 @@ $$
 
 and $f_{Y}(y) = 0$ elsewhere.
 </details>
+
+<br>
 
 *2.14* (p.78)
 
@@ -825,6 +835,8 @@ $$
 where $f_{X}(x)$ is the pdf of $X$.
 </details>
 
+<br>
+
 (b) Let $X$ be a discrete random variable whose range is the nonnegative integers. Show that 
 
 $$
@@ -848,6 +860,8 @@ $$
 
 which is similar to (a).
 </details>
+
+<br>
 
 *2.15* (p.78) Betteley (1977) provides an interesting addition law for expectations. Let $X$ and $Y$ be any two random variables and define 
 
@@ -878,6 +892,8 @@ $$
 
 Then, if $X > Y$, we have $X \vee Y = X$ and $X \wedge Y = Y$, which leads to the same conclusion.
 </details>
+
+<br>
 
 *2.32* (p.80) Let $M_{X}(t)$ be the moment generating function of $X$, and define $S(t) = \log(M_{X}(t))$. Show that 
 
@@ -912,6 +928,8 @@ $$
 \frac{\mathrm{d}^{2}}{\mathrm{d}t^{2}}S(t) \bigg\vert_{t=0} = \frac{\E[X^{2}] \cdot 1 - (\E[X])^{2}}{1^{2}} = \Var(X).
 $$
 </details>
+
+<br>
 
 *2.33* (p.80-81) In each of the following cases verify the expression given for the moment generating function, and in each case use the mgf to calculate $\E[X]$ and $\Var(X)$.
 
@@ -952,6 +970,8 @@ $$
 \Var(X) = \E[X^{2}] - \E^{2}[X] = \lambda (\lambda + 1) - \lambda^{2} = \lambda.
 $$
 </details>
+
+<br>
 
 (b) $P(X = x) = p (1 - p)^{x},\ M_{X}(t) = \frac{p}{1 - (1 - p) e^{t}},\ x = 0,\ 1,\ \cdots;\ 0 < p < 1$
 
@@ -998,6 +1018,8 @@ $$
 $$
 </details>
 
+<br>
+
 (c) $f_{X}(x) = \frac{e^{-(x - \mu)^{2} / (2 \sigma^{2})}}{\sqrt{2 \pi} \sigma},\ M_{X}(t) = e^{\mu t + \sigma^{2} t^{2} / 2},\ -\infty < x < \infty;\ -\infty < \mu < \infty,\ \sigma > 0$
 
 <details>
@@ -1041,6 +1063,8 @@ $$
 $$
 </details>
 
+<br>
+
 *2.38* (p.82) Let $X$ have the negative binomial distribution with pmf 
 
 $$
@@ -1065,6 +1089,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 (b) Define a new random variable by $Y = 2pX$. Show that, as $p \downarrow 0$, the mgf of $Y$ converges to that of a chi squared random variable with $2r$ degrees of freedom by showing that 
 
@@ -1091,6 +1117,8 @@ $$
 \end{aligned}
 $$
 </details>
+
+<br>
 
 *2.40* (p.82) Prove 
 
@@ -1161,6 +1189,8 @@ $$
     > [!ATTENTION]
     > Do not try to split the support set of $X$ to be $[-1,\ 0)$ and $(0,\ 2]$! Although $g(x)$ is monotone in these 2 intervals, their support sets of $Y$ are different, i.e., we need the partition to have the same support set of $Y$.
     </details>
+    
+    <br>
 
     (b) Find a monotone function $u(y)$ such that random variable $Z = u(Y)$ has a $\text{uniform}(0,\ 1)$ distribution.
 
@@ -1207,6 +1237,8 @@ $$
     > [!ATTENTION]
     > Do not forget the $0$ and $1$ cases, i.e., when the pdf is $0$!
     </details>
+    
+    <br>
 
 
 2. A median of a distribution is a value $m$ such that $P(X \leqslant m) \geqslant \frac{1}{2}$ and $P(X \geqslant m) \geqslant \frac{1}{2}$ (If $X$ is continuous, $m$ satisfies $\int_{-\infty}^{m} f(x) ~\mathrm{d}x = \int_{m}^{\infty} f(x) ~\mathrm{d}x = \frac{1}{2}$).
@@ -1241,6 +1273,8 @@ $$
 
     we get $m = \theta$.
     </details>
+    
+    <br>
 
     (b) Show that if $X$ is a continuous random variable, then 
 
@@ -1288,6 +1322,8 @@ $$
     \underset{a}{\min} ~ \E[\left\vert X - a \right\vert] = \E[\left\vert X - m \right\vert].
     $$
     </details>
+    
+    <br>
 
 3. Let $X$ be a random variable with finite mgf $M_{X}(t)$. Prove that 
    

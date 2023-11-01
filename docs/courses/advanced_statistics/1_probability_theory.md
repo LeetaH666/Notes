@@ -133,6 +133,8 @@
     \end{aligned}
     $$
     </details>
+    
+    <br>
 
 2. Prove the following inequality: 
 
@@ -187,6 +189,8 @@
 
         Then, using the conclusion in 1 we finish the proof.
     </details>
+    
+    <br>
 
 ## 1.3 Conditional Probability and Independence
 
@@ -297,6 +301,8 @@ $$
     \lim\limits_{x \to x_0^{-}} F(x) = P\left(\bigcup_{n=1}^{\infty} \left\{x < x_0 - \frac{1}{n} \right\}\right) = P(x < x_0) = F(x_0).
     $$
     </details>
+    
+    <br>
 
 ## 1.6 Density and Mass Functions
 
@@ -332,6 +338,8 @@ P(\mathcal{A}) = P(\mathcal{A} \mid \mathcal{L}_1) P(\mathcal{L}_1) + P(\mathcal
 $$
 </details>
 
+<br>
+
 (b) Given that brown-haired offspring selected, what is the probability that the sampling was from litter 1?
 
 <details>
@@ -343,6 +351,8 @@ $$
 P(\mathcal{L}_{1} \mid \mathcal{A}) = \frac{P(\mathcal{A} \mid \mathcal{L}_{1}) P(\mathcal{L}_{1})}{P(\mathcal{A})} = \frac{2 / 3 \times 1 / 2}{19 / 30} = \frac{10}{19}.
 $$
 </details>
+
+<br>
 
 *1.41* (p.42-43) As in Example 1.3.6, consider telegraph signals “dot” and “dash” sent in the proportion 3:4, where erratic transmissions cause a dot to become a dash with probability $\frac{1}{4}$ and a dash to become a dot with probability $\frac{1}{3}$.
 
@@ -382,6 +392,8 @@ $$
 P(\mathcal{S}_{\text{dash}} \mid \mathcal{R}_{\text{dash}}) = \frac{P(\mathcal{R}_{\text{dash}} \mid \mathcal{S}_{\text{dash}}) P(\mathcal{S}_{\text{dash}})}{P(\mathcal{R}_{\text{dash}})} = \frac{(1 - 1 / 3) \times 4 / 7}{41 / 84} = \frac{32}{41}.
 $$
 </details>
+
+<br>
 
 (b) Assuming independence between signals, if the message dot-dot was received, what is the probability distribution of the four possible messages that could have been sent?
 
@@ -461,3 +473,5 @@ $$
 
     See [Exercises in 1.2](#exercises).
     </details>
+    
+    <br>

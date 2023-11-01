@@ -231,7 +231,8 @@ Thus, $\mu + \sigma$ and $\mu - \sigma$ are the quartiles of the distribution of
 > 
 > $$P(g(X) \geqslant r) \leqslant \frac{\E[g(X)]}{r}.$$
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
 $$
 \begin{aligned}
@@ -241,6 +242,9 @@ $$
     &= r P(g(X) \geqslant r).
 \end{aligned}
 $$
+</details>
+
+<br>
 
 > [!EXAMPLE]
 > The most widespread use of Chebychev’s Inequality involves means and variances. Let $g(x) = \frac{(x - \mu)^{2}}{\sigma^{2}}$, where $\mu = \E[X]$ and $\sigma^{2} = \Var(X)$. For convenience write $r = t^{2}$. Then 
@@ -321,6 +325,8 @@ $$
 \E[\lambda g(X)] = \sum\limits_{y=1}^{\infty} g(y - 1) y \frac{e^{-\lambda} \lambda^{y}}{y!} = \sum\limits_{y=0}^{\infty} g(y - 1) y \frac{e^{-\lambda} \lambda^{y}}{y!} = \E[X g(X - 1)].
 $$
 </details>
+
+<br>
 
 Similar to Stein’s Lemma, Hwang’s Identity is also useful for calculating higher-order moments. See the following example.
 
@@ -441,6 +447,8 @@ which means the former is better.
     $$
     </details>
 
+    <br>
+
     (b) $\Var \left(\sum\limits_{i=1}^{k} \frac{\partial w_i(\bm{\theta})}{\partial \theta_j} t_i(X) \right) = - \frac{\partial^{2}}{\partial \theta_j^{2}} \log c(\bm{\theta}) - \E \left[\sum\limits_{i=1}^{k} \frac{\partial^{2} w_i(\bm{\theta})}{\partial \theta_j^{2}} t_i(X) \right].$
 
     <details>
@@ -470,6 +478,8 @@ which means the former is better.
     $$
     </details>
 
+    <br>
+
 2. Suppose the random variable $T$ is the length of life of an object. The hazard function $h_{T}(t)$ associated with the random variable $T$ is defined by 
 
     $$
@@ -496,6 +506,8 @@ which means the former is better.
     $$
     </details>
 
+    <br>
+
 3. Let $f(x)$ be a pdf and let $a$ be a number such that, for all $\epsilon > 0$, $f(a + \epsilon) = f(a - \epsilon)$. Such a pdf is said to be symmetric about the point $a$. If $X \sim f(x)$, symmetric about $a$, show the following 
 
     (a) If $\E[X]$ exists, then $\E[X] = a$.
@@ -514,6 +526,8 @@ which means the former is better.
     \end{aligned}
     $$
     </details>
+
+    <br>
 
     (b) The median of $X$ is the number $a$.
 
@@ -536,6 +550,8 @@ which means the former is better.
     the median of $X$ is the number $a$.
     </details>
 
+    <br>
+
     (c) If $a = 0$, then $\mu$ is the median of the location-scale pdf $\frac{1}{\sigma}f(\frac{x - \mu}{\sigma})$, $-\infty < x < \infty$.
 
     <details>
@@ -549,6 +565,8 @@ which means the former is better.
 
     which means $\mu$ is the median of $\frac{1}{\sigma} f(\frac{x - \mu}{\sigma})$.
     </details>
+
+    <br>
 
 4. Let $X$ be a random variable with mgf $M_{X}(t)$, $-h < t < h$.
 
@@ -578,6 +596,8 @@ which means the former is better.
     $$
     </details>
 
+    <br>
+
     (b) By question (a) we have $P(X \geqslant 0) \leqslant \E[e^{tX}]$ for all $t \geqslant 0$. What are general conditions on a function $h(t,\ x)$ such that $P(X \geqslant 0) \leqslant \E[h(t,\ X)]$ for all $t \geqslant 0$ for which $\E[h(t,\ X)]$ exists?
 
     <details>
@@ -600,6 +620,8 @@ which means the former is better.
     1. $h(t,\ x) \geqslant 0,\ \forall t \geqslant 0,\ \forall x$;
     2. $h(t,\ x) \geqslant 1,\ \forall t \geqslant 0,\ \forall x \geqslant 0$.
     </details>
+
+    <br>
 
 5. Stein’s Lemma applications and analogs.
 
@@ -630,6 +652,8 @@ which means the former is better.
     \end{aligned}
     $$
     </details>
+
+    <br>
 
     (b) Prove that if $X \sim \text{Beta}(\alpha,\ \beta)$, then 
 
