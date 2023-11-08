@@ -884,11 +884,112 @@ $$
 
 ## 5.6 Generating a Random Sample
 
-### 5.6.1 Direct Methods
+### 5.6.1 Direct Method &mdash; The Inversion Method
 
-### 5.6.2 Indirect Methods
+> [!THEOREM|label:The inversion method for discrete case]
+> If $Y$ is a *discrete* r.v. taking on values $y_1 \leqslant y_2 \leqslant \cdots \leqslant y_k$ with cdf $F_{Y}(\cdot)$, then we can write 
+>
+> $$P(F_{Y}(y_i) \leqslant U \leqslant F_{Y}(y_{i+1})) = F_{Y}(y_{i+1}) - F_{Y}(y_i) = P(Y = y_{i+1}).$$
+>
+> where $U \sim \text{Uniform}(0,\ 1)$. Thus, by generating $U$ we can generate $Y$. Here is the algorithm: 
+>
+> 1. Generate $U \sim \text{Uniform}(0,\ 1)$;
+> 2. If $F_{Y}(y_i) \leqslant U \leqslant F_{Y}(y_{i+1})$, then set $Y = y_{i+1}$ (define $y_0 = -\infty$ and $F_{Y}(y_0) = 0$).
 
-### 5.6.3 The Accept/Reject Algorithm
+> [!THEOREM|label:The inversion method for continuous case]
+> If $Y$ is a *continuous* r.v. with pdf $f_{Y}(y)$, then we need to find the cdf $F_{Y}(y) = \int_{-\infty}^{\infty} f_{Y}(y) ~\mathrm{d}y$ first. Then, let $U \sim \text{Uniform}(0,\ 1)$, from $u = F_{Y}(y)$ we can solve $y = F_{Y}^{-1}(u)$, which means we manage to generate $Y$. Here is the algorithm: 
+>
+> 1. Generate $U \sim \text{Uniform}(0,\ 1)$;
+> 2. Solve $y = F_{Y}^{-1}(u)$.
+
+> [!EXAMPLE|Sample from Weibull]
+> Use the inversion method to generate a sample from Weibull distribution with pdf 
+>
+> $$f(x) = \frac{k}{\lambda} \left(\frac{x}{\lambda} \right)^{k - 1} e^{-(x / \lambda)^{k}},\quad x > 0,\ \lambda,\ k > 0.$$
+>
+> Its cdf is 
+>
+> $$F(x) = \int_{0}^{x} \frac{k}{\lambda} \left(\frac{x}{\lambda} \right)^{k - 1} e^{-(x / \lambda)^{k}} ~\mathrm{d}x = 1 - e^{-(x / \lambda)^{k}},$$
+>
+> which means 
+>
+> $$F^{-1}(u) = \lambda (-\log(1 - u))^{1 / k}.$$
+>
+> Since the distribution of $U$ and $1 - U$ are the same, we can use $1 - U$ to generate $Y$, i.e., we can replace $\log(1 - u)$ by $\log u$. So the algorithm is 
+>
+> 1. Generate $U \sim \text{Uniform}(0,\ 1)$;
+> 2. Set $X = \lambda (-\log u)^{1 / k}$.
+
+### 5.6.2 Indirect Method &mdash; The Accept/Reject Algorithm
+
+You may have found that the inversion method is not always applicable (especially for continuous cases) since the cdf $F_{Y}(y)$ may not be invertible or the inverse may be difficult to compute. So we have another method called the Accept/Reject Algorithm, which is an indirect method.
+
+> [!THEOREM|label:The Accept/Reject Algorithm for continuous case]
+> Let $Y \sim f_{Y}(y)$ and $V \sim f_{V}(v)$, where $f_{Y}$ and $f_{V}$ have *common support* with 
+>
+> $$M = \sup\limits_{y} \frac{f_{Y}(y)}{f_{V}(y)} < \infty.$$
+>
+> To generate a r.v. $Y \sim f_{Y}$, we can use the following algorithm: 
+>
+> 1. Generate $U \sim \text{Uniform}(0,\ 1)$ and $V \sim f_{V}$ *independently*;
+> 2. If $U < \frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)}$, set $Y = V$; otherwise, go back to step 1.
+
+<details>
+<summary>Proof:</summary>
+
+The generated r.v. $Y$ has cdf 
+
+$$
+\begin{aligned}
+    P(Y \leqslant y) &= P(V \leqslant y \mid \text{stop}) \\
+    &= P\left(V \leqslant y \mid U < \frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)} \right) \\
+    &= \frac{P\left(V \leqslant y,\ U < \frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)} \right)}{P\left(U < \frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)} \right)} \\
+    &= \frac{\int_{-\infty}^{y} \int_{0}^{\frac{1}{M} \frac{f_{Y}(v)}{f_{V}(v)}} f_{V}(v) ~\mathrm{d}u ~\mathrm{d}v}{\int_{-\infty}^{\infty} \int_{0}^{\frac{1}{M} \frac{f_{Y}(v)}{f_{V}(v)}} f_{V}(v) ~\mathrm{d}u ~\mathrm{d}v} \\
+    &= \frac{\int_{-\infty}^{y} \frac{1}{M} f_{Y}(v) ~\mathrm{d}v}{\int_{-\infty}^{\infty} \frac{1}{M} f_{Y}(v) ~\mathrm{d}v} \\
+    &= \int_{-\infty}^{y} f_{Y}(v) ~\mathrm{d}v \\
+    &= F_{Y}(y),
+\end{aligned}
+$$
+
+which is what we want.
+</details>
+
+<br>
+ 
+Actually you can see from the proof that $M$ *need not* be the supremum of $\frac{f_{Y}}{f_{V}}$, it can be any constant greater than $\frac{f_{Y}}{f_{V}}$ to guarantee $\frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)} \leqslant 1$. However, since we accept the value of $V$ only when $U < \frac{1}{M} \frac{f_{Y}(V)}{f_{V}(V)}$, the larger $\frac{1}{M}$ is, the more likely we accept the value of $V$, which means the algorithm is more efficient. So $\frac{1}{M}$ is also called the **acceptance rate** and we require the largest acceptance rate in the algorithm above.
+
+Similarly, the Accept/Reject Algorithm can also be applied to discrete cases.
+
+> [!THEOREM|label:The Accept/Reject Algorithm for discrete case]
+> Let $Y$ be a *discrete* r.v. taking on values $y_1 \leqslant y_2 \leqslant \cdots \leqslant y_k$ with pmf $p(\cdot)$ and $V$ be a discrete r.v. with pmf $q(\cdot)$ and with the *same support* of $Y$. Define 
+>
+> $$M = \sup\limits_{y} \frac{p(y)}{q(y)} < \infty.$$
+>
+> To generate a r.v. $Y$, we can use the following algorithm:
+>
+> 1. Generate $U \sim \text{Uniform}(0,\ 1)$ and $V$ from $q(\cdot)$ *independently*;
+> 2. If $U < \frac{1}{M} \frac{p(V)}{q(V)}$, set $Y = V$; otherwise, go back to step 1.
+
+### 5.6.3 Indirect Method &mdash; Metropolis Algorithm
+
+In the Accept/Reject Algorithm, an important requirement is $M < \infty$. This can be interpreted as requiring the density of $V$ (**candidate density**) to have heavier tails than the density of $Y$ (**target density**). This requirement tends to ensure that we will obtain a good representation of the values of $Y$, even those values that are in the tails. However, in some cases, e.g., the target density has heavy tails, it is difficult to find a candidate density with heavier tails than the target density, which means $M$ may tend to infinity. In such caes the Accept/Reject Algorithm will no longer apply, and one is led to another class of methods known as *Markov Chain Monte Carlo (MCMC)* methods. Special cases of such methods are known as *Gibbs Sampler* and *Metropolis Algorithm*. Here we will introduce the latter.
+
+> [!THEOREM|label:Metropolis Algorithm]
+> Let $Y \sim f_{Y}(y)$ and $V \sim f_{V}(v)$, where $f_{Y}$ and $f_{V}$ have common support. To generate $Y \sim f_{Y}$, we can use the following algorithm:
+>
+> 0. Generate $V \sim f_{V}$. Set $Z_0 = V$;
+>
+> For $i = 1,\ 2,\ \cdots$: 
+>
+> 1. Generate $U_i \sim \text{Uniform}(0,\ 1)$, $V_i \sim f_{V}$, and calculate
+> 
+>     $$\rho_i = \min \left\{\frac{f_{Y}(V_i)}{f_{V}(V_i)} \frac{f_{V}(Z_{i-1})}{f_{Y}(Z_{i-1})},\ 1 \right\};$$
+>
+> 2. Set 
+>
+>     $$Z_i = \begin{cases} V_i,\ &\text{if } U_i \leqslant \rho_i \\ Z_{i-1},\ &\text{if } U_i > \rho_i. \end{cases}$$
+>
+> Then, as $i \to \infty$, $Z_i \stackrel{d}{\longrightarrow} Y$.
 
 ## Assignments
 
@@ -1334,7 +1435,8 @@ $$
 
 (*Hint*: Note that the distribution of $Z \mid X = x$ is that of the first-order statistic from a sample of size $x$.)
 
-Solution:
+<details>
+<summary>Solution: </summary>
 
 Since 
 
@@ -1354,6 +1456,9 @@ we have
 $$
 F_{Z}(z) = P(X \leqslant z) = 1 - \frac{e^{1 - z} - 1}{e - 1} = \frac{e - e^{1 - z}}{e - 1},\quad 0 < z < 1.
 $$
+</details>
+
+<br>
 
 *5.24* (p.259) Let $X_1,\ \cdots,\ X_n$ be a random sample from a population with pdf 
 
@@ -1731,7 +1836,7 @@ $$
 \alpha = \frac{\left(e^{\mu+\left(\sigma^2 / 2\right)}\right)^2}{e^{2\left(\mu + \sigma^2\right)}-e^{2 \mu + \sigma^2}},\quad \text{ and } \quad \beta = \frac{e^{2\left(\mu + \sigma^2\right)}-e^{2 \mu + \sigma^2}}{e^{\mu + \left(\sigma^2 / 2\right)}},
 $$
 
-we can have the same mean and variance as $X$. Thus, we can generate a sample by the following steps: 
+which has the same mean and variance as $X$. Thus, we can generate a sample by the following steps: 
 
 0. Generate $V_i \sim \text{Gamma}(\alpha,\ \beta)$. Set $Z_0 = V$;
 
