@@ -5,14 +5,15 @@
 - `cd dirName`：进入某个目录（`.` 代表当前目录，`..` 代表上一层目录，`~` 代表根目录）
 - `mkdir dirName`：创建目录
 - `touch fileName`：创建文件
-- `cp -r dir1Name dir2Name`：复制目录1到目录2内
 - `cp fileName dirName`：复制文件到某个目录内
+- `cp -r dir1Name dir2Name`：复制目录1到目录2内
+- `rm fileName`：删除文件
 - `rm -rf dirName`：删除目录（`-f` 代表强制删除不存在的文件）
     
     > [!WARNING|label:警告]
     > `rm -rf` 属于高危操作，可能导致误删。
 
-- `rm fileName`：删除文件
+- `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
 - `du -h dirName/fileName`：查看目录/文件占用内存
 - `top`：查看 CPU 内存占用（动态变化）
@@ -26,6 +27,7 @@
     - `conda list | grep stringi`：查找包含 stringi 字样的 conda 包
 
 - `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
+- `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
 
 ### Ctrl
 
@@ -54,6 +56,8 @@
     > 本地文件上传服务器时如果是 root 权限就没法传，需要先放松权限，上传后再改回来。
 
 - `chmod -R modeNumber dirName`：更改目录下所有文件的权限
+- `chown userName:(groupName) fileName`：更改文件的拥有者和拥有组（不写 `groupName` 则为拥有者的默认组）
+- `chown -R userName:(groupName) dirName`：更改目录及目录下所有文件的拥有者和拥有组
 - `shutdown -h now`：关机
 
 ### 软件 RAID1
