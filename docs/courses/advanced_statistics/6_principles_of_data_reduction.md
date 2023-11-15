@@ -18,10 +18,10 @@ We will study 3 principles of data reduction:
 ### 6.2.1 Sufficient Statistics
 
 > [!DEFINITION]
-> A statistic $T(\bm{X})$ is a **sufficient statistic** for $\theta$ if the conditional distribution of the sample $\bm{X}$ given the value of $T(\bm{X})$ does not depend on $\theta$.
+> A statistic $T(\bm{X})$ is a **sufficient statistic** for $\theta$ if the conditional distribution of the sample $\bm{X}$ given the value of $T(\bm{X})$ does *not* depend on $\theta$.
 
 > [!THEOREM]
-> If $p(\bm{x} \mid \theta)$ is the joint pdf or pmf of $\bm{X}$ and $q(t \mid \theta)$ is the pdf or pmf of $T(\bm{X})$, then $T(\bm{X})$ is a *sufficient statistic* for $\theta$ if, $\forall \bm{x}$ in the sample space, the raio $\frac{p(\bm{x} \mid \theta)}{q(T(\bm{x}) \mid \theta)}$ is *constant* as a function of $\theta$.
+> If $p(\bm{x} \mid \theta)$ is the joint pdf or pmf of $\bm{X}$ and $q(t \mid \theta)$ is the pdf or pmf of $T(\bm{X})$, then $T(\bm{X})$ is a *sufficient statistic* for $\theta$ if, $\forall \bm{x}$ in the sample space, the raio $\frac{p(\bm{x} \mid \theta)}{q(T(\bm{x}) \mid \theta)}$ does *not* depend on $\theta$.
 
 > [!EXAMPLE|label:Binomial sufficient statistic]
 > Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. Bernoulli random variables with parameter $\theta$, $0 < \theta < 1$. We will show that $T(\bm{X}) = \sum_{i=1}^{n} X_{i}$ is a sufficient statistic for $\theta$. Note that the statistic $T(\bm{X})$ counts the number of $X_{i}$s that equal $1$, so $T(\bm{X})$ has a $\text{Binomial}(n,\ \theta)$ distribution. Denote the observed statistic $T(\bm{x})$ as $t$, then the ratio of pmfs is 
@@ -55,9 +55,9 @@ Another way and the *most useful* way to find out sufficient statistics is to us
 > [!THEOREM|label:Factorization Theorem]
 > Let $f(\bm{x} \mid \theta)$ denote the joint pdf or pmf of a sample $\bm{X}$. A statistic $T(\bm{X})$ is a sufficient statistic for $\theta$ *iff* $\exists $ functions $g(t \mid \theta)$ and $h(\bm{x})$ s.t., $\forall \bm{x}$ and $\forall \theta$, 
 >
-> $$f(x \mid \theta) = g(T(\bm{x}) \mid \theta) h(\bm{x}).$$
+> $$f(\bm{x} \mid \theta) = g(T(\bm{x}) \mid \theta) h(\bm{x}).$$
 
-> [!EXAMPLE|label:Normal sufficient statistic (cont.)]
+> [!EXAMPLE|label:Normal sufficient statistic（continued）]
 > From the [example before](#normal_example) we have known that the joint pdf of Normal sample (conditional on $\mu$) can be written as 
 >
 > $$f(\bm{x} \mid \mu) = \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}} \right)^{n} \exp \left[-\frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} (x_{i} - \overline{x})^{2} - \frac{n(\overline{x} - \mu)^{2}}{2 \sigma^{2}} \right].$$
@@ -68,7 +68,9 @@ Another way and the *most useful* way to find out sufficient statistics is to us
 >
 > Define 
 > $$g(T(\bm{x}) \mid \mu) = \exp \left[- \frac{n(\overline{x} - \mu)^{2}}{2 \sigma^{2}} \right]$$
+> 
 > and 
+> 
 > $$h(\bm{x}) = \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}} \right)^{n} \exp \left[-\frac{\sum_{i=1}^{n} (x_{i} - \overline{x})^{2}}{2 \sigma^{2}} \right],$$
 > 
 > we can conclude that the sample mean is a sufficient statistic for $\mu$ by the Factorization Theorem.
@@ -114,20 +116,6 @@ Another way and the *most useful* way to find out sufficient statistics is to us
 >
 > is a *sufficient statistic* for $\bm{\theta}$.
 
-### Exercises
-
-1. Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. sample from $\text{Gamma}(\alpha,\ \beta)$. Prove that $T(\bm{X}) = \left(\sum_{j=1}^{n} \log X_j,\ \sum_{j=1}^{n} X_j \right) $ are sufficient for $(\alpha,\ \beta)$.
-
-Proof:
-
-<br>
-
-2. Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. sample from $\text{Uniform}(\alpha,\ \beta),\ \alpha < \beta$. Prove that $\left(\underset{1 \leqslant i \leqslant n}{\min} ~ X_{i},\ \underset{1 \leqslant i \leqslant n}{\max} ~ X_{i} \right)$ is sufficient for $(\alpha,\ \beta)$.
-
-Proof:
-
-<br>
-
 ### 6.2.2 Minimal Sufficient Statistics
 
 For a fixed family of distribution, many sufficient statistics exist. We need to find the one that achieves the maximal data reduction.
@@ -135,8 +123,402 @@ For a fixed family of distribution, many sufficient statistics exist. We need to
 > [!DEFINITION]
 > A sufficient statistic $T(\bm{X})$ is called a **minimal sufficient statistic** if, for any other sufficient statistic $T'(\bm{X})$, $\exists $ a function $g$ s.t. $T(\bm{x}) = g(T'(\bm{x}))$.
 
+> [!EXAMPLE]
+> We have known that a sufficient statistic for $\mu$ in $N(\mu,\ \sigma^{2})$ with known $\sigma^{2}$ is the sample mean $\overline{X}$, while a sufficient statistic for $(\mu,\ \sigma^{2})$ is the sample version $(\overline{X},\ S^{2})$. Note that $(\overline{X},\ S^{2})$ can also be a sufficient statistic for $\mu$ with known $\sigma^{2}$. However, it is not a minimal sufficient statistic, because $\overline{X} = \overline{X} + 0 \cdot S^{2}$ is a function of $(\overline{X},\ S^{2})$. Actually, $\overline{X}$ is a minimal sufficient statistic for $\mu$.
 
+> [!THEOREM]
+> Let $f(\bm{x} \mid \theta)$ be the pmf or pdf of a sample $\bm{X}$. Suppose $\exists $ a function $T(\bm{x})$ s.t. for every 2 sample points $\bm{x}$ and $\bm{y}$, the ratio $\frac{f(\bm{x} \mid \theta)}{f(\bm{y} \mid \theta)}$ does *not* depend on $\theta$ *iff* $T(\bm{x}) = T(\bm{y})$. Then $T(\bm{X})$ is a *minimial sufficient statistic* for $\theta$.
+
+Proof:
+
+> [!EXAMPLE|label:Normal minimal sufficient statistic]
+> Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. $N(\mu,\ \sigma^{2})$, both $\mu$ and $\sigma^{2}$ unknown. Let $\bm{x}$ and $\bm{y}$ be 2 sample points, and let $(\overline{x},\ s_{\bm{x}}^{2})$ and $(\overline{y},\ s_{\bm{y}}^{2})$ be the corresponding sample means and variances. Then, the ratio of densities is given by 
+>
+> $$\begin{aligned} \frac{f(\bm{x} \mid \mu,\ \sigma^{2})}{f(\bm{y} \mid \mu,\ \sigma^{2})} &= \frac{\left(\frac{1}{\sqrt{2 \pi \sigma^{2}}} \right)^{n} \exp \left[ -\frac{(n - 1) s_{\bm{x}}^{2} + n (\overline{x} - \mu)^{2}}{2 \sigma^{2}} \right]}{\left(\frac{1}{\sqrt{2 \pi \sigma^{2}}} \right)^{n} \exp \left[ -\frac{(n - 1) s_{\bm{y}}^{2} + n (\overline{y} - \mu)^{2}}{2 \sigma^{2}} \right]} \\ &= \exp \left[ -\frac{(n - 1) \left(s_{\bm{x}}^{2} - s_{\bm{y}}^{2} \right) + n (\overline{x} - \mu + \overline{y} - \mu) (\overline{x} - \mu - \overline{y} + \mu)}{2 \sigma^{2}} \right] \\ &= \exp \left[ -\frac{(n - 1) \left(s_{\bm{x}}^{2} - s_{\bm{y}}^{2} \right) + n (\overline{x}^{2} - \overline{y}^{2}) - 2 n \mu (\overline{x} - \overline{y})}{2 \sigma^{2}} \right]. \end{aligned}$$
+>
+> This ratio does not depend on $(\mu,\ \sigma^{2})$ *iff* the numerator is zero, i.e., $\overline{x} = \overline{y}$ and $s_{\bm{x}}^{2} = s_{\bm{y}}^{2}$. Thus, $(\overline{X},\ S^{2})$ is a minimal sufficient statistic for $(\mu,\ \sigma^{2})$.
+
+> [!EXAMPLE|label:Uniform minimal sufficient statistic]
+> Suppose $X_1,\ X_2,\ \cdots,\ X_n$ are i.i.d. $\text{Uniform}(\theta,\ \theta + 1)$ observations, $-\infty < \theta < \infty$. Then the joint pdf of $\bm{X}$ is 
+>
+> $$f(\bm{x} \mid \theta) = \begin{cases} 1,\ &\theta < x_i < \theta + 1,\ i=1,\ 2,\ \cdots,\ n \\ 0,\ &\text{otherwise}, \end{cases}$$
+>
+> which can be written as 
+>
+> $$f(\bm{x} \mid \theta) = \begin{cases} 1,\ &\underset{i}{\max} ~ x_i - 1 < \theta < \underset{i}{\min} ~ x_i \\ 0,\ &\text{otherwise}. \end{cases}$$
+>
+> Thus, for 2 sample points $\bm{x}$ and $\bm{y}$, the ratio will be $1$ for the same values of $\theta$ *iff* $\underset{i}{\min} ~ x_i = \underset{i}{\min} ~ y_i$ and $\underset{i}{\max} ~ x_i = \underset{i}{\max} ~ y_i$. Hence, $(X_{(1)},\ X_{(n)})$ is a minimal sufficient statistic for $\theta$. Note that here we have a *2-dimensional* minimal sufficient statistic for *1-dimisional* parameter $\theta$.
+
+### 6.2.3 Ancillary Statistics
+
+> [!DEFINITION]
+> A statistic $S(\bm{X})$ whose distribution does not depend on the parameter $\theta$ is called an **ancillary statistic**.
+
+Alone, an ancillary statistic *does not* provide any information about $\theta$. However, when used in conjunction with other statistics, it sometimes contain valuable information for inference about $\theta$.
+
+> [!EXAMPLE|label:Uniform ancillary statistic]
+> Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. $\text{Uniform}(\theta,\ \theta + 1)$ observations, $-\infty < \theta < \infty$. Let $X_{(1)},\ X_{(2)},\ \cdots,\ X_{(n)}$ be the corresponding order statistics. From [Distribution of the midrange and range](courses/advanced_statistics/5_properties_of_a_random_sample.md#range_example) in Chapter 5, we have known that the range statistic, $R = X_{(n)} - X_{(1)}$, is a $\text{Beta}(n - 1,\ 2)$ random variable, which does not depend on $\theta$. Thus, the range statistic is an ancillary statistic for $\theta$.
+>
+> Recall that $(X_{(1)},\ X_{(n)})$ is a minimal sufficient statistic for $\theta$, which means the transformed $\left(X_{(n)} - X_{(1)},\ \frac{X_{(n)} + X_{(1)}}{2} \right)$ is also a minimal sufficient statistic for $\theta$, though $X_{(n)} - X_{(1)}$ contains no information about $\theta$.
+
+### 6.2.4 Sufficient, Ancillary, and Complete Statistics
+
+> [!DEFINITION]
+> Let $f(t \mid \theta)$ be a family of pdfs or pmfs for a statistic $T(\bm{X})$. The family of probability distributions is called **complete** if $\E[g(T) \mid \theta] = 0,\ \forall \theta$ implies $P(g(T) = 0 \mid \theta) = 1,\ \forall \theta$. Equivalently, $T(\bm{X})$ is called a **complete statistic**.
+
+> [!EXAMPLE|label:Binomial complete sufficient statistic]
+> Suppose that $T$ has a $\text{Binomial}(n,\ p)$ distribution, $0 < p < 1$. Let $g$ be a function s.t. $\E[g(T) \mid p] = 0$. Then, 
+>
+> $$\begin{aligned} 0 &= \E[g(T) \mid p] \\ &= \sum_{t=0}^{n} g(t) \binom{n}{t} p^{t} (1 - p)^{n - t} \\ &= (1 - p)^{n} \sum_{t=0}^{n} g(t) \binom{n}{t} \left(\frac{p}{1 - p} \right)^{t} \\ &= \sum_{t=0}^{n} g(t) \binom{n}{t} \left(\frac{p}{1 - p} \right)^{t},\quad 0 < p < 1. \end{aligned}$$
+>
+> Since both $\binom{n}{t}$ and $\frac{p}{1 - p}$ are positive, the equation above implies that $g(t) = 0$ for all $t = 0,\ 1,\ \cdots,\ n$. Since $T$ takes on the values $0,\ 1,\ \cdots,\ n$ with probability $1$, this yields that $P(g(T) = 0 \mid p) = 1,\ \forall p$. Hence, $T$ is a complete statistic for $p$.
+
+For exponential family, complete statistics are easy to find.
+
+> [!THEOREM|label:Complete statistics in the exponential family]
+> Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. observations from an exponential family with pdf or pmf of the form 
+>
+> $$f(x \mid \bm{\theta}) = h(x) c(\bm{\theta}) \exp \left(\sum_{i=1}^{k} w_i(\bm{\theta}) t_i(x) \right),$$
+>
+> where $\bm{\theta} = (\theta_1,\ \theta_2,\ \cdots,\ \theta_k)$. Then the statistic 
+>
+> $$T(\bm{X}) = \left(\sum_{i=1}^{n} t_1(X_{i}),\ \sum_{i=1}^{n} t_2(X_{i}),\ \cdots,\ \sum_{i=1}^{n} t_k(X_{i}) \right)$$
+>
+> is *complete* as long as the parameter space $\Theta$ contains an open set in $\mathbb{R}^{k}$.
+
+But how can we use the completeness of a statistic? See the following theorem.
+
+> [!THEOREM|label:Basu’s Theorem]
+> If $T(\bm{X})$ is *complete and minimal sufficient statistic*, then $T(\bm{X})$ is *independent of every ancillary statistic*.
+
+Basu’s Theorem is useful because it allow us to deduce the independence of 2 statistic without ever finding the joint distribution.
+
+> [!EXAMPLE|label:Using Basu’s Theorem]
+> Consider sampling from a $N(\mu,\ \sigma^{2})$ population with known $\sigma^{2}$. Since Normal distribution is a member of exponential family, we can easily verify that the sample mean $\overline{X}$ is a complete statistic for $\mu$. Note that $\overline{X}$ is also a minimal sufficient statistic, by Basu’s Theorem, $\overline{X}$ is independent of every ancillary statistic of $\mu$, including the sample variance $S^{2}$. Since $\sigma^{2}$ can be arbitrary, the sample mean and sample variance are independent for any choice of $\mu$ and $\sigma^{2}$.
+
+> [!THEOREM]
+> If a *minimal sufficient statistic exists*, then *any complete statistic is also a minimal sufficient statistic*.
+
+### Exercises
+
+1. Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. sample from $\text{Gamma}(\alpha,\ \beta)$. Prove that $T(\bm{X}) = \left(\sum_{j=1}^{n} \log X_j,\ \sum_{j=1}^{n} X_j \right) $ are sufficient for $(\alpha,\ \beta)$.
+
+    <details>
+    Proof:
+
+    The joint pdf of the random sample is 
+
+    $$
+    \begin{aligned}
+        f(\bm{x} \mid \alpha,\ \beta) &= \frac{\beta^{\alpha n}}{\Gamma(\alpha)^{n}} \exp \left(-\beta \sum_{j=1}^{n} x_j \right) \prod_{j=1}^{n} x_j^{\alpha - 1} \\
+        &= \frac{\beta^{\alpha n}}{\Gamma(\alpha)^{n}} \exp \left[-\beta \sum_{j=1}^{n} x_j + (\alpha - 1) \sum_{j=1}^{n} \log x_j\right].
+    \end{aligned}
+    $$
+
+    Let $g(T(\bm{x})) = \exp \left[-\beta \sum_{j=1}^{n} x_j + (\alpha - 1) \sum_{j=1}^{n} \log x_j\right]$ and $h(\bm{x}) = \frac{\beta^{\alpha n}}{\Gamma(\alpha)^{n}}$. By the Factorization Theorem, we can conclude that $T(\bm{X})$ is a sufficient statistic for $(\alpha,\ \beta)$.
+    </details>
+
+    <br>
+
+2. Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. sample from $\text{Uniform}(\alpha,\ \beta),\ \alpha < \beta$. Prove that $\left(\min\limits_{1 \leqslant i \leqslant n} X_{i},\ \max\limits_{1 \leqslant i \leqslant n} X_{i} \right)$ is sufficient for $(\alpha,\ \beta)$.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The joint pdf of the random sample is 
+
+    $$
+    \begin{aligned}
+        f(\bm{x} \mid \alpha,\ \beta) &= \begin{cases} \frac{1}{(\beta - \alpha)^{n}},\ &\alpha < x_i < \beta,\ i=1,\ 2,\ \cdots,\ n \\ 0,\ &\text{otherwise} \end{cases} \\
+        &= \begin{cases} \frac{1}{(\beta - \alpha)^{n}},\ &\alpha < \min\limits_{1 \leqslant i \leqslant n} x_i < \max\limits_{1 \leqslant i \leqslant n} x_i < \beta \\ 0,\ &\text{otherwise}. \end{cases}
+    \end{aligned}
+    $$
+
+    Let $g(T(\bm{x})) = I_{\left\{\alpha < t_1 < t_2 < \beta \right\}}(t_1,\ t_2)$ be an indicator function where $t_1 = \min_{1\leqslant i\leqslant n} x_i$ and $t_2 = \max_{1\leqslant i\leqslant n} x_i$. Let $h(\bm{x}) = \frac{1}{(\beta - \alpha)^{n}}$. By the Factorization Theorem, we can conclude that $\left(\min\limits_{1 \leqslant i \leqslant n} X_{i},\ \max\limits_{1 \leqslant i \leqslant n} X_{i} \right)$ is a sufficient statistic for $(\alpha,\ \beta)$.
+    </details>
+
+    <br>
+
+3. (p.301 6.9) For each of the following distributions let $X_1,\ \cdots,\ X_n$ be a random sample. Find a minimal sufficient statistic for $\theta$.
+
+    (a) Normal: $f(x \mid \theta) = \frac{1}{\sqrt{2 \pi}} e^{-(x - \theta)^{2} / 2},\ -\infty < x < \infty,\ -\infty < \theta < \infty$
+
+    <details>
+    <summary>Solution:</summary> 
+
+    For every 2 sample points $\bm{x}$ and $\bm{y}$ the ratio of joint pdfs is given by 
+
+    $$
+    \begin{aligned}
+        \frac{f(\bm{x} \mid \theta)}{f(\bm{y} \mid \theta)} &= \exp \left[ -\frac{1}{2} \left(\sum_{i=1}^{n} (x_i - \theta)^{2} - \sum_{i=1}^{n} (y_i - \theta)^{2} \right) \right] \\
+        &= \exp \left\{ -\frac{1}{2} \left[\sum_{i=1}^{n} (x_i^{2} - y_i^{2}) - 2 \theta \left(\sum_{i=1}^{n} x_i - \sum_{i=1}^{n} y_i \right)  \right] \right\}.
+    \end{aligned}
+    $$
+
+    The ratio does not depend on $\theta$ iff $\sum_{i=1}^{n} x_i = \sum_{i=1}^{n} y_i$. Thus, $\sum_{i=1}^{n} X_i$ is a minimal sufficient statistic for $\theta$.
+    </details>
+
+    <br>
+
+    <span id="exercise3b"></span>
+
+    (b) Location exponential: $f(x \mid \theta) = e^{-(x - \theta)},\ \theta < x < \infty,\ -\infty < \theta < \infty$
+
+    <details>
+    <summary>Solution:</summary> 
+
+    For every 2 sample points $\bm{x}$ and $\bm{y}$ the ratio of joint pdfs is given by 
+
+    $$
+    \begin{aligned}
+        \frac{f(\bm{x} \mid \theta)}{f(\bm{y} \mid \theta)} &= \exp \left\{ -\left[\sum_{i=1}^{n} (x_i - \theta) - \sum_{i=1}^{n} (y_i - \theta) \right] \right\} \frac{\prod_{i=1}^{n} I_{(\theta,\ \infty)}(x_i)}{\prod_{i=1}^{n} I_{(\theta,\ \infty)}(y_i)} \\
+        &= \exp \left[-\left(\sum_{i=1}^{n} x_i - \sum_{i=1}^{n} y_i \right) \right] \frac{I_{(\theta,\ \infty)}(\min_{i} x_i)}{I_{(\theta,\ \infty)}(\min_{i} y_i)}.
+    \end{aligned}
+    $$
+
+    The ratio does not depend on $\theta$ iff $\min_{i} x_i = \min_{i} y_i$. Thus, $\min_{i} X_i$ is a minimal sufficient statistic for $\theta$.
+    </details>
+
+    <br>
+
+    (c) Logistic: $f(x \mid \theta) = \frac{e^{-(x - \theta)}}{\left(1 + e^{-(x - \theta)} \right)^{2}},\ -\infty < x < \infty,\ -\infty < \theta < \infty$
+
+    <details>
+    <summary>Solution:</summary> 
+
+    For every 2 sample points $\bm{x}$ and $\bm{y}$ the ratio of joint pdfs is given by 
+
+    $$
+    \begin{aligned}
+        \frac{f(\bm{x} \mid \theta)}{f(\bm{y} \mid \theta)} &= e^{-\left(\sum_{i=1}^{n} x_i - \sum_{i=1}^{n} y_i \right)} \left[\frac{\prod_{i=1}^{n} \left(1 + e^{-(y_i - \theta)} \right)}{\prod_{i=1}^{n} \left(1 + e^{-(x_i - \theta)} \right)} \right]^{2}.
+    \end{aligned}
+    $$
+
+    The ratio does not depend on $\theta$ iff $\bm{x}$ and $\bm{y}$ have the same order statistics. Therefore, the order statistics are minimal sufficient for $\theta$.
+    </details>
+
+    <br>
+
+4. Let $X_1,\ X_2,\ \cdots,\ X_n$ be a random sample from a distribution with density 
+
+    $$
+    f(x;\ \theta) = \frac{g(x)}{h(\theta)},\quad a(\theta) \leqslant x \leqslant b(\theta),
+    $$
+
+    where $g(x)$ is a function of $x$ only and $h(\theta) = \int_{a(\theta)}^{b(\theta)} g(x) ~\mathrm{d}x$ is a function of $\theta$ only. Let $a ^{-1}(\theta)$ and $b ^{-1}(\theta)$ be the inverse functions of $a(\theta)$ and $b(\theta)$, respectively. Prove that 
+
+    (a) If $a(\theta)$ and $b(\theta)$ are monotone-increasing and monotone-decreasing functions of $\theta$, respectively, then the sufficient statistic for $\theta$ is $\widehat{\theta} = \min\left\{a ^{-1}(X_{(1)}),\ b ^{-1}(X_{(n)}) \right\}$, where $X_{(1)}$ and $X_{(n)}$ are the smallest and largest order statistics, respectively.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The joint pdf of the random sample is 
+
+    $$
+    \begin{aligned}
+        f(\bm{x} \mid \theta) &= \frac{\prod_{i=1}^{n} g(x_i) I_{[a(\theta),\ b(\theta)]}(x_i)}{h(\theta)^{n}} \\
+        &= \frac{\prod_{i=1}^{n} g(x_i) I_{\left\{a(\theta) \leqslant x_{(1)} < x_{(n)} \leqslant b(\theta) \right\}}(\theta)}{h(\theta)^{n}} \\
+        &= \frac{\prod_{i=1}^{n} g(x_i) I_{\left[-\infty,\ \min \left\{a ^{-1}(x_{(1)}),\ b ^{-1}(x_{(n)}) \right\} \right] }(\theta)}{h(\theta)^{n}}.
+    \end{aligned}
+    $$
+
+    Then, by the Factorization Theorem, we can conclude that $\widehat{\theta} = \min\left\{a ^{-1}(X_{(1)}),\ b ^{-1}(X_{(n)}) \right\}$ is a sufficient statistic for $\theta$.
+    </details>
+
+    <br>
+
+    (b) If $a(\theta)$ and $b(\theta)$ are monotone-decreasing and monotone-increasing functions of $\theta$, respectively, then the sufficient statistic for $\theta$ is $\widehat{\theta} = \max\left\{a ^{-1}(X_{(1)}),\ b ^{-1}(X_{(n)}) \right\}$.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The joint pdf of the random sample is 
+
+    $$
+    \begin{aligned}
+        f(\bm{x} \mid \theta) &= \frac{\prod_{i=1}^{n} g(x_i) I_{\left\{a(\theta) \leqslant x_{(1)} < x_{(n)} \leqslant b(\theta) \right\}}(\theta)}{h(\theta)^{n}} \\
+        &= \frac{\prod_{i=1}^{n} g(x_i) I_{\left[\max \left\{a ^{-1}(x_{(1)}),\ b ^{-1}(x_{(n)}) \right\},\ \infty \right]}(\theta)}{h(\theta)^{n}}.
+    \end{aligned}
+    $$
+
+    Then, by the Factorization Theorem, we can conclude that $\widehat{\theta} = \max\left\{a ^{-1}(X_{(1)}),\ b ^{-1}(X_{(n)}) \right\}$ is a sufficient statistic for $\theta$.
+    </details>
+
+    <br>
+
+5. (p.301 6.15) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ a \theta^{2})$, where $a > 0$ is a known constant and $\theta > 0$.
+
+    (a) Show that the parameter space does not contain a two-dimensional open set.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The parameter space consists only of the points $(\theta,\ \nu)$ on the graph of the function $\nu = a \theta^{2}$. This quadratic graph is a line and does not contain any two-dimensional open set.
+    </details>
+
+    <br>
+
+    (b) Show that the statistic $T = (\overline{X},\ S^{2})$ is a sufficient statistic for $\theta$, but the family of distributions is not complete.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The joint pdf of the random sample is
+
+    $$
+    f(\bm{x} \mid \mu,\ \sigma^{2}) = \left(\frac{1}{\sqrt{2 \pi a \theta^{2}}} \right)^{n} \exp \left[ -\frac{1}{2 a \theta^{2}} \sum_{i=1}^{n} (x_{i} - \overline{x})^{2} - \frac{n(\overline{x} - \theta)^{2}}{2 a \theta^{2}} \right],
+    $$
+
+    which depends on the sample $\bm{x}$ only through $\overline{x}$ and $s^{2} = \frac{1}{n - 1}\sum_{i=1}^{n} (x_i - \overline{x})^{2}$. Thus, we can define $h(x) = \left(\frac{1}{\sqrt{2 \pi a \theta^{2}}} \right)^{n}$ and $g(\overline{x},\ s^{2}) = \exp \left[ -\frac{n - 1}{2 a \theta^{2}} s^{2} - \frac{n(\overline{x} - \theta)^{2}}{2 a \theta^{2}} \right]$. By the Factorization Theorem, we can conclude that $T$ is a sufficient statistic for $\theta$.
+
+    Since $\E[S^{2}] = a \theta^{2}$ and $\E[\overline{X}^{2}] = \Var(\overline{X}) + \E^{2}[\overline{X}] = \frac{a \theta^{2}}{n} + \theta^{2} = \frac{a + n}{n} \theta^{2}$, we have 
+
+    $$
+    \E\left[\frac{n}{a + n} \overline{X}^{2} - \frac{S^{2}}{a} \right] = \theta^{2} - \theta^{2} = 0.
+    $$
+
+    However, $P\left(\frac{n}{a + n} \overline{X}^{2} - \frac{S^{2}}{a} \right) \neq 1$, which means $T$ is not a complete statistic for $\theta$.
+    </details>
+
+    <br>
+
+6. (p.302 6.21) Let $X$ be one observation from the pdf 
+
+    $$
+    f(x \mid \theta) = \left(\frac{\theta}{2} \right)^{\left\vert x \right\vert } (1 - \theta)^{1 - \left\vert x \right\vert },\quad x = -1,\ 0,\ 1,\ 0 \leqslant \theta \leqslant 1.
+    $$
+
+    (a) Is $X$ a complete sufficient statistic?
+
+    <details>
+    <summary>Solution:</summary>
+
+    First, $X$ itself must be sufficient. Then, to check completeness, calculate 
+
+    $$
+    \E[g(X)] = \frac{\theta}{2} g(-1) + (1 - \theta) g(0) + \frac{\theta}{2} g(1).
+    $$
+
+    If $g$ is an odd function, then $g(-1) = - g(1)$ and $g(0) = 0$, which means $\E[g(X)] = 0$. Thus, $P(g(X) = 0)$ is not necessarily $1$, and $X$ is not a complete statistic.
+    </details>
+
+    <br>
+
+    (b) Is $\left\vert X \right\vert$ a complete sufficient statistic?
+
+    <details>
+    <summary>Solution:</summary>
+
+    Define $h(x) = 1$ and $g(\left\vert x \right\vert) = \left(\frac{\theta}{2} \right)^{\left\vert x \right\vert } (1 - \theta)^{1 - \left\vert x \right\vert}$, by the Factorization Theorem, $\left\vert X \right\vert$ is a sufficient statistic for $\theta$.
+
+    Then, note that the distribution of $\left\vert X \right\vert$ is $\text{Bernoulli}(\theta)$, which is a member of exponential family. Thus, $\left\vert X \right\vert$ is a complete sufficient statistic for $\theta$.
+    </details>
+
+    <br>
+
+    (c) Does $f(x \mid \theta)$ belong to the exponential class?
+
+    <details>
+    <summary>Solution:</summary>
+
+    We can write $f(x \mid \theta)$ as 
+
+    $$
+    f(x \mid \theta) = \exp \left\{ \left\vert x \right\vert \log \frac{\theta}{2} + (1 - \left\vert x \right\vert) \log (1 - \theta) \right\}.
+    $$
+
+    Let $h(x) = c(\theta) = 1$, $w_1(\theta) = \log \frac{\theta}{2}$, $t_1(x) = \left\vert x \right\vert$, $w_2(\theta) = \log (1 - \theta)$, and $t_2(x) = 1 - \left\vert x \right\vert$. Then, $f(x \mid \theta)$ belongs to the exponential class.
+    </details>
+
+    <br>
+
+7. (p.303 6.30) Let $X_1,\ \cdots,\ X_n$ be a random sample from the pdf $f(x \mid \mu) = e^{-(x - \mu)}$, where $-\infty < \mu < x < \infty$.
+
+    (a) Show that $X_{(1)} = \min_{i} X_{i}$ is a complete sufficient statistic.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The joint pdf of the random sample is 
+
+    $$
+    f(\bm{x} \mid \mu) = e^{-\sum_{i=1}^{n} (x_i - \mu)} \prod_{i=1}^{n} I_{(\mu,\ \infty)}(x_i) = e^{-\sum_{i=1}^{n} (x_i - \mu)} I_{(-\infty,\ x_{(1)})}(\mu).
+    $$
+
+    Let $h(\bm{x}) = e^{-\sum_{i=1}^{n} (x_i - \mu)}$ and $g(x_{(1)}) = I_{(-\infty,\ x_{(1)})}(\mu)$, by the Factorization Theorem, we can conclude that $X_{(1)}$ is a sufficient statistic for $\mu$.
+
+    To check completeness, calculate pdf of $X_{(1)}$: 
+
+    $$
+    \begin{aligned}
+        f(x_{(1)} \mid \mu) &= f_{X}(x_{(1)} \mid \mu) (1 - F_{X}(x_{(1)} \mid \mu))^{n - 1} n \\
+        &= e^{-(x_{(1)} - \mu)} [1 - (1 - e^{-(x_{(1)} - \mu)})]^{n - 1} n \\
+        &= n e^{-n (x_{(1)} - \mu)} ,\quad x_{(1)} > \mu.
+    \end{aligned}
+    $$
+
+    Then, we have 
+
+    $$
+    \E[g(X_{(1)}) \mid \mu] = \int_{\mu}^{\infty} g(x_{(1)}) n e^{-n (x_{(1)} - \mu)} ~\mathrm{d}x_{(1)}.
+    $$
+
+    If this is zero for all $\mu$, then $\int_{\mu}^{\infty} g(x_{(1)}) e^{-n (x_{(1)})} ~\mathrm{d}x_{(1)}$ should be zero for all $\mu$. Moreover, let $\int_{\mu}^{\infty} g(x_{(1)}) e^{-n (x_{(1)})} ~\mathrm{d}x_{(1)}$ be a function of $\mu$, this implies we need the function to be constant. So take the derivative w.r.t. $\mu$, we would have 
+
+    $$
+    \begin{aligned}
+        \frac{\mathrm{d}}{\mathrm{d}\mu} \int_{\mu}^{\infty} g(x_{(1)}) e^{-n (x_{(1)})} ~\mathrm{d}x_{(1)} &= 0 \\
+        - g(\mu) e^{-n \mu} &= 0 \\
+        g(\mu) &= 0,\quad \forall \mu.
+    \end{aligned}
+    $$
+
+    This means $P(g(X_{(1)}) = 0) = 1$, and thus $X_{(1)}$ is a complete sufficient statistic for $\mu$.
+    </details>
+
+    <br>
+
+    (b) Use Basu’s Theorem to show that $X_{(1)}$ and $S^{2}$ are independent.
+
+    <details>
+    <summary>Proof:</summary>
+
+    From [Exercise 3(b)](#exercise3b) we have known that $X_{(1)}$ is actually a minimal sufficient statistic for $\mu$. Since we have proven its completeness, by Basu’s Theorem, $X_{(1)}$ is independent of every ancillary statistic of $\mu$. 
+
+    Then, since $f(x \mid \mu)$ is a location exponential, which means we can write $X_{i} = Z_i + \mu$ where $Z_i,\ i=1,\ 2,\ \cdots,\ n$ is a random sample from $f(x \mid 0)$. Then, we have 
+
+    $$
+    S^{2} = \frac{1}{n - 1} \sum_{i=1}^{n} (X_{i} - \overline{X})^{2} = \frac{1}{n - 1} \sum_{i=1}^{n} (Z_{i} - \overline{Z})^{2},
+    $$
+
+    whose distribution does not depend on $\mu$. Thus, $S^{2}$ is an ancillary statistic for $\mu$ and $X_{(1)}$ is independent of $S^{2}$.
+    </details>
 
 > Exercise 4 在博资考和期中考都出现过。
 >
 > 手机上拍了个照片，是期中考的难度。
+
+## Assignments
+
+### Textbook Exercises
+
+*6.9* (p.301) For each of the following distributions let $X_1,\ \cdots,\ X_n$ be a random sample. Find a minimal sufficient statistic for $\theta$.
+
+(e)
+
+*6.23*
+
+*6.25*
+
+*6.27*
+
+*6.30*
+
+*6.40*
+
+### Additional Exercises
+
+1. Find
+
+2. Suppose
+

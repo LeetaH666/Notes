@@ -7,6 +7,8 @@
 - `conda activate envName`：激活某一环境
 - `conda list`：列出当前环境下用 conda 装的包
 - `conda remove -n envName --all`：删除环境
+- `conda env export > environment.yml`：导出环境配置文件，可以在不同操作系统上重建
+- `conda env create -f environment.yml`：根据环境配置文件重建环境
 
 ## 镜像源
 

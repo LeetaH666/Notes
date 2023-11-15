@@ -382,7 +382,7 @@ $$
 > For any random variables $X$ and $Y$, 
 > 
 > - $-1 \leqslant \rho_{X Y} \leqslant 1$.
-> - $\left\vert \rho_{X Y} \right\vert = 1$ *iff* $\exists $ numbers $a \neq 0$ and $b$ s.t. $P(Y = a X + b) = 1$.
+> - $\left\vert \rho_{X Y} \right\vert = 1$ <em>iff</em> $\exists $ numbers $a \neq 0$ and $b$ s.t. $P(Y = a X + b) = 1$.
 >     - If $\rho_{X Y} = 1$, then $a > 0$;
 >     - If $\rho_{X Y} = -1$, then $a < 0$.
 

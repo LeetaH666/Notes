@@ -164,8 +164,10 @@ $$
 Similarly, we can derive the joint pdf of all the order statistics: 
 
 $$
-f_{X_{(1)},\ \cdots,\ X_{X_{n}}}(x_1,\ \cdots,\ x_n) = n! f_{X}(x_1) \cdots f_{X}(x_n),\quad -\infty < x_1 < \cdots < x_n < \infty.
+f_{X_{(1)},\ \cdots,\ X_{(n)}}(x_1,\ \cdots,\ x_n) = n! f_{X}(x_1) \cdots f_{X}(x_n),\quad -\infty < x_1 < \cdots < x_n < \infty.
 $$
+
+<span id="range_example"></span>
 
 > [!EXAMPLE|label:Distribution of the midrange and range]
 > Let $X_1,\ X_2,\ \cdots,\ X_n \overset{\text{i.i.d.}}{\sim} \text{Uniform}(0,\ a)$ and let $X_{(1)},\ X_{(2)},\ \cdots,\ X_{(n)}$ denote the order statistics. The *range* is defined as $R = X_{(n)} - X_{(1)}$ and the *midrange* is defined as $V = (X_{(1)} + X_{(n)}) / 2$. We will derive the joint pdf of $R$ and $V$ from the joint pdf of $X_{(1)}$ and $X_{(n)}$. From above we know that 
@@ -419,7 +421,7 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 > 
 > $$P(X_n \leqslant x) \to \begin{cases} 0,\ &\text{if } x < \mu \\ 1,\ &\text{if } x > \mu. \end{cases}$$
 
-> [!THEOREM|label:Slutsky's Theorem]
+> [!THEOREM|label:Slutsky’s Theorem]
 > If $X_n \stackrel{d}{\longrightarrow} X$ and $Y_n \stackrel{p}{\longrightarrow} a$ for some constant $a$, then 
 >
 > 1. $Y_n X_n \stackrel{d}{\longrightarrow} a X$.
@@ -466,7 +468,7 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 >
 > $$T_r(x) = \sum\limits_{i=0}^{r} \frac{g^{i}(a)}{i!} (x - a)^{i}.$$
 
-> [!THEOREM|label:Taylor's Theorem]
+> [!THEOREM|label:Taylor’s Theorem]
 > If $g^{(r)}(a) = \frac{\mathrm{d}^{r}}{\mathrm{d}x^{r}}g(x)\big\vert_{x=a}$ exists, then 
 >
 > $$\lim\limits_{x \to a} \frac{g(x) - T_r(x)}{(x - a)^{r}} = 0.$$
