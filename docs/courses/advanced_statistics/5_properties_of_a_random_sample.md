@@ -61,6 +61,8 @@ Integrating out $w$, we obtain the marginal pdf of $Z$ as given in the theorem.
 
 We have already known that the properties of the sum of a Cauchy random sample from the example above. Now we will discuss the cases of random sampling from an exponential family.
 
+<span id="theorem5_2_11"></span>
+
 > [!THEOREM]
 > Suppose $X_1,\ X_2,\ \cdots,\ X_n$ is a *random sample* from an *exponential family* with pdf or pmf given by 
 > 

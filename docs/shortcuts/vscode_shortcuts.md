@@ -79,6 +79,8 @@
   - 打开文件夹
 - `Ctrl + K, 方向键`: View: Move Editor Group Up/Down/Left/Right
   - 将当前 Editor Group 移到所选方向
+- `Alt + Shift + O`: Organize Imports
+  - 整理 python 导入包的代码
 
 **许多快捷键设计不符合直觉**，记忆起来比较困难，且**很多命令没有默认快捷键**，这个时候就需要我们自己更改或设置。
 

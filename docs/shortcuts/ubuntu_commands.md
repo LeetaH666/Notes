@@ -2,7 +2,10 @@
 
 ## 常用
 
+### 文件与目录
+
 - `cd dirName`：进入某个目录（`.` 代表当前目录，`..` 代表上一层目录，`~` 代表根目录）
+- `ll`：列出当前目录下所有文件及其权限
 - `mkdir dirName`：创建目录
 - `touch fileName`：创建文件
 - `cp fileName dirName`：复制文件到某个目录内
@@ -16,20 +19,31 @@
 - `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
 - `du -h dirName/fileName`：查看目录/文件占用内存
+- `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
+
+### 系统
+
 - `top`：查看 CPU 内存占用（动态变化）
 - `nvdia-smi`：查看 GPU 内存占用（静态）
 
     > [!TIP|label:提示]
     > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。
 
+### 查询
+
 - `... | grep Target`：查找指定信息，比如：
+    - `ll | grep parquet`：查找包含 parquet 字样的文件和目录
     - `dpkg -l | grep libicu`：查找包含 libicu 字样的包信息
     - `conda list | grep stringi`：查找包含 stringi 字样的 conda 包
 
-- `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
-- `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
+- `which commandName`：查找某一指令所在的路径，比如：
+    - `which python`：查找 python 路径
 
-### Ctrl
+### 其他
+
+- `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
+
+### 按键命令
 
 - `Ctrl + C`：终止命令
 - `Ctrl + R`：查找之前输过的命令
@@ -37,17 +51,16 @@
 ## 管理员常用
 
 - `su`：进入 root 账户
+
+### 用户
+
+- `adduser/deluser User`：添加/删除用户
+- `gpasswd -a/-d User Group`：在组中添加/删除某用户
 - `sudo passwd`：重设密码
 - `cat /etc/passwd`：查看所有用户
 - `cat /etc/group`：查看所有组
-- `adduser/deluser User`：添加/删除用户
-- `gpasswd -a/-d User Group`：在组中添加/删除某用户
-- `lscpu`：查看 CPU 信息
-- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
-- `df -aTh`：查看磁盘空间
-- `fdisk -l`：查看所有盘符
-- `lsblk`：查看各个内存块的基本信息
-- `blkid`：查看各个内存块的 UUID
+
+### 文件与目录
 - `chmod modeNumber dirName/fileName`：更改目录/文件的权限
 
     > [!TIP|label:提示]
@@ -58,6 +71,18 @@
 - `chmod -R modeNumber dirName`：更改目录下所有文件的权限
 - `chown userName:(groupName) fileName`：更改文件的拥有者和拥有组（不写 `groupName` 则为拥有者的默认组）
 - `chown -R userName:(groupName) dirName`：更改目录及目录下所有文件的拥有者和拥有组
+
+### 系统
+
+- `lscpu`：查看 CPU 信息
+- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
+- `df -aTh`：查看磁盘空间
+- `fdisk -l`：查看所有盘符
+- `lsblk`：查看各个内存块的基本信息
+- `blkid`：查看各个内存块的 UUID
+
+### 其他
+
 - `shutdown -h now`：关机
 
 ### 软件 RAID1
