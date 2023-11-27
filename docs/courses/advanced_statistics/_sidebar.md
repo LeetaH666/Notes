@@ -4,5 +4,7 @@
 - [4 Multiple Random Variables](/courses/advanced_statistics/4_multiple_random_variables.md)
 - [5 Properties of a Random Sample](/courses/advanced_statistics/5_properties_of_a_random_sample.md)
 - [6 Principles of Data Reduction](/courses/advanced_statistics/6_principles_of_data_reduction.md)
+- [Mid-term](/courses/advanced_statistics/mid-term.md)
+- [7 Point Estimation](/courses/advanced_statistics/7_point_estimation.md)
 
 - [Back to Courses](/courses/README.md)

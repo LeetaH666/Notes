@@ -502,6 +502,53 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
     whose distribution does not depend on $\mu$. Thus, $S^{2}$ is an ancillary statistic for $\mu$ and $X_{(1)}$ is independent of $S^{2}$.
     </details>
 
+## 6.3 The Likelihood Principle (*)
+
+### 6.3.1 The Likelihood Function
+
+> [!DEFINITION]
+> Let $f(\bm{x} \mid \theta)$ denote the joint pdf or pmf of the sample $\bm{X} = (X_1,\ \cdots,\ X_n)$. Then, given that $\bm{X} = \bm{x}$ is observed, the function of $\theta$ defined by 
+>
+> $$L(\theta \mid \bm{x}) = f(\bm{x} \mid \theta)$$
+>
+> is called the **likelihood function**.
+
+> [!THEOREM|label:Likelihood Principle]
+> If $\bm{x}$ and $\bm{y}$ are 2 sample points s.t. $L(\theta \mid \bm{x})$ *proportional* to $L(\theta \mid \bm{y})$, i.e., $\exists $ a constant $C(\bm{x},\ \bm{y})$ s.t. 
+>
+> $$L(\theta \mid \bm{x}) = C(\bm{x},\ \bm{y}) L(\theta \mid \bm{y}),\quad \forall \theta,$$
+>
+> then the conclusions drawn from $\bm{x}$ and $\bm{y}$ should be *identical*.
+
+Note the constant may change for different $(\bm{x},\ \bm{y})$, but it does not depend on $\theta$.
+
+### 6.3.2 The Formal Likelihood Principle
+
+> [!DEFINITION]
+> Formally, we define an **experiment** $E$ to be a triple $(\bm{X},\ \theta,\ \left\{f(\bm{x} \mid \theta) \right\})$, where $\bm{X}$ is a random vector with pmf $f(\bm{x} \mid \theta)$ for some $\theta$ in the parameter space $\Theta$. An experimenter, knowing what experiment $E$ was performed and having observed a particular sample $\bm{X} = \bm{x}$, will make some inference or draw some conclusion about $\theta$. This conclustion we denote by $\operatorname{Ev}(E,\ \bm{x})$, which stands for the **evidence** about $\theta$ arising from $E$ and $\bm{x}$.
+
+> [!THEOREM|label:Formal Sufficiency Principle]
+> Consider experiment $E = (\bm{X},\ \theta,\ \left\{f(\bm{x} \mid \theta) \right\})$ and suppose $T(\bm{X})$ is a sufficient statistic for $\theta$. If $\bm{x}$ and $\bm{y}$ are sample points satisfying $T(\bm{x}) = T(\bm{y})$, then $\operatorname{Ev}(E,\ \bm{x}) = \operatorname{Ev}(E,\ \bm{y})$.
+
+> [!THEOREM|label:Conditionality Principle]
+> If one of two experiments is *randomly* chosen and the chosen experiment is done, yielding data $\bm{x}$, the information about $\theta$ depends *only* on the experiment performed.
+
+> [!THEOREM|label:Formal Likelihood Principle]
+> Suppose that we have 2 experiments, $E_1 = (\bm{X}_{1},\ \theta,\ \left\{f_1(\bm{x}_{1} \mid \theta) \right\})$ and $E_2 = (\bm{X}_{2},\ \theta,\ \left\{f_2(\bm{x}_{2} \mid \theta) \right\})$, where the unknown parameter $\theta$ is the same in both experiments. Suppose $\bm{x}_{1}^{*}$ and $\bm{x}_{2}^{*}$ are sample points from $E_1$ and $E_2$, respectively, s.t. 
+>
+> $$L(\theta \mid \bm{x}_{2}^{*}) = C(\bm{x}_{1}^{*},\ \bm{x}_{2}^{*}) L(\theta \mid \bm{x}_{1}^{*}),\quad \forall \theta,$$
+>
+> for some constant $C(\bm{x}_{1}^{*},\ \bm{x}_{2}^{*})$. Then, 
+> 
+> $$\operatorname{Ev}(E_1,\ \bm{x}_{1}^{*}) = \operatorname{Ev}(E_2,\ \bm{x}_{2}^{*}).$$
+
+The Formal Likelihood Principle is different from the Likelihood Principle in [Section 6.3.1](#631-the-likelihood-function) because the Formal Likelihood Principle concerns 2 experiments, whereas the Likelihood Principle concerns only 1. The Likelihood Principle, however, can be derived from the Formal Likelihood Principle by letting $E_2$ be an exact replicate of $E_1$.
+
+> [!THEOREM|label:Likelihood Principle Corollary]
+> If $E = (\bm{X},\ \theta,\ \left\{f(\bm{x} \mid \theta) \right\})$ is an experiment, then $\operatorname{Ev}(E,\ \bm{x})$ should depend on $E$ and $\bm{x}$ *only* through $L(\theta \mid \bm{x})$.
+
+> [!THEOREM|label:Birnbaum’s Theorem]
+> The Formal Likelihood Principle follows from the Formal Sufficiency Principle and the Conditionality Principle. The converse is also true.
 
 ## Assignments
 

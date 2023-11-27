@@ -315,14 +315,14 @@ $$
 > 
 > $$\lim\limits_{n \to \infty} P(\left\vert X_n - X \right\vert < \epsilon) = 1,$$
 >
-> denoted as $X_n \stackrel{p}{\longrightarrow} X$.
+> denoted as $X_n \xrightarrow{p} X$.
 
 > [!THEOREM|label:Weak Law of Large Numbers（WLLN）]
 > Let $X_1,\ X_2,\ \cdots$ be i.i.d. random variables with $\E[X_{i}] = \mu$ and $\Var(X_{i}) = \sigma^{2} < \infty$, $i = 1,\ 2,\ \cdots$. Define $\overline{X}_{n} = \frac{1}{n}\sum\limits_{i=1}^{n} X_{i}$. Then, $\forall \epsilon > 0$,
 > 
 > $$\lim\limits_{n \to \infty} P(\left\vert \overline{X}_{n} - \mu \right\vert < \epsilon) = 1;$$
 > 
-> i.e., $\overline{X}_{n} \stackrel{p}{\longrightarrow} \mu$.
+> i.e., $\overline{X}_{n} \xrightarrow{p} \mu$.
 
 <details>
 <summary>Proof: </summary>
@@ -367,13 +367,13 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 >
 > $$P(\lim\limits_{n \to \infty} \left\vert X_n - X \right\vert < \epsilon) = 1,$$
 >
-> denoted as $X_n \stackrel{a.s.}{\longrightarrow} X$.
+> denoted as $X_n \xrightarrow{\text{a.s.}} X$.
 
 > [!NOTE]
 > The definition of *almost sure convergence* is similar to that of *convergence in probability*, but the former one is much stronger than the latter because *almost sure convergence* requires probability to be exactly equal to 1, while *convergence in probability* only requires probability to be near 1. In fact, *almost sure convergence* implies *convergence in probability*.
 
 > [!EXAMPLE]
-> Let the sample space $\mathcal{S}$ be the closed interval $[0,\ 1]$ with the uniform probability distribution. Define random variables $X_n(s) = s + s^{n}$ and $X(s) = s$. Then, $\forall s \in [0,\ 1)$, we have $s^{n} \to 0$ as $n \to \infty$ and $X_n(s) \to s = X(s)$. However, $X_n(1) = 2$ for every $n$ so $X_n(1)$ does not converge to $1 = X(1)$. But since the convergence occurs on the set $[0,\ 1)$ and $P([0,\ 1)) = 1$, $X_n \stackrel{a.s.}{\longrightarrow} X$. 
+> Let the sample space $\mathcal{S}$ be the closed interval $[0,\ 1]$ with the uniform probability distribution. Define random variables $X_n(s) = s + s^{n}$ and $X(s) = s$. Then, $\forall s \in [0,\ 1)$, we have $s^{n} \to 0$ as $n \to \infty$ and $X_n(s) \to s = X(s)$. However, $X_n(1) = 2$ for every $n$ so $X_n(1)$ does not converge to $1 = X(1)$. But since the convergence occurs on the set $[0,\ 1)$ and $P([0,\ 1)) = 1$, $X_n \xrightarrow{\text{a.s.}} X$. 
 
 > [!THEOREM|label:Strong Law of Large Numbers（SLLN）]
 > Let $X_1,\ X_2,\ \cdots$ be i.i.d. random variables with $\E[X_{i}] = \mu$ and $\Var(X_{i}) = \sigma^{2} < \infty$, $i = 1,\ 2,\ \cdots$. Define $\overline{X}_{n} = \frac{1}{n}\sum\limits_{i=1}^{n} X_{i}$. Then, $\forall \epsilon > 0$, 
@@ -392,7 +392,7 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 >
 > $$\lim\limits_{n \to \infty} F_{X_n}(x) = F_{X}(x)$$
 > 
-> at all points $x$ where $F_{X}(x)$ is continuous. We denote this convergence as $X_n \stackrel{d}{\longrightarrow} X$.
+> at all points $x$ where $F_{X}(x)$ is continuous. We denote this convergence as $X_n \xrightarrow{d} X$.
 
 > [!EXAMPLE|label:Maximum of uniforms]
 > If $X_1,\ X_2,\ \cdots$ are i.i.d. $\text{Uniform}(0,\ 1)$ and $X_{(n)} = \underset{1 \leqslant i \leqslant n}{\max} ~ X_{i}$, we want to examine if (and to where) $X_{(n)}$ converges in distribution.
@@ -401,13 +401,13 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 >
 > $$\begin{aligned} P(\left\vert X_{(n)} - 1 \right\vert \geqslant \epsilon) &= P(X_{(n)} \geqslant 1 + \epsilon) + P(X_{(n)} \leqslant 1 - \epsilon) \\ &= 0 + P(X_{(n)} \leqslant 1 - \epsilon) \\ &= P(X_{i} \leqslant 1 - \epsilon,\ i=1,\ 2,\ \cdots,\ n) \\ &= (1 - \epsilon)^{n}, \end{aligned}$$
 >
-> which goes to $0$ as $n \to \infty$. This means $X_{(n)} \stackrel{p}{\longrightarrow} 1$.
+> which goes to $0$ as $n \to \infty$. This means $X_{(n)} \xrightarrow{p} 1$.
 > 
 > Furthermore, if we take $\epsilon = \frac{t}{n}$, we have 
 >
 > $$P(X_{(n)} \leqslant 1 - t / n) = (1 - t / n)^{n} \to e^{-t}$$
 >
-> as $n \to \infty$, yielding $P[n(1 - X_{(n)}) \leqslant t] \to 1 - e^{-t}$, which means $X_{(n)} \stackrel{d}{\longrightarrow} \text{Exponential}(1)$.
+> as $n \to \infty$, yielding $P[n(1 - X_{(n)}) \leqslant t] \to 1 - e^{-t}$, which means $X_{(n)} \xrightarrow{d} \text{Exponential}(1)$.
 
 <span id='5_5_12'></span>
 
@@ -424,10 +424,10 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 > $$P(X_n \leqslant x) \to \begin{cases} 0,\ &\text{if } x < \mu \\ 1,\ &\text{if } x > \mu. \end{cases}$$
 
 > [!THEOREM|label:Slutsky’s Theorem]
-> If $X_n \stackrel{d}{\longrightarrow} X$ and $Y_n \stackrel{p}{\longrightarrow} a$ for some constant $a$, then 
+> If $X_n \xrightarrow{d} X$ and $Y_n \xrightarrow{p} a$ for some constant $a$, then 
 >
-> 1. $Y_n X_n \stackrel{d}{\longrightarrow} a X$.
-> 2. $X_n + Y_n \stackrel{d}{\longrightarrow} X + a$.
+> 1. $Y_n X_n \xrightarrow{d} a X$.
+> 2. $X_n + Y_n \xrightarrow{d} X + a$.
 
 ### 5.5.3' Small O and Big O
 
@@ -436,7 +436,7 @@ If the samples are sampled from a normal distribution, then $\frac{(n - 1) S^{2}
 >
 > $$X_n = \omicron_p(a_n)$$
 >
-> means that the set of values $\frac{X_n}{a_n} \stackrel{p}{\longrightarrow} 0$.
+> means that the set of values $\frac{X_n}{a_n} \xrightarrow{p} 0$.
 
 > [!THEOREM]
 > Let $X_1,\ X_2,\ \cdots$ be a sequence of random variables and let $a_n$ be a corresponding set of constants, we have 
@@ -535,9 +535,9 @@ This approximation is very useful because it gives us a variance formula for a g
 > $$\Var\left(\frac{1}{X} \right) \approx \left(\frac{1}{\mu} \right)^{4} \Var(X).$$
 
 > [!THEOREM|label:Delta Method]
-> Let $Y_n$ be a sequence of random variables that satisfies $\sqrt{n} (Y_n - \theta) \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2})$. For a given function $g$ and a specific value of $\theta$, suppose that $g'(\theta)$ exists and is not $0$. Then 
+> Let $Y_n$ be a sequence of random variables that satisfies $\sqrt{n} (Y_n - \theta) \xrightarrow{d} N(0,\ \sigma^{2})$. For a given function $g$ and a specific value of $\theta$, suppose that $g'(\theta)$ exists and is not $0$. Then 
 >
-> $$\sqrt{n}(g(Y_n) - g(\theta)) \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2} (g'(\theta))^{2}).$$
+> $$\sqrt{n}(g(Y_n) - g(\theta)) \xrightarrow{d} N(0,\ \sigma^{2} (g'(\theta))^{2}).$$
 
 <details>
 <summary>Proof: </summary>
@@ -551,7 +551,7 @@ $$
 Since the remainder converges to $0$ in probability, by applying Slutsky's Theorem, we have 
 
 $$
-\sqrt{n}(g(Y_n) - g(\theta)) = \sqrt{n}[g'(\theta)(Y_n - \theta) + \text{Remainder}] \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2} (g'(\theta))^{2}).
+\sqrt{n}(g(Y_n) - g(\theta)) = \sqrt{n}[g'(\theta)(Y_n - \theta) + \text{Remainder}] \xrightarrow{d} N(0,\ \sigma^{2} (g'(\theta))^{2}).
 $$
 </details>
 
@@ -560,11 +560,11 @@ $$
 > [!EXAMPLE]
 > Suppose we have the mean of a random sample $\overline{X}$. For $\mu \neq 0$, since 
 > 
-> $$\sqrt{n}(\overline{X} - \mu) \stackrel{d}{\longrightarrow} N(0,\ \Var(X_1)),$$
+> $$\sqrt{n}(\overline{X} - \mu) \xrightarrow{d} N(0,\ \Var(X_1)),$$
 > 
 > by Delta Method we have 
 >
-> $$\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu} \right) \stackrel{d}{\longrightarrow} N\left(0,\ \left(\frac{1}{\mu} \right)^{4} \Var(X_1) \right).$$
+> $$\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu} \right) \xrightarrow{d} N\left(0,\ \left(\frac{1}{\mu} \right)^{4} \Var(X_1) \right).$$
 >
 > If we do not know the variance of $X_1$, to use the above approximation requires an estimate of variance, say, $S^{2}$. Moreover, there is also a question of how to deal with the $\frac{1}{\mu}$ term if we also do not know $\mu$. Actually, we can estimate everything (multivariate case of the first-order approximation), which gives us the approximate variance 
 >
@@ -572,14 +572,14 @@ $$
 >
 > Furthermore, as both $\overline{X}$ and $S^{2}$ are consistent estimators, we can again apply Slutsky's Theorem to get 
 >
-> $$\frac{\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu} \right)}{\left(\frac{1}{\overline{X}} \right)^{2} S} \stackrel{d}{\longrightarrow} N(0,\ 1).$$
+> $$\frac{\sqrt{n}\left(\frac{1}{\overline{X}} - \frac{1}{\mu} \right)}{\left(\frac{1}{\overline{X}} \right)^{2} S} \xrightarrow{d} N(0,\ 1).$$
 
 > 上面这个例子还没有特别理解。
 
 > [!THEOREM|label:Second-order Delta Method]
-> Let $Y_n$ be a sequence of random variables that satisfies $\sqrt{n}(Y_n - \theta) \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2})$. For a given function $g$ and a specific value of $\theta$, suppose that $g'(\theta) = 0$ and $g''(\theta)$ exists and is not $0$. Then 
+> Let $Y_n$ be a sequence of random variables that satisfies $\sqrt{n}(Y_n - \theta) \xrightarrow{d} N(0,\ \sigma^{2})$. For a given function $g$ and a specific value of $\theta$, suppose that $g'(\theta) = 0$ and $g''(\theta)$ exists and is not $0$. Then 
 >
-> $$n [g(Y_n) - g(\theta)] \stackrel{d}{\longrightarrow} \sigma^{2} \frac{g''(\theta)}{2} \chi^{2}(1).$$
+> $$n [g(Y_n) - g(\theta)] \xrightarrow{d} \sigma^{2} \frac{g''(\theta)}{2} \chi^{2}(1).$$
 
 <details>
 <summary>Proof: </summary>
@@ -593,7 +593,7 @@ $$
 Recall that the square of a $N(0,\ 1)$ is a $\chi^{2}(1)$, which implies that 
 
 $$
-\frac{n (Y_n - \theta)}{\sigma^{2}} \stackrel{d}{\longrightarrow} \chi^{2}(1).
+\frac{n (Y_n - \theta)}{\sigma^{2}} \xrightarrow{d} \chi^{2}(1).
 $$
 
 Therefore, by applying Slutsky’s Theorem we finish the proof.
@@ -606,7 +606,7 @@ Delta Method can also be extended to multivariate cases.
 > [!THEOREM|label:Multivariate Delta Method]
 > Let $X_1,\ \cdots,\ X_n$ be a random sample with $\E[X_{ij}] = \mu_i$ and $\Cov(X_{ik},\ X_{jk}) = \sigma_{ij}$. Denote the covariance matrix of variables as $\bm{\Sigma}$. For a given function $g$ with continuous first partial derivatives and a specific value of $\bm{\mu} = (\mu_1,\ \cdots,\ \mu_p)$ for which $\tau^{2} := (g'(\bm{\mu}))^{\top} \bm{\Sigma} g'(\bm{\mu}) = \sum \sum \sigma_{ij} \frac{\partial g(\bm{\mu})}{\partial \mu_i}\frac{\partial g(\bm{\mu})}{\partial \mu_{j}} > 0$, we have 
 > 
-> $$\sqrt{n} [g(\overline{X}_1,\ \cdots,\ \overline{X}_s) - g(\mu_1,\ \cdots,\ \mu_p)] \stackrel{d}{\longrightarrow} N(0,\ \tau^{2}).$$
+> $$\sqrt{n} [g(\overline{X}_1,\ \cdots,\ \overline{X}_s) - g(\mu_1,\ \cdots,\ \mu_p)] \xrightarrow{d} N(0,\ \tau^{2}).$$
 
 ### Exercises
 
@@ -619,7 +619,7 @@ Delta Method can also be extended to multivariate cases.
 <details>
 <summary>Proof: </summary>
 
-Since $X_{i} \stackrel{p}{\longrightarrow} a$, we have 
+Since $X_{i} \xrightarrow{p} a$, we have 
 
 $$
 \lim\limits_{i \to \infty} P(\left\vert X_{i} - a \right\vert < \epsilon) = 1,\quad \forall \epsilon > 0.
@@ -635,7 +635,7 @@ $$
 \end{aligned}
 $$
 
-as $i \to \infty$, which means $Y_{i} \stackrel{p}{\longrightarrow} \sqrt{a}$.
+as $i \to \infty$, which means $Y_{i} \xrightarrow{p}{\longrightarrow} \sqrt{a}$.
 
 Similarly, $\forall \epsilon > 0$, we have 
 
@@ -649,7 +649,7 @@ $$
 \end{aligned}
 $$
 
-as $i \to \infty$, which means $Y_{i}' \stackrel{p}{\longrightarrow} 1$.
+as $i \to \infty$, which means $Y_{i}' \xrightarrow{p} 1$.
 </details>
 
 <br>
@@ -657,12 +657,12 @@ as $i \to \infty$, which means $Y_{i}' \stackrel{p}{\longrightarrow} 1$.
 (b) Use the results in part (a) to prove the fact used in Example 5.5.18, that $\sigma / S_n$ converges in probability to $1$.
 
 > [!TIP]
-> The condition in Example 5.5.18 is $S_n^{2} \stackrel{p}{\longrightarrow} \sigma^{2}$.
+> The condition in Example 5.5.18 is $S_n^{2} \xrightarrow{p} \sigma^{2}$.
 
 <details>
 <summary>Proof: </summary>
 
-From the first result in (a) we know that $S_n \stackrel{p}{\longrightarrow} \sigma$, then using the second result we have $\sigma / S_n \stackrel{p}{\longrightarrow} 1$.
+From the first result in (a) we know that $S_n \xrightarrow{p} \sigma$, then using the second result we have $\sigma / S_n \xrightarrow{p} 1$.
 </details>
 
 <br>
@@ -721,7 +721,7 @@ $$
 <details>
 <summary>Proof: </summary>
 
-Since $X_n \stackrel{p}{\longrightarrow} X$, we have 
+Since $X_n \xrightarrow{p} X$, we have 
 
 $$
 \lim\limits_{n \to \infty} P(\left\vert X_n - X \right\vert \geqslant \epsilon) = 0
@@ -744,7 +744,7 @@ $$
 
 *5.43* (p.263) Fill in the details in the proof of Theorem 5.5.24 (Delta Method).
 
-(a) Show that if $\sqrt{n}(Y_n - \mu) \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2})$, then $Y_n \stackrel{p}{\longrightarrow} \mu$.
+(a) Show that if $\sqrt{n}(Y_n - \mu) \xrightarrow{d} N(0,\ \sigma^{2})$, then $Y_n \xrightarrow{p} \mu$.
 
 <details>
 <summary>Proof: </summary>
@@ -755,7 +755,7 @@ $$
 \lim\limits_{n \to \infty} P(\left\vert Y_n - \mu \right\vert < \epsilon) = \lim\limits_{n \to \infty} P(\left\vert \sqrt{n} (Y_n - \mu) \right\vert < \sqrt{n} \epsilon) = 1,
 $$
 
-we have $Y_n \stackrel{p}{\longrightarrow} \mu$.
+we have $Y_n \xrightarrow{p} \mu$.
 </details>
 
 <br>
@@ -774,7 +774,7 @@ $$
 Since the remainder converges to $0$ in probability, by applying Slutsky's Theorem, we have 
 
 $$
-\sqrt{n}(g(Y_n) - g(\theta)) = \sqrt{n}[g'(\theta)(Y_n - \theta) + \text{Remainder}] \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2} (g'(\theta))^{2}).
+\sqrt{n}(g(Y_n) - g(\theta)) = \sqrt{n}[g'(\theta)(Y_n - \theta) + \text{Remainder}] \xrightarrow{d} N(0,\ \sigma^{2} (g'(\theta))^{2}).
 $$
 </details>
 
@@ -864,13 +864,13 @@ $$
     Utilizing properties of Poisson distribution, we can get $\mu := \E[X] = \frac{\lambda}{1 - e^{-\lambda}}$ and $\E[X^{2}] = \frac{\lambda + \lambda^{2}}{1 - e^{-\lambda}}$, and thus $\sigma^{2} := \Var(X) = \frac{\lambda (1 - e^{-\lambda} - \lambda e^{-\lambda})}{(1 - e^{-\lambda})^{2}}$. By CLT we have 
 
     $$
-    \sqrt{n} \left(\overline{X} - \mu \right) \stackrel{d}{\longrightarrow} N(0,\ \sigma^{2}).
+    \sqrt{n} \left(\overline{X} - \mu \right) \xrightarrow{d} N(0,\ \sigma^{2}).
     $$
     
     Then, by Delta Method, we have 
 
     $$
-    \sqrt{n} \left(\widehat{\lambda} - \lambda \right) \stackrel{d}{\longrightarrow} N\left(0,\ \left(\frac{\mathrm{d}g^{-1}(\mu)}{\mathrm{d}\mu} \right)^{2} \sigma^{2} \right).
+    \sqrt{n} \left(\widehat{\lambda} - \lambda \right) \xrightarrow{d} N\left(0,\ \left(\frac{\mathrm{d}g^{-1}(\mu)}{\mathrm{d}\mu} \right)^{2} \sigma^{2} \right).
     $$
 
     Since 
@@ -993,7 +993,7 @@ In the Accept/Reject Algorithm, an important requirement is $M < \infty$. This c
 >
 >     $$Z_i = \begin{cases} V_i,\ &\text{if } U_i \leqslant \rho_i \\ Z_{i-1},\ &\text{if } U_i > \rho_i. \end{cases}$$
 >
-> Then, as $i \to \infty$, $Z_i \stackrel{d}{\longrightarrow} Y$.
+> Then, as $i \to \infty$, $Z_i \xrightarrow{d} Y$.
 
 ## Assignments
 
@@ -1499,7 +1499,7 @@ where $Z$ is a standard normal random variable.
 The mean and variance of $X_{i}$ is $\E[X_{i}] = 1$ and $\Var(X_{i}) = 1$ respectively. By CLT we have 
 
 $$
-\sqrt{n} \frac{\overline{X}_n - 1}{1} \stackrel{d}{\longrightarrow} N(0,\ 1),
+\sqrt{n} \frac{\overline{X}_n - 1}{1} \xrightarrow{d} N(0,\ 1),
 $$
 
 which means 
@@ -1717,7 +1717,7 @@ $$
 From (a) we have already known that $\E\left[\frac{1}{m}\sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)} h(Y_i) \right] = \E[h(X)] < \infty$, by SLLN we have 
 
 $$
-\frac{1}{m} \sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)} h(Y_i) \stackrel{p}{\longrightarrow} \E[h(X)].
+\frac{1}{m} \sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)} h(Y_i) \xrightarrow{p} \E[h(X)].
 $$
 </details>
 
@@ -1737,7 +1737,7 @@ is preferred. Show that this estimator converges in probability to $\E[h(X)]$. M
 Since $\E\left[\frac{f(Y_i)}{g(Y_i)} \right] = \int_{-\infty}^{\infty} \frac{f(y)}{g(y)} g(y) ~\mathrm{d}y = 1 < \infty$, by SLLN we know that 
 
 $$
-M := \frac{1}{m} \sum\limits_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)} \stackrel{p}{\longrightarrow} 1.
+M := \frac{1}{m} \sum\limits_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)} \xrightarrow{p} 1.
 $$
 
 Then, $\forall \epsilon > 0$ we have 
@@ -1750,7 +1750,7 @@ $$
 \end{aligned}
 $$
 
-as $m \to \infty$. Thus, we have $\frac{1}{M} \stackrel{p}{\longrightarrow} 1$.
+as $m \to \infty$. Thus, we have $\frac{1}{M} \xrightarrow{p} 1$.
 
 Note that the new estimator can be written as 
 
@@ -1761,7 +1761,7 @@ $$
 Therefore, by Slutsky’s Theorem we obtain 
 
 $$
-\sum\limits_{i=1}^{m} \left(\frac{f(Y_i) / g(Y_i)}{\sum_{j=1}^{m} f(Y_j) / g(Y_j)} \right) h(Y_i) \stackrel{p}{\longrightarrow} \E[h(X)].
+\sum\limits_{i=1}^{m} \left(\frac{f(Y_i) / g(Y_i)}{\sum_{j=1}^{m} f(Y_j) / g(Y_j)} \right) h(Y_i) \xrightarrow{p} \E[h(X)].
 $$
 
 If $h$ is a constant, then the variance of the new estimator is 
