@@ -572,6 +572,8 @@ The most famous special case of Hölder’s Inequality is $p = q = 2$, which is 
 > For any 2 random variables $X$ and $Y$,
 > $$\left\vert \E[X Y] \right\vert \leqslant \E[\left\vert X Y \right\vert ] \leqslant (\E[\left\vert X \right\vert^{2}])^{1 / 2} (\E[\left\vert Y \right\vert^{2}])^{1 / 2}.$$
 
+<span id="Covariance_Inequality"></span>
+
 > [!EXAMPLE|label:Covariance Inequality]
 > Suppose $X$ and $Y$ have means $\mu_{X}$ and $\mu_{Y}$ and variances $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$, respectively. Applying Cauchy-Schwarz Inequality, we have 
 > 

@@ -95,6 +95,8 @@ where $m(\bm{x}) = \int f(\bm{x} \mid \theta) \pi(\theta) ~ \mathrm{d} \theta$ i
 >
 > $$\widehat{p}_{\text{B}} = \frac{Y + \alpha}{n + \alpha + \beta}.$$
 
+<span id="risk_functions_note"></span>
+
 > [!NOTE]
 > Actually, using the *posterior mean* to estimate a parameter $\theta$ is under an assumption that the *Bayes risk* is of the form $\E_{\theta}(\widehat{\theta} - \theta)^{2}$, which is just the *mean square error (MSE)*. In other words, when we choose MSE as the risk function, the Bayes estimator is the *posterior mean*.
 > 
@@ -111,9 +113,68 @@ We can see from the example above that, the posterior distribution is of the sam
 
     (a) Find the joint pdf of $\overline{X} = \frac{1}{n}\sum_{i=1}^{n} X_{i}$ and $\theta$;
 
+    <details>
+    <summary>Solution:</summary>
+
+    Since $\overline{X} \sim N(\theta,\ \sigma^{2} / n)$, the joint pdf of $\overline{X}$ and $\theta$ is given by 
+
+    $$
+    \begin{aligned}
+        f(\overline{x},\ \theta) &= f(\overline{x} \mid \theta) \pi(\theta) \\
+        &= ((\sigma^{2} / n))^{-\frac{1}{2}} \exp\left[\frac{(\overline{x} - \theta)^{2}}{2 \sigma^{2} / n} \right] (2 \pi \tau^{2})^{-\frac{1}{2}} \exp\left[\frac{(\theta - \mu)^{2}}{2 \tau^{2}} \right] \\
+        &= \frac{1}{2 \pi} ((\sigma^{2} \tau^{2} / n))^{-\frac{1}{2}} \exp\left[-\frac{1}{2} \left(\frac{n (\overline{x} - \theta)^{2}}{\sigma^{2}} + \frac{(\theta - \mu)^{2}}{\tau^{2}} \right) \right],
+    \end{aligned}
+    $$
+
+    which is a bivariate Normal distribution.
+    </details>
+
+    <br>
+
     (b) Show that the marginal distribution of $\overline{X}$ is $N(\mu,\ (\sigma^{2}/n) + \tau^{2})$;
 
+    <details>
+    <summary>Proof:</summary>
+
+    Since the joint distribution of $\overline{X}$ and $\theta$ is bivariate Normal, the marginal distribution of $\overline{X}$ is also Normal. Under the hierarchical model, we have 
+
+    $$
+    \E[\overline{X}] = \E[\E[\overline{X} \mid \theta]] = \E[\theta] = \mu,
+    $$
+
+    and 
+
+    $$
+    \begin{aligned}
+        \Var(\overline{X}) &= \E[\Var(\overline{X} \mid \theta)] + \Var(\E[\overline{X} \mid \theta]) \\
+        &= \E[\sigma^{2} / n] + \Var(\theta) \\
+        &= \frac{\sigma^{2}}{n} + \tau^{2}.
+    \end{aligned}
+    $$
+
+    Therefore, the marginal distribution of $\overline{X}$ is $N(\mu,\ (\sigma^{2}/n) + \tau^{2})$.
+    </details>
+
+    <br>
+
     (c) Show that the posterior distribution of $\theta$ is $N((\tau^{2} \overline{x} + (\sigma^{2} / n) \mu) / ((\sigma^{2} / n) + \tau^{2}),\ (\sigma^{2} \tau^{2} / n) / ((\sigma^{2} / n) + \tau^{2}))$ where $\overline{x}$ is the observation mean.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The posterior distribution of $\theta$ is given by 
+
+    $$
+    \begin{aligned}
+        f(\theta \mid \overline{x}) &= \frac{f(\overline{x},\ \theta)}{f(\overline{x})} \\
+        &= \frac{\frac{1}{2 \pi} ((\sigma^{2} \tau^{2} / n))^{-\frac{1}{2}} \exp\left[-\frac{1}{2} \left(\frac{n (\overline{x} - \theta)^{2}}{\sigma^{2}} + \frac{(\theta - \mu)^{2}}{\tau^{2}} \right) \right]}{[2 \pi ((\sigma^{2} / n) + \tau^{2})]^{-\frac{1}{2}} \exp\left[-\frac{1}{2} \left(\frac{(\overline{x} - \mu)^{2}}{(\sigma^{2} / n) + \tau^{2}} \right) \right]} \\
+        &= \left(2 \pi \frac{\sigma^{2} \tau^{2} / n}{(\sigma^{2} / n) + \tau^{2}} \right)^{-\frac{1}{2}} \exp\bigg[-\frac{1}{2} \bigg(\frac{n (\overline{x} - \theta)^{2}}{\sigma^{2}} + \frac{(\theta - \mu)^{2}}{\tau^{2}} \\ &\qquad - \frac{(\overline{x} - \mu)^{2}}{(\sigma^{2} / n) + \tau^{2}} \bigg) \bigg] \\
+        &= \left(2 \pi \frac{\sigma^{2} \tau^{2} / n}{(\sigma^{2} / n) + \tau^{2}} \right)^{-\frac{1}{2}} \exp\left[-\frac{1}{2} \frac{\left[\theta - \frac{\tau^{2} \overline{x} + (\sigma^{2} / n) \mu}{(\sigma^{2} / n) + \tau^{2}} \right]^{2}}{\frac{\sigma^{2} \tau^{2} / n}{(\sigma^{2} / n) + \tau^{2}}}\right],
+    \end{aligned}
+    $$
+
+    which means the posterior distribution of $\theta$ is $N((\tau^{2} \overline{x} + (\sigma^{2} / n) \mu) / ((\sigma^{2} / n) + \tau^{2}),\ (\sigma^{2} \tau^{2} / n) / ((\sigma^{2} / n) + \tau^{2}))$.
+    </details>
 
 ## 7.3 Methods of Evaluating Estimators
 
@@ -125,6 +186,8 @@ We can see from the example above that, the posterior distribution is of the sam
 > $$\E_{\theta}[(\widehat{\theta} - \theta)^{2}] = \Var_{\theta}(\widehat{\theta}) + (\E_{\theta}[\widehat{\theta}] - \theta)^{2},$$
 > 
 > where the term $\E_{\theta}[\widehat{\theta}] - \theta$ is called the **bias** of the estimator $\widehat{\theta}$. An estimator whose bias is identically (w.r.t. $\theta$) zero is called **unbiased**.
+
+<span id="Normal_MSE"></span>
 
 > [!EXAMPLE|label:Normal MSE]
 > Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\mu,\ \sigma^{2})$. The statistics $\overline{X}$ and $S^{2}$ are both unbiased estimators since 
@@ -174,6 +237,8 @@ We can see from the example above that, the posterior distribution is of the sam
 > [!DEFINITION]
 > An estimator $\widehat{\theta}^{*}$ is a **best unbiased estimator** of $\tau(\theta)$ if it is an unbiased estimator and, for any other unbiased estimator $\widehat{\theta}$, we have $\Var_{\theta}(\widehat{\theta}^{*}) \leqslant \Var_{\theta}(\widehat{\theta}),\ \forall \theta$. $\widehat{\theta}^{*}$ is also called a **uniformly minimum variance unbiased estimator (UMVUE)** of $\tau(\theta)$.
 
+<span id="Cramer_Rao_Inequality"></span>
+
 > [!THEOREM|label:Cramér-Rao Inequality]
 > Let $X_1,\ \cdots,\ X_n$ be a sample with pdf $f(\bm{x} \mid \theta)$, and let $\widehat{\theta}(\bm{X})$ be any estimator satisfying 
 >
@@ -185,15 +250,294 @@ We can see from the example above that, the posterior distribution is of the sam
 >
 > Then 
 >
-> $$\Var_{\theta}(\widehat{\theta}(\bm{X})) \geqslant \frac{\left(\frac{\mathrm{d}}{\mathrm{d}\theta} \E_{\theta}[\widehat{\theta}(\bm{X})] \right)^{2}}{\E_{\theta}\left[\left(\frac{\partial }{\partial \theta} \log f(\bm{X} \mid \theta) \right)^{2} \right]}.$$
+> $$\Var_{\theta}(\widehat{\theta}(\bm{X})) \geqslant \frac{\left(\frac{\mathrm{d}}{\mathrm{d}\theta} \E_{\theta}[\widehat{\theta}(\bm{X})] \right)^{2}}{\E_{\theta}\left[\left(\frac{\partial }{\partial \theta} \ell(\theta \mid \bm{X}) \right)^{2} \right]},$$
+>
+> where $\ell(\theta \mid \bm{X}) := \log f(\bm{X} \mid \theta)$ is the log-likelihood function. For unbiased estimators, we have $\E_{\theta}[\widehat{\theta}(\bm{X})] = \theta$ and thus the nominator is $1$.
 >
 > If additionally, $X_1,\ \cdots,\ X_n$ are i.i.d. with pdf $f(x \mid \theta)$, then 
 >
 > $$\Var_{\theta}(\widehat{\theta}(\bm{X})) \geqslant \frac{\left(\frac{\mathrm{d}}{\mathrm{d}\theta} \E_{\theta}[\widehat{\theta}(\bm{X})] \right)^{2}}{n I(\theta)}.$$
 >
-> where $I(\theta) := \E_{\theta}\left[\left(\frac{\partial }{\partial \theta} \log f(X \mid \theta) \right)^{2} \right] > 0$ is called the *Fisher information*.
+> where $I(\theta) := \E_{\theta}\left[\left(\frac{\partial }{\partial \theta} \ell(\theta \mid \bm{X}) \right)^{2} \right] > 0$ is the *Fisher information* of $X_{i}$, and the *Fisher information* of the whole sample is $n I(\theta)$.
 
-Intuitively, if we have more information about $\theta$, then the Fisher information would be larger and the variance bound would be smaller, which means we would be more confident about the estimation.
+Intuitively, if we have more information about $\theta$, then the Fisher information would be larger and the variance bound would be smaller, which means we would be more confident about the estimation. There is another way to calculate the Fisher information.
 
 > [!THEOREM]
+> If $f(x \mid \theta)$ satisfies 
+>
+> $$\frac{\mathrm{d}}{\mathrm{d}\theta}\E_{\theta}\left[\frac{\partial }{\partial \theta}\ell(\theta \mid X) \right] = \int \frac{\partial }{\partial \theta}\left[\left(\frac{\partial }{\partial \theta}\ell(\theta \mid x) \right) f(x \mid \theta) \right] ~\mathrm{d}x,$$
+>
+> e.g., an *exponential family*, then 
+>
+> $$I(\theta) := \E_{\theta}\left[\left(\frac{\partial }{\partial \theta}\ell(\theta \mid X) \right)^{2} \right] = -\E_{\theta}\left[\frac{\partial^{2}}{\partial \theta^{2}}\ell(\theta \mid X) \right].$$
+
+> [!EXAMPLE|label:Poisson unbiased estimator]
+> Let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Poisson}(\lambda)$, and let $\overline{X}$ and $S^{2}$ be the sample mean and variance, respectively. Since both the population mean and variance of $\text{Poisson}(\lambda)$ are $\lambda$, from [properties of sample mean and variance](#courses/advanced_statistics/5_properties_of_a_random_sample.md#properties_of_sample_mean_and_variance) we know that $\overline{X}$ and $S^{2}$ are both unbiased estimators of $\lambda$. To determine which one is better, we should now compare their variances.
+>
+> Again from [properties of sample mean and variance](#courses/advanced_statistics/5_properties_of_a_random_sample.md#properties_of_sample_mean_and_variance) we know that 
+>
+> $$\Var(\overline{X}) = \frac{\lambda}{n}.$$
+>
+> But the variance of $S^{2}$ is hard to calculate. Instead, we can use the Cramér-Rao Inequality to get a lower bound of all unbiased estimators of $\lambda$. First, the nominator of the Cramér-Rao lower bound is 
+>
+> $$\left(\frac{\mathrm{d}}{\mathrm{d}\lambda} \E_{\lambda}[\widehat{\lambda}(\bm{X})] \right)^{2} = 1.$$
 > 
+> Then, since Poisson distribution is an exponential family, using the theorem above we have 
+>
+> $$\begin{aligned} I(\lambda) &= - \E_{\lambda}\left[\frac{\partial^{2}}{\partial \lambda^{2}}\ell(\lambda \mid X) \right] \\ &= -\E_{\lambda}\left[\frac{\partial^{2}}{\partial \lambda^{2}}\log \frac{\lambda^{X} e^{-\lambda}}{X!} \right] \\ &= -\E_{\lambda}\left[\frac{\partial^{2}}{\partial \lambda^{2}}(X \log \lambda - \lambda - \log X!) \right] \\ &= -\E_{\lambda}\left[\frac{\partial}{\partial \lambda}\left(\frac{X}{\lambda} - 1 \right) \right] \\ &= -\E_{\lambda}\left[-\frac{X}{\lambda^{2}} \right] \\ &= \frac{1}{\lambda}. \end{aligned}$$
+>
+> Therefore, the Cramér-Rao lower bound is $\frac{\lambda}{n}$, which means $\overline{X}$ is a best unbiased estimator of $\lambda$.
+
+It is important to remember that a key assumption of Cramér-Rao Inequality is the ability to differentiate under the integral sign, which, of course, is somewhat restrictive. *Densities in exponential class satisfy the assumptions*, like the example above. However, in general, such assumptions need to be checked, or contradictions such as the following will arise.
+
+> [!EXAMPLE|label:Unbiased estimator for the scale uniform]
+> Let $X_1,\ \cdots,\ X_n$ be i.i.d. with pdf $f(x \mid \theta) = 1 / \theta,\ 0 < x < \theta$. Since $\frac{\partial }{\partial \theta}\log f(x \mid \theta) = -1 / \theta$, we have 
+>
+> $$I(\theta) = \E_{\theta}\left[\left(\frac{\partial }{\partial \theta}\ell(\theta \mid X) \right)^{2} \right] = \frac{1}{\theta^{2}}.$$
+>
+> Now we want to find an unbiased estimator with small variance. As a first guess, we might try a sufficient statistic. The joint pdf of the random sample is
+>
+> $$f(\bm{x} \mid \theta) = \frac{1}{\theta^{n}} \prod_{i=1}^{n} I_{(0,\ \theta)}(x_i) = \frac{1}{\theta^{n}} I_{(0,\ \theta)}(x_{(n)}),$$
+>
+> where $x_{(n)} := \max_{i} x_i$. We can easily find that $X_{(n)}$ is a sufficient statistic for $\theta$. The pdf of $Y := X_{(n)}$ is given by 
+>
+> $$f(y \mid \theta) = \frac{n!}{(n-1)! 0!} \frac{1}{\theta} \left(\frac{1}{\theta} y \right)^{n-1} = \frac{n y^{n-1}}{\theta^{n}},\quad 0 < y < \theta.$$
+>
+> Then we have 
+>
+> $$\E_{\theta}[Y] = \int_{0}^{\theta} \frac{n y^{n}}{\theta^{n}} ~\mathrm{d}y = \frac{n}{n + 1} \theta,$$
+>
+> which means we can construct an unbiased estimator $\widehat{\theta} := \frac{n + 1}{n} Y$. Note that 
+>
+> $$\E_{\theta}[Y^{2}] = \int_{0}^{\theta} \frac{n y^{n+1}}{\theta^{n}} ~\mathrm{d}y = \frac{n}{n + 2} \theta^{2},$$
+> 
+> so the variance of $\widehat{\theta}$ is given by 
+>
+> $$\Var_{\theta}(\widehat{\theta}) = \E_{\theta}\left[\left(\frac{n + 1}{n} Y \right)^{2} \right] - \theta^{2} = \frac{1}{n (n + 2)} \theta^{2} < \frac{1}{n} \theta^{2}.$$
+>
+> This indicates that the Cramér-Rao Inequality is not applicable to this pdf. To see why, we can check that for any unbiased estimator $h(x)$, 
+>
+> $$\begin{aligned} \frac{\mathrm{d}}{\mathrm{d}\theta}\int_{0}^{\theta} h(x) f(x \mid \theta) ~\mathrm{d}x &= \frac{\mathrm{d}}{\mathrm{d}\theta}\int_{0}^{\theta} \frac{h(x)}{\theta} ~\mathrm{d}x \\ &= \frac{h(\theta)}{\theta} - \frac{1}{\theta^{2}} \int_{0}^{\theta} h(x) ~\mathrm{d}x \\ &\neq \int_{0}^{\theta} h(x) \frac{\partial }{\partial \theta}f(x \mid \theta) ~\mathrm{d}x, \end{aligned}$$
+>
+> unless $\frac{h(\theta)}{\theta} = 0,\ \forall \theta$. Hence, the Cramér-Rao Inequality is not applicable. In general, *it is not applicable to any pdf with its range depending on the parameter.*
+
+> [!EXAMPLE|label:Normal variance bound]
+> Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\mu,\ \sigma^{2})$, and consider estimation of $\sigma^{2}$, where $\mu$ is unknown. Since Normal distribution is an exponential family, the assumptions of Cramér-Rao Inequality are satisfied. Then, the Fisher information is given by 
+>
+> $$\begin{aligned} I(\mu,\ \sigma^{2}) &= -\E\left[\frac{\partial^{2}}{\partial (\sigma^{2})^{2}}\ell(\mu,\ \sigma^{2} \mid X) \ \middle\vert \ \mu,\ \sigma^{2} \right] \\ &= -\E\left[\frac{\partial^{2}}{\partial (\sigma^{2})^{2}}\left[-\frac{\log(2 \pi \sigma^{2})}{2} - \frac{(X - \mu)^{2}}{2 \sigma^{2}} \right] \ \middle\vert \ \mu,\ \sigma^{2} \right] \\ &= -\E\left[\frac{\partial}{\partial \sigma^{2}}\left[- \frac{1}{2 \sigma^{2}} + \frac{(X - \mu)^{2}}{2 (\sigma^{2})^{2}} \right] \ \middle\vert \ \mu,\ \sigma^{2} \right] \\ &= -\E\left[\frac{1}{2 (\sigma^{2})^{2}} - \frac{(X - \mu)^{2}}{(\sigma^{2})^{3}} \ \middle\vert \ \mu,\ \sigma^{2} \right] \\ &= \frac{1}{2 \sigma^{4}}, \end{aligned}$$
+>
+> which means the Cramér-Rao lower bound is $\frac{2 \sigma^{4}}{n}$. From [Normal MSE](#Normal_MSE) we have known that the variance of $S^{2}$ is $\frac{2 \sigma^{4}}{n - 1}$, so $S^{2}$ is unbiased but is not a best unbiased estimator.
+
+> [!THEOREM|label:Attainment of the Cramér-Rao lower bound]
+> Let $X_1,\ \cdots,\ X_n$ be i.i.d. $f(x \mid \theta)$, where $f(x \mid \theta)$ satisfies the conditions of the [Cramér-Rao Inequality](#Cramer_Rao_Inequality). Let $\ell(\theta \mid \bm{x}) := \sum_{i=1}^{n} \log f(x_i \mid \theta)$ denote the log-likelihood function. If $\widehat{\tau}(\bm{X})$ is any unbiased estimator of $\tau(\theta)$, then $\widehat{\tau}(\bm{X})$ attains the Cramér-Rao lower bound *iff* 
+>
+> $$g(\theta) [\widehat{\tau}(\bm{x}) - \tau(\theta)] = \frac{\partial }{\partial \theta}\ell(\theta \mid \bm{x})$$
+>
+> for some function $g(\theta)$.
+
+<details>
+<summary>Proof:</summary>
+
+We prove the “$\impliedby$” side and the “$\implies$” side is just the reverse process. The Cramér-Rao Inequality is 
+
+$$
+\Var_{\theta}(\widehat{\tau}(\bm{X})) \geqslant \frac{\left(\frac{\mathrm{d}}{\mathrm{d}\theta} \E_{\theta}[\widehat{\tau}(\bm{X})] \right)^{2}}{\E_{\theta}\left[\left(\frac{\partial }{\partial \theta} \ell(\theta \mid \bm{X}) \right)^{2} \right]}.
+$$
+
+If $g(\theta) [\widehat{\tau}(\bm{x}) - \tau(\theta)] = \frac{\partial }{\partial \theta}\ell(\theta \mid \bm{x})$, we have $\E\left[\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right] = 0$ and thus the Cramér-Rao Inequality can be written as
+
+$$
+\Var_{\theta}(\widehat{\tau}(\bm{X})) \geqslant \frac{\left(\frac{\mathrm{d}}{\mathrm{d}\theta} \E_{\theta}[\widehat{\tau}(\bm{X})] \right)^{2}}{\Var_{\theta}\left(\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right)}.
+$$
+
+By applying the [Covariance Inequality](courses/advanced_statistics/4_multiple_random_variables.md#Covariance_Inequality) to $\widehat{\tau}(\bm{X})$ and $\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X})$, we have 
+
+$$
+\left(\Cov_{\theta}\left(\widehat{\tau}(\bm{X}),\ \frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right) \right)^{2} \leqslant \Var_{\theta}(\widehat{\tau}(\bm{X})) \Var_{\theta}\left(\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right).
+$$
+
+Note that since $\E\left[\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right] = 0$, rearranging the inequality above gives 
+
+$$
+\Var_{\theta}(\widehat{\tau}(\bm{X})) \geqslant  \frac{\left[\E_{\theta}\left[\widehat{\tau}(\bm{X}) \frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right] \right]^{2}}{\Var_{\theta}\left(\frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right)}.
+$$
+
+Note that under the assumptions of the Cramér-Rao Inequality, we have 
+
+$$
+\begin{aligned}
+    \E_{\theta}\left[\widehat{\tau}(\bm{X}) \frac{\partial }{\partial \theta}\ell(\theta \mid \bm{X}) \right] &= \frac{\mathrm{d}}{\mathrm{d}\theta}\E_{\theta}\left[\widehat{\tau}(\bm{X}) l(\theta \mid \bm{X}) \right] \\
+    &= \E_{\theta}\left[\widehat{\tau}(\bm{X}) \frac{\partial }{\partial \theta}\log f(\bm{X} \mid \theta) \right] \\
+    &= \E_{\theta}\left[\widehat{\tau}(\bm{X}) \left(\frac{\partial }{\partial \theta} f(\bm{X} \mid \theta) \right) / f(\bm{X} \mid \theta) \right] \\
+    &= \int_{\mathcal{X}} \frac{\partial }{\partial \theta} [\widehat{\tau}(\bm{x}) f(\bm{x} \mid \theta)] ~\mathrm{d}x \\
+    &= \frac{\mathrm{d}}{\mathrm{d}\theta}\E_{\theta}[\widehat{\tau}(\bm{X})],
+\end{aligned}
+$$
+
+which means we attain the Cramér-Rao lower bound.
+</details>
+
+<br>
+
+> [!EXAMPLE|label:Normal variance bound （continued）]
+> The log-likelihood function of $X_1,\ \cdots,\ X_n$ is given by
+>
+> $$\ell(\mu,\ \sigma^{2} \mid \bm{x}) = -\frac{n}{2} \log(2 \pi \sigma^{2}) - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} (x_i - \mu)^{2},$$
+>
+> and thus 
+>
+> $$\begin{aligned} \frac{\partial }{\partial \sigma^{2}} \ell(\mu,\ \sigma^{2} \mid \bm{x}) &= -\frac{n}{2 \sigma^{2}} + \frac{1}{2 (\sigma^{2})^{2}} \sum_{i=1}^{n} (x_i - \mu)^{2} \\ &= \frac{n}{2 \sigma^{4}} \left(\sum_{i=1}^{n} \frac{(x_i - \mu)^{2}}{n} - \sigma^{2} \right). \end{aligned}$$
+>
+> Taking $g(\sigma^{2}) = \frac{n}{2 \sigma^{4}}$, by the attainment theorem we know that the best unbiased estimator of $\sigma^{2}$ is $\sum_{i=1}^{n} \frac{(x_i - \mu)^{2}}{n}$, which is calculable only if $\mu$ is known. In other words, if $\mu$ is unknown, the lower bound cannot be attained.
+
+### 7.3.3 Sufficiency and Unbiasedness
+
+In the previous section, the concept of sufficiency was not used in our search for unbiased estimators. We will now see that consideration of sufficiency is a powerful tool, indeed.
+
+> [!THEOREM|label:Rao-Blackwell Theorem]
+> Let $\widehat{\tau}$ be any *unbiased estimator* of $\tau(\theta)$, and let $T$ be a *sufficient statistic* for $\theta$. Define $\phi(T) = \E[\widehat{\tau} \mid T]$. Then $\phi(T)$ is a *uniformly better unbiased estimator* of $\tau(\theta)$.
+
+<details>
+<summary>Proof:</summary>
+
+First, since $T$ is a sufficient statistic for $\theta$, by definition we know that $\phi(T) = \E[\widehat{\tau} \mid T]$ does not depend on $\theta$, which means it can be an estimator. Then, since 
+
+$$
+\E_{\theta}[\phi(T)] = \E_{\theta}[\E[\widehat{\tau} \mid T]] = \E_{\theta}[\widehat{\tau}] = \tau(\theta),
+$$
+
+$\phi(T)$ is an unbiased estimator of $\tau(\theta)$. Also, 
+
+$$
+\Var_{\theta}(\widehat{\tau}) = \E_{\theta}[\Var(\widehat{\tau} \mid T)] + \Var_{\theta}(\E[\widehat{\tau} \mid T]) \geqslant \Var_{\theta}(\E[\widehat{\tau} \mid T]) = \Var_{\theta}(\phi(T)),
+$$
+
+which means $\phi(T)$ is uniformly better than $\widehat{\tau}$.
+</details>
+
+<br>
+
+> [!NOTE]
+> Using Rao-Blackwell Theorem we can find a better unbiased estimator, but it is not necessarily the best unbiased estimator.
+
+> [!THEOREM|label:Uniqueness of the best unbiased estimator]
+> If $\widehat{\tau}^{*}$ is a best unbiased estimator of $\tau(\theta)$, then $\widehat{\tau}^{*}$ is unique.
+
+> [!THEOREM]
+> An *unbiased estimator* $\widehat{\tau}$ of $\tau(\theta)$ is the *best unbiased estimator* *iff* $\widehat{\tau}$ is *uncorrelated* with all unbiased estimators of $0$, i.e., $\Cov_{\theta}(\widehat{\tau},\ U) = 0,\ \forall \theta$, for any $U$ s.t. $\E_{\theta}[U] = 0$.
+
+> [!THEOREM]
+> Let $T$ be a *complete sufficient statistic* for a parameter $\theta$, and let $\phi(T)$ be any estimator based only on $T$. Then $\phi(T)$ is the *unique best unbiased estimator* of its *expected value*.
+
+> [!EXAMPLE|label:Binomial best unbiased estimation]
+> Let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Binomial}(k,\ \theta)$. The problem is to estimate the probability of exactly one success from a $\text{Binomial}(k,\ \theta)$, i.e., estimate 
+>
+> $$\tau(\theta) = P_{\theta}(X = 1) = k \theta (1 - \theta)^{k - 1}.$$
+>
+> Since Binomial distribution is an exponential family, we can easily verify that $T := \sum_{i=1}^{n} X_{i}$ is a complete sufficient statistic for $\theta$. Now we want to find an unbiasd estimator of $\tau(\theta)$ based on it. A simple-minded estimator is defined by 
+>
+> $$h(X_1) = \begin{cases} 1,\ &\text{if } X_1 = 1 \\ 0,\ &\text{otherwise} \end{cases}.$$
+>
+> Since 
+>
+> $$\E_{\theta}[h(X_1)] = \sum_{x_1=0}^{k} h(x_1) \binom{k}{x_1} \theta^{x_1} (1 - \theta)^{k - x_1} = k \theta (1 - \theta)^{k - 1},$$
+>
+> $h(X_1)$ is an unbiased estimator of $\tau(\theta)$. Then, applying the theorem above, we can construct the best unbiased estimator of $\tau(\theta)$: 
+>
+> $$\phi(T) = \E\left[h(X_1) \mid T \right].$$
+>
+> This expectation is hard to calculate. Instead, we evaluate it after observing $T = t$: 
+>
+> $$\begin{aligned} \phi(t) &= \E[h(X_1) \mid T = t] \\ &= P(X_1 = 1 \mid T = t) \\ &= \frac{P_{\theta}(X_1 = 1,\ T = t)}{P_{\theta}(T = t)} \\ &= \frac{P_{\theta}(X_1 = 1,\ \sum_{i=2}^{n} X_{i} = t - 1)}{P_{\theta}(T = t)} \\ &= \frac{P_{\theta}(X_1 = 1) P_{\theta}(\sum_{i=2}^{n} X_{i} = t - 1)}{P_{\theta}(T = t)}. \end{aligned}$$
+>
+> Since $X_1 \sim \text{Binomial}(k,\ \theta)$, $\sum_{i=2}^{n} X_{i} \sim \text{Binomial}((n - 1) k,\ \theta)$, and $\sum_{i=1}^{n} X_{i} \sim \text{Binomial}(n k,\ \theta)$, we have 
+>
+> $$\phi(t) = \frac{\left[k \theta (1 - \theta)^{k - 1} \right] \left[\binom{(n - 1) k}{t - 1} \theta^{t - 1} (1 - \theta)^{(n - 1) k - (t - 1)} \right]}{\binom{n k}{t} \theta^{t} (1 - \theta)^{n k - t}} = k \frac{\binom{(n - 1) k}{t - 1}}{\binom{n k}{t}},$$
+>
+> which means the best unbiased estimator of $\tau(\theta)$ is 
+>
+> $$\phi(T) = k \frac{\binom{(n - 1) k}{T - 1}}{\binom{n k}{T}}.$$
+
+### 7.3.4 Loss Function Optimality
+
+> [!DEFINITION]
+> A **risk function** $R$ of a parameter $\theta$ and estiamator $\delta$ is the expected value of the loss between them, i.e., 
+>
+> $$R(\theta,\ \delta) = \E_{\theta}[L(\theta,\ \delta(\bm{X}))],$$
+>
+> where $L$ is the loss function.
+
+> [!NOTE]
+> The value of risk function changes with $\theta$, i.e., it will be different with different values of $\theta$.
+
+In [Section 7.3.1](#731-mean-square-error) we have already introduce the MSE risk funcion based on MSE loss, but there are still other risk (loss) functions, as mentioned in [Section 7.2.3](#risk_functions_note).
+
+In the Bayesian approach, the risk functions are obtained by averaging the risk function over the prior distribution of $\theta$, i.e., 
+
+$$
+\int_{\Theta} R(\theta,\ \delta) \pi(\theta) ~\mathrm{d}\theta,
+$$
+
+where $\pi(\theta)$ is the prior distribution of $\theta$. This is called the *Bayes risk function*. We can further write it as 
+
+$$
+\int_{\Theta} R(\theta,\ \delta) \pi(\theta) ~\mathrm{d}\theta = \int_{\Theta} \left(\int_{\mathcal{X}} L(\theta,\ \delta(\bm{x})) f(\bm{x} \mid \theta) ~\mathrm{d}\bm{x} \right) \pi(\theta) ~\mathrm{d}\theta.
+$$
+
+If we write $f(\bm{x} \mid \theta) \pi(\theta) = \pi(\theta \mid \bm{x}) m(\bm{x})$, where $m(\bm{x})$ is the marginal distribution of $\bm{X}$, then the Bayes risk can be written as 
+
+$$
+\int_{\Theta} R(\theta,\ \delta) \pi(\theta) ~\mathrm{d}\theta = \int_{\mathcal{X}} \left(\int_{\Theta} L(\theta,\ \delta(\bm{x})) \pi(\theta \mid \bm{x}) ~\mathrm{d}\theta \right) m(\bm{x}) ~\mathrm{d}\bm{x}.
+$$
+
+### Exercises
+
+1. Let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Bernoulli}(p)$. Show that the variance of $\overline{X}$ attains the Cramér-Rao lower bound, and hence $\overline{X}$ is the best unbiased estimator of $p$.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The log-likelihood function of $X_1,\ \cdots,\ X_n$ is given by
+
+    $$
+    \begin{aligned}
+        \frac{\partial }{\partial p}\ell(p \mid \bm{x}) &= \frac{\partial }{\partial p}\sum_{i=1}^{n} \log f(x_i \mid p) \\
+        &= \frac{\partial }{\partial p}\sum_{i=1}^{n} \log \left[p^{x_i} (1 - p)^{1 - x_i} \right] \\
+        &= \frac{\partial }{\partial p}\sum_{i=1}^{n} \left[x_i \log p + (1 - x_i) \log (1 - p) \right] \\
+        &= \frac{\partial }{\partial p}[n \overline{x} \log p + n (1 - \overline{x}) \log (1 - p)] \\
+        &= \frac{n \overline{x}}{p} - \frac{n (1 - \overline{x})}{1 - p} \\
+        &= \frac{n}{p (1 - p)} (\overline{x} - p).
+    \end{aligned}
+    $$
+
+    Taking $g(p) = \frac{n}{p (1 - p)}$, by the attainment theorem we know that the best unbiased estimator of $p$ is $\overline{X}$.
+    </details>
+
+    <br>
+
+2. Data $(x_i,\ Y_i),\ i=1,\ 2,\ \cdots,\ n$ are modeled, assuming $x_1,\ \cdots,\ x_n$ are fixed and positive constants; $Y_1,\ \cdots,\ Y_n$ are independent; $Y_i$ is distributed as $\text{Exponential}(\theta x_i)$ with mean $\theta x_i$ for each $i$; and $\theta > 0$ is an unknown parameter. Please find the UMVUE of $\theta$.
+
+    <details>
+    <summary>Solution:</summary>
+
+    The joint pdf of $Y_1,\ \cdots,\ Y_n$ is given by
+
+    $$
+    \begin{aligned}
+        f(\bm{y} \mid \theta) &= \prod_{i=1}^{n} \frac{1}{\theta x_i} \exp\left(-\frac{y_i}{\theta x_i} \right) \\
+        &= \frac{1}{\theta^{n} \prod_{i=1}^{n} x_i} \exp\left(-\frac{1}{\theta} \sum_{i=1}^{n} \frac{y_i}{x_i} \right),
+    \end{aligned}
+    $$
+
+    from which we can easily see that $T := \sum_{i=1}^{n} \frac{y_i}{x_i}$ is a complete sufficient statistic for $\theta$. Then we construct an estimator $\widehat{\theta} := \frac{1}{n} \sum_{i=1}^{n} \frac{Y_i}{x_i}$ whose expectation is given by
+
+    $$
+    \E_{\theta}[\widehat{\theta}] = \frac{1}{n} \sum_{i=1}^{n} \frac{1}{x_i} \E_{\theta}[Y_i] = \frac{1}{n} \sum_{i=1}^{n} \frac{1}{x_i} \theta x_i = \theta,
+    $$
+
+    which means $\widehat{\theta}$ is unbiased. The UMVUE of $\theta$ is just 
+
+    $$
+    \phi(T) := \E[\widehat{\theta} \mid T] = \E\left[\frac{1}{n} \sum_{i=1}^{n} \frac{Y_i}{x_i} \ \middle\vert \ \sum_{i=1}^{n} \frac{Y_i}{x_i} \right] = \frac{1}{n} \sum_{i=1}^{n} \frac{Y_i}{x_i}.
+    $$
+    </details>

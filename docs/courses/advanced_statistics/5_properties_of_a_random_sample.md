@@ -10,6 +10,8 @@
 > [!DEFINITION]
 > Let $X_1,\ X_2,\ \cdots,\ X_n$ be a *random sample* of size $n$ from a population and let $T(x_1,\ \cdots,\ x_n)$ be a real-valued or vector-valued function whose domain includes the sample space of $(X_1,\ X_2,\ \cdots,\ X_n)$. Then the r.v. or random vector $Y = T(X_1,\ X_2,\ \cdots,\ X_n)$ is called a **statistic**. The probability distribution of a statistic $Y$ is called the **sampling distribution** of $Y$.
 
+<span id="properties_of_sample_mean_and_variance"></span>
+
 > [!THEOREM]
 > Let $X_1,\ X_2,\ \cdots,\ X_n$ be a random sample from a population with mean $\mu$ and variance $\sigma^{2} < \infty$. Denote the sample mean and sample variance by $\overline{X} = \frac{1}{n} \sum\limits_{i=1}^{n} X_{i}$ and $S^{2} = \frac{1}{n} \sum\limits_{i=1}^{n} (X_{i} - \overline{X})^{2}$, respectively. Then 
 > 

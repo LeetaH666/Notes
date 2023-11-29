@@ -208,7 +208,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
 1. Let $X_1,\ X_2,\ \cdots,\ X_n$ be i.i.d. sample from $\text{Gamma}(\alpha,\ \beta)$. Prove that $T(\bm{X}) = \left(\sum_{j=1}^{n} \log X_j,\ \sum_{j=1}^{n} X_j \right) $ are sufficient for $(\alpha,\ \beta)$.
 
     <details>
-    Proof:
+    <summary>Proof:</summary>
 
     The joint pdf of the random sample is 
 

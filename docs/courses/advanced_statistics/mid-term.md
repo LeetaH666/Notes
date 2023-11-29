@@ -6,17 +6,22 @@
 
     (a) Find the distribution of $Y$.
 
-    Solution:
+    <details>
+    <summary>Solution:</summary>
 
     Since the transformation $g(x) = e^{x}$ is increasing in $(-\infty,\ \infty)$, the pdf of $Y$ is given by 
 
     $$
     f_{Y}(y) = f_{X}(\log y) \frac{\mathrm{d}}{\mathrm{d}y}\log y = \frac{1}{\sqrt{2\pi}} \frac{1}{y} e^{-\frac{(\log y)^{2}}{2}} \quad y > 0.
     $$
+    </details>
+
+    <br>
 
     (b) Show that all the moments of $Y$ exist.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     The $n$-th moment of $Y$ is 
 
@@ -25,10 +30,14 @@
     $$
 
     where $M_{X}(\cdot)$ is the mgf of $X$. Thus, all the moments of $Y$ exist.
+    </details>
+
+    <br>
 
     (c) Show that the random variable $Y$ does not have a moment generating function.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     Suppose $Y$ have a mgf denoted by $M_{Y}(t)$, by definition we want to show that the expectation $\E[e^{tY}]$ does not exist for $t$ in some neighborhood of $0$. $\forall t < 0$, $\E[e^{tY}] \leqslant 1$ since $Y$ is positive. So we will focus on cases when $t > 0$.
     
@@ -67,6 +76,9 @@
     $$
 
     which means $M_{Y}(t)$ does not exist for $t > 0$.
+    </details>
+
+    <br>
 
 2. Let $X_1,\ \cdots,\ X_n$ be a random sample from a population with pdf 
 
@@ -82,7 +94,8 @@
 
     (a) Show that $X_{(1)} / X_{(n)}$ and $X_{(n)}$ are independent random variables.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     The cdf of $X$ is given by 
 
@@ -110,10 +123,14 @@
     $$
 
     Since the joint pdf of $U$ and $V$ can be factorized into the product of the marginal pdfs of $U$ and $V$, $U$ and $V$ are independent, i.e., $X_{(1)} / X_{(n)}$ and $X_{(n)}$ are independent random variables.
+    </details>
+
+    <br>
 
     (b) Find $\Cov(X_{(1)},\ X_{(n)})$.
 
-    Solution:
+    <details>
+    <summary>Solution:</summary>
 
     From part (a) we know that the joint pdf of $X_{(1)} =: Z$ and $X_{(n)} =: Y$ is given by 
 
@@ -175,12 +192,16 @@
     $$
     \Cov(Z,\ Y) = \E[Z Y] - \E[Z] \E[Y] = \frac{\theta^{2}}{n + 2} - \frac{n \theta^{2}}{(n + 1)^{2}} = \frac{\theta^{2}}{(n + 1)^{2} (n + 2)}.
     $$
+    </details>
+
+    <br>
 
 3. Assume that $X_{i} \sim \text{Poisson}(\lambda)$ are i.i.d. and let $Y_n = \sum_{i=1}^{n} X_{i}$.
 
     (a) Show that $\sqrt{n} (\frac{Y_n}{n} - \lambda)$ converge in distribution to $N(0,\ \lambda)$.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     Since $X_{i} \sim \text{Poisson}(\lambda)$, we have $\E[X_{i}] = \lambda$ and $\Var(X_{i}) = \lambda$. And since the sample mean of $X_{i}$ is $\frac{1}{n} \sum_{i=1}^{n} X_{i} = \frac{1}{n} Y_n$, by CLT we have 
 
@@ -193,10 +214,14 @@
     $$
     \sqrt{n} \left(\frac{Y_n}{n} - \lambda \right) \xrightarrow{d} N(0,\ \lambda).
     $$
+    </details>
+
+    <br>
 
     (b) Show that $\sqrt{Y_n} - \sqrt{n \lambda}$ converge in distribution to $N(0,\ \frac{1}{4})$ using the Slutsky theorem.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     By WLLN, we have $\sqrt{Y_n / n} \xrightarrow{p} \sqrt{\lambda}$. Then, since 
 
@@ -209,20 +234,28 @@
     $$
     \sqrt{Y_n} - \sqrt{n \lambda} \xrightarrow{d} \frac{N(0,\ \lambda)}{2 \sqrt{\lambda}} \xlongequal{d} N\left(0,\ \frac{1}{4} \right).
     $$
+    </details>
+
+    <br>
 
     (c) Show the result in (b) using the Delta method.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     Let $g(x) = \sqrt{x}$, then $g'(\lambda) = \frac{1}{2 \sqrt{\lambda}}$. By Delta method we have 
 
     $$
     \sqrt{n} \left(\sqrt{\frac{Y_n}{n}} - \sqrt{\lambda} \right) \xrightarrow{d} N\left(0,\ \lambda \left(\frac{1}{2 \sqrt{\lambda}} \right)^{2} \right) \xlongequal{d} N\left(0,\ \frac{1}{4} \right).
     $$
+    </details>
+
+    <br>
 
 4. (a) If $X$ and $Y$ are mean zero random variables with unit variance, and correlation $\rho$, establish that $\E[\max \left\{X^{2},\ Y^{2} \right\}] \leqslant 1 + \sqrt{1 - \rho^{2}}$. (*Hints*: $\max \left\{x,\ y \right\} = 1 / 2 (x + y + \left\vert x - y \right\vert)$.)
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     Since $X$ and $Y$ are both mean zero random variables with unit variance, we have $\E[X^{2}] = \E[Y^{2}] = 1$ and $\Cov(X,\ Y) = \rho = \E[X Y]$.
 
@@ -251,6 +284,9 @@
     $$
     \text{LHS} \leqslant 1 + \frac{1}{2} (2 \sqrt{1 - \rho^{2}}) = 1 + \sqrt{1 - \rho^{2}} = \text{RHS}.
     $$
+    </details>
+
+    <br>
 
     (b) Let $X$ and $Y$ be random variables with $\E[X] = \xi$, $\Var(X) = \tau^{2}$, and $\E[Y] = \mu$, $\Var(Y) = \sigma^{2}$, and correlation coefficient $\rho$. Please further prove that 
 
@@ -258,7 +294,8 @@
     P(\left\{\left\vert X - \xi \right\vert \geqslant \varepsilon \tau \right\} \cup \left\{\left\vert Y - \mu \right\vert  \right\} \geqslant \varepsilon \sigma) \leqslant \frac{1 + \sqrt{1 - \rho^{2}}}{\varepsilon^{2}}.
     $$
 
-    Proof: 
+    <details>
+    <summary>Proof:</summary> 
 
     $$
     \begin{aligned}
@@ -279,12 +316,16 @@
     $$
 
     which completes the proof.
+    </details>
+
+    <br>
 
 5. Let $X_1,\ \cdots,\ X_n$ be independent $N(\theta,\ \theta^{2}),\ \theta > 0$.
 
     (a) Find a minimal sufficient statistic for $\theta$,
 
-    Solution:
+    <details>
+    <summary>Solution:</summary>
 
     The joint pdf of $X_1,\ \cdots,\ X_n$ is given by 
 
@@ -304,10 +345,14 @@
     $$
 
     The ratio does not depend on $\theta$ iff $\sum_{i=1}^{n} x_i^{2} = \sum_{i=1}^{n} y_i^{2}$ and $\sum_{i=1}^{n} x_i = \sum_{i=1}^{n} y_i$, which means $(\sum_{i=1}^{n} X_{i}^{2},\ \sum_{i=1}^{n} X_{i})$ is a minimal sufficient statistic for $\theta$.
+    </details>
+
+    <br>
 
     (b) and show that it is not complete.
 
-    Proof:
+    <details>
+    <summary>Proof:</summary>
 
     Since the mgf of $X_{i}$ is $M_{X_{i}}(t) = \E\left[e^{t X_{i}} \right] = \exp \left(\theta t + \frac{\theta^{2}}{2} t^{2} \right)$, the mgf of $\sum_{i=1}^{n} X_{i}$ is $\exp \left(n \theta t + \frac{n \theta^{2}}{2} t^{2} \right)$, which means $\sum_{i=1}^{n} X_{i} \sim N(n \theta,\ n \theta^{2})$.
 
@@ -318,3 +363,4 @@
     $$
 
     to make $\E[g(T) \mid \theta] = 0,\ \forall \theta$. But this does not imply that $g(T) = 0$ a.s.. Therefore, $T = (\sum_{i=1}^{n} X_{i}^{2},\ \sum_{i=1}^{n} X_{i})$ is not complete.
+    </details>
