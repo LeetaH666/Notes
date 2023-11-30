@@ -45,3 +45,7 @@
 完成以上工作后也许还是有问题，R Language Server 可能会报错，说 icu 没有找到，这是因为系统上自带的 icu 版本与 stringi 这个包不匹配，只需要在 R 终端中重新安装 stringi 即可。
 
 运行 R 代码只需在右上角找到三角符号（Run Source）点击即可，注意需要在代码文件所在的目录下运行。在这种运行方式下，左边的 R Workspace 才可以查看变量和图片。
+
+### 无法升级 Conda
+
+通常当 conda 版本较低时，会提示使用 `conda update -n base -c conda-forge conda` 进行更新，如果使用这个命令更新失败，可以尝试使用 `conda update -n base -c defaults conda --repodata-fn=repodata.json` 进行更新，整个过程可能时间比较长，耐心等待即可。

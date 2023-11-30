@@ -6,5 +6,6 @@
 - [6 Principles of Data Reduction](/courses/advanced_statistics/6_principles_of_data_reduction.md)
 - [Mid-term](/courses/advanced_statistics/mid-term.md)
 - [7 Point Estimation](/courses/advanced_statistics/7_point_estimation.md)
+- [8 Hypothesis Testing](/courses/advanced_statistics/8_hypothesis_testing.md)
 
 - [Back to Courses](/courses/README.md)

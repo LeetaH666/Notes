@@ -243,7 +243,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
 
     <br>
 
-3. (p.301 6.9) For each of the following distributions let $X_1,\ \cdots,\ X_n$ be a random sample. Find a minimal sufficient statistic for $\theta$.
+3. (p.301, 6.9) For each of the following distributions let $X_1,\ \cdots,\ X_n$ be a random sample. Find a minimal sufficient statistic for $\theta$.
 
     (a) Normal: $f(x \mid \theta) = \frac{1}{\sqrt{2 \pi}} e^{-(x - \theta)^{2} / 2},\ -\infty < x < \infty,\ -\infty < \theta < \infty$
 
@@ -352,7 +352,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
 
     <br>
 
-5. (p.301 6.15) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ a \theta^{2})$, where $a > 0$ is a known constant and $\theta > 0$.
+5. (p.301, 6.15) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ a \theta^{2})$, where $a > 0$ is a known constant and $\theta > 0$.
 
     (a) Show that the parameter space does not contain a two-dimensional open set.
 
@@ -388,7 +388,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
 
     <br>
 
-6. (p.302 6.21) Let $X$ be one observation from the pdf 
+6. (p.302, 6.21) Let $X$ be one observation from the pdf 
 
     $$
     f(x \mid \theta) = \left(\frac{\theta}{2} \right)^{\left\vert x \right\vert } (1 - \theta)^{1 - \left\vert x \right\vert },\quad x = -1,\ 0,\ 1,\ 0 \leqslant \theta \leqslant 1.
@@ -440,7 +440,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
 
 <span id="exercise7"></span>
 
-7. (p.303 6.30) Let $X_1,\ \cdots,\ X_n$ be a random sample from the pdf $f(x \mid \mu) = e^{-(x - \mu)}$, where $-\infty < \mu < x < \infty$.
+7. (p.303, 6.30) Let $X_1,\ \cdots,\ X_n$ be a random sample from the pdf $f(x \mid \mu) = e^{-(x - \mu)}$, where $-\infty < \mu < x < \infty$.
 
     (a) Show that $X_{(1)} = \min_{i} X_{i}$ is a complete sufficient statistic.
 

@@ -541,3 +541,90 @@ $$
     \phi(T) := \E[\widehat{\theta} \mid T] = \E\left[\frac{1}{n} \sum_{i=1}^{n} \frac{Y_i}{x_i} \ \middle\vert \ \sum_{i=1}^{n} \frac{Y_i}{x_i} \right] = \frac{1}{n} \sum_{i=1}^{n} \frac{Y_i}{x_i}.
     $$
     </details>
+
+    <br>
+
+3. (p.367, 7.66) The *jackknife* is a general technique for reducing bias in an estimator (Quenouille, 1956). A one-step jackknife estimator is defined as follows. Let $X_1,\ \cdots,\ X_n$ be a random sample, and let $T_n = T_n(X_1,\ \cdots,\ X_n)$ be some estimator of a parameter $\theta$. In order to “jackknife” $T_n$ we calculate the $n$ statistics $T_n^{(i)},\ i=1,\ 2,\ \cdots,\ n$, where $T_n^{(i)}$ is calculated just as $T_n$ but using the $n - 1$ observations with $X_{i}$ removed from the sample. The jackknife estimator of $\theta$, denoted by $\operatorname{JK}(T_n)$, is given by 
+
+    $$
+    \operatorname{JK}(T_n) = n T_n - \frac{n - 1}{n} \sum_{i=1}^{n} T_n^{(i)}.
+    $$
+
+    (In general, $\operatorname{JK}(T_n)$ will have a smaller bias than $T_n$. See Miller 1974 for a good review of the properties of the jackknife.)
+
+    Now, to be specific, let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Bernoulli}(\theta)$. The object is to estimate $\theta^{2}$.
+
+    (a) Show that the MLE of $\theta^{2}$, $(\sum_{i=1}^{n} X_{i} / n)^{2}$, is a biased estimator of $\theta^{2}$.
+
+    <details>
+    <summary>Proof:</summary>
+
+    Note that $Y := \sum_{i=1}^{n} X_{i} \sim \text{Binomial}(n,\ \theta)$. The expectation of $(Y / n)^{2}$ is 
+
+    $$
+    \begin{aligned}
+        \E[(Y / n)^{2}] &= \frac{1}{n^{2}} \E[Y^{2}] \\
+        &= \frac{1}{n^{2}} (\Var(Y) + (\E[Y])^{2}) \\
+        &= \frac{1}{n^{2}} [n \theta (1 - \theta) + n^{2} \theta^{2}] \\
+        &= \theta^{2} + \frac{\theta (1 - \theta)}{n} \\
+        &\neq \theta^{2},
+    \end{aligned}
+    $$
+
+    which means the MLE of $\theta^{2}$ is a biased estimator of $\theta^{2}$.
+    </details>
+
+    <br>
+
+    (b) Derive the one-step jackknife estimator based on the MLE.
+
+    <details>
+    <summary>Solution:</summary>
+
+    Define $T_n := (Y / n)^{2}$, then the one-step jackknife estimator is given by 
+
+    $$
+    \begin{aligned}
+        \operatorname{JK}(T_n) &= n T_n - \frac{n - 1}{n} \sum_{i=1}^{n} T_n^{(i)} \\
+        &= n \left(\frac{Y}{n} \right)^{2} - \frac{n - 1}{n} \sum_{i=1}^{n} \left(\frac{Y - X_{i}}{n - 1} \right)^{2} \\
+        &= \frac{1}{n} Y^{2} - \frac{1}{n (n - 1)} \sum_{i=1}^{n} (Y^{2} - 2 Y X_{i} + X_{i}^{2}) \\
+        &= \left[\frac{1}{n} - \frac{n - 2}{n (n - 1)} \right] Y^{2} - \frac{1}{n (n - 1)} \sum_{i=1}^{n} X_{i}^{2} \\
+        &= \left[\frac{1}{n} - \frac{n - 2}{n (n - 1)} \right] Y^{2} - \frac{1}{n (n - 1)} Y \\
+    \end{aligned}
+    $$
+
+    since $X_{i}$ is $0$ or $1$. Therefore, the one-step jackknife estimator based on the MLE is 
+
+    $$
+    \begin{aligned}
+        \operatorname{JK}(T_n) &= \left[\frac{1}{n} - \frac{n - 2}{n (n - 1)} \right] Y^{2} - \frac{1}{n (n - 1)} Y \\
+        &= \frac{\left(\sum_{i=1}^{n} X_{i} \right)^{2} - \sum_{i=1}^{n} X_{i}}{n (n - 1)}.
+    \end{aligned}
+    $$
+    </details>
+
+    <br>
+
+    (c) Show that the one-step jackknife estimator is an unbiased estimator of $\theta^{2}$. (In general, jackknifing only reduces bias. In this special case, however, it removes it entirely.)
+
+    <details>
+    <summary>Proof:</summary>
+
+    The expectation of $\operatorname{JK}(T_n)$ is given by 
+
+    $$
+    \E[\operatorname{JK}(T_n)] = \frac{\E[Y^{2}] - \E[Y]}{n (n - 1)} = \frac{n \theta (1 - \theta) + n^{2} \theta^{2} - n \theta}{n (n - 1)} = \theta^{2},
+    $$
+
+    which means $\operatorname{JK}(T_n)$ is an unbiased estimator of $\theta^{2}$.
+    </details>
+
+    <br>
+
+    (d) Is this jackknife estimator the best unbiased estimator of $\theta^{2}$? If so, prove it. If not, find the best unbiased estimator.
+
+    <details>
+    <summary>Solution:</summary>
+
+    Since $Y$ is a complete sufficient statistic for $\theta$, the jackknife estimator is the best unbiased estimator of its expected value, i.e., $\theta^{2}$.
+    </details>
