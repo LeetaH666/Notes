@@ -7,5 +7,6 @@
 - [Mid-term](/courses/advanced_statistics/mid-term.md)
 - [7 Point Estimation](/courses/advanced_statistics/7_point_estimation.md)
 - [8 Hypothesis Testing](/courses/advanced_statistics/8_hypothesis_testing.md)
+- [9 Interval Estimation](/courses/advanced_statistics/9_interval_estimation.md)
 
 - [Back to Courses](/courses/README.md)

@@ -48,4 +48,4 @@
 
 ### 无法升级 Conda
 
-通常当 conda 版本较低时，会提示使用 `conda update -n base -c conda-forge conda` 进行更新，如果使用这个命令更新失败，可以尝试使用 `conda update -n base -c defaults conda --repodata-fn=repodata.json` 进行更新，整个过程可能时间比较长，耐心等待即可。
+通常当 conda 版本较低时，会提示使用 `conda update -n base -c conda-forge conda` 进行更新，如果使用这个命令更新失败，可以尝试使用 `conda update -n base -c defaults conda --repodata-fn=repodata.json`（source: [GitHub Issue](https://github.com/conda/conda/issues/12519#issuecomment-1483106227)）进行更新，整个过程可能时间比较长，耐心等待即可。
