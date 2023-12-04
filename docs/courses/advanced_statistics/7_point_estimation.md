@@ -628,3 +628,120 @@ $$
 
     Since $Y$ is a complete sufficient statistic for $\theta$, the jackknife estimator is the best unbiased estimator of its expected value, i.e., $\theta^{2}$.
     </details>
+
+## Assignments
+
+### Textbook Exercises
+
+*7.13* (p.356) Let $X_1,\ \cdots,\ X_n$ be a sample from a population with double exponential pdf 
+
+$$
+f(x \mid \theta) = \frac{1}{2} e^{-\left\vert x - \theta \right\vert},\quad -\infty < x < \infty,\quad -\infty < \theta < \infty.
+$$
+
+Find the MLE of $\theta$. (*Hint*: Consider the case of even $n$ separate from that of odd $n$, and find the MLE in terms of the order statistics. A complete treatment of this problem is given in Norton 1984.)
+
+Soluion:
+
+*7.23* (p.359) If $S^{2}$ is the sample variance based on a sample of size $n$ from a Normal population, we know that $(n - 1) S^{2} / \sigma^{2}$ has a $\chi_{n - 1}^{2}$ distribution. The conjugate prior for $\sigma^{2}$ is the *inverted Gamma* pdf, $\text{IG}(\alpha,\ \beta)$, given by 
+
+$$
+\pi(\sigma^{2}) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \frac{1}{(\sigma^{2})^{\alpha + 1}} e^{-1 / (\beta \sigma^{2})},\quad 0 < \sigma^{2} < \infty,
+$$
+
+where $\alpha$ and $\beta$ are positive constants. Show that the posterior distribution of $\sigma^{2}$ is $\text{IG}(\alpha + \frac{n - 1}{2},\ [\frac{(n - 1) S^{2}}{2} + \frac{1}{\beta}]^{-1})$. Find the mean of this distribution, the Bayes estimator of $\sigma^{2}$.
+
+Solution:
+
+*7.38* (p.362) For each of the following distributions, let $X_1,\ \cdots,\ X_n$ be a random sample. Is there a function of $\theta$, say $g(\theta)$, for which there exists an unbiased estimator whose variance attains the Cramér-Rao Lower Bound? If so, find it. If not, show why not.
+
+(a) $f(x \mid \theta) = \theta x^{\theta - 1},\quad 0 < x < 1,\quad \theta > 0$
+
+Solution:
+
+(b) $f(x \mid \theta) = \frac{\log \theta}{\theta - 1} \theta^{x},\quad 0 < x < 1,\quad \theta > 1$
+
+Solution:
+
+*7.44* (p.363) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ 1)$. Show that the best unbiased estimator of $\theta^{2}$ is $\overline{X}^{2} - (1 / n)$. Calculate its variance (use Stein’s Identity from Section 3.6), and show that it is greater than the Cramér-Rao Lower Bound.
+
+Proof:
+
+*7.57* (p.365) Let $X_1,\ \cdots,\ X_{n+1}$ be i.i.d. $\text{Bernoulli}(p)$, and define the function $h(p)$ by 
+
+$$
+h(p) = P\left(\sum_{i=1}^{n} X_{i} > X_{n+1} \mid p \right),
+$$
+
+the probability that the first $n$ observations exceed the $(n + 1)$st.
+
+(a) Show that 
+
+$$
+T(X_1,\ \cdots,\ X_{n+1}) = 
+\begin{cases}
+    1\quad &\text{if } \sum_{i=1}^{n} X_{i} > X_{n+1} \\
+    0\quad &\text{otherwise}
+\end{cases}
+$$
+
+is an unbiased estimator of $h(p)$.
+
+Proof:
+
+(b) Find the best unbiased estimator of $h(p)$.
+
+*7.62* Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\theta,\ \sigma^{2})$ population, $\sigma^{2}$ known. Consider estimating $\theta$ using squared error loss. Let $\pi(\theta)$ be a $N(\mu,\ \tau^{2})$ prior distribution on $\theta$ and let $\delta^{\pi}$ be the Bayes estimator of $\theta$. Verify the following formulas for the risk function and Bayes risk.
+
+(a) For any constants $a$ and $b$, the estimator $\delta(\bm{x}) = a \overline{X} + b$ has risk function 
+
+$$
+R(\theta,\ \delta) = a^{2} \frac{\sigma^{2}}{n} + (b - (1 - a) \theta)^{2}.
+$$
+
+Proof:
+
+(b) Let $\eta = \sigma^{2} / (n \tau^{2} + \sigma^{2})$. The risk function for the Bayes estimator is 
+
+$$
+R(\theta,\ \delta^{\pi}) = (1 - \eta)^{2} \frac{\sigma^{2}}{n} + \eta^{2} (\theta - \mu)^{2}.
+$$
+
+Proof:
+
+(c) The Bayes risk for the Bayes estimator is 
+
+$$
+B(\pi,\ \delta^{\pi}) = \tau^{2} \eta.
+$$
+
+Proof:
+
+
+*7.65* (p.367) A loss function investigated by Zellner (1986) is the LINEX (LINear-EXponential) loss, a loss function that can handle asymmetries in a smooth way. The LINEX loss is given by 
+
+$$
+L(\theta,\ a) = e^{c (a - \theta)} - c (a - \theta) - 1,
+$$
+
+where $c$ is a positive constant. As the constant $c$ varies, the loss function varies from very asymmetric to almost symmetric.
+
+(a) For $c = 0.2,\ 0.5,\ 1$, plot $L(\theta,\ a)$ as a function of $a - \theta$.
+
+Solution:
+
+(b) If $X \sim F(x \mid \theta)$, show that the Bayes estimator of $\theta$, using a prior $\pi$, is given by $\delta^{\pi}(X) = \frac{-1}{c} \log \E[e^{-c \theta} \mid X]$.
+
+Proof:
+
+(c) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ \sigma^{2})$, where $\sigma^{2}$ is known, and suppose that $\theta$ has the noninformative piror $\pi(\theta) = 1$. Show that the Bayes estimator versus LINEX loss is given by $\delta^{B}(\overline{X}) = \overline{X} - (c \sigma^{2} / (2 n))$.
+
+Proof:
+
+(d) Calculate the posterior expected loss for $\delta^{B}(\overline{X})$ and $\overline{X}$ using LINEX loss.
+
+Solution:
+
+(d) Calculate the posterior expected loss for $\delta^{B}(\overline{X})$ and $\overline{X}$ using squared error loss.
+
+Solution:
