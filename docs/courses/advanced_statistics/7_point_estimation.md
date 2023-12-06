@@ -643,6 +643,24 @@ Find the MLE of $\theta$. (*Hint*: Consider the case of even $n$ separate from t
 
 Soluion:
 
+The likelihood function is 
+
+$$
+L(\theta \mid \bm{x}) = \prod_{i=1}^{n} \frac{1}{2} e^{-\left\vert x_i - \theta \right\vert} = \frac{1}{2^{n}} e^{-\sum_{i=1}^{n} \left\vert x_i - \theta \right\vert} = \frac{1}{2^{n}} e^{-\sum_{i=1}^{j(\theta)} (\theta - x_{(i)}) - \sum_{i=j(\theta)+1}^{n} (x_{(i)} - \theta)},
+$$
+
+where $x_{(i)}$s are observations of order statistics and $0 \leqslant j(\theta) \leqslant n$ is the maximal integer to let $x_{(j)} < \theta$. Also define $\sum_{i=1}^{0} y_i = \sum_{i=n+1}^{n} y_i = 0$ for any $y_i$.
+
+The log-likelihood function is given by 
+
+$$
+\ell(\theta \mid \bm{x}) = -n \log 2 - \sum_{i=1}^{j(\theta)} (\theta - x_{(i)}) - \sum_{i=j(\theta)+1}^{n} (x_{(i)} - \theta).
+$$
+
+Consider $n$ is even. If $j(\theta) < \frac{n}{2}$, the log-likelihood is increasing; if $j(\theta) = \frac{n}{2}$ we will cancel out all the $\theta$, which means the log-likelihood would be a constant; if $j > \frac{n}{2}$, the log-likelihood is decreasing. This means the MLE of $\theta$ is any constant between $x_{(n / 2)}$ and $x_{(n / 2 + 1)}$.
+
+Consider $n$ is odd. If $j(\theta) < \frac{n+1}{2}$, the log-likelihood is increasing; if $j(\theta) >= \frac{n+1}{2}$, the log-likelihood is decreasing. This means the MLE of $\theta$ is just $x_{(n+1) / 2}$.
+
 *7.23* (p.359) If $S^{2}$ is the sample variance based on a sample of size $n$ from a Normal population, we know that $(n - 1) S^{2} / \sigma^{2}$ has a $\chi_{n - 1}^{2}$ distribution. The conjugate prior for $\sigma^{2}$ is the *inverted Gamma* pdf, $\text{IG}(\alpha,\ \beta)$, given by 
 
 $$
@@ -659,9 +677,49 @@ Solution:
 
 Solution:
 
+The likelihood function is 
+
+$$
+L(\theta \mid \bm{x}) = \prod_{i=1}^{n} \theta x_i^{\theta - 1} = \theta^{n} \prod_{i=1}^{n} x_i^{\theta - 1}.
+$$
+
+The log-likelihood function is given by
+
+$$
+\ell(\theta \mid \bm{x}) = n \log \theta + (\theta - 1) \sum_{i=1}^{n} \log x_i.
+$$
+
+Take derivative w.r.t. $\theta$, we have 
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) = \frac{n}{\theta} + \sum_{i=1}^{n} \log x_i = -n \left(-\frac{1}{n}\sum_{i=1}^{n} \log x_i - \frac{1}{\theta} \right),
+$$
+
+which means $g(\theta) = \frac{1}{\theta}$. Since the pdf is an exponential family, we have $\E\left[\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) \right] = 0$, i.e., $-\frac{1}{n}\sum_{i=1}^{n} \log X_i$ is the UMVUE of $g(\theta)$ and attains the Cramér-Rao Lower Bound.
+
 (b) $f(x \mid \theta) = \frac{\log \theta}{\theta - 1} \theta^{x},\quad 0 < x < 1,\quad \theta > 1$
 
 Solution:
+
+The likelihood function is
+
+$$
+L(\theta \mid \bm{x}) = \prod_{i=1}^{n} \frac{\log \theta}{\theta - 1} \theta^{x_i} = \left(\frac{\log \theta}{\theta - 1} \right)^{n} \theta^{\sum_{i=1}^{n} x_i}.
+$$
+
+The log-likelihood function is given by
+
+$$
+\ell(\theta \mid \bm{x}) = n \log \log \theta - n \log(\theta - 1) + \left(\sum_{i=1}^{n} x_i \right) \log \theta.
+$$
+
+Take derivative w.r.t. $\theta$, we have
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) = \frac{n}{\theta \log \theta} - \frac{n}{\theta - 1} + \frac{\sum_{i=1}^{n} x_i}{\theta} = \frac{n}{\theta} \left[\frac{1}{n} \sum_{i=1}^{n} x_i - \left(\frac{\theta}{\theta - 1} - \frac{1}{\log \theta} \right) \right],
+$$
+
+which means $g(\theta) = \frac{\theta}{\theta - 1} - \frac{1}{\log \theta}$. Since the pdf is an exponential family, we have $\E\left[\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) \right] = 0$, i.e., $\frac{1}{n} \sum_{i=1}^{n} X_i$ is the UMVUE of $g(\theta)$ and attains the Cramér-Rao Lower Bound.
 
 *7.44* (p.363) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ 1)$. Show that the best unbiased estimator of $\theta^{2}$ is $\overline{X}^{2} - (1 / n)$. Calculate its variance (use Stein’s Identity from Section 3.6), and show that it is greater than the Cramér-Rao Lower Bound.
 
@@ -742,6 +800,6 @@ Proof:
 
 Solution:
 
-(d) Calculate the posterior expected loss for $\delta^{B}(\overline{X})$ and $\overline{X}$ using squared error loss.
+(e) Calculate the posterior expected loss for $\delta^{B}(\overline{X})$ and $\overline{X}$ using squared error loss.
 
 Solution:

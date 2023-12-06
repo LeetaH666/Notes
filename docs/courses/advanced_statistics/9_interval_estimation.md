@@ -119,6 +119,9 @@
 > [!DEFINITION]
 > A r.v. $Q(\bm{X},\ \theta)$ is a **pivotal quantity** (or **pivot**) if the distribution of $Q(\bm{X},\ \theta)$ is independent of all parameters, i.e., if $\bm{X} \sim F(\bm{x} \mid \theta)$, then $Q(\bm{X},\ \theta)$ has the same distribution for all values of $\theta$.
 
+> [!NOTE]
+> Recall that we have learned the [ancillary statistic](courses/advanced_statistics/6_principles_of_data_reduction.md#_623-ancillary-statistics) in Chapter 6. An ancillary statistic also does not depend on the parameter $\theta$. The difference between a pivot and an ancillary statistic is that *a pivot need not be a statistic*, i.e., it can be a function of $\theta$.
+
 > [!EXAMPLE|label:Gamma pivot]
 > Suppose that $X_1,\ \cdots,\ X_n$ are i.i.d. $\text{Exponential}(\lambda)$. Then $T := \sum_{i=1}^{n} X_{i}$ is a sufficient statistic for $\lambda$ and $T \sim \text{Gamma}(n,\ \lambda)$. To find a pivot, we can use the fact that $T / \lambda \sim \text{Gamma}(n,\ 1)$, which is independent of $\lambda$. Thus, $T / \lambda$ is a pivot.
 >
@@ -285,6 +288,225 @@
     $$
 
     where $f\left(\frac{n}{m} \lambda b \mid m,\ n \right)$ is the pdf of $F_{m,\ n}$.
+    </details>
+
+    <br>
+
+2. (p.453, 9.13) Let $X$ be a single observation from the $\text{Beta}(\theta,\ 1)$ pdf.
+
+    (a) Let $Y = -(\log X)^{-1}$. Evaluate the confidence coefficient of the set $[y / 2,\ y]$.
+
+    <details>
+    <summary>Solution:</summary>
+
+    The inverse transformation is $X = e^{-1 / Y}$, then the pdf of $Y$ is given by 
+
+    $$
+    \begin{aligned}
+        f_{Y}(y \mid \theta) &= f_{X}(e^{-1 / y} \mid \theta) \left\vert \frac{1}{y^{2}} e^{-1 / y} \right\vert \\
+        &= \frac{\Gamma(\theta + 1)}{\Gamma(\theta) \Gamma(1)} (e^{-1 / y})^{\theta - 1} \frac{1}{y^{2}} e^{-1 / y} \\
+        &= \frac{\theta}{y^{2}} e^{-\theta / y}.
+    \end{aligned}
+    $$
+
+    The confidence set can be written as 
+
+    $$
+    \left\{\theta: \frac{y}{2} \leqslant \theta \leqslant y \right\} = \left\{\theta: \theta \leqslant y \leqslant 2 \theta \right\},
+    $$
+
+    which means the coverage probability is 
+
+    $$
+    \begin{aligned}
+        P_{\theta}\left(\theta \leqslant Y \leqslant 2 \theta \right) &= \int_{\theta}^{2 \theta} \frac{\theta}{y^{2}} e^{-\theta / y} ~\mathrm{d}y \\
+        &= \int_{\frac{1}{\theta}}^{\frac{1}{2 \theta}} - \theta e^{-\theta / y} ~\mathrm{d}\frac{1}{y} \\
+        &= e^{-\theta / y} \big\vert_{y=\theta}^{2 \theta} \\
+        &= e^{-1 / 2} - e^{-1}.
+    \end{aligned}
+    $$
+
+    Since it does not depend on $\theta$, the confidence coefficient is just $e^{-1 / 2} - e^{-1}$.
+    </details>
+
+    <br>
+
+    (b) Find a pivotal quantity and use it to set up a confidence interval having the same confidence coefficient as the interval in part (a).
+
+    <details>
+    <summary>Solution:</summary>
+
+    Since $f_{X}(x) = \theta x^{\theta - 1},\ 0 < x < 1$, $T = X^{\theta}$ can be a good guess as a pivot. We then verify it. The inverse transformation is $X = T^{1 / \theta}$ and thus the pdf of $T$ is given by 
+
+    $$
+    f_{T}(t) = f_{X}(t^{1 / \theta}) \left\vert \frac{1}{\theta} t^{1 / \theta - 1} \right\vert = \theta t^{(\theta - 1) / \theta} \frac{1}{\theta} t^{(1 - \theta) / \theta} = 1,\quad 0 < t < 1,
+    $$ 
+
+    which has a $\text{Uniform}(0,\ 1)$ distribution. Therefore, $T = X^{\theta}$ is a pivot. To let the confidence interval having the same confidence coefficient as the interval in part (a), we set 
+
+    $$
+    \left\{\theta: a \leqslant x^{\theta} \leqslant b \right\} = \left\{\theta: \frac{\log b}{\log x} \leqslant \theta \leqslant \frac{\log a}{\log x} \right\}
+    $$
+
+    with any constants $a$ and $b$ s.t. $b - a = e^{-1 / 2} - e^{-1}$.
+    </details>
+
+    <br>
+
+    (c) Compare the two confidence intervals.
+
+    <details>
+    <summary>Solution:</summary>
+
+    The length of the confidence interval in part (a) is 
+
+    $$
+    \frac{y}{2} = -\frac{1}{2 \log x},
+    $$
+
+    while that in part (b) is 
+
+    $$
+    \frac{\log a - \log b}{\log x} = -\frac{2 \log \left(1 + \frac{e^{-1 / 2} - e^{-1}}{a} \right)}{2 \log x},
+    $$
+
+    which means the interval in part (b) can be shorter as $a$ goes larger. Since $\theta > 0$, a reasonable confidence interval should start with positive number, which means $\frac{\log b}{\log x}$ should be positive. As $a$ goes larger, $b$ would go larger and $\frac{\log b}{\log x}$ becomes negative. The largest $b$ we can choose is $b = 1$, and thus $a = 1 - e^{-1 / 2} + e^{-1}$. Hence, the shortest interval in part (b) is 
+
+    $$
+    \left\{\theta: 0 \leqslant \theta \leqslant \frac{\log (1 - e^{-1 / 2} + e^{-1})}{\log x} \right\}
+    $$
+
+    with length 
+
+    $$
+    -\frac{2 \log \left(1 + \frac{e^{-1 / 2} - e^{-1}}{1 - e^{-1 / 2} + e^{-1}} \right)}{2 \log x} = -\frac{2 \log \left(\frac{1}{1 - e^{-1 / 2} + e^{-1}} \right)}{2 \log x}.
+    $$
+
+    Since $\frac{1}{1 - e^{-1 / 2} + e^{-1}} < e$, the shortest confidence interval in part (b) is shorter than that in part (a).
+    </details>
+
+    <br>
+
+3. Let $X_1,\ \cdots,\ X_n$ be i.i.d. $f(x \mid \theta) = \frac{\theta}{x^{2}},\ x > \theta$.
+
+    (a) Find the MLE of $\theta$, denoted by $Y$.
+
+    <details>
+    <summary>Solution:</summary>
+
+    The likelihood function is 
+
+    $$
+    L(\theta \mid \bm{x}) = \prod_{i=1}^{n} \frac{\theta}{x_i^{2}}
+    $$
+
+    The log-likelihood function is
+
+    $$
+    \ell(\theta \mid \bm{x}) = n \log \theta - 2 \sum_{i=1}^{n} \log x_i.
+    $$
+
+    Take derivative w.r.t. $\theta$, we have 
+
+    $$
+    \frac{\mathrm{d}\ell}{\mathrm{d}\theta} = \frac{n}{\theta} > 0,
+    $$
+
+    which means the log-likelihood always increases as $\theta$ get larger. Therefore, the MLE of $\theta$ is $Y = \min_{i} X_i$.
+    </details>
+
+    <br>
+
+    (b) Prove that $Y / \theta$ is a pivotal quantity.
+
+    <details>
+    <summary>Proof:</summary>
+
+    The cdf of $X$ is 
+
+    $$
+    F_{X}(x) = \int_{\theta}^{x} \frac{\theta}{y^{2}} ~\mathrm{d}y = -\frac{\theta}{y} \bigg\vert_{y=\theta}^{x} = 1 - \frac{\theta}{x}.
+    $$
+
+    So the pdf of $Y$ is given by
+
+    $$
+    f_{Y}(y) = n [1 - F_{X}(y)]^{n - 1} f_{X}(y) = n \left(\frac{\theta}{y} \right)^{n - 1} \frac{\theta}{y^{2}} = \frac{n}{y} \left(\frac{\theta}{y} \right)^{n},\quad y > \theta.
+    $$
+
+    Denote $T := Y / \theta$. The inverse transformation is $Y = \theta T$ and thus the pdf of $T$ is given by 
+
+    $$
+    f_{T}(t) = f_{Y}(\theta t) \left\vert \theta \right\vert = \frac{n}{\theta t} \left(\frac{\theta}{\theta t} \right)^{n} \theta = n t^{-(n + 1)},\quad t > 1,
+    $$
+
+    which does not depend on $\theta$. Hence, $Y / \theta$ is a pivotal quantity.
+    </details>
+
+    <br>
+
+    (c) Show that the interval 
+
+    $$
+    \left\{\theta: \frac{y}{\alpha^{-1 / n}} \leqslant \theta \leqslant y \right\}
+    $$
+
+    is the shortest $1 - \alpha$ pivotal interval.
+
+    <details>
+    <summary>Proof:</summary>
+
+    Based on the pivotal quantity constructed in part (b), we can write the confidence interval as 
+
+    $$
+    \left\{\theta: a \leqslant \frac{y}{\theta} \leqslant b \right\} = \left\{\theta: \frac{y}{b} \leqslant \theta \leqslant \frac{y}{a} \right\}
+    $$
+
+    with any constants $a$ and $b$ satisfying 
+
+    $$
+    P_{\theta}\left(a \leqslant \frac{Y}{\theta} \leqslant b \right) = \int_{a}^{b} n t^{- (n + 1)} ~\mathrm{d}t = 1 - \alpha.
+    $$
+
+    Since the constraint tells us $b$ is the function of $a$, to find the shortest $1 - \alpha$ confidence interval is to minimize  
+
+    $$
+    \begin{aligned}
+        &h(a) = \frac{1}{a} - \frac{1}{b(a)} \\
+        \text{s.t.} \quad &\int_{a}^{b(a)} n t^{- (n + 1)} ~\mathrm{d}t = 1 - \alpha.
+    \end{aligned}
+    $$
+
+    Take derivative of both sides of the subjection w.r.t. $a$, we have 
+
+    $$
+    \begin{aligned}
+        n b^{-(n + 1)} \frac{\mathrm{d}b}{\mathrm{d}a} - n a^{-(n + 1)} &= 0 \\
+        \frac{\mathrm{d}b}{\mathrm{d}a} &= \frac{b^{n + 1}}{a^{n + 1}}.
+    \end{aligned}
+    $$
+
+    Then we take derivative of $h(a)$ w.r.t. $a$ to get 
+
+    $$
+    \frac{\mathrm{d}}{\mathrm{d}a} h(a) = -\frac{1}{a^{2}} + \frac{1}{b^{2}}\frac{\mathrm{d}b}{\mathrm{d}a} = \frac{1}{a^{2}} \left(\left(\frac{b}{a} \right)^{n - 1} - 1 \right) > 0
+    $$
+
+    since $b > a \geqslant 1$. This means the length of the $1 - \alpha$ confidence interval would be shorter as $a$ goes smaller. So take $a = 1$, we have 
+
+    $$
+    \begin{aligned}
+        \int_{1}^{b} n t^{-(n + 1)} ~\mathrm{d}t &= 1 - \alpha \\
+        1 - b^{-n} &= 1 - \alpha \\
+        b &= \alpha^{-1 / n},
+    \end{aligned}
+    $$
+
+    which means the shortest $1 - \alpha$ confidence interval is 
+
+    $$
+    \left\{\theta: \frac{y}{\alpha^{-1 / n}} \leqslant \theta \leqslant y \right\}.
+    $$
     </details>
     
 ## 9.3 Methods of Evaluating Interval Estimators
