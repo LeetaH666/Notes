@@ -24,7 +24,7 @@ Sandro Claudio Lera
     - *Statistics*: **discipline** that concerns the **collection**, organization, **analysis**, **interpretation**, and **presentation** of **data** (source: [WIKIPEDIA](https://en.wikipedia.org/wiki/Statistics)).
 - The difference between statistics and machine learning
     - **Machine learning is based on statistics**, but **not all** machine learning model **have good statistical properties**.
-    - Statistics is more on **inference** and **interpretation** of data, while machine learning is more on **prediction**. In other words, traditional statistical methods may be **less accurate on prediction but more interpretable**, while machine learning methods may be **more accurate on prediction but less interpretable**.
+    - Statistics is more on **inference** and **interpretation (description)** of data, while machine learning is more on **prediction**. In other words, traditional statistical methods may be **less accurate on prediction but more interpretable**, while machine learning methods may be **more accurate on prediction but less interpretable**.
     - Machine learning can easily have **more complex models** than traditional statistical methods.
 - The difference between artificial intelligence and machine learning
     - **AI includes machine learning** which is based on statistics, but also includes methods based on other fields, e.g., **biology**.
@@ -67,6 +67,10 @@ Sandro Claudio Lera
 
             ![](image/2023-12-05-15-23-31.png)
             </div align='center'>
+
+            - *ways to solve*: 
+                - copy the minority class or delete the majority class
+                - SMOTE
 
 - Opportunities and pitfalls of big data analysis
     - Opportunities
@@ -245,7 +249,7 @@ Sandro Claudio Lera
         $$
 
         Since $y_i$ is binary and $0 \leqslant p_{i} \leqslant 1$, the objective is **zero or positive**, which means the **minimum is zero**. When $y_i = 1$, we only need to consider the first term, and larger $p_{i}$ results in smaller objective; when $y_i = 0$, we only need to consider the second term, and smaller $p_{i}$ results in smaller objective.
-
+    - In practice, we would **not** let those whose probability is lower than 0.5 to be 0 and higher than 0.5 to be 1, because that would **lose information**. Instead, we can do a **consistency check**, i.e., to see the precision on each quintile. The expected shape is **U-shape** (the precision is high on both ends and low in the middle).
 - Classification performance evaluation
     - F1 Score
         - **Confusion Matrix**
@@ -282,38 +286,148 @@ Sandro Claudio Lera
         - **Recall** is also called **true positive rate (TPR)**: $\frac{\text{TP}}{\text{TP} + \text{FN}}$.
         - We can also define **false positive rate (FPR)** by $\frac{\text{FP}}{\text{FP} + \text{TN}}$.
         - Given **different thresholds**, we can get different TPR and FPR. Let **TPR be the y-axis** and **FPR be the x-axis**, we can get a curve called **ROC curve**.
+
+            <div align='center'>
+
+            ![](image/2023-12-07-09-42-02.png)
+            </div align='center'>
+
+            We can see that the larger the area under the ROC curve, the better the model. So we can use the **area under the curve (AUC)** to evaluate the model.
+
 - Generalization to multiple classes
+    - Just reformulate as multiple binary classification problems.
 
 ### 7. From Linear to Non-Linear Methods
 
 - Inductive Bias
-    - $f$, the algorithm, or the model, is called the inductive bias.
+    - $f$, the algorithm, or the model, is called the **inductive bias**.
+    - Formally, the inductive bias is a **set of assumptions** that we make about our ML algorithm to predict outputs of given input that it **has not yet encountered**.
 
 ### 8. Tree-Based Methods
 
 - Decision Trees
     - Overfit prevention
+        - Regularization: Keep the trees **shallow** (using different stopping criteria)
+            - Stop when **impurity** is below a threshold
+            - Stop when **next split** does not decrease impurity below a threshold
+            - Stop when the **number of datapoints** in a node is below a threshold
+            - Stop when the tree has reached some **maximum depth**
     - Impurity measures
+        - **Gini Impurity**: $G = p_{+}(1 - p_{+})$ where $p_{+}$ is the probability of being classfied as positive. The maximum is $0.5$ when $p_{+} = 0.5$, i.e., totally impure. The minimum is $0$ when $p_{+} = 0$ or $p_{+} = 1$, i.e., totally pure. For **multiple classes**, the Gini impurity is defined as $G = 1 - \sum_{i=1}^{K} p_{i}^{2}$.
+        - **Cross-Entropy**: $H = -\sum_{i\in \left\{+,\ - \right\}} p_{i} \log(p_{i})$. Similarly, the maximum is reached when $p_{+} = 0.5$, i.e., totally impure. The minimum is $0$ when $p_{+} = 0$ or $p_{+} = 1$, i.e., totally pure. For **multiple classes**, the cross-entropy is defined as $H = -\sum_{i=1}^{K} p_{i} \log(p_{i})$.
+        - **SSE**: for regression problems, we need **sum of squared error (SSE)** to be small.
     - Advantages and shortcomings
+        - *Advantages*
+            - can handle both classification and regression problems
+            - handles non-linearities
+            - few parameters to tune
+            - robust to noise and **outliers**
+            - robust to correlated features
+            - handles high-dimensional data very well
+            - easy to **interpret**
+            - once constructed, they are **computationally cheap** to use
+        - *Shortcomings*
+            - **sensitive to changes in the data**, even a slight change can cause very different splits
+                - *way to solve*: **boosting** and **bagging**
 - Ensembles and Bagging
-- Random Forest
+    - Bagging (**B**ootstrap **Agg**regat**ing**) is an ensemble algorithm
+        - *Procedure*: Fit multiple models on **bootstrapped datasets** and then aggregate them by **averaging** (regression) or **voting** (classification).
+        - *Problem of bagging*: if **a few features dominate**, all trees will **always split on them**, i.e., all trees look **similar** and the averaging does not help much. So we need **random forest**.
+- Random Forest: each node only gets to see a **random subset** of features
     - Hyper-parameters and K-Fold Cross-Validation
-    - Random forest is just **ensembling bootstrapped decision trees**
+        - The size of the feature subset is a hyper-parameter. A typical choice is **square root of the total number of features**.
+        - Other hyper-parameters:
+            - number of trees (larger is better but slower)
+            - decision criterion (Gini or cross-entropy)
+            - data fraction per split (somewhat important)
+            - tree depth (very important)
+            - fraction of data per final leaf (very important, but correlated with tree depth)
+        - Hyper-parameters would be tuned via K-Fold Cross-Validation.
 - Non-Greedy Trees
+    - Traditional decision trees are **greedy**. They optimize the **current** split, but not the **overall** split.
+
+        <div align='center'>
+
+        ![](image/2023-12-07-18-25-49.png)
+        </div align='center'>
+
+        In the example above, **every split is optimal** in the corresponding sub-problem, but the overall split is optimal **only if** $V_0 = V_1 = 0.5$. Thus, if we use a greedy algorithm, we may **not** find the optimal solution.
+    - *Smart Trees*: **smooth** and **symmetric**.
+        - Smooth: replace the **step-function** by a **sigmoid function**.
+        - Symmetric: split on the **same feature at each level** (kind of **regularization** because it is an extra structure).
+
+            <div align='center'>
+
+            ![](image/2023-12-07-18-33-39.png)
+            </div align='center'>
+
 - Boosting
+    - *Intuition*: train weak learners **sequentially**, each trying to **correct** its predecessor.
+    - Types: 
+        - **Gradient Boosting**
+
+            <div align='center'>
+
+            ![](image/2023-12-07-11-40-43.png)
+            </div align='center'>
+
+            It is just training a **regression tree** on the **residuals** of the previous tree. It is called **gradient** because the residuals are the **negative gradients of squared errors**. For other loss functions, the so-called “residuals” are generalized.
+
+            - **XGboost and LightGBM**: 2 popular implementations of gradient boosting. **The latter is faster**.
+        - AdaBoost
 
 ### 9. Overfitting
 
 - Definition of overfitting
+    - Model behaves **well** on the **training** data but **poorly** on the **validation** data.
 - Bias-Variance Tradeoff
+
+    <div align='center'>
+
+    ![](image/2023-12-07-18-39-05.png)
+    </div align='center'>
+
 - Benign Overfits
+    - When the number of parameters is at the **same level** as the number of datapoints, there is **only one exact solution** to fit the datapoints, so this kind of overfitting is **bad**.
+    - When the number of parameters is **much larger** than the number of datapoints, there are **many solutions** to fit the datapoints and we can **find a solution to minimize the validation error**, so this kind of overfitting is **benign**.
 - Generalization to real life
     - Goodhart’s Law
+        - When a measure becomes a target, it ceases to be a good measure.
 
 ### 10. Classification Methods
 
 - K-Nearest Neighbors
+    - *Intuition*: Find $k$ datapoints that are **closest to the new datapoint** and let them **represent** the new datapoint.
+    - For classification tasks, we can let the **majority class** of the $k$ datapoints to be the class of the new datapoint; for regression tasks, we just use the **average** of the $k$ datapoints to predict the new datapoint.
+    - $k$ is a **hyper-parameter**. If it is too **small**, the model **overfits the noise**; if it is too **large**, the model is **underfitting**.
+    - *Advantages*
+        - simple
+        - non-parametric
+        - works for both classification and regression
+    - *Shortcomings*
+        - **only for** numerical data, **not for** categorical data, because we need to define a **distance**.
+        - **Curse of dimensionality**: the number of datapoints required in the training set to qualify as large increases exponentially with the number of predictors (features).
 - The Naïve Bayes Classifier
+    - *Intuition*: Similar to KNN, find **all** the other datapoints with the **same** predictor (feature) profile (**numerical values would be binned to be categorical values**) and let them **represent** the new datapoint.
+    - *Exact formula*: 
+
+        Assume there are **independent** predictors $x_1,\ \cdots,\ x_p$ and classes $c_1,\ \cdots,\ c_k$, then by Bayes’ theorem, we have
+
+        $$
+        p(y = c_i \mid x_1, \cdots, x_p) = \frac{p(y = c_i) \prod_{j=1}^{p} p(x_j \mid c_i)}{\sum_{i=1}^{k} \left(\prod_{j=1}^{p} p(x_j \mid c_i) \right) p(c_i)}.
+        $$
+
+        Under this assumption, we only need to estimate $p(x_j \mid c_i)$ and $p(c_i)$ by the **actual data fractions** in the training set.
+    - *Advantages*
+        - simple
+        - computationally efficient
+        - good performance unless large number of predictors
+        - can handle both numerical and categorical data
+    - *Shortcomings*
+        - require large number of datapoints to estimate the probability
+        - may meet zero frequency problem (the new datapoint does not match any datapoint in the training set)
+        - strong assumption needed (independent features)
+        - cannot handle many features
 
 ### 11. Neural Nets
 
@@ -324,46 +438,106 @@ Sandro Claudio Lera
     - Dropout
 - Deep Learning
 - Convolutional Neural Networks
+    - *Assumptions*
+        - Translation invariance
+        - Rotation invariance
+        - Size invariance
+    - Under these assumptions, we can use a local filter to slide on the image rather than use a fully-connected layer, so the computation becomes **efficient**.
+    - **Convolution**: **element-wise production** of matrices and **sum** the results
+    - **Pooling**: to find **representations** of patches and **reduce the dimension**
+        - max pooling (use the max value)
+        - mean pooling (use the mean value)
+    - **Spatial dropout**: dropout the whole **channel**
 - Advantages and shortcomings
     - Structured vs unstructured data
+        - **Structured data**: tabular data including numerical and categorial data
+        - **Unstructured data**: text, image, vedio, ...
 
 ### 12. Autoencoders
 
 - Generative Adversarial (neural) Network
+    - **Generator**: create fake images
+    - **Discriminator**: distinguish fake and true images
 - Deepfakes
 
 ### 13. Feature Selection
 
 - Regularization
+    - Ridge, Lasso, Elastic-net
 - Feature Selection with Random Forests
+    - Mean decrease in impurity
+        - *Problem*: 
+            - it is derived **from the training set**, which means the importances can be high for features that are **not predictive** of the target variable, as long as the model has the capacity to use them to **overfit**.
+            - the importances of numerical features would be **naturally higher** than that of categorical features because we can **ask more questions** (**more possibilities to split**) for numerical features.
 - Feature Selection with Boruta
-- Principle Component Analysis
+    - *Procedure*:
+        - **Randomly rearrange** the features to get **shadow features**
+        - Train with original features and shadow features $K$ times to see **how many times** each original feature is **better** than all shadow features.
+        - Only features that better than all shadow features for **a specific number of times** would be selected.
+    - The decision threshold can be determined more quantitatively by Binomial test.
+- Principal Component Analysis
 - Pipelines and Model Stacking
 
 ### 14. Shapley Values
 
 - Shapley Values in Game Theory
+
+    <div align='center'>
+    
+    ![](image/2023-12-07-20-05-31.png)
+    </div align='center'>
+
+    Note that in the third column, we **remove all other features to let the feature concerned at the tail**.
+
 - Feature Selection with Shapley Values
+    - Shapley values attribute a model’s predictions to its input features, i.e., it measures how much the **output changes** with the input **included or excluded**.
 - Explainable AI
 
 ### 15. Text Mining
 
 - Text preprocessing
+    - **Tokenization**: divide a sentence to be words and punctuations (each is a token).
+    - **Stopword**: list of **frequently occuring** terms that are often removed (and, or, thus, ...)
+    - **Stemming**: reduce different variants of words to a common core (“he is running” becomes “he is run”)
+    - often transform uppercase to **lowercase**.
+    - **Feature abstraction replacement**: replace numbers by their meanings, e.g., phone numbers would be replaced by “PHONE”, email would be replaced by “EMAIL”. These will be **kept uppercase** to show difference.
 - TF-IDF
+    - We can represent the words (called **terms**) by their frequency, i.e., **term-frequency (TF)**.
+    - However, some words would be **over-represented**, e.g., “the”, “he”, etc.
+    - *Way to solve*: use **Term Frequency-Inverse Document Frequency (TF-IDF)** which is $\text{TF} \times \text{IDF}$ where $\text{IDF}$ is inverse document frequency of the word **across a set of documents**. If the frequency of a word across documents is high, it means we need to lower its value, so we times the inverse frequency.
 - N-Grams
+    - TF and TF-IDF count words only, **do not account for word-combinations**.
+    - *Way to solve*: use N-grams that counts N-word-combination.
+
+        <div align='center'>
+
+        ![](image/2023-12-07-21-24-42.png)
+        </div align='center'>
+
+        It is just an **extension** of TF or TF-IDF.
 - Word2vec
+    - TF, TF-IDF and N-grams have the same problem: synonyms and **similar words** (e.g., “mouse” and “rat”) give rise to completely **different** features (counts).
+    - *Way to solve*: text embedding using NN.
     - Limitations
+        - The embedding is not **context aware**.
+        - The word **ordering matters**.
     - Beyond word2vec
+        - Attention and Transformer
 
 ### 16. Concept Drift
 
-- Feature drift or covariate shift
-- Real concept drift
+- **Concept drift**: $p_t(X,\ y) \neq p_{t+1}(X,\ y)$
+- Since $p(X,\ y) = p(y \mid X) p(X)$, there are 2 **sources** of drift: 
+    - **Feature drift or covariate drift**: $p_t(X) \neq p_{t+1}(X)$
+    - **Real concept drift**: $p_t(y \mid X) \neq p_{t+1}(y \mid X)$
 
 ### 17. Time-Series
 
 - Temporal data
 - Descriptive vs. Predictive Modeling
+    - **Descriptive** (explanatory) task: quantify the effect of inputs on an outcome. Focus on the **coefficients** ($\beta$).
+    - **Predictive** task: predict the outcome value for new datapoints. Focus on the **predictions** ($\widehat{y}$).
+    - ML is more focused on prediction, while statistics more about description.
 - Time Series components
 - Benchmark
 - Stationarity
@@ -374,21 +548,75 @@ Sandro Claudio Lera
 
 - Supervised vs. Unsupervised machine learning
 - Distance metrics
-- Hierarchical (Agglomerative) Clustering
-    - Dendrogram
+    - non-negativity
+    - self-proximity: $d_{ii} = 0$
+    - symmetry
+    - triangle inequality
+- Hierarchical Clustering
+    - **Agglomerative** methods: from many clusters to one cluster
+        - Dendrogram: a tree-like diagram to show the linkage between clulsters
+    - **Divisive** methods: from one cluster to many clusters
 - Validating clusters
+    - interpretability
+    - stability
+    - seperation: the ratio of between-cluster variation to within-cluster variation
+    - number of clusters
 - The K-Means Algorithm
+    - heuristic to find $K$ clusters
 - DBSCAN
+    - density based
+    - *Intuition*: randomly select datapoints to see whether there are **lots of** datapoints (**exceeds a threshold**) in their **small neighborhoods**.
+    - *Advantages*
+        - no need to specify the number of clusters
+        - datapoints can be discarded as outliers
+        - fast
 
 ### 19. Complex Networks
 
 - Network basics
+    - Nodes
+    - Edges (can be directed)
+    - Any network can be represented by its **adjacency matrix**
 - Shortest path
+    - Dijkstra’s algorithm: can give the **exact solution** but **inefficient**, **not heuristic**.
 - Node-level centrality metrics
+    - **Degree centrality**: **how many edges** are connected to the node.
+    - **Closeness centrality**: **how close** the node is to the other nodes. **Average the shortest paths and take the reciprocal**.
+    - **Betweenness centrality**: the extent to which a given node lies on the shortest path between pairs of nodes, e.g., **how many shortest paths go through** the node.
+    - **Eigenvector centrality**: **a node is important if it is connected to important nodes**.
+        - The above statement can be formulated as 
+
+            $$
+            c_i = \frac{1}{\lambda} \sum_{j} a_{ij} c_j,
+            $$
+
+            where $c_i$ is the centrality of node $i$, $a_{ij}$ is the element in the adjacency matrix $A$, and $\lambda > 0$ is some constant. The equation means the **centrality of node $i$ is positively related to its friends’s centrality**.
+
+            Then, we can write the equation to be 
+
+            $$
+            A c = \lambda c,
+            $$
+
+            which is just an eigenvector problem, i.e., **centrality $c$ is the eigenvector of adjacency matrix $A$**.
+
+    - **Graph Random Walks**: a random walker starts at a randomly chose node, and then randomly walk to other connected nodes. We **count the relative visitation frequency as centrality**.
+        - If the random walk is **uniform** to each connected node, then the Graph Random Walks would **converge to eigenvector centrality**.
 - Edge centrality
     - Line graphs
+        - **Transform edges to nodes** and use the node centrality.
 - Network metrics
+    - **Degree distribution**: describe range of connectedness of the nodes.
+    - **Density**: ratio of the actual number of edges to the maximum number of potential edges.
 - Erdos-Renyi Graph
+    - For a fixed set of $n$ nodes, connect any 2 nodes with independent probability $p$, denoted by $G(n,\ p)$.
+    - The graph $G(n,\ p)$ has on average $\binom{n}{2} p$ edges.
+    - The **distribution of the degree** of any particular node is **binomial** with pmf:
+
+        $$
+        f(k) = \binom{n - 1}{k} p^{k} (1 - p)^{n - 1 - k}.
+        $$
+
 - Power-Laws
 - Small-World Networks
 - Clustering

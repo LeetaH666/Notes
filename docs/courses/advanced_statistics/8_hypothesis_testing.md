@@ -548,3 +548,281 @@ If $p(\bm{X})$ is a valid p-value, it is easy to construct a level $\alpha$ test
 
     Since $n$ should be an integer, we take $n = 11$.
     </details>
+
+## Assignments
+
+### Textbook Exercises
+
+*8.3* (p.402) Here, the LRT alluded in Example 8.2.9 will be derived. Suppose that we observe $m$ i.i.d. $\text{Bernoulli}(\theta)$ random variables, denoted by $Y_1,\ \cdots,\ Y_m$. Show that the LRT of $H_0: \theta \leqslant \theta_0$ versus $H_1: \theta > \theta_0$ will reject $H_0$ if $\sum_{i=1}^{m} Y_i > b$.
+
+Proof:
+
+The likelihood function is 
+
+$$
+L(\theta \mid \bm{y}) = \theta^{\sum_{i=1}^{m} y_i} (1 - \theta)^{m - \sum_{i=1}^{m} y_i}.
+$$
+
+The log-likelihood function is 
+
+$$
+\ell(\theta \mid \bm{y}) = \sum_{i=1}^{m} y_i \log \theta + (m - \sum_{i=1}^{m} y_i) \log (1 - \theta).
+$$
+
+Take derivative w.r.t. $\theta$, we have 
+
+$$
+\frac{\mathrm{d}\ell(\theta \mid \bm{y})}{\mathrm{d}\theta} = \frac{\sum_{i=1}^{m} y_i}{\theta} - \frac{m - \sum_{i=1}^{m} y_i}{1 - \theta} = \frac{\sum_{i=1}^{m} y_i - m \theta}{\theta (1 - \theta)}.
+$$
+
+When $\theta < \frac{1}{m} \sum_{i=1}^{m} y_i$, the derivative is positive and the likelihood is increasing; when $\theta > \frac{1}{m} \sum_{i=1}^{m} y_i$, the derivative is negative and the likelihood is decreasing. Thus, the MLE of $\theta$ is $\widehat{\theta} = \frac{1}{m} \sum_{i=1}^{m} Y_i$. When $\theta_0 < \widehat{\theta}$, the LRT statistic is 
+
+$$
+\lambda(\bm{y}) = \frac{L(\theta_0 \mid \bm{y})}{L(\widehat{\theta} \mid \bm{y})} = \left(\frac{\theta_0}{\widehat{\theta}} \right)^{m \widehat{\theta}} \left(\frac{1 - \theta_0}{1 - \widehat{\theta}} \right)^{m - m \widehat{\theta}}.
+$$
+
+When $\theta_0 \geqslant \widehat{\theta}$, the LRT statistic is just $1$. Then the rejection region is 
+
+$$
+\begin{aligned}
+    &\phantom{=}\left\{\bm{y}: \left(\frac{\theta_0}{\widehat{\theta}} \right)^{m \widehat{\theta}} \left(\frac{1 - \theta_0}{1 - \widehat{\theta}} \right)^{m - m \widehat{\theta}} \leqslant c \right\} \\
+    &= \left\{\bm{y}: m \widehat{\theta} (\log \theta_0 - \log \widehat{\theta}) + (m - m \widehat{\theta}) (\log (1 - \theta_0) - \log (1 - \widehat{\theta})) \leqslant \log c \right\}.
+\end{aligned}
+$$
+
+Take derivative of the LHS w.r.t. $\widehat{\theta}$, we have 
+
+$$
+\begin{aligned}
+    \frac{\mathrm{d}\text{LHS}}{\mathrm{d}\widehat{\theta}} &= m (\log \theta_0 - \log \widehat{\theta}) - m - m (\log(1 - \theta_0) - \log(1 - \widehat{\theta})) + m \\
+    &= m \log \frac{\theta_0 (1 - \widehat{\theta})}{\widehat{\theta} (1 - \theta_0)} < 0
+\end{aligned}
+$$
+
+since $\theta_0 < \widehat{\theta}$, which means the LHS is decreasing as $\widehat{\theta}$ increases. Thus, the rejection region can be written as 
+
+$$
+\left\{\bm{y}: \widehat{\theta} \geqslant \frac{b}{m} \right\}
+$$
+
+for some constant $b$, i.e. we reject $H_0$ if $\sum_{i=1}^{m} Y_i > b$. 
+
+*8.23* (p.405) Suppose $X$ is one observation from a population with $\text{Beta}(\theta,\ 1)$ pdf.
+
+(a) For testing $H_0: \theta \leqslant 1$ versus $H_1: \theta > 1$, find the size and sketch the power function of the test that rejects $H_0$ if $X > \frac{1}{2}$.
+
+Solution:
+
+See [Exercise 2](#exercises) in Section 8.3.
+
+(b) Find the most powerful level $\alpha$ test of $H_0: \theta = 1$ versus $H_1: \theta = 2$.
+
+Solution:
+
+See [Exercise 2](#exercises) in Section 8.3.
+
+(c) Is there a UMP test of $H_0: \theta \leqslant 1$ versus $H_1: \theta > 1$? If so, find it. If not, prove so.
+
+Solution:
+
+See [Exercise 2](#exercises) in Section 8.3.
+
+*8.28* (p.406) Let $f(x \mid \theta)$ be the logistic location pdf
+
+$$
+f(x \mid \theta) = \frac{e^{(x - \theta)}}{(1 + e^{(x - \theta)})^{2}},\quad -\infty < x < \infty,\quad -\infty < \theta < \infty.
+$$
+
+(a) Show that this family has an MLR.
+
+Proof:
+
+$\forall \theta_2 > \theta_1$, the likelihood ratio is
+
+$$
+\frac{f(x \mid \theta_2)}{f(x \mid \theta_1)} = \frac{e^{(x - \theta_2)} / (1 + e^{(x - \theta_2)})^{2}}{e^{(x - \theta_1)} / (1 + e^{(x - \theta_1)})^{2}} = e^{\theta_1 - \theta_2} \left(\frac{1 + e^{x - \theta_1}}{1 + e^{x - \theta_2}} \right)^{2}.
+$$
+
+Denote $g(x) = \frac{1 + e^{x - \theta_1}}{1 + e^{x - \theta_2}}$, the derivative of it w.r.t. $x$ is 
+
+$$
+\begin{aligned}
+    \frac{\mathrm{d}g(x)}{\mathrm{d}x} &= \frac{e^{x - \theta_1} (1 + e^{x - \theta_2}) - (1 + e^{x - \theta_1}) e^{x - \theta_2}}{(1 + e^{x - \theta_2})^{2}} \\
+    &= \frac{e^{x - \theta_1} - e^{x - \theta_2}}{(1 + e^{x - \theta_2})^{2}} \\
+    &> 0,
+\end{aligned}
+$$
+
+which means $g(x)$ is increasing in $x$ and thus the likelihood ratio is increasing in $x$. Therefore, the family has an MLR.
+
+(b) Based on one observation, $X$, find the most powerful size $\alpha$ test of $H_0: \theta = 0$ versus $H_1: \theta = 1$. For $\alpha = 0.2$, find the size of the Type II Error.
+
+Solution:
+
+By Neyman-Pearson Lemma, the test with rejection region $R = \left\{x: \frac{f(x \mid 1)}{f(x \mid 0)} > k \right\}$ for some $k \geqslant 0$ is the UMP size $\alpha$ test, where $\alpha = \int_{R} f(x \mid 0) ~\mathrm{d}x$. From part (a) we have known that the likelihood ratio is increasing in $x$, so the rejection region can be written as $R = \left\{x: x > c \right\}$ for some constant $c$. Then, we have 
+
+$$
+\alpha = \int_{c}^{\infty} \frac{e^{x}}{(1 + e^{x})^{2}} ~\mathrm{d}x = \int_{1 + e^{c}}^{\infty} \frac{1}{(1 + e^{x})^{2}} ~\mathrm{d}(1 + e^{x}) = \frac{1}{1 + e^{c}},
+$$
+
+i.e., $e^{c} = \frac{1}{\alpha} - 1$. So the Type II error is given by 
+
+$$
+\begin{aligned}
+    \beta &= \int_{-\infty}^{c} \frac{e^{x - 1}}{(1 + e^{x - 1})^{2}} ~\mathrm{d}x \\
+    &= \int_{1}^{1 + e^{c - 1}} \frac{1}{(1 + e^{x - 1})^{2}} ~\mathrm{d}(1 + e^{x - 1}) \\
+    &= 1 - \frac{1}{1 + e^{c - 1}} \\
+    &= \frac{1 - \alpha}{1 + (e - 1) \alpha}.
+\end{aligned}
+$$
+
+Hence, when $\alpha = 0.2$, we have $\beta \approx 0.5954$.
+
+(c) Show that the test in part (b) is UMP size $\alpha$ for testing $H_0: \theta \leqslant 0$ versus $H_1: \theta > 0$. What can be said about UMP tests in general for the logistic location family?
+
+Solution:
+
+Since $x$ is a sufficient statistic for $\theta$, and from part (a) we have proved the family has an MLR, by Karlin-Rubin Theorem, we can show that the test in part (b) is UMP size $\alpha$ for testing $H_0: \theta \leqslant 0$ versus $H_1: \theta > 0$. In general, the UMP test for testing $H_0: \theta \leqslant \theta_0$ versus $H_1: \theta > \theta_0$ is the test that rejects $H_0$ if $x > c$ for some constant $c$.
+
+*8.33* (p.407) Let $X_1,\ \cdots,\ X_n$ be a random sample from the $\text{Uniform}(\theta,\ \theta + 1)$ distribution. To test $H_0: \theta = 0$ versus $H_1: \theta > 0$, use the test 
+
+$$
+\text{reject } H_0 \text{ if } Y_n \geqslant 1 \text{ or } Y_1 \geqslant k,
+$$
+
+where $k$ is a constant, $Y_1 = \min \left\{X_1,\ \cdots,\ X_n \right\}$, $Y_n = \max \left\{X_1,\ \cdots,\ X_n \right\}$.
+
+(a) Determine $k$ so that the test will have size $\alpha$.
+
+Solution:
+
+For $k \leqslant 1$, the size of the test is given by
+
+$$
+\begin{aligned}
+    \alpha &= P_{0}(Y_n \geqslant 1 \text{ or } Y_1 \geqslant k) \\
+    &= P_{0}(Y_1 \geqslant k) \\
+    &= P_{0}(X_1 \geqslant k,\ X_2 \geqslant k,\ \cdots X_n \geqslant k) \\
+    &= (1 - k)^{n}.
+\end{aligned}
+$$
+
+Thus, choosing $k = 1 - \alpha^{1 / n}$ would make the test have size $\alpha$.
+
+(b) Find an expression for the power function of the test in part (a).
+
+Solution:
+
+The power function is given by 
+
+$$
+\begin{aligned}
+    \beta(\theta) &= P_{\theta}(Y_n \geqslant 1 \text{ or } Y_1 \geqslant k) \\
+    &= P_{\theta}(Y_n \geqslant 1) + P_{\theta}(Y_1 \geqslant k) - P_{\theta}(Y_n \geqslant 1,\ Y_1 \geqslant k) \\
+    &= 1 - P_{\theta}(Y_n < 1) + P_{\theta}(Y_n < 1,\ Y_1 \geqslant k) \\
+    &= 1 - (P_{\theta}(X < 1))^{n} + (P_{\theta}(k \leqslant X < 1))^{n}.
+\end{aligned}
+$$
+
+For $k \leqslant 1$, there are several cases: 
+
+1. when $\theta + 1 \leqslant k$, i.e., $\theta \leqslant k - 1 < 0$, we have $\beta(\theta) = 1 - 1^{n} = 0$;
+2. when $\theta < k < \theta + 1 < 1$, i.e., $k - 1 < \theta < k,\ \theta < 0$, we have $\beta(\theta) = 1 - 1^{n} + (\theta + 1 - k)^{n} = (\theta + 1 - k)^{n}$;
+3. when $k \leqslant \theta < \theta + 1 \leqslant 1$, i.e., $k \leqslant \theta < 0$, we have $\beta(\theta) = 1 - 1^{n} + 1 = 1$.
+4. when $k < \theta < 1 < \theta + 1$, i.e., $k < \theta < 1,\ \theta > 0$, we have $\beta(\theta) = 1 - (1 - \theta)^{n} + (1 - \theta)^{n} = 1$;
+5. when $\theta \geqslant 1$, we have $\beta(\theta) = 1 - 0 + 0 = 1$;
+6. when $\theta \leqslant k$ and $\theta + 1 \geqslant 1$, i.e., $\theta \leqslant k,\ \theta \geqslant 0$, we have $\beta(\theta) = 1 - (1 - \theta)^{n} + (1 - k)^{n} = 1 + \alpha - (1 - \theta)^{n}$;
+
+Rearrange the cases, we have 
+
+$$
+\beta(\theta) = \begin{cases}
+    0,\ &\theta \leqslant k - 1 \\
+    (\theta + 1 - k)^{n},\ &k - 1 < \theta < 0 \\
+    1 + \alpha - (1 - \theta)^{n} ,\ &0 \leqslant \theta \leqslant k \\
+    1,\ &\theta > k.
+\end{cases}
+$$
+
+(c) Prove that the test is UMP size $\alpha$.
+
+Proof:
+
+We can easily find that $(Y_1,\ Y_n)$ are a sufficient statistic for $\theta$. 
+
+(d) Find values of $n$ and $k$ so that the UMP $0.10$ level test will have power at least $0.8$ if $\theta > 1$.
+
+Solution:
+
+
+*8.38* (p.408) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ \sigma^{2})$, where $\theta_0$ is a specified value of $\theta$ and $\sigma^{2}$ is unknown. We are interested in testing 
+
+$$
+H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0.
+$$
+
+(a) Show that the test that rejects $H_0$ when 
+
+$$
+\left\vert \overline{X} - \theta_0 \right\vert > t_{n-1,\ \alpha / 2} \sqrt{S^{2} / n}
+$$
+
+is a test of size $\alpha$.
+
+(b) Show that the test in part (a) can be derived as an LRT.
+
+*8.52* (p.412) Consider testing $H_0: \theta \in \bigcup_{j=1}^{k} \Theta_j$. For each $j=1,\ \cdots,\ k$, let $p_j(\bm{x})$ denote a valid p-value for testing $H_{0j}: \theta \in \Theta_j$. Let $p(\bm{x}) = \max_{1\leqslant j\leqslant k} p_j(\bm{x})$.
+
+(a) Show that $p(\bm{X})$ is a valid p-value for testing $H_0$.
+
+(b) Show that the $\alpha$ level test defined by $p(\bm{X})$ is the same as an $\alpha$ level IUT defined in terms of individual tests based on the $p_j(\bm{x})$s.
+
+*8.54* (p.413) The discrepancies between p-values and Bayes posterior probabilities are not as dramatic in the one-sided problem, as is discussed by Casella and Berger (1987) and also mentioned in the Miscellanea section. Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\theta,\ \sigma^{2})$ population, and suppose that the hypotheses to be tested are 
+
+$$
+H_0: \theta \leqslant 0 \quad \text{versus} \quad H_1: \theta > 0.
+$$
+
+The prior distribution on $\theta$ is $N(0,\ \tau^{2})$, $\tau^{2}$ known, which is symmetric about the hypothesis in the sense that $P(\theta \leqslant 0) = P(\theta > 0) = \frac{1}{2}$.
+
+(a) Calculate the posterior probability that $H_0$ is true, $P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n)$.
+
+(b) Find an expression for the p-value corresponding to a value of $\overline{x}$, using tests that reject for large values of $\overline{X}$.
+
+(c) For the special case $\sigma^{2} = \tau^{2} = 1$, compare $P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n)$ and the p-value for values of $\overline{x} > 0$. Show that the Bayes probability is always greater than the p-value.
+
+(d) Using the expression derived in parts (a) and (b), show that 
+
+$$
+\lim\limits_{\tau^{2} \to \infty} P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n) = \text{p-value},
+$$
+
+an equality that does not occur in the two-sided problem.
+
+### Additional Exercises
+
+1. Suppose $X$ is an observable random variable with its pdf given by $f(x),\ x \in \mathbb{R}$. Consider two functions defined as follows: 
+
+    $$
+    f_0(x) = \begin{cases}
+        \frac{3}{64} x^{2},\ &0 \leqslant x \leqslant 4 \\
+        0,\ &\text{elsewhere},
+    \end{cases}
+    $$
+
+    $$
+    f_1(x) = \begin{cases}
+        \frac{3}{16} \sqrt{x},\ &0 \leqslant x \leqslant 4 \\
+        0,\ &\text{elsewhere}.
+    \end{cases}
+    $$
+
+    Determine the most powerful level $\alpha$ test for $H_0: f(x) = f_0(x)$ versus $H_1: f(x) = f_1(x)$ in the simplest implementable form. Also, find the power of the test when $\alpha = 0.01$.
+
+2. Let $X_1,\ \cdots,\ X_m$ be i.i.d. from a distribution with pdf $f(x) = \mu x^{\mu - 1}$ for $0 < x < 1$ where $\mu > 0$. Let $Y_1,\ \cdots,\ Y_n$ be i.i.d. from a distribution with pdf $g(y) = \theta y^{\theta - 1}$ for $0 < y < 1$ where $\theta > 0$. Let 
+
+    $$
+    T_1 = \sum_{i=1}^{m} \log(X_{i}) \quad \text{and} \quad T_2 = \sum_{j=1}^{n} \log(Y_i).
+    $$
+
+    Find the likelihood ratio test statistic for $H_0: \mu = \theta$ versus $H_1: \mu \neq \theta$ in terms of $T_1,\ T_2$ and the MLEs.

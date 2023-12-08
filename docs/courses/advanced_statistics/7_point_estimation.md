@@ -725,10 +725,58 @@ which means $g(\theta) = \frac{\theta}{\theta - 1} - \frac{1}{\log \theta}$. Sin
 
 Proof:
 
+Since $N(\theta,\ 1)$ is an exponential family, we can easily find that $\overline{X}$ is a complete sufficient statistc for $\theta$. And since $\overline{X}^{2} - (1 / n)$ is a function of $\overline{X}$, it is also a complete sufficient statistic. The expectation of $\overline{X}^{2} - (1 / n)$ is given by 
+
+$$
+\E[\overline{X}^{2} - (1 / n)] = \Var(\overline{X}) + (\E[\overline{X}])^{2} - \frac{1}{n} = \frac{1}{n} + \theta^{2} - \frac{1}{n} = \theta^{2},
+$$
+
+which means $\overline{X}^{2} - (1 / n)$ is the best unbiased estimator of $\theta^{2}$. To calculate the variance of it, we need to calculate $\E[\overline{X}^{4}]$. By [Stein’s Lemma](courses/advanced_statistics/3_common_families_of_distributions.md#_362-identities), let $g(\overline{X}) = \overline{X}^{3} + \theta \overline{X}^{2}$, we have 
+
+$$
+\begin{aligned}
+    \E[g(\overline{X}) (\overline{X} - \theta)] &= \Var(\overline{X}) \E[g'(\overline{X})] \\
+    \E[\overline{X}^{4} - \theta^{2} \overline{X}^{2}] &= \frac{1}{n} \E[3 \overline{X}^{2} + 2 \theta \overline{X}] \\
+    \E[\overline{X}^{4}] &= \left(\frac{3}{n} + \theta^{2} \right) \E[\overline{X}^{2}] + \frac{2 \theta}{n} \E[\overline{X}] \\
+    \E[\overline{X}^{4}] &= \left(\frac{3}{n} + \theta^{2} \right) \left(\frac{1}{n} + \theta^{2} \right)  + \frac{2 \theta^{2}}{n} \\
+    \E[\overline{X}^{4}] &= \frac{3}{n^{2}} + \frac{6}{n} \theta^{2} + \theta^{4}.
+\end{aligned}
+$$
+
+Thus, the variance of $\overline{X}^{2} - (1 / n)$ is given by
+
+$$
+\begin{aligned}
+    \Var(\overline{X}^{2} - (1 / n)) &= \E[\overline{X}^{4}] - (\E[\overline{X}^{2}])^{2} \\
+    &= \frac{3}{n^{2}} + \frac{6}{n} \theta^{2} + \theta^{4} - \left(\frac{1}{n} + \theta^{2} \right)^{2} \\
+    &= \frac{3}{n^{2}} + \frac{6}{n} \theta^{2} + \theta^{4} - \frac{1}{n^{2}} - \frac{2}{n} \theta^{2} - \theta^{4} \\
+    &= \frac{2}{n^{2}} + \frac{4}{n} \theta^{2}.
+\end{aligned}
+$$
+
+The Fisher information of $\theta$ is given by
+
+$$
+\begin{aligned}
+    I(\theta) &= -\E\left[\frac{\mathrm{d}^{2}}{\mathrm{d}\theta^{2}} \log f(x \mid \theta) \right] \\
+    &= -\E\left[\frac{\mathrm{d}^{2}}{\mathrm{d}\theta^{2}} \left(-\frac{(x - \theta)^{2}}{2} \right)  \right] \\
+    &= -\E\left[\frac{\mathrm{d}}{\mathrm{d}\theta} \left(x - \theta \right)  \right] \\
+    &= 1.
+\end{aligned}
+$$
+
+Thus, the Cramér-Rao Lower Bound of $\theta^{2}$ is given by
+
+$$
+\frac{\left(\frac{\mathrm{d}\theta^{2}}{\mathrm{d}\theta} \right)^{2}}{n I(\theta)} = \frac{4 \theta^{2}}{n} < \frac{2}{n^{2}} + \frac{4}{n} \theta^{2},
+$$
+
+which means the variance of $\overline{X}^{2} - (1 / n)$ is greater than the Cramér-Rao Lower Bound.
+
 *7.57* (p.365) Let $X_1,\ \cdots,\ X_{n+1}$ be i.i.d. $\text{Bernoulli}(p)$, and define the function $h(p)$ by 
 
 $$
-h(p) = P\left(\sum_{i=1}^{n} X_{i} > X_{n+1} \mid p \right),
+h(p) = P\left(\sum_{i=1}^{n} X_{i} > X_{n+1} \ \middle\vert \ p \right),
 $$
 
 the probability that the first $n$ observations exceed the $(n + 1)$st.
@@ -747,7 +795,64 @@ is an unbiased estimator of $h(p)$.
 
 Proof:
 
+The expectation of $T$ is 
+
+$$
+\E_{p}[T] = 1 \cdot P\left(\sum_{i=1}^{n} X_{i} > X_{n + 1} \ \middle\vert \ p \right) + 0 = h(p),
+$$
+
+which means $T$ is an unbiased estimator of $h(p)$.
+
 (b) Find the best unbiased estimator of $h(p)$.
+
+Solution:
+
+Since $\text{Bernoulli}(p)$ is an exponential family, we can easily find that $\sum_{i=1}^{n+1} X_{i}$ is a complete sufficient statistic for $p$. By Rao-Blackwell Theorem, the best unbiased estimator of $h(p)$ is given by
+
+$$
+\phi(T) := \E\left[T \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} \right].
+$$
+
+For any integer $y \geqslant 0$, we have 
+
+$$
+\begin{aligned}
+    \E\left[T \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} = y \right] &= P\left(\sum_{i=1}^{n} X_{i} > X_{n + 1} \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} = y \right) \\
+    &= \frac{P\left(\sum_{i=1}^{n} X_{i} > X_{n + 1},\ \sum_{i=1}^{n+1} X_{i} = y \right)}{P\left(\sum_{i=1}^{n+1} X_{i} = y \right) } \\
+    &= \frac{P\left(y > 2 X_{n + 1},\ \sum_{i=1}^{n+1} X_{i} = y \right)}{\binom{n+1}{y} p^{y} (1 - p)^{n + 1 - y}}.
+\end{aligned}
+$$
+
+When $y = 0$, the numerator is $0$; when $0 < y \leqslant 2$, the numerator is 
+
+$$
+\begin{aligned}
+    P\left(X_{n + 1} = 0,\ \sum_{i=1}^{n} X_{i} = y \right) &= (1 - p) \binom{n}{y} p^{y} (1 - p)^{n - y} \\
+    &= \binom{n}{y} p^{y} (1 - p)^{n + 1 - y}
+\end{aligned}
+$$
+
+and thus 
+
+$$
+\E\left[T \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} = y \right] = \frac{\binom{n}{y} p^{y} (1 - p)^{n + 1 - y}}{\binom{n+1}{y} p^{y} (1 - p)^{n + 1 - y}} = \frac{n - y + 1}{n + 1};
+$$
+
+when $y > 2$, the numerator is just $P\left(\sum_{i=1}^{n+1} X_{i} = y \right)$ and thus $\E\left[T \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} = y \right] = 1$. Therefore, the UMVUE of $h(p)$ is 
+
+$$
+\E\left[T \ \middle\vert \ \sum_{i=1}^{n+1} X_{i} = y \right] = 
+\begin{cases}
+    0,\ &y=0 \\
+    \frac{n - y + 1}{n + 1},\ &0 < y \leqslant 2 \\
+    1,\ &y > 2,
+\end{cases}
+$$
+
+for integer $y \geqslant 0$.
+
+> [!ATTENTION]
+> No need to do the following!
 
 *7.62* Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\theta,\ \sigma^{2})$ population, $\sigma^{2}$ known. Consider estimating $\theta$ using squared error loss. Let $\pi(\theta)$ be a $N(\mu,\ \tau^{2})$ prior distribution on $\theta$ and let $\delta^{\pi}$ be the Bayes estimator of $\theta$. Verify the following formulas for the risk function and Bayes risk.
 
