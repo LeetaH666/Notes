@@ -618,17 +618,77 @@ Sandro Claudio Lera
         $$
 
 - Power-Laws
+
+    $$
+    f(x) = \frac{\alpha - 1}{x_{\text{min}}}\left(\frac{x}{x_{\text{min}}} \right)^{-\alpha} \propto \frac{1}{x^{\alpha}}
+    $$
+    
+    for some $x_{\text{min}} > 0$.
+
+    - Power-law distributed quantities:
+        - wealth and income
+        - citations
+        - links in the world wide web
+        - size of cities
+        - size of firms
+        - trading volumes on the stock market
+        - word frequencies
+        - revenue from movies
+        - ...
+    - When $\alpha < 1$, the integral of pdf is **undefined**, i.e., the distribution is **improper**.
+    - When $\alpha < 2$, $\E[X] = \int_{x_{\text{min}}}^{\infty} x f(x) ~\mathrm{d}x $ is **undefined**.
+    - When $\alpha < 3$, the **variance is undefined**.
+    - Thus, if we want to **use CLT**, we need $\alpha \geqslant 3$.
+    - The power-law distribution is **scale-free** since $f(c x) \propto c^{-a} x^{-a} \propto f(x)$.
+
+        <div align='center'>
+                
+        ![](image/2023-12-09-17-06-30.png)
+        Real world scale-free pictures
+        </div align='center'>
+
+    - **Preferential attachment (The rich get richer)**: Assume a network is growing one node at the time. Each new node $j$ will connect to already an existing node $i$ with some probability that is **proportional to node $i$’s degree** $k_i$, i.e. $p_{i} \propto k_i$. In other words, the more connections a node already has, the more likely it is to attract new ones.
+        - This kind of graph is called **Barabassi-Albert (BA) graphs**.
 - Small-World Networks
+    - The shortest path between any 2 nodes is **short**, e.g., 6 degrees of separation means the **average** shortest path is 6.
 - Clustering
+    - A graph is **complete** if each node is connected to **all** other nodes.
+    - A **subgraph** of a graph is the graph induced by a **subset** of nodes.
+    - **Clique**: complete subgraph.
+        - Finding **all** cliques in a graph is **NP-hard**.
+    - **Clustering coefficient**: 
+
+        $$
+        C = \frac{\text{numbers of all closed triplets}}{\text{numbers of all triplets}} = \frac{3 \times \text{numbers of triangles}}{\text{numbers of all triplets}}.
+        $$
+
+        <div align='center'>
+
+        ![](image/2023-12-09-17-22-14.png)
+        </div align='center'>
+
 - The Friendship Paradox (FP)
+    - Most people have fewer friends than their friends have, on average. (kind of power laws, few people have lots of friends)
+    - Average friends: $\mu = \frac{1}{n} \sum_{i=1}^{n} d_i$ where $d_i$ is the number of friends person $i$ has.
+    - **Average friends of friends**: $\sum_{i=1}^{n} d_i^{2} / \sum_{i=1}^{n} d_i = \mu + \frac{\sigma^{2}}{\mu} > \mu$ where $\sigma^{2} = \sum_{i=1}^{n} d_i^{2} / n - \mu^{2}$.
 - Bipartite Graphs
+    - A graph whose nodes can be divided into 2 **disjoint** and **independent** sets.
+        
+        <div align='center'>
+
+        ![](image/2023-12-09-17-30-37.png)
+        </div align='center'>
+
 - Meaning of Complexity
+    - **Complex is more than complicated**: Complex means **the whole is more than the sum of its parts**.
 
 ### 20. Machine Learning on Networks
 
 - Node2vec
+    - *Intuition*: interpret **each node as a word** and **each random walk as a sentence**.
 - Generalized network embeddings
 - Graph Convolutional Neural Networks
+    - *Intuition*: **apply filters on the adjacency matrix**.
 
 ### 21. Applications to Finance
 
