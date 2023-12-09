@@ -2,4 +2,5 @@
 - [[FIN5018]Mathematical Finance (数理金融)](/courses/mathematical_finance/README.md)
 - [[FIN5022]Financial Statement Analysis (财务报表分析)](/courses/financial_statements_analysis/README.md)
 - [[MAT8031]Advanced Statistics (高等统计学)](/courses/advanced_statistics/README.md)
+- [[MAT8033]Big Data Analytics and Application (大数据分析与应用)](/courses/big_data_analytics_and_application/QE_syllabus.md)
 - [Back to Homepage](README.md)
