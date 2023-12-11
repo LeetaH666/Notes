@@ -641,7 +641,8 @@ $$
 
 Find the MLE of $\theta$. (*Hint*: Consider the case of even $n$ separate from that of odd $n$, and find the MLE in terms of the order statistics. A complete treatment of this problem is given in Norton 1984.)
 
-Soluion:
+<details>
+<summary>Soluion:</summary>
 
 The likelihood function is 
 
@@ -660,6 +661,9 @@ $$
 Consider $n$ is even. If $j(\theta) < \frac{n}{2}$, the log-likelihood is increasing; if $j(\theta) = \frac{n}{2}$ we will cancel out all the $\theta$, which means the log-likelihood would be a constant; if $j > \frac{n}{2}$, the log-likelihood is decreasing. This means the MLE of $\theta$ is any constant between $x_{(n / 2)}$ and $x_{(n / 2 + 1)}$.
 
 Consider $n$ is odd. If $j(\theta) < \frac{n+1}{2}$, the log-likelihood is increasing; if $j(\theta) >= \frac{n+1}{2}$, the log-likelihood is decreasing. This means the MLE of $\theta$ is just $x_{(n+1) / 2}$.
+</details>
+
+<br>
 
 *7.23* (p.359) If $S^{2}$ is the sample variance based on a sample of size $n$ from a Normal population, we know that $(n - 1) S^{2} / \sigma^{2}$ has a $\chi_{n - 1}^{2}$ distribution. The conjugate prior for $\sigma^{2}$ is the *inverted Gamma* pdf, $\text{IG}(\alpha,\ \beta)$, given by 
 
@@ -669,13 +673,42 @@ $$
 
 where $\alpha$ and $\beta$ are positive constants. Show that the posterior distribution of $\sigma^{2}$ is $\text{IG}(\alpha + \frac{n - 1}{2},\ [\frac{(n - 1) S^{2}}{2} + \frac{1}{\beta}]^{-1})$. Find the mean of this distribution, the Bayes estimator of $\sigma^{2}$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
+
+Denote $T := (n - 1) S^{2} / \sigma^{2}$, which has a $\chi_{n - 1}^{2}$ distribution, we have 
+
+$$
+f(t \mid \sigma^{2}) = \frac{1}{2^{\frac{n - 1}{2}} \Gamma(\frac{n - 1}{2})} t^{\frac{n - 1}{2} - 1} e^{-\frac{t}{2}}.
+$$
+
+Then, we have 
+
+$$
+f(s^{2} \mid \sigma^{2}) = \frac{1}{2^{\frac{n - 1}{2}} \Gamma(\frac{n - 1}{2})} \left[\frac{(n - 1) s^{2}}{\sigma^{2}} \right]^{\frac{n - 1}{2} - 1} e^{-\frac{(n - 1) s^{2}}{2 \sigma^{2}}} \frac{n - 1}{\sigma^{2}}.
+$$
+
+The posterior distribution of $\sigma^{2}$ is given by
+
+$$
+\begin{aligned}
+    \pi(\sigma^{2} \mid s^{2}) &\propto f(s^{2} \mid \sigma^{2}) \pi(\sigma^{2}) \\
+    &\propto \left[\frac{(n - 1) s^{2}}{\sigma^{2}} \right]^{\frac{n - 1}{2} - 1} e^{-\frac{(n - 1) s^{2}}{2 \sigma^{2}}} \frac{n - 1}{\sigma^{2}} \frac{1}{(\sigma^{2})^{\alpha + 1}} e^{-1 / (\beta \sigma^{2})} \\
+    &\propto \frac{1}{(\sigma^{2})^{\alpha + \frac{n - 1}{2} + 1}} \exp\left[-\frac{1}{\left[\frac{(n - 1) S^{2}}{2} + \frac{1}{\beta} \right] ^{-1} \sigma^{2}} \right],
+\end{aligned}
+$$
+
+which means it is the pdf of $\text{IG}(\alpha + \frac{n - 1}{2},\ [\frac{(n - 1) S^{2}}{2} + \frac{1}{\beta}]^{-1})$.
+</details>
+
+<br>
 
 *7.38* (p.362) For each of the following distributions, let $X_1,\ \cdots,\ X_n$ be a random sample. Is there a function of $\theta$, say $g(\theta)$, for which there exists an unbiased estimator whose variance attains the Cramér-Rao Lower Bound? If so, find it. If not, show why not.
 
 (a) $f(x \mid \theta) = \theta x^{\theta - 1},\quad 0 < x < 1,\quad \theta > 0$
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 The likelihood function is 
 
@@ -696,10 +729,14 @@ $$
 $$
 
 which means $g(\theta) = \frac{1}{\theta}$. Since the pdf is an exponential family, we have $\E\left[\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) \right] = 0$, i.e., $-\frac{1}{n}\sum_{i=1}^{n} \log X_i$ is the UMVUE of $g(\theta)$ and attains the Cramér-Rao Lower Bound.
+</details>
+
+<br>
 
 (b) $f(x \mid \theta) = \frac{\log \theta}{\theta - 1} \theta^{x},\quad 0 < x < 1,\quad \theta > 1$
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 The likelihood function is
 
@@ -720,10 +757,14 @@ $$
 $$
 
 which means $g(\theta) = \frac{\theta}{\theta - 1} - \frac{1}{\log \theta}$. Since the pdf is an exponential family, we have $\E\left[\frac{\mathrm{d}}{\mathrm{d}\theta}\ell(\theta \mid \bm{x}) \right] = 0$, i.e., $\frac{1}{n} \sum_{i=1}^{n} X_i$ is the UMVUE of $g(\theta)$ and attains the Cramér-Rao Lower Bound.
+</details>
+
+<br>
 
 *7.44* (p.363) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ 1)$. Show that the best unbiased estimator of $\theta^{2}$ is $\overline{X}^{2} - (1 / n)$. Calculate its variance (use Stein’s Identity from Section 3.6), and show that it is greater than the Cramér-Rao Lower Bound.
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
 Since $N(\theta,\ 1)$ is an exponential family, we can easily find that $\overline{X}$ is a complete sufficient statistc for $\theta$. And since $\overline{X}^{2} - (1 / n)$ is a function of $\overline{X}$, it is also a complete sufficient statistic. The expectation of $\overline{X}^{2} - (1 / n)$ is given by 
 
@@ -772,6 +813,9 @@ $$
 $$
 
 which means the variance of $\overline{X}^{2} - (1 / n)$ is greater than the Cramér-Rao Lower Bound.
+</details>
+
+<br>
 
 *7.57* (p.365) Let $X_1,\ \cdots,\ X_{n+1}$ be i.i.d. $\text{Bernoulli}(p)$, and define the function $h(p)$ by 
 
@@ -793,7 +837,8 @@ $$
 
 is an unbiased estimator of $h(p)$.
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
 The expectation of $T$ is 
 
@@ -802,10 +847,14 @@ $$
 $$
 
 which means $T$ is an unbiased estimator of $h(p)$.
+</details>
+
+<br>
 
 (b) Find the best unbiased estimator of $h(p)$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 Since $\text{Bernoulli}(p)$ is an exponential family, we can easily find that $\sum_{i=1}^{n+1} X_{i}$ is a complete sufficient statistic for $p$. By Rao-Blackwell Theorem, the best unbiased estimator of $h(p)$ is given by
 
@@ -850,6 +899,9 @@ $$
 $$
 
 for integer $y \geqslant 0$.
+</details>
+
+<br>
 
 > [!ATTENTION]
 > No need to do the following!
