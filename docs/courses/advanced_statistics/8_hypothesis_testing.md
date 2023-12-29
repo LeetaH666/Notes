@@ -555,7 +555,8 @@ If $p(\bm{X})$ is a valid p-value, it is easy to construct a level $\alpha$ test
 
 *8.3* (p.402) Here, the LRT alluded in Example 8.2.9 will be derived. Suppose that we observe $m$ i.i.d. $\text{Bernoulli}(\theta)$ random variables, denoted by $Y_1,\ \cdots,\ Y_m$. Show that the LRT of $H_0: \theta \leqslant \theta_0$ versus $H_1: \theta > \theta_0$ will reject $H_0$ if $\sum_{i=1}^{m} Y_i > b$.
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
 The likelihood function is 
 
@@ -606,26 +607,41 @@ $$
 $$
 
 for some constant $b$, i.e. we reject $H_0$ if $\sum_{i=1}^{m} Y_i > b$. 
+</details>
+
+<br>
 
 *8.23* (p.405) Suppose $X$ is one observation from a population with $\text{Beta}(\theta,\ 1)$ pdf.
 
 (a) For testing $H_0: \theta \leqslant 1$ versus $H_1: \theta > 1$, find the size and sketch the power function of the test that rejects $H_0$ if $X > \frac{1}{2}$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 See [Exercise 2](#exercises) in Section 8.3.
+</details>
+
+<br>
 
 (b) Find the most powerful level $\alpha$ test of $H_0: \theta = 1$ versus $H_1: \theta = 2$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 See [Exercise 2](#exercises) in Section 8.3.
+</details>
+
+<br>
 
 (c) Is there a UMP test of $H_0: \theta \leqslant 1$ versus $H_1: \theta > 1$? If so, find it. If not, prove so.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 See [Exercise 2](#exercises) in Section 8.3.
+</details>
+
+<br>
 
 *8.28* (p.406) Let $f(x \mid \theta)$ be the logistic location pdf
 
@@ -635,7 +651,8 @@ $$
 
 (a) Show that this family has an MLR.
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
 $\forall \theta_2 > \theta_1$, the likelihood ratio is
 
@@ -654,10 +671,14 @@ $$
 $$
 
 which means $g(x)$ is increasing in $x$ and thus the likelihood ratio is increasing in $x$. Therefore, the family has an MLR.
+</details>
+
+<br>
 
 (b) Based on one observation, $X$, find the most powerful size $\alpha$ test of $H_0: \theta = 0$ versus $H_1: \theta = 1$. For $\alpha = 0.2$, find the size of the Type II Error.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 By Neyman-Pearson Lemma, the test with rejection region $R = \left\{x: \frac{f(x \mid 1)}{f(x \mid 0)} > k \right\}$ for some $k \geqslant 0$ is the UMP size $\alpha$ test, where $\alpha = \int_{R} f(x \mid 0) ~\mathrm{d}x$. From part (a) we have known that the likelihood ratio is increasing in $x$, so the rejection region can be written as $R = \left\{x: x > c \right\}$ for some constant $c$. Then, we have 
 
@@ -677,12 +698,19 @@ $$
 $$
 
 Hence, when $\alpha = 0.2$, we have $\beta \approx 0.5954$.
+</details>
+
+<br>
 
 (c) Show that the test in part (b) is UMP size $\alpha$ for testing $H_0: \theta \leqslant 0$ versus $H_1: \theta > 0$. What can be said about UMP tests in general for the logistic location family?
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 Since $x$ is a sufficient statistic for $\theta$, and from part (a) we have proved the family has an MLR, by Karlin-Rubin Theorem, we can show that the test in part (b) is UMP size $\alpha$ for testing $H_0: \theta \leqslant 0$ versus $H_1: \theta > 0$. In general, the UMP test for testing $H_0: \theta \leqslant \theta_0$ versus $H_1: \theta > \theta_0$ is the test that rejects $H_0$ if $x > c$ for some constant $c$.
+</details>
+
+<br>
 
 *8.33* (p.407) Let $X_1,\ \cdots,\ X_n$ be a random sample from the $\text{Uniform}(\theta,\ \theta + 1)$ distribution. To test $H_0: \theta = 0$ versus $H_1: \theta > 0$, use the test 
 
@@ -694,7 +722,8 @@ where $k$ is a constant, $Y_1 = \min \left\{X_1,\ \cdots,\ X_n \right\}$, $Y_n =
 
 (a) Determine $k$ so that the test will have size $\alpha$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 For $k \leqslant 1$, the size of the test is given by
 
@@ -708,10 +737,14 @@ $$
 $$
 
 Thus, choosing $k = 1 - \alpha^{1 / n}$ would make the test have size $\alpha$.
+</details>
+
+<br>
 
 (b) Find an expression for the power function of the test in part (a).
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
 The power function is given by 
 
@@ -743,17 +776,185 @@ $$
     1,\ &\theta > k.
 \end{cases}
 $$
+</details>
+
+<br>
 
 (c) Prove that the test is UMP size $\alpha$.
 
-Proof:
+<details>
+<summary>Proof:</summary>
 
-We can easily find that $(Y_1,\ Y_n)$ are a sufficient statistic for $\theta$. 
+Since the joint pdf can be written as
+
+$$
+f(\bm{x} \mid \theta) = I_{(\theta,\ \infty)}(y_1) I_{(-\infty,\ \theta + 1)}(y_n),
+$$
+
+we can easily find that $(Y_1,\ Y_n)$ are a sufficient statistic for $\theta$. For any $\theta' > 0$, we fix the test as $H_0: \theta = 0$, $H_1: \theta = \theta'$. Then by Neyman-Pearson Lemma, the test with rejection region 
+
+$$
+R = \left\{\bm{x}: f(\bm{x} \mid \theta') > k' f(\bm{x} \mid 0)\right\}
+$$
+
+for some $k' \geqslant 0$ is the UMP size $\alpha$ test, where $\alpha = \int_{R} f(\bm{x} \mid 0) ~\mathrm{d}\bm{x}$. For $\theta' < k$, take $k' = 1$, then 
+
+$$
+f(\bm{x} \mid \theta') < f(\bm{x} \mid 0) \implies 0 < y_1 < \theta' < k, \\
+f(\bm{x} \mid \theta') > f(\bm{x} \mid 0) \implies 1 < y_n < \theta' + 1,
+$$
+
+which means the test is the same as rejecting $H_0$ if $Y_n \geqslant 1$ or $Y_1 \geqslant k$. For $\theta' \geqslant k$, from part (b) we know that the power is $1$ (the most powerful). Thus, the test is UMP size $\alpha$.
+</details>
+
+<br>
 
 (d) Find values of $n$ and $k$ so that the UMP $0.10$ level test will have power at least $0.8$ if $\theta > 1$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
 
+Since $\alpha = 0.10$, we have $k = 1 - \alpha^{1 / n} = 1 - 0.1^{1 / n}$. For $\theta > 1 > k$, from part (b) we know that the power is $1 \geqslant 0.8$ for all $n$.
+</details>
+
+<br>
+
+*8.37* (p.407-408) Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\theta,\ \sigma^{2})$ population. Consider testing 
+
+$$
+H_0: \theta \leqslant \theta_0 \quad \text{versus} \quad H_1: \theta > \theta_0.
+$$
+
+(a) If $\sigma^{2}$ is known, show that the test that rejects $H_0$ when 
+
+$$
+\overline{X} > \theta_0 + z_{\alpha} \sqrt{\sigma^{2} / n}
+$$
+
+is a test of size $\alpha$. Show that the test can be derived as an LRT.
+
+<details>
+<summary>Proof:</summary>
+
+The size of the test is 
+
+$$
+P_{\theta_0}(\overline{X} > \theta_0 + z_{\alpha} \sqrt{\sigma^{2} / n}) = P_{\theta_0}\left(\frac{\overline{X} - \theta_0}{\sigma / \sqrt{n}} > z_{\alpha} \right) = \alpha.
+$$
+
+The likelihood ratio is
+
+$$
+\lambda(\bm{x}) = \frac{\sup_{\theta \leqslant \theta_0} L(\theta \mid \bm{x})}{\sup_{\theta} L(\theta \mid \bm{x})}.
+$$
+
+Since $\overline{X}$ is the unrestricted MLE of $\theta$, if $\overline{x} \leqslant \theta_0$, then the likelihood ratio is $1$; if $\overline{x} > \theta_0$, then the likelihood ratio is
+
+$$
+\begin{aligned}
+    \lambda(\bm{x}) = \frac{L(\theta_0 \mid \bm{x})}{L(\overline{x} \mid \bm{x})} &= \frac{(2 \pi \sigma^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \theta_0)^{2} / (2 \sigma^{2}) \right]}{(2 \pi \sigma^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \overline{x})^{2} / (2 \sigma^{2}) \right]} \\
+    &= \exp \left\{\sum_{i=1}^{n} \left[(x_i - \overline{x})^{2} - (x_i - \theta_0)^{2} \right]  / (2 \sigma^{2}) \right\} \\
+    &= \exp \left\{-n (\overline{x} - \theta_0)^{2} / (2 \sigma^{2}) \right\},
+\end{aligned}
+$$
+
+which means the rejection region is 
+
+$$
+\begin{aligned}
+    R &= \left\{\bm{x}: \exp \left\{-n (\overline{x} - \theta_0)^{2} / (2 \sigma^{2}) \right\} \leqslant c \right\} \\
+    &= \left\{\bm{x}: \overline{x} \geqslant \theta_0 + \sqrt{-2 \log c} \sqrt{\sigma^{2} / n} \right\}
+\end{aligned}
+$$
+
+for some constant $0 < c \leqslant 1$. Let $\sqrt{-2 \log c} = z_{\alpha}$ and we can get the size $\alpha$ test.
+</details>
+
+<br>
+
+(b) Show that the test in part (a) is a UMP test.
+
+<details>
+<summary>Proof:</summary>
+
+$\forall \theta_2 > \theta_1$, the likelihood ratio is
+
+$$
+\begin{aligned}
+    \frac{L(\theta_2 \mid \bm{x})}{L(\theta_1 \mid \bm{x})} &= \frac{(2 \pi \sigma^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \theta_2)^{2} / (2 \sigma^{2}) \right]}{(2 \pi \sigma^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \theta_1)^{2} / (2 \sigma^{2}) \right]} \\
+    &= \exp \left\{\sum_{i=1}^{n} \left[(x_i - \theta_1)^{2} - (x_i - \theta_2)^{2} \right]  / (2 \sigma^{2}) \right\}\\
+    &= \exp \left\{n \left[2 \overline{x} (\theta_2 - \theta_1) + \theta_1^{2} - \theta_2^{2} \right]  / (2 \sigma^{2}) \right\}\\
+    &= \exp \left\{n [2 \overline{x} - (\theta_1 + \theta_2)] (\theta_2 - \theta_1)  / (2 \sigma^{2}) \right\},
+\end{aligned}
+$$
+
+which is an increasing function in $\overline{x}$ and thus the family of pdfs for $\overline{X}$ has an MLR. Note that $\overline{X}$ is a sufficient statistic for $\theta$, by Karlin-Rubin Theorem, the test in part (a) is a UMP test.
+</details>
+
+<br>
+
+(c) If $\sigma^{2}$ is unknown, show that the test that rejects $H_0$ when
+
+$$
+\overline{X} > \theta_0 + t_{n-1,\ \alpha} \sqrt{S^{2} / n}
+$$
+
+is a test of size $\alpha$. Show that the test can be derived as an LRT.
+
+<details>
+<summary>Proof:</summary>
+
+The size of the test is
+
+$$
+P_{\theta_0}(\overline{X} > \theta_0 + t_{n-1,\ \alpha} \sqrt{S^{2} / n}) = P_{\theta_0}\left(\frac{\overline{X} - \theta_0}{S / \sqrt{n}} > t_{n-1,\ \alpha} \right) = \alpha.
+$$
+
+The likelihood ratio is
+
+$$
+\lambda(\bm{x}) = \frac{\sup_{\theta \leqslant \theta_0,\ \sigma^{2}} L(\theta,\ \sigma^{2} \mid \bm{x})}{\sup_{\theta,\ \sigma^{2}} L(\theta,\ \sigma^{2} \mid \bm{x})}.
+$$
+
+Since $\overline{X}$ and $\widehat{\sigma}^{2} := \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^{2} = \frac{n - 1}{n} S^{2}$ are the unrestricted MLEs of $\theta$ and $\sigma^{2}$ respectively, if $\overline{x} \leqslant \theta_0$, then the likelihood ratio is $1$; if $\overline{x} > \theta_0$, the restricted MLE for $\theta$ is $\theta_0$ and the log-likelihood function for $\sigma^{2}$ is
+
+$$
+\begin{aligned}
+    \ell(\sigma^{2} \mid \bm{x},\ \theta_0) &= -\frac{n}{2} \log (2 \pi) - \frac{n}{2} \log \sigma^{2} - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} (x_i - \theta_0)^{2}.
+\end{aligned}
+$$
+
+Take derivative w.r.t. $\sigma^{2}$ and let it be $0$, we have 
+
+$$
+\frac{\mathrm{d}\ell(\sigma^{2} \mid \bm{x},\ \theta_0)}{\mathrm{d}\sigma^{2}} = -\frac{n}{2 \sigma^{2}} + \frac{1}{2 (\sigma^{2})^{2}} \sum_{i=1}^{n} (x_i - \theta_0)^{2} = 0 \\
+\implies \sigma^{2} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \theta_0)^{2},
+$$
+
+which means the restricted MLE for $\sigma^{2}$ is $\widehat{\sigma}_0^{2} := \frac{1}{n} \sum_{i=1}^{n} (X_i - \theta_0)^{2} = (\overline{X} - \theta_0)^{2} + \frac{n - 1}{n} S^{2}$, then the likelihood ratio is
+
+$$
+\begin{aligned}
+    \lambda(\bm{x}) = \frac{L(\theta_0,\ \widehat{\sigma}_0^{2} \mid \bm{x})}{L(\overline{x},\ \widehat{\sigma}^{2} \mid \bm{x})} &= \frac{(2 \pi \widehat{\sigma}_0^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \theta_0)^{2} / (2 \widehat{\sigma}_0^{2}) \right]}{(2 \pi \widehat{\sigma}^{2})^{-n / 2} \exp \left[-\sum_{i=1}^{n} (x_i - \overline{x})^{2} / (2 \widehat{\sigma}^{2}) \right]} \\
+    &= \left(\frac{\widehat{\sigma}^{2}}{\widehat{\sigma}_{0}^{2}} \right)^{n / 2},
+\end{aligned}
+$$
+
+which means the rejection region is
+
+$$
+\begin{aligned}
+    R &= \left\{\bm{x}: \left(\frac{\widehat{\sigma}^{2}}{\widehat{\sigma}_{0}^{2}} \right)^{n / 2} \leqslant c \right\} \\
+    &= \left\{\bm{x}: \widehat{\sigma}^{2} \leqslant c^{\frac{2}{n}} \widehat{\sigma}_{0}^{2} \right\} \\
+    &= \left\{\bm{x}: \frac{n - 1}{n} s^{2} \leqslant c^{\frac{2}{n}} \left[(\overline{x} - \theta_0)^{2} + \frac{n - 1}{n} s^{2} \right] \right\} \\
+    &= \left\{\bm{x}: \overline{x} \geqslant \theta_0 + \sqrt{(n - 1) \left(c^{-\frac{2}{n}} - 1 \right)} \sqrt{\frac{s^{2}}{n}} \right\} \\
+\end{aligned}
+$$
+
+for some constant $0 < c \leqslant 1$. Let $\sqrt{(n - 1) \left(c^{-\frac{2}{n}} - 1 \right)} = t_{n-1,\ \alpha}$ and we can get the size $\alpha$ test.
+</details>
+
+<br>
 
 *8.38* (p.408) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $N(\theta,\ \sigma^{2})$, where $\theta_0$ is a specified value of $\theta$ and $\sigma^{2}$ is unknown. We are interested in testing 
 
@@ -769,13 +970,49 @@ $$
 
 is a test of size $\alpha$.
 
+<details>
+<summary>Proof:</summary>
+
+The size of the test is
+
+$$
+\begin{aligned}
+    \alpha &= P_{\theta_0}(\left\vert \overline{X} - \theta_0 \right\vert > t_{n-1,\ \alpha / 2} \sqrt{S^{2} / n}) \\
+    &= P_{\theta_0}\left(\frac{\left\vert \overline{X} - \theta_0 \right\vert}{S / \sqrt{n}} > t_{n-1,\ \alpha / 2} \right) \\
+    &= 2 P_{\theta_0}\left(\frac{\overline{X} - \theta_0}{S / \sqrt{n}} > t_{n-1,\ \alpha / 2} \right) \\
+    &= \alpha.
+\end{aligned}
+$$
+</details>
+
+<br>
+
 (b) Show that the test in part (a) can be derived as an LRT.
 
-*8.52* (p.412) Consider testing $H_0: \theta \in \bigcup_{j=1}^{k} \Theta_j$. For each $j=1,\ \cdots,\ k$, let $p_j(\bm{x})$ denote a valid p-value for testing $H_{0j}: \theta \in \Theta_j$. Let $p(\bm{x}) = \max_{1\leqslant j\leqslant k} p_j(\bm{x})$.
+<details>
+<summary>Proof:</summary>
 
-(a) Show that $p(\bm{X})$ is a valid p-value for testing $H_0$.
+From 8.37(c) we know that the likelihood ratio is
 
-(b) Show that the $\alpha$ level test defined by $p(\bm{X})$ is the same as an $\alpha$ level IUT defined in terms of individual tests based on the $p_j(\bm{x})$s.
+$$
+\lambda(\bm{x}) = \left(\frac{\widehat{\sigma}^{2}}{\widehat{\sigma}_{0}^{2}} \right)^{n / 2},
+$$
+
+where $\widehat{\sigma}^{2} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \overline{x})^{2}$ and $\widehat{\sigma}_{0}^{2} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \theta_0)^{2}$. Then the rejection region is
+
+$$
+\begin{aligned}
+    R &= \left\{\bm{x}: \left(\frac{\widehat{\sigma}^{2}}{\widehat{\sigma}_{0}^{2}} \right)^{n / 2} \leqslant c \right\} \\
+    &= \left\{\bm{x}: \widehat{\sigma}^{2} \leqslant c^{\frac{2}{n}} \widehat{\sigma}_{0}^{2} \right\} \\
+    &= \left\{\bm{x}: \frac{n - 1}{n} s^{2} \leqslant c^{\frac{2}{n}} \left[(\overline{x} - \theta_0)^{2} + \frac{n - 1}{n} s^{2} \right] \right\} \\
+    &= \left\{\bm{x}: \left\vert \overline{x} - \theta_0 \right\vert \geqslant \sqrt{(n - 1) \left(c^{-\frac{2}{n}} - 1 \right)} \sqrt{\frac{s^{2}}{n}} \right\} \\
+\end{aligned}
+$$
+
+for some constant $0 < c \leqslant 1$. Let $\sqrt{(n - 1) \left(c^{-\frac{2}{n}} - 1 \right)} = t_{n-1,\ \alpha / 2}$ and we can get the size $\alpha$ test.
+</details>
+
+<br>
 
 *8.54* (p.413) The discrepancies between p-values and Bayes posterior probabilities are not as dramatic in the one-sided problem, as is discussed by Casella and Berger (1987) and also mentioned in the Miscellanea section. Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(\theta,\ \sigma^{2})$ population, and suppose that the hypotheses to be tested are 
 
@@ -787,9 +1024,55 @@ The prior distribution on $\theta$ is $N(0,\ \tau^{2})$, $\tau^{2}$ known, which
 
 (a) Calculate the posterior probability that $H_0$ is true, $P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n)$.
 
+<details>
+<summary>Solution:</summary>
+
+Remember we have proved in Exercises in Chapter 7 that the posterior distribution of $\theta$ is $N(\tau^{2} \overline{x} / (\sigma^{2} / n + \tau^{2}),\ (\sigma^{2} \tau^{2} / n) / ((\sigma^{2} / n) + \tau^{2}))$, which means the posterior probability that $H_0$ is true is
+
+$$
+\begin{aligned}
+    P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n) &= \Phi \left(\frac{0 - \tau^{2} \overline{x} / (\sigma^{2} / n + \tau^{2})}{\sqrt{(\sigma^{2} \tau^{2} / n) / ((\sigma^{2} / n) + \tau^{2})}} \right) \\
+    &= \Phi \left(-\frac{\tau \overline{x}}{\sqrt{(\sigma^{2} / n) (\sigma^{2} / n + \tau^{2})}} \right) \\
+\end{aligned}
+$$
+
+where $\Phi(\cdot)$ is the cdf of standard Normal distribution.
+</details>
+
+<br>
+
 (b) Find an expression for the p-value corresponding to a value of $\overline{x}$, using tests that reject for large values of $\overline{X}$.
 
+<details>
+<summary>Solution:</summary>
+
+$$
+\begin{aligned}
+    \text{p-value} &= P_{0}(\overline{X} > \overline{x}) \\
+    &= P_{0}\left(\frac{\overline{X} - 0}{\sigma / \sqrt{n}} > \frac{\overline{x}}{\sigma / \sqrt{n}} \right) \\
+    &= 1 - \Phi \left(\frac{\overline{x}}{\sigma / \sqrt{n}} \right).
+\end{aligned}
+$$
+</details>
+
+<br>
+
 (c) For the special case $\sigma^{2} = \tau^{2} = 1$, compare $P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n)$ and the p-value for values of $\overline{x} > 0$. Show that the Bayes probability is always greater than the p-value.
+
+<details>
+<summary>Proof:</summary>
+
+$$
+\begin{aligned}
+    P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n) &= \Phi \left(-\frac{\overline{x}}{\sqrt{1 / n (1 / n + 1)}} \right) \\
+    &> \Phi \left(-\frac{\overline{x}}{\sqrt{1 / n}} \right) \\
+    &= 1 - \Phi \left(\frac{\overline{x}}{\sqrt{1 / n}} \right) \\
+    &= \text{p-value}.
+\end{aligned}
+$$
+</details>
+
+<br>
 
 (d) Using the expression derived in parts (a) and (b), show that 
 
@@ -798,6 +1081,20 @@ $$
 $$
 
 an equality that does not occur in the two-sided problem.
+
+<details>
+<summary>Proof:</summary>
+
+$$
+\begin{aligned}
+    \lim\limits_{\tau^{2} \to \infty} P(\theta \leqslant 0 \mid x_1,\ \cdots,\ x_n) &= \lim\limits_{\tau^{2} \to \infty} \Phi \left(-\frac{\tau \overline{x}}{\sqrt{(\sigma^{2} / n) (\sigma^{2} / n + \tau^{2})}} \right) \\
+    &= \lim\limits_{\tau^{2} \to \infty} \Phi \left(-\frac{\overline{x}}{\sqrt{(\sigma^{2} / n) (\sigma^{2} / (n \tau^{2}) + 1)}} \right) \\
+    &= \Phi \left(-\frac{\overline{x}}{\sqrt{\sigma^{2} / n}} \right) \\
+    &= 1 - \Phi \left(\frac{\overline{x}}{\sqrt{\sigma^{2} / n}} \right) \\
+    &= \text{p-value}.
+\end{aligned}
+$$
+</details>
 
 ### Additional Exercises
 
@@ -819,6 +1116,38 @@ an equality that does not occur in the two-sided problem.
 
     Determine the most powerful level $\alpha$ test for $H_0: f(x) = f_0(x)$ versus $H_1: f(x) = f_1(x)$ in the simplest implementable form. Also, find the power of the test when $\alpha = 0.01$.
 
+    <details>
+    <summary>Solution:</summary>
+
+    By Neyman-Pearson Lemma, the test with rejection region 
+
+    $$
+    \begin{aligned}
+        R &= \left\{x: f_1(x) > k f_0(x) \right\} \\
+        &= \left\{x: \frac{3}{16} \sqrt{x} > k \frac{3}{64} x^{2} \text{ and } 0 \leqslant x \leqslant 4 \right\} \\
+        &= \left\{x: x < \left(\frac{4}{k} \right)^{2 / 3} \text{ and } 0 \leqslant x \leqslant 4 \right\} \\
+    \end{aligned}
+    $$
+
+    for some $k \geqslant 0$ is the most powerful level $\alpha$ test, where 
+
+    $$
+    \alpha = \int_{R} f_0(x) ~\mathrm{d}x = 
+    \begin{cases}
+        \int_{0}^{\left(\frac{4}{k} \right)^{2 / 3}} \frac{3}{64} x^{2} ~\mathrm{d}x = \frac{1}{4 k^{2}},\ &\text{if } k > \frac{1}{2} \\
+        \int_{0}^{4} \frac{3}{64} x^{2} ~\mathrm{d}x = 1,\ &\text{if } k \leqslant \frac{1}{2}
+    \end{cases}.
+    $$
+
+    When $\alpha = 0.01$, we have $k = 5$ and the power is
+
+    $$
+    \beta = \int_{R} f_1(x) ~\mathrm{d}x = \int_{0}^{\left(\frac{4}{5} \right)^{2 / 3}} \frac{3}{16} \sqrt{x} ~\mathrm{d}x = \frac{1}{10} = 0.1.
+    $$
+    </details>
+
+    <br>
+
 2. Let $X_1,\ \cdots,\ X_m$ be i.i.d. from a distribution with pdf $f(x) = \mu x^{\mu - 1}$ for $0 < x < 1$ where $\mu > 0$. Let $Y_1,\ \cdots,\ Y_n$ be i.i.d. from a distribution with pdf $g(y) = \theta y^{\theta - 1}$ for $0 < y < 1$ where $\theta > 0$. Let 
 
     $$
@@ -826,3 +1155,54 @@ an equality that does not occur in the two-sided problem.
     $$
 
     Find the likelihood ratio test statistic for $H_0: \mu = \theta$ versus $H_1: \mu \neq \theta$ in terms of $T_1,\ T_2$ and the MLEs.
+
+    <details>
+    <summary>Solution:</summary>
+
+    Note that the test can be rewritten as $H_0: \mu - \theta = 0$ versus $H_1: \mu - \theta \neq 0$. Then the likelihood ratio test statistic is
+
+    $$
+    \lambda(\bm{x},\ \bm{y}) = \frac{\sup_{\mu = \theta} L(\mu,\ \theta \mid \bm{x},\ \bm{y})}{\sup_{\mu,\ \theta} L(\mu,\ \theta \mid \bm{x},\ \bm{y})}.
+    $$
+
+    We first find the unrestricted MLEs of $\mu$ and $\theta$. The log-likelihood function is
+
+    $$
+    \begin{aligned}
+        \ell(\mu,\ \theta \mid \bm{x},\ \bm{y}) &= m \log(\mu) + (\mu - 1) \sum_{i=1}^{m} \log(x_i) + n \log(\theta) \\ &\qquad + (\theta - 1) \sum_{j=1}^{n} \log(y_j) \\
+        &= m \log(\mu) + (\mu - 1) t_1 + n \log(\theta) + (\theta - 1) t_2.
+    \end{aligned}
+    $$
+
+    Take derivative w.r.t. $\mu$ and let it be $0$, we have
+
+    $$
+    \frac{\partial \ell(\mu,\ \theta \mid \bm{x},\ \bm{y})}{\partial \mu} = \frac{m}{\mu} + t_1 = 0 \implies \mu = -\frac{t_1}{m}.
+    $$
+
+    We can easily see that the second derivative is $-\frac{m}{\mu^{2}} < 0$, which means $\widehat{\mu} := -\frac{T_1}{m}$ is the MLE for $\mu$. Similarly, we have $\widehat{\theta} = -\frac{T_2}{n}$ as the MLE for $\theta$.
+
+    For the restricted MLEs, under $H_0$, we can just combine the two samples together and get the MLE for $\mu = \theta$ as $\widehat{\mu}_{0} = -\frac{T_1 + T_2}{m + n}$. Then the likelihood ratio test statistic is
+
+    $$
+    \begin{aligned}
+        \lambda(\bm{x},\ \bm{y}) &= \frac{(\widehat{\mu}_{0})^{m + n} \exp \left[(\widehat{\mu}_{0} - 1) (T_1 + T_2) \right]}{(\widehat{\mu})^{m} (\widehat{\theta})^{n} \exp \left[(\widehat{\mu} - 1) T_1 + (\widehat{\theta} - 1) T_2 \right]} \\
+        &= \frac{\left(-\frac{m + n}{T_1 + T_2} \right)^{m + n}}{\left(-\frac{m}{T_1} \right)^{m} \left(-\frac{n}{T_2} \right)^{n}} \exp \left[(\widehat{\mu}_{0} - \widehat{\mu}) T_1 + (\widehat{\mu}_{0} - \widehat{\theta}) T_2 \right] \\
+    \end{aligned}
+    $$
+
+    Note that 
+
+    $$
+    \begin{aligned}
+        (\widehat{\mu}_{0} - \widehat{\mu}) T_1 + (\widehat{\mu}_{0} - \widehat{\theta}) T_2 &= \left(-\frac{m + n}{T_1 + T_2} + \frac{m}{T_1} \right) T_1 \\ &\qquad + \left(-\frac{m + n}{T_1 + T_2} + \frac{n}{T_2} \right) T_2 \\
+        &= 0,
+    \end{aligned}
+    $$
+
+    which means the likelihood ratio test statistic is
+
+    $$
+    \lambda(\bm{x},\ \bm{y}) = \frac{\left(-\frac{m + n}{T_1 + T_2} \right)^{m + n}}{\left(-\frac{m}{T_1} \right)^{m} \left(-\frac{n}{T_2} \right)^{n}}.
+    $$
+    </details>

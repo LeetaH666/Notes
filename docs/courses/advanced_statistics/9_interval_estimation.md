@@ -508,7 +508,8 @@
     \left\{\theta: \frac{y}{\alpha^{-1 / n}} \leqslant \theta \leqslant y \right\}.
     $$
     </details>
-    
+
+
 ## 9.3 Methods of Evaluating Interval Estimators
 
 We can derive different confidence sets for the same problem. In such situations we would, of course, want to choose a best one.
@@ -534,3 +535,67 @@ Since there is a one-to-one correspondence between confidence sets and tests of 
 > Let $\bm{X} \sim f(\bm{x} \mid \theta)$, where $\theta$ is a real-valued parameter. For each $\theta_0 \in \Theta$, let $\mathcal{A}^{*}(\theta_0)$ be the *UMP level $\alpha$ acceptance region* of a test of $H_0: \theta = \theta_0$ versus $H_1: \theta > \theta_0$. Let $\mathcal{C}^{*}(\bm{x})$ be the $1 - \alpha$ *confidence set formed by inverting the UMP acceptance regions*. Then for any other $1 - \alpha$ confidence set $\mathcal{C}$,
 >
 > $$P_{\theta}(\theta' \in \mathcal{C}^{*}(\bm{X})) \leqslant P_{\theta}(\theta' \in \mathcal{C}(\bm{X})),\quad \forall \theta' < \theta.$$
+
+## Assignments
+
+### Textbook Exercises
+
+*9.4* (p.452) Let $X_1,\ \cdots,\ X_n$ be a random sample from a $N(0,\ \sigma_{X}^{2})$, and let $Y_1,\ \cdots,\ Y_m$ be a random sample from a $N(0,\ \sigma_{Y}^{2})$, independent of the $X$s. Define $\lambda = \sigma_{Y}^{2} / \sigma_{X}^{2}$.
+
+(a) Find the level $\alpha$ LRT of $H_0: \lambda = \lambda_0$ versus $H_1: \lambda \neq \lambda_0$.
+
+<details>
+<summary>Solution:</summary>
+
+See [Exercise 1 in 9.2](#exercises).
+</details>
+
+<br>
+
+(b) Express the rejection region of the LRT of part (a) in terms of an $F$ random variable.
+
+<details>
+<summary>Solution:</summary>
+
+See [Exercise 1 in 9.2](#exercises).
+</details>
+
+<br>
+
+(c) Find a $1 - \alpha$ confidence interval for $\lambda$.
+
+<details>
+<summary>Solution:</summary>
+
+See [Exercise 1 in 9.2](#exercises).
+</details>
+
+<br>
+
+*9.25* (p.455) If $X_1,\ \cdots,\ X_n$ are i.i.d. pdf $f(x \mid \mu) = e^{-(x - \mu)} I_{[\mu,\ \infty)}(x)$, then $Y = \min \left\{X_1,\ \cdots,\ X_n \right\}$ is sufficient for $\mu$ with pdf
+
+$$
+f_{Y}(y \mid \mu) = n e^{-n(y - \mu)} I_{[\mu,\ \infty)}(y).
+$$
+
+In Example 9.2.13 a $1 - \alpha$ confidence interval for $\mu$ was found using the method of Section 9.2.3. Compare that interval to $1 - \alpha$ intervals obtained by likelihood and pivotal methods.
+
+Solution:
+
+*9.26* (p.455) Let $X_1,\ \cdots,\ X_n$ be i.i.d. observations from a $\text{Beta}(\theta,\ 1)$ pdf and assume that $\theta$ has a $\text{Gamma}(r,\ \lambda)$ prior pdf. Find a $1 - \alpha$ Bayes credible set for $\theta$.
+
+Solution:
+
+*9.36* (p.457) Let $X_1,\ \cdots,\ X_n$ be independent with pdfs $F_{X_{i}}(x \mid \theta) = e^{i \theta - x} I_{[i \theta,\ \infty)}(x)$. Prove that $T = \min_{i} (X_{i} / i)$ is a sufficient statistic for $\theta$. Based on $T$, find the $1 - \alpha$ confidence interval for $\theta$ of the form $[T + a,\ T + b]$ which is of minimum length.
+
+Proof:
+
+*9.37* (p.457) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Uniform}(0,\ \theta)$. Let $Y$ be the largest order statistic. Prove that $Y / \theta$ is a pivotal quantity and show that the interval
+
+$$
+\left\{\theta: y \leqslant \theta \leqslant \frac{y}{\alpha^{1 / n}} \right\} 
+$$
+
+is the shortest $1 - \alpha$ pivotal interval.
+
+Proof:

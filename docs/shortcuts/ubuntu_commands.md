@@ -20,6 +20,8 @@
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
 - `du -h dirName/fileName`：查看目录/文件占用内存
 - `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
+- `zip -r zipName.zip dirName`：将某目录压缩为 zip 文件
+- `unzip zipName.zip`：解压 zip 文件
 
 ### 系统
 
@@ -74,7 +76,13 @@
 
 ### 系统
 
+- `cat /proc/version`：查看系统版本
 - `lscpu`：查看 CPU 信息
+- `lspci | grep -i nvidia`：查看 GPU 型号
+
+    > [!NOTE|label:注意]
+    > 如果并没有显示型号，而是显示 `NVIDIA Corporation Device 2204` 之类的东西，这可能是因为 `/usr/share/misc/pci.ids` 文件没有更新，可以使用 `sudo update-pciids` 更新一下。
+
 - `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
 - `df -aTh`：查看磁盘空间
 - `fdisk -l`：查看所有盘符
@@ -116,3 +124,25 @@
 6. `mount /dev/md0 dirName`：将 RAID1 挂载到某文件夹下；
 7. `vim /etc/fstab`：打开 `fstab` 文件，里面记录了系统启动时需自动挂载的挂载点信息；
    - 模仿已有的挂载点添加一行新的自动挂载信息，比如 `/dev/md0 dirName ext4 defaults 0 1`。
+
+### 安装 Nvidia 驱动
+
+参考：
+- [CSDN：超全超详细的安装nvidia显卡驱动教程](https://blog.csdn.net/sinat_34686158/article/details/106845208)
+- [NVIDIA drivers installation](https://ubuntu.com/server/docs/nvidia-drivers-installation)
+
+1. 如果有系统自带的 `nouveau` 驱动，需要先禁用，具体见第一个参考链接。这里跳过这一步，因为服务器上没有 `nouveau`；
+2. `sudo apt-get remove --purge nvidia*`：卸载之前安装的 Nvidia 驱动；
+3. `ubuntu-drivers devices`：查看可用的 Nvidia 驱动版本，在推荐的版本后面会显示 `recommended`；
+4. `sudo ubuntu-drivers autoinstall`：安装推荐的 Nvidia 驱动版本；
+5. 重启；
+6. `nvidia-smi`：如果正常显示则安装成功。
+
+如果重启后 `nvidia-smi` 仍无法正常显示，执行 `nvidia-smi -L` 显示 `GPU...: not found` 的话，可以试试卸掉现有驱动，重装 `non-open` 的驱动版本。比如原本装的是 `535-server-open`，可以改成装 `535-server`，具体步骤如下：
+
+1. `sudo apt-get remove --purge nvidia*`：卸载之前安装的 Nvidia 驱动；
+2. `ubuntu-drivers devices`：查看可用的 Nvidia 驱动版本，找到不带 `open` 字样的驱动版本；
+3. `sudo ubuntu-drivers install --gpgpu nvidia:535-server`：安装指定的 Nvidia 驱动版本，这里以 `535-server` 为例；
+4. `sudo apt install nvidia-utils-535-server`：安装额外的驱动包，不然用不了 `nvidia-smi` 指令；
+5. 重启；
+6. `nvidia-smi`：如果正常显示则安装成功。
