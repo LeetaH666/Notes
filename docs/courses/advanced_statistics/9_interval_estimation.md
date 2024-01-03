@@ -468,7 +468,7 @@
     P_{\theta}\left(a \leqslant \frac{Y}{\theta} \leqslant b \right) = \int_{a}^{b} n t^{- (n + 1)} ~\mathrm{d}t = 1 - \alpha.
     $$
 
-    Since the constraint tells us $b$ is the function of $a$, to find the shortest $1 - \alpha$ confidence interval is to minimize  
+    Since the constraint tells us $b$ is the function of $a$, to find the shortest $1 - \alpha$ confidence interval is to minimize 
 
     $$
     \begin{aligned}
@@ -580,15 +580,185 @@ $$
 
 In Example 9.2.13 a $1 - \alpha$ confidence interval for $\mu$ was found using the method of Section 9.2.3. Compare that interval to $1 - \alpha$ intervals obtained by likelihood and pivotal methods.
 
-Solution:
+<details>
+<summary>Solution:</summary>
+
+The $1 - \alpha$ confidence interval found in Example 9.2.13 is 
+
+$$
+C(Y) = \left\{\mu: Y + \frac{1}{n} \log \left(\frac{\alpha}{2} \right) \leqslant \mu \leqslant Y + \frac{1}{n} \log \left(1 - \frac{\alpha}{2} \right) \right\}.
+$$
+
+We first invert the likelihood ratio test. The likelihood ratio statistic is given by
+
+$$
+\lambda(y) = \frac{\sup_{\mu = \mu_0} L(\mu \mid y)}{\sup_{\mu} L(\mu \mid y)} = \frac{e^{-n(y - \mu_0)} I_{[\mu_0,\ \infty)}(y)}{e^{-n(y - y)} I_{[y,\ \infty]}(y)} = e^{-n(y - \mu_0)} I_{[\mu_0,\ \infty)}(y),
+$$
+
+which means the acceptance region is
+
+$$
+\left\{y: \lambda(y) \geqslant c_{\alpha} \right\}.
+$$
+
+Inverting it gives us the $1 - \alpha$ confidence set
+
+$$
+\begin{aligned}
+    C_{\text{L}}(Y) &= \left\{\mu: \mu \leqslant y \text{ and } e^{-n(y - \mu)} \geqslant c_{\alpha} \right\} \\
+    &= \left\{\mu: y + \frac{1}{n} \log c_{\alpha} \leqslant \mu \leqslant y \right\}
+\end{aligned}
+$$
+
+where 
+
+$$
+P_{\mu}\left(\mu \leqslant y \leqslant \mu - \frac{1}{n} \log c_{\alpha} \right) = 1 - \alpha.
+$$
+
+Since the cdf of $Y$ is 
+
+$$
+F_{Y}(y) = \int_{\mu}^{y} n e^{-n(x - \mu)} ~\mathrm{d}x = - e^{-n (x - \mu)} \big\vert_{\mu}^{y} = 1 - e^{-n (y - \mu)},
+$$
+
+we have 
+
+$$
+1 - e^{-n(-1 / n \log c_{\alpha})} - 0 = 1 - \alpha \implies c_{\alpha} = \alpha
+$$
+
+and thus the $1 - \alpha$ confidence set obtained by inverting the likelihood ratio test is 
+
+$$
+C_{\text{L}}(Y) = \left\{\mu: Y + \frac{1}{n} \log \alpha \leqslant \mu \leqslant Y \right\}.
+$$
+
+Now we turn to use the pivotal method. Since $\mu$ is a location parameter, a natural pivot is $Z = Y - \mu$. Then, any set $\left\{\mu: a \leqslant z \leqslant b \right\} = \left\{\mu: Y - b \leqslant \mu \leqslant Y - a \right\}$ with $P(a \leqslant Z \leqslant b) = 1 - \alpha$ is an $1 - \alpha$ confidence set. To find the shortest one, we minimize $Y - a - (Y - b) = b - a$ subject to $P(a \leqslant Z \leqslant b) = 1 - \alpha$. According to the restriction, we have
+
+$$
+1 - e^{-n b} - \left(1 - e^{-n a} \right)  = 1 - \alpha \implies  b  = -\frac{1}{n} \log \left(e^{-n a} + \alpha - 1 \right),
+$$
+
+which means the length of interval is $-\frac{1}{n} \log \left(e^{-n a} + \alpha - 1 \right) - a$. Take derivative of it w.r.t. $a$ and we find
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}a} \left[-\frac{1}{n} \log \left(e^{-n a} + \alpha - 1 \right) - a \right] = \frac{e^{-n a}}{e^{-n a} + \alpha - 1} - 1 > 0
+$$
+
+for all $a$. This means the length of interval is shorter as $a$ goes smaller. If we take $e^{-n a} = 1 - \frac{\alpha}{2}$, then the interval becomes
+
+$$
+C_{\text{P}}(Y) = \left\{\mu: Y + \frac{1}{n} \log \left(\frac{\alpha}{2} \right) \leqslant \mu \leqslant Y + \frac{1}{n} \log \left(1 - \frac{\alpha}{2} \right) \right\},
+$$
+
+with length $\frac{1}{n} \log \left(\frac{1 - \alpha / 2}{\alpha / 2} \right) = \frac{1}{n} \log \left(\frac{2 - \alpha}{\alpha} \right)$, which is the same as the confidence interval $C(Y)$ found in Example 9.2.13. The length of $C_{\text{L}}(Y)$ is $-\frac{1}{n} \log \alpha$, which will be shorter since $\alpha < 1$ and $1 < 2 - \alpha$. However, the length of $C_{\text{P}}(Y)$ can be arbitrarily small as we choose smaller $a$.
+</details>
+
+<br>
 
 *9.26* (p.455) Let $X_1,\ \cdots,\ X_n$ be i.i.d. observations from a $\text{Beta}(\theta,\ 1)$ pdf and assume that $\theta$ has a $\text{Gamma}(r,\ \lambda)$ prior pdf. Find a $1 - \alpha$ Bayes credible set for $\theta$.
 
-Solution:
+<details>
+<summary>Solution:</summary>
+
+The likelihood function is
+
+$$
+L(\theta \mid \bm{x}) = \prod_{i=1}^{n} \theta x_{i}^{\theta - 1} = \theta^{n} \left(\prod_{i=1}^{n} x_{i} \right)^{\theta - 1}.
+$$
+
+The prior pdf of $\theta$ is
+
+$$
+\pi(\theta) = \frac{\lambda^{r}}{\Gamma(r)} \theta^{r - 1} e^{-\lambda \theta}.
+$$
+
+Thus the posterior pdf of $\theta$ is given by
+
+$$
+\begin{aligned}
+    \pi(\theta \mid \bm{x}) &\propto L(\theta \mid \bm{x}) \pi(\theta) \\
+    &\propto \theta^{n} \left(\prod_{i=1}^{n} x_{i} \right)^{\theta - 1} \theta^{r - 1} e^{-\lambda \theta} \\
+    &= \theta^{n + r - 1} e^{(\theta - 1) \sum_{i=1}^{n} \log x_{i}} e^{-\lambda \theta} \\
+    &\propto \theta^{n + r - 1} e^{-(\lambda - \sum_{i=1}^{n} \log x_i) \theta},
+\end{aligned}
+$$
+
+which is a $\text{Gamma}(n + r,\ \lambda - \sum_{i=1}^{n} \log x_i)$ pdf. Denote $r' = n + r$ and $\lambda' = \lambda - \sum_{i=1}^{n} \log x_i$, the $1 - \alpha$ credible set is
+
+$$
+\left\{\theta: a \leqslant \theta \leqslant b \right\}
+$$
+
+with $a$ and $b$ satisfying
+
+$$
+\int_{a}^{b} \frac{\lambda^{r'}}{\Gamma(r')} \theta^{r' - 1} e^{-\lambda' \theta} ~\mathrm{d}\theta = 1 - \alpha.
+$$
+
+For example, , we can simply choose $a$ and $b$ s.t.
+
+$$
+\int_{0}^{a} \frac{\lambda^{r'}}{\Gamma(r')} \theta^{r' - 1} e^{-\lambda' \theta} ~\mathrm{d}\theta = \int_{b}^{\infty} \frac{\lambda^{r'}}{\Gamma(r')} \theta^{r' - 1} e^{-\lambda' \theta} ~\mathrm{d}\theta = \frac{\alpha}{2}.
+$$
+</details>
+
+<br>
 
 *9.36* (p.457) Let $X_1,\ \cdots,\ X_n$ be independent with pdfs $F_{X_{i}}(x \mid \theta) = e^{i \theta - x} I_{[i \theta,\ \infty)}(x)$. Prove that $T = \min_{i} (X_{i} / i)$ is a sufficient statistic for $\theta$. Based on $T$, find the $1 - \alpha$ confidence interval for $\theta$ of the form $[T + a,\ T + b]$ which is of minimum length.
 
-Proof:
+<details>
+<summary>Proof:</summary>
+
+The joint pdf of $X_1,\ \cdots,\ X_n$ is
+
+$$
+\begin{aligned}
+    f_{\bm{X}}(\bm{x} \mid \theta) &= \prod_{i=1}^{n} e^{i \theta - x_{i}} I_{[i \theta,\ \infty)}(x_{i}) \\
+    &= e^{\sum_{i=1}^{n} (i \theta - x_{i})} \prod_{i=1}^{n} I_{[\theta,\ \infty)}(x_{i} / i) \\
+    &= e^{\sum_{i=1}^{n} (i \theta - x_{i})} I_{[\theta,\ \infty)}(\min_{i} (x_i / i)),
+\end{aligned}
+$$
+
+which means $T = \min_{i} (X_{i} / i)$ is a sufficient statistic for $\theta$ by the Factorization Theorem. Then, we have 
+
+$$
+P(T > t) = \prod_{i=1}^{n} P(X_{i} > i t) = \prod_{i=1}^{n} \int_{i t}^{\infty} e^{i \theta - x} ~\mathrm{d}x = e^{\sum_{i=1}^{n} i (\theta - t)} = e^{\frac{n (n + 1)}{2} (\theta - t)},
+$$
+
+which means the cdf of $T$ is $1 - e^{\frac{n (n + 1)}{2} (\theta - t)}$ and its pdf is 
+
+$$
+f_{T}(t) = \frac{n (n + 1)}{2} e^{\frac{n (n + 1)}{2} (\theta - t)},\quad t \geqslant \theta.
+$$
+
+We can easily find that $\theta$ is a location parameter and $T - \theta$ is a natural pivot. The confidence interval of the form $[T + a,\ T + b]$ can be rewritten as 
+
+$$
+\left\{\theta: a \leqslant \theta \leqslant b \right\} = \left\{\theta: -b \leqslant T - \theta \leqslant -a \right\}
+$$
+
+To find the shortest one, we minimize the length $b - a$ subject to $P(-b \leqslant T - \theta \leqslant -a) = 1 - \alpha$. Note that the pdf of $Y = T - \theta$ is 
+
+$$
+f_{Y}(y) = \frac{n (n + 1)}{2} e^{-\frac{n (n + 1)}{2} y},\quad y \geqslant 0,
+$$
+
+which is a monotone decreasing function. Therefore, the length would be the shortest if we take $b = 0$. Then, according to the restriction, we have 
+
+$$
+1 - e^{\frac{n (n + 1)}{2} a} = 1 - \alpha \implies a = \frac{2}{n (n + 1)} \log \alpha.
+$$
+
+Thus, the shortest $1 - \alpha$ confidence interval is
+
+$$
+\left[T + \frac{2}{n (n + 1)} \log \alpha,\ T \right].
+$$
+</details>
+
+<br>
 
 *9.37* (p.457) Let $X_1,\ \cdots,\ X_n$ be i.i.d. $\text{Uniform}(0,\ \theta)$. Let $Y$ be the largest order statistic. Prove that $Y / \theta$ is a pivotal quantity and show that the interval
 
@@ -598,4 +768,54 @@ $$
 
 is the shortest $1 - \alpha$ pivotal interval.
 
-Proof:
+<details>
+<summary>Proof:</summary>
+
+The cdf of $X$ is
+
+$$
+F_{X}(x) = \int_{0}^{x} \frac{1}{\theta} ~\mathrm{d}x = \frac{x}{\theta},\quad 0 < x < \theta.
+$$
+
+So the pdf of $Y$ is given by
+
+$$
+f_{Y}(y) = n \left(\frac{y}{\theta} \right)^{n - 1} \frac{1}{\theta} = \frac{n}{\theta^{n}} y^{n - 1},\quad 0 < y < \theta.
+$$
+
+Denote $T = Y / \theta$. The inverse transformation is $Y = \theta T$ and thus the pdf of $T$ is given by
+
+$$
+f_{T}(t) = f_{Y}(\theta t) \left\vert \theta \right\vert = \frac{n}{\theta^{n}} (\theta t)^{n - 1} \theta = n t^{n - 1},\quad 0 < t < 1,
+$$
+
+which does not depend on $\theta$. Hence, $Y / \theta$ is a pivotal quantity. The confidence interval of the form $\left\{\theta: a \leqslant T \leqslant b \right\}$ can be written as
+
+$$
+\left\{\theta: \frac{y}{b} \leqslant \theta \leqslant \frac{y}{a} \right\}
+$$
+
+with any constants $a$ and $b$ satisfying
+
+$$
+\int_{a}^{b} n t^{n - 1} ~\mathrm{d}t = 1 - \alpha.
+$$
+
+Take derivative of both sides of the subjection w.r.t. $a$, we have
+
+$$
+n b^{n - 1} \frac{\mathrm{d}b}{\mathrm{d}a} - n a^{n - 1} = 0 \implies \frac{\mathrm{d}b}{\mathrm{d}a} = \frac{a^{n - 1}}{b^{n - 1}}.
+$$
+
+Then we take derivative of $\frac{Y}{a} - \frac{Y}{b}$ w.r.t. $a$ to get
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}a} \left(\frac{Y}{a} - \frac{Y}{b} \right) = -\frac{Y}{a^{2}} + \frac{Y}{b^{2}}\frac{\mathrm{d}b}{\mathrm{d}a} = \frac{Y}{a^{2}} \left[\left(\frac{a}{b} \right)^{n + 1} - 1 \right] < 0,
+$$
+
+which means the length of the $1 - \alpha$ confidence interval would be shorter as $a$ goes larger. So we take $b = 1$ and thus $a = \alpha^{-1 / n}$, which yields the shortest $1 - \alpha$ confidence interval
+
+$$
+\left\{\theta: y \leqslant \theta \leqslant \frac{y}{\alpha^{1 / n}} \right\}.
+$$
+</details>
