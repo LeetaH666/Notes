@@ -1,0 +1,5 @@
+- [贝叶斯简介](bayesian/1_intro.md)
+- [先验分布](bayesian/2_prior.md)
+- [贝叶斯回归](bayesian/3_bayesian_regression.md)
+- [贝叶斯资产定价](bayesian/4_bayesian_asset_pricing.md)
+- [Back to Homepage](README.md)
