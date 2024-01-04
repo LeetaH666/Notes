@@ -140,7 +140,9 @@ mark {
 
 /* 加粗 */
 .markdown-section strong {
-  color: #e3620c;
+  /* SUSTech color */
+  /* color: #e3620c; */
+  color: #7f3b3b;
 }
 
 /* 斜体 */
