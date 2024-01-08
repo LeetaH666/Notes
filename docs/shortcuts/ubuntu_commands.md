@@ -56,11 +56,30 @@
 
 ### 用户
 
-- `adduser/deluser User`：添加/删除用户
-- `gpasswd -a/-d User Group`：在组中添加/删除某用户
-- `sudo passwd`：重设密码
+- `passwd`：重设密码
+- `adduser --ingroup groupName userName`：添加用户并加入某组
+- `deluser --remove-all-files userName`：删除用户以及用户的所有文件
+
+    > [!TIP|label:提示]
+    > 删除的时候会有很多 warnings，无视即可。
+
+- `addgroup groupName`：添加组
+- `delgroup --only-if-empty groupName`：（仅当组里没有用户时）删除组
+- `usermod -aG groupName userName`：将某用户加入某组，`-a` 代表添加（append），`-G` 代表组
+- `deluser userName groupName`：将某用户从某组中删除
+
+    > [!TIP|label:提示]
+    > 无法从初始组中删除，只能用 `usermod -g newGroupName userName` 修改用户的初始组为新的组。
+
 - `cat /etc/passwd`：查看所有用户
 - `cat /etc/group`：查看所有组
+- `groups userName`：查看某用户所在的组
+- `getent group groupName`：查看某组有哪些用户
+
+    > [!TIP|label:提示]
+    > `getent` 是 “get entries” 的缩写，用来获取某个数据库的条目，比如 `/etc/passwd`、`/etc/group` 等等，所以 `getent group groupName` 实际上是访问 `etc/group` 取了对应的条目。同理可以通过 `getent passwd userName` 查看某个用户的信息。
+    > 
+    > 对于初始组是 `groupName` 的 `userName` 来说，`getent group groupName` 并不会显示该用户，但可以通过 gid 来判断，比如 `getent group groupName` 的输出中有一串数字，我们叫它 `gidNumber`，那么就可以通过 `cat /etc/passwd | grep gidNumber` 来找到对应的用户。
 
 ### 文件与目录
 - `chmod modeNumber dirName/fileName`：更改目录/文件的权限
@@ -73,6 +92,14 @@
 - `chmod -R modeNumber dirName`：更改目录下所有文件的权限
 - `chown userName:(groupName) fileName`：更改文件的拥有者和拥有组（不写 `groupName` 则为拥有者的默认组）
 - `chown -R userName:(groupName) dirName`：更改目录及目录下所有文件的拥有者和拥有组
+- `setfacl -m u:userName:rwx fileName`：设置某个用户在某个文件的权限
+
+    > [!TIP|label:提示]
+    > `rwx` 可以替换成 `r`、`w`、`x` 的组合，比如 `rx`、`rw` 等等，如果限制所有权限，可以用 `-`。
+    > 
+    > 如果设置的是组权限，用 `g:groupName` 替换 `u:userName`。
+
+- `setfacl -Rm u:userName:rwx dirName`：设置某个用户在某个目录下所有文件的权限
 
 ### 系统
 
