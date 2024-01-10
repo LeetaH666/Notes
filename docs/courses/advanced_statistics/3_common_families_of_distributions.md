@@ -623,6 +623,7 @@ which means the former is better.
 
     <br>
 
+
 5. Stein’s Lemma applications and analogs.
 
     (a) If $X \sim N(\mu,\ \sigma^{2})$, calculate the $\E[X^{4}]$.

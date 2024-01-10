@@ -637,7 +637,7 @@ $$
 \end{aligned}
 $$
 
-as $i \to \infty$, which means $Y_{i} \xrightarrow{p}{\longrightarrow} \sqrt{a}$.
+as $i \to \infty$, which means $Y_{i} \xrightarrow{p} \sqrt{a}$.
 
 Similarly, $\forall \epsilon > 0$, we have 
 

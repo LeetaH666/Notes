@@ -383,7 +383,7 @@ Basu’s Theorem is useful because it allow us to deduce the independence of 2 s
     \E\left[\frac{n}{a + n} \overline{X}^{2} - \frac{S^{2}}{a} \right] = \theta^{2} - \theta^{2} = 0.
     $$
 
-    However, $P\left(\frac{n}{a + n} \overline{X}^{2} - \frac{S^{2}}{a} \right) \neq 1$, which means $T$ is not a complete statistic for $\theta$.
+    However, $P\left(\frac{n}{a + n} \overline{X}^{2} - \frac{S^{2}}{a} = 0 \right) \neq 1$, which means $T$ is not a complete statistic for $\theta$.
     </details>
 
     <br>
