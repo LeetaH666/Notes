@@ -2,6 +2,8 @@
 
 ## 常用
 
+以下是所有用户都常用的命令。
+
 ### 文件与目录
 
 - `cd dirName`：进入某个目录（`.` 代表当前目录，`..` 代表上一层目录，`~` 代表根目录）
@@ -52,6 +54,8 @@
 
 ## 管理员常用
 
+以下是管理员常用的命令。
+
 - `su`：进入 root 账户
 
 ### 用户
@@ -81,7 +85,8 @@
     > 
     > 对于初始组是 `groupName` 的 `userName` 来说，`getent group groupName` 并不会显示该用户，但可以通过 gid 来判断，比如 `getent group groupName` 的输出中有一串数字，我们叫它 `gidNumber`，那么就可以通过 `cat /etc/passwd | grep gidNumber` 来找到对应的用户。
 
-### 文件与目录
+### 权限
+
 - `chmod modeNumber dirName/fileName`：更改目录/文件的权限
 
     > [!TIP|label:提示]
@@ -100,6 +105,7 @@
     > 如果设置的是组权限，用 `g:groupName` 替换 `u:userName`。
 
 - `setfacl -Rm u:userName:rwx dirName`：设置某个用户在某个目录下所有文件的权限
+- `getfacl fileName/dirName`：查看某个文件/目录的权限
 
 ### 系统
 
@@ -115,10 +121,24 @@
 - `fdisk -l`：查看所有盘符
 - `lsblk`：查看各个内存块的基本信息
 - `blkid`：查看各个内存块的 UUID
-
-### 其他
-
 - `shutdown -h now`：关机
+
+### 挂载
+
+- `mount /dev/deviceName dirName`：将某个设备挂载到某个目录下
+- `umount dirName`：卸载某个目录下的设备
+- `sshfs -o allow_other,default_permissions,uid=userIDNumber,gid=groupIDNumber userName@remoteIP:remoteDirName localDirName`：挂载远程服务器的目录到本地
+
+    > [!TIP|label:提示]
+    > `allow_other` 代表允许其他用户访问，`default_permissions` 代表使用默认权限，`uid` 和 `gid` 填写挂载后的 owner user/group 的 id，可以通过 `cat /etc/passwd` 和 `cat /etc/group` 查到，这些参数之间的逗号后面不能有空格！如果不填 `uid` 和 `gid` 的话，挂载后的 owner 可能有问题（不是你想要的）。
+    > 
+    > `localDirName` 代表本地目录，通常我们会在本地的 `/mnt` 文件夹下创建一个文件夹作为远程文件夹的载体。
+    > 
+    > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
+
+## 一次性工作
+
+以下是一些一次性的过程，比如安装某个软件、配置某个环境等等。
 
 ### 软件 RAID1
 
