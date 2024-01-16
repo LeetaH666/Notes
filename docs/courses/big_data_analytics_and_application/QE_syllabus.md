@@ -667,6 +667,10 @@ Sandro Claudio Lera
         ![](image/2023-12-09-17-22-14.png)
         </div align='center'>
 
+- Metcalfe’s Law
+    - The value of a network is proportional to the **square** of the number of nodes.
+    - *Intuition*: the number of **potential connections** is $\binom{n}{2} = \frac{1}{2} n (n - 1) \sim n^{2}$.
+
 - The Friendship Paradox (FP)
     - Most people have fewer friends than their friends have, on average. (kind of power laws, few people have lots of friends)
     - Average friends: $\mu = \frac{1}{n} \sum_{i=1}^{n} d_i$ where $d_i$ is the number of friends person $i$ has.
@@ -696,3 +700,89 @@ Sandro Claudio Lera
 - Backtest and performance measures
 - Common pitfalls
 - Survivorship Bias
+
+### Other Course-Related
+
+- Suppose you are predicting the rating of a movie. The rating is an integer between $0$ and $5$. Would you treat this as a classification or regression task? Why?
+  
+    Regression because the rating has **order**.
+
+- Causal inference
+    - Statistical dependence does not imply causation (the opposite is true).
+    - **Confounder**: a variable that influences **both** the dependent variable and independent variable, causing a spurious association. For example, temperature affects both ice-cream sales and crime rate and thus the correlation between ice-cream sales and crime rate is spurious.
+    - To distinguish causation from correlation, we need to consider **potential outcomes**, i.e., what would happen if we change the independent variable. However, we can only observe one potential outcome (the one truly happens), which is called the **fundamental problem of causal inference**.
+        - Notation: $Y_{i}(1)$ is the potential outcome under treatment, $Y_{i}(0)$ is the potential outcome without treatment.
+    - **Counterfactural**: the potential outcome that does **not** happen.
+    - **Causal effect (individual treatment effct, ITE)**: $Y_{i}(1) - Y_{i}(0)$.
+    - **Average treatment effect (ATE)**: $\E[Y_i(1) - Y_i(0)] = \E[Y(1) - Y(0)] \neq \E[Y \mid T = 1] - \E[Y \mid T = 0]$ where $Y(t) (t = 0,\ 1)$ is the population-level potential outcome and $T$ is the observed treatment.
+        - The “$\neq$” is because of confounders. If there is no confounder, then the “$\neq$” can becomes “$=$”, which is called **ignorability** or **unconfoundedness**. The mathematical representation is $(Y(1),\ Y(0)) \perp T$, which is not equivalent to $Y \perp T$.
+        - Note that 2 assumptions are needed for estimation of ATE: **ignorability** and **consistency**:
+
+            $$
+            \begin{aligned}
+                \E[Y(1)] - \E[Y(0)] &= \E[Y(1) \mid T = 1] - \E[Y(0) \mid T = 0]\ (\text{Ignorability}) \\
+                &= \E[Y \mid T = 1] - \E[Y \mid T = 0]\ (\text{Consistency})
+            \end{aligned}
+            $$
+
+        - Ignorability is a **strong** assumption, while we can have a weaker one called **conditional ignorability**, i.e., $(Y(1),\ Y(0)) \perp T \mid X$ where $X$ is the set of confounders. The **conditional ATE (CATE)** can be calculated by
+
+            $$
+            \E[Y(1) - Y(0) \mid X] = \E[Y \mid T = 1,\ X] - \E[Y \mid T = 0,\ X].
+            $$
+
+            Here we require **positivity**: $0 < P(T = 1 \mid X) < 1$ to avoid division by zero problem when calculating the conditional expectation.
+
+        - Other assumptions:
+            - No interference: one's outcome is unaffected by other's treatment (which **cannot be satisfied** in network data). This assumption ensures the linearity of expectation.
+        - Estimands vs. Estimates
+            - Estimands: any quantity that we want to estimate, e.g., ATE, CATE, etc.
+            - Estimates: statistical approximations of estimands.
+
+    - A way to estimate ATE is to randomly assign the treatment, which is called **Randomized Control Trial (RCT)**.
+        - RCTs suffice 3 important criteria:
+            1. **covariate balance**: $P(X \mid T = 1) \xlongequal{d} P(X \mid T = 0)$
+            2. exhcangeability: $\E[Y(1) \mid T = 1] = \E[Y(1) \mid T = 0]$
+            3. no backdoor paths (non-causal paths)
+
+            <div align='center'>
+
+            ![](image/2024-01-16-11-11-02.png)
+            </div align='center'>
+        - Disadvantages
+            - expensive
+            - time-consuming
+            - sometimes unethical
+    - A **natural experiment (NE)** is “the next best thing” after an RCT.
+        - NE rises when comparable individuals or groups of people are sorted by “nature” into something like a control and treatment group. The difference between NE and RCT is that the former groups are **not designed by researchers**.
+    - Another way is to find an **instrumental variable**, which is associated with changes in treatment $T$ while do not lead to change in outcome $Y$.
+
+        <div align='center'>
+
+        ![](image/2024-01-16-11-29-04.png)
+        </div align='center'>
+
+        If the regression of $Y$ against $Z$ is statistically significant, then $T$ is said to have a causal effect on $Y$.
+
+        Example: 
+        
+        - $Y$: lung cancer
+        - $T$: smoking
+        - $Z$: tabacco tax
+        - $U$: overall health
+
+    - ML methods
+        - Suppose $W$ and $W \cup X$ are sufficient adjustment sets. We want to estimate 
+            - ATE $\tau := \E[Y(1) - Y(0)] = \E_{W}[\E[Y \mid T = 1,\ W] - \E[Y \mid T = 0,\ W]]$ and
+            - CATE $\tau(x) := \E[Y(1) - Y(0) \mid X = x] = \E_{W}[\E[Y \mid T = 1,\ X = x,\ W] - \E[Y \mid T = 0,\ X = x,\ W]]$.
+        - **Conditional outcome modeling (COM)**: fit an ML model to $\E[Y \mid T,\ W]$ or $\E[Y \mid T,\ W,\ X]$ and then approximate $\E_{W}$ with an empirical mean over the $n$ datapoints:
+            - Estimated ATE $\widehat{\tau} = \frac{1}{n} \sum_{i=1}^{n} (\widehat{\mu}(1,\ w_i) - \widehat{\mu}(0,\ w_i))$
+            - Estimated CATE $\widehat{\tau}(x) = \frac{1}{n_{x}} \sum_{i=1}^{n_{x}} (\widehat{\mu}(1,\ w_i,\ x) - \widehat{\mu}(0,\ w_i,\ x))$
+            - The COM estimator is also called **S-learner** because we fit a **single model for different treatment groups**.
+        - **Grouped COM (GCOM)**: fit different models for different treatment groups. It is also called **T-learner** because we fit **two** models.
+        - **TARNet**: two models with **shared parameters**.
+        - **X-learner**:
+            - fit two models for $\mu_i(x)$,
+            - calculate $\widehat{\tau}_i(x)$ for each group,
+            - calculate $\widehat{\tau}(x) = g(x) \widehat{\tau}_{0}(x) + (1 - g(x)) \widehat{\tau}_{1}(x)$ using some weighting function $g(x)$, e.g., propensity score.
+        - **Propensity score**: $e(W) := P(T = 1 \mid W)$, which can be estimated by running a logistic regression of $T$ on $W$.
