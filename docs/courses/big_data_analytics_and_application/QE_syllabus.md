@@ -697,7 +697,12 @@ Sandro Claudio Lera
 ### 21. Applications to Finance
 
 - Challenge of price prediction
+    - If we can predict the price precisely, we can trade and make money. However, if many people can do this, the price would not be what we predict. As a consequence, the **signal-to-noise ratio is low**.
+    - Non-stationarity (drift).
 - Backtest and performance measures
+    - **Compound annual growth rate (CAGR)**
+    - Sharpe ratio
+    - Maximum drawdown
 - Common pitfalls
 - Survivorship Bias
 
