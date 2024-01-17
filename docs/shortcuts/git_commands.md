@@ -89,3 +89,27 @@
 2. `git pull / git push origin master`
 
 改用 ssh 需要在远程有 ssh 公钥，具体添加方法见[Git常用操作流程](#向远程添加-ssh-公钥)。
+
+还有可能遇到如下问题（未知原因）：
+
+<div align='center'>
+
+![](image/2024-01-16-17-14-07.png)
+</div align='center'>
+
+既然说是 SSH 连不上，那我们就可以看看怎样能连上。根据 [github docs](https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)：
+
+1. 检查是否真的连不上：`ssh -Tv git@github.com`
+2. 检查是否能用 SSH 连上 HTTPS 的端口：`ssh -T -p 443 git@ssh.github.com`
+3. 如果可以连上 HTTPS（443）端口，则在 `~/.ssh/config` 中添加如下内容：
+
+    ```bash
+    Host github.com
+        Hostname ssh.github.com
+        Port 443
+        User git
+    ```
+
+4. 检查现在是否能连上：`ssh -Tv git@github.com`
+
+如果能连上了，就可以试着重新进行 push/pull 了。
