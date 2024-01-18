@@ -930,7 +930,7 @@ $$
 
 You may have found that the inversion method is not always applicable (especially for continuous cases) since the cdf $F_{Y}(y)$ may not be invertible or the inverse may be difficult to compute. So we have another method called the Accept/Reject Algorithm, which is an indirect method.
 
-> [!THEOREM|label:The Accept/Reject Algorithm for continuous case]
+> [!THEOREM|label:The AcceptReject Algorithm for continuous case]
 > Let $Y \sim f_{Y}(y)$ and $V \sim f_{V}(v)$, where $f_{Y}$ and $f_{V}$ have *common support* with 
 >
 > $$M = \sup\limits_{y} \frac{f_{Y}(y)}{f_{V}(y)} < \infty.$$
@@ -966,7 +966,7 @@ Actually you can see from the proof that $M$ *need not* be the supremum of $\fra
 
 Similarly, the Accept/Reject Algorithm can also be applied to discrete cases.
 
-> [!THEOREM|label:The Accept/Reject Algorithm for discrete case]
+> [!THEOREM|label:The AcceptReject Algorithm for discrete case]
 > Let $Y$ be a *discrete* r.v. taking on values $y_1 \leqslant y_2 \leqslant \cdots \leqslant y_k$ with pmf $p(\cdot)$ and $V$ be a discrete r.v. with pmf $q(\cdot)$ and with the *same support* of $Y$. Define 
 >
 > $$M = \sup\limits_{y} \frac{p(y)}{q(y)} < \infty.$$
