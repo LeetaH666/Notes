@@ -20,7 +20,8 @@
 
 - `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
-- `du -h dirName/fileName`：查看目录/文件占用内存
+- `du -sh dirName/fileName`：查看目录/文件占用内存
+- `du -h dirName`：查看目录内所有文件占用内存
 - `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
 - `zip -r zipName.zip dirName`：将某目录压缩为 zip 文件
 - `unzip zipName.zip`：解压 zip 文件
@@ -46,6 +47,26 @@
 ### 其他
 
 - `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
+- `jupyter notebook --no-browser --port=portNumber`：启动 jupyter notebook，`--no-browser` 代表不自动打开浏览器，`--port` 代表指定端口号，`portNumber` 可以设成 `8889`。
+
+    > [!TIP|label:提示]
+    > 如果遇到 VSCode 无法使用，又想远程使用 jupyter notebook，则可以遵照以下步骤：
+    > 
+    > 1. 开一个 cmd 连上远程服务器后执行上述命令，cmd 不要关掉；
+    > 2. 再开多一个 cmd，用 `ssh -N -L localPort:localhost:remotePort userName@remoteIP` 来建立本地端口和远程端口的映射，`-N` 代表不执行其他命令，`-L` 代表端口映射，`localPort` 可以是 `8888`，这个 cmd 可以关掉；
+    > 3. 在本地浏览器输入 `localhost:localPort` 即可访问远程服务器上的 jupyter notebook；
+    > 4. 如果需要输入 token（第一次登陆），可以在第一个 cmd 中看到，即执行第一步时会有一些输出，其中有一个类似下图的信息：
+    > 
+    >     <div align='center'>
+    > 
+    >     ![](image/2024-03-01-20-48-38.png)
+    >     </div align='center'>
+    > 
+    >     其中的 `token=` 后面的一长串就是 token，输入到浏览器的输入框中即可。
+    > 
+    
+    > [!NOTE|label:注意]
+    > 记得需要 `conda activate envName` 切换到对应的环境后再执行 `jupyter notebook`。且在哪个目录执行就会只显示哪个目录的文件，不会有父目录的文件。
 
 ### 按键命令
 
