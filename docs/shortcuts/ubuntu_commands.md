@@ -12,6 +12,7 @@
 - `touch fileName`：创建文件
 - `cp fileName dirName`：复制文件到某个目录内
 - `cp -r dir1Name dir2Name`：复制目录1到目录2内
+- `scp (-r) userName@remoteIP:remoteDirName localDirName`：从远程服务器下载文件（如果是目录需要 `-r`）
 - `rm fileName`：删除文件
 - `rm -rf dirName`：删除目录（`-f` 代表强制删除不存在的文件）
     
