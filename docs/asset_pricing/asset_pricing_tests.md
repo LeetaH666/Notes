@@ -229,14 +229,91 @@ $$
 
 ### Likelihood 角度
 
----
+略。
 
-待解决：
+## 两步法中的 EIV 问题
+
+我们已经知道了，在比较不同的可交易因子时，test assets 并不重要。然而有不可交易因子存在时，我们依然需要考虑 test assets 的选择，不同的 test assets 会得到不同的 factor mimicking portfolio。因此有不可交易因子时，我们不可避免地需要用两步法来检验。[上面](#检验因子定价模型会遇到的问题)我们已经提到了两步法会遇到 EIV 的问题，接下来我们看看如何解决这个问题。
+
+### Shanken 修正
+
+假设我们有 $K_1$ 个不可交易因子 $\tilde{\bm{F}}_{1}$ 和 $K_2$ 个可交易因子 $\tilde{\bm{F}}_{2}$，两步法的第一步是做这样一个时序回归：
+
+$$
+\underbrace{\tilde{\bm{R}}_{t}}_{N \times 1} = \bm{\alpha} + \underbrace{\bm{\beta}}_{N \times K} \underbrace{\tilde{\bm{F}}_{t}}_{K \times 1} + \tilde{\bm{\varepsilon}}_{t},\quad t=1,\ \cdots,\ T, \tag{17}
+$$
+
+其中 $K = K_1 + K_2$ 是因子总数，$\tilde{\bm{F}}_{t} = \left(\tilde{\bm{F}}_{1t}^{\top},\ \tilde{\bm{F}}_{2t}^{\top} \right) ^{\top}$ 代表所有因子，$\bm{\beta} := (\bm{\beta}_1,\ \bm{\beta}_2)$ 是因子载荷。第二步是一个截面回归：
+
+$$
+\E[\tilde{\bm{R}}] = \gamma_0 \bm{e}_{N} + \bm{\beta} \bm{\Gamma}, \tag{18}
+$$
+
+其中 $\gamma_0$ 为 zero-beta rate，$\bm{e}_{N}$ 是一个 $N \times 1$ 的全为 $1$ 的向量，$\bm{\Gamma} := \left(\bm{\gamma}_1^{\top},\ \bm{\gamma}_2^{\top} \right)^{\top} $ 为因子的风险溢价。对于可交易因子来说，我们知道它们的风险溢价就是 $\bm{\gamma}_2 = \E[\tilde{\bm{F}}_{2}] - \gamma_0 \bm{e}_{K_2}$。
+
+将 $(17)$ 式在时序上分别取期望和平均，我们有
+
+$$
+\E[\tilde{\bm{R}}] = \bm{\alpha} + \bm{\beta} \E[\tilde{\bm{F}}], \tag{19}
+$$
+
+$$
+\overline{\bm{R}} = \bm{\alpha} + \bm{\beta} \overline{\bm{F}} + \overline{\bm{\varepsilon}}, \tag{20}
+$$
+
+联立 $(18)$ 式和 $(19)$ 式，我们有
+
+$$
+\bm{\alpha} = \gamma_0 \bm{e}_{N} + \bm{\beta} (\bm{\Gamma} - \E[\tilde{\bm{F}}]),
+$$
+
+代回 $(20)$ 式，我们有
+
+$$
+\overline{\bm{R}} = \gamma_0 \bm{e}_{N} + \bm{\beta} (\bm{\Gamma} + \overline{\bm{F}} - \E[\tilde{\bm{F}}]) + \overline{\bm{\varepsilon}}. \tag{21}
+$$
+
+Shanken ([1992](#S1992)) 称 $\bm{\Gamma}$ 为 ex ante 的因子风险溢价，称 $\overline{\bm{\Gamma}} := (\bm{\Gamma} + \overline{\bm{F}} - \E[\tilde{\bm{F}}])$ 为 ex post 的因子风险溢价。
+
+假设：
+
+1. $\E[\tilde{\bm{\varepsilon}} \mid \tilde{\bm{F}}] = 0$
+2. $\Var(\tilde{\bm{\varepsilon}} \mid \tilde{\bm{F}}) = \bm{\Sigma}$
+3. $\tilde{\bm{F}}$ 是平稳过程，当 $T \to \infty$，一阶样本矩和二阶样本矩都会依概率收敛到真实矩。
+4. $\overline{\bm{F}}$ 渐进正态。
+
+由于可交易因子的风险溢价可以直接在时序上取平均来估计，即 $\widehat{\bm{\gamma}}_2 = \overline{\bm{F}}_2 - \widehat{\gamma}_0 \bm{e}_{K_2}$，我们只需要估计 $\gamma_0$ 和 $\bm{\gamma}_1$。因此，根据 $(18)$ 式，我们将可交易因子的部分写到 LHS：
+
+$$
+\begin{aligned}
+\E[\tilde{\bm{R}}] - \bm{\beta}_2 \bm{\gamma}_2 &= \gamma_0 \bm{e}_{N} + \bm{\beta}_1 \bm{\gamma}_1 \\
+\E[\tilde{\bm{R}}] - \bm{\beta}_2 (\E[\tilde{\bm{F}}_{2}] - \gamma_0 \bm{e}_{K_2}) &= \gamma_0 \bm{e}_{N} + \bm{\beta}_1 \bm{\gamma}_1 \\
+\E[\tilde{\bm{R}}] - \bm{\beta}_2 \E[\tilde{\bm{F}}_{2}] &= \gamma_0 (\bm{e}_{N} - \bm{\beta}_2 \bm{e}_{K_2}) + \bm{\beta}_1 \bm{\gamma}_1
+\end{aligned}
+$$
+
+定义 $\bm{X} := (\bm{e}_{N} - \bm{\beta}_2 \bm{e}_{K_2},\ \bm{\beta}_1)$，$\bm{\Gamma}_{01} = \left(\gamma_0,\ \bm{\gamma}_1^{\top} \right)^{\top}$，则上式可以写成
+
+$$
+\E[\tilde{\bm{R}}] - \bm{\beta}_2 \E[\tilde{\bm{F}}_{2}] = \bm{X} \bm{\Gamma}_{01},
+$$
+
+当我们拿到第一步的时序估计 $\widehat{\bm{\beta}}_1$ 和 $\widehat{\bm{\beta}}_2$ 后，第二步的截面回归就是将 $\overline{\bm{R}} - \widehat{\bm{\beta}}_2 \overline{\bm{F}}_2$ 回归到 $\widehat{\bm{X}}$ 上，得到 $\widehat{\bm{\Gamma}}_{01} = \widehat{\bm{A}} (\overline{\bm{R}} - \widehat{\bm{\beta}}_2 \overline{\bm{F}}_2)$，其中 $\widehat{\bm{A}}$ 在不同的回归设定下是不同的矩阵：
+
+- OLS：$\widehat{\bm{A}} = (\widehat{\bm{X}}^{\top} \widehat{\bm{X}})^{-1} \widehat{\bm{X}}^{\top}$
+- GLS：$\widehat{\bm{A}} = (\widehat{\bm{X}}^{\top} \widehat{\bm{\Sigma}}^{-1} \widehat{\bm{X}})^{-1} \widehat{\bm{X}}^{\top} \widehat{\bm{\Sigma}}^{-1}$
+
+#### 对普通 CSR 的修正
+
+#### 对 FM 两步法的修正
+
+在 Fama-Macbeth 两步法中，第二步并不只是一个截面回归，而是每个截面都做一次回归后取平均。
+
+<!-- 待解决：
 
 - Fama-Macbeth 两步回归具体实现
 - Shanken 修正具体实现
 - GMM 具体实现
-- GRS Test 具体实现
 - GLS 残差协方差为什么可以用因变量协方差替代 
 
 问题：
@@ -253,33 +330,19 @@ $$
     - Optimal Cross-Sectional Regression
 - 遗漏变量
 
-## 时序回归
-
-## 截面回归
-
-## Fama-MacBeth 两步回归
-
 ## GMM
 
 ## Shanken’s T^2^ Test
-
-## GRS Test
 
 ## HJ Bound
 
 ## ... and the Cross-Section of Expected Returns
 
-## Which Alpha
-
-## Choosing Factors
-
-## Comparing Asset Pricing Models
-
 ## Taming the Factor Zoo
 
 ## Omitted Factors
 
-## Optimal Cross-Sectional Regression
+## Optimal Cross-Sectional Regression -->
 
 ## 参考文献
 
