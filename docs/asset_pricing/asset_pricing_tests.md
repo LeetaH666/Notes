@@ -277,10 +277,8 @@ Shanken ([1992](#S1992)) 称 $\bm{\Gamma}$ 为 ex ante 的因子风险溢价，�
 
 假设：
 
-1. $\E[\tilde{\bm{\varepsilon}} \mid \tilde{\bm{F}}] = 0$
-2. $\Var(\tilde{\bm{\varepsilon}} \mid \tilde{\bm{F}}) = \bm{\Sigma}$
-3. $\tilde{\bm{F}}$ 是平稳过程，当 $T \to \infty$，一阶样本矩和二阶样本矩都会依概率收敛到真实矩。
-4. $\overline{\bm{F}}$ 渐进正态。
+1. $\tilde{\bm{\varepsilon}}_{t}$ 在时序上 i.i.d. 且 $\E[\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}] = 0$，$\Var(\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}) = \bm{\Sigma}$
+2. $\tilde{\bm{F}}$ 是平稳过程，当 $T \to \infty$，一阶样本矩和二阶样本矩都会依概率收敛到真实矩。并且 $\overline{\bm{F}}$ 渐进正态。
 
 由于可交易因子的风险溢价可以直接在时序上取平均来估计，即 $\widehat{\bm{\gamma}}_2 = \overline{\bm{F}}_2 - \widehat{\gamma}_0 \bm{e}_{K_2}$，我们只需要估计 $\gamma_0$ 和 $\bm{\gamma}_1$。因此，根据 $(18)$ 式，我们将可交易因子的部分写到 LHS：
 
@@ -309,40 +307,6 @@ $$
 
 在 Fama-Macbeth 两步法中，第二步并不只是一个截面回归，而是每个截面都做一次回归后取平均。
 
-<!-- 待解决：
-
-- Fama-Macbeth 两步回归具体实现
-- Shanken 修正具体实现
-- GMM 具体实现
-- GLS 残差协方差为什么可以用因变量协方差替代 
-
-问题：
-
-- $\alpha$ 的截面相关性
-    - GRS
-- test assets 如何选择
-    - A Skeptical Appraisal of Asset Pricing Tests
-    - Which Alpha、Choosing Factors
-    - 不需要选择（贝叶斯）：Comparing Asset Pricing Models、On Comparing Asset Pricing Models
-- 因子动物园
-    - Taming the Factor Zoo
-- EIV 问题
-    - Optimal Cross-Sectional Regression
-- 遗漏变量
-
-## GMM
-
-## Shanken’s T^2^ Test
-
-## HJ Bound
-
-## ... and the Cross-Section of Expected Returns
-
-## Taming the Factor Zoo
-
-## Omitted Factors
-
-## Optimal Cross-Sectional Regression -->
 
 ## 参考文献
 
