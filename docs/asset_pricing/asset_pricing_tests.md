@@ -240,45 +240,48 @@ $$
 假设我们有 $K_1$ 个不可交易因子 $\tilde{\bm{F}}_{1}$ 和 $K_2$ 个可交易因子 $\tilde{\bm{F}}_{2}$，两步法的第一步是做这样一个时序回归：
 
 $$
-\underbrace{\tilde{\bm{R}}_{t}}_{N \times 1} = \bm{\alpha} + \underbrace{\bm{\beta}}_{N \times K} \underbrace{\tilde{\bm{F}}_{t}}_{K \times 1} + \tilde{\bm{\varepsilon}}_{t},\quad t=1,\ \cdots,\ T, \tag{17}
+\underbrace{\tilde{\bm{R}}_{t}}_{N \times 1} = \bm{\alpha} + \underbrace{\bm{\Beta}_{12}}_{N \times K} \underbrace{\tilde{\bm{F}}_{t}}_{K \times 1} + \tilde{\bm{\varepsilon}}_{t},\quad t=1,\ \cdots,\ T, \tag{17}
 $$
 
-其中 $K = K_1 + K_2$ 是因子总数，$\tilde{\bm{F}}_{t} = \left(\tilde{\bm{F}}_{1t}^{\top},\ \tilde{\bm{F}}_{2t}^{\top} \right) ^{\top}$ 代表所有因子，$\bm{\beta} := (\bm{\beta}_1,\ \bm{\beta}_2)$ 是因子载荷。第二步是一个截面回归：
+其中 $K = K_1 + K_2$ 是因子总数，$\tilde{\bm{F}}_{t} = \left(\tilde{\bm{F}}_{1t}^{\top},\ \tilde{\bm{F}}_{2t}^{\top} \right) ^{\top}$ 代表所有因子，$\bm{\Beta}_{12} := (\bm{\beta}_1,\ \bm{\beta}_2)$ 是因子载荷。第二步是一个截面回归：
 
 $$
-\E[\tilde{\bm{R}}] = \gamma_0 \bm{e}_{N} + \bm{\beta} \bm{\Gamma}, \tag{18}
+\E[\tilde{\bm{R}}] = \gamma_0 \bm{e}_{N} + \bm{\Beta}_{12} \bm{\Gamma}_{12}, \tag{18}
 $$
 
-其中 $\gamma_0$ 为 zero-beta rate，$\bm{e}_{N}$ 是一个 $N \times 1$ 的全为 $1$ 的向量，$\bm{\Gamma} := \left(\bm{\gamma}_1^{\top},\ \bm{\gamma}_2^{\top} \right)^{\top} $ 为因子的风险溢价。对于可交易因子来说，我们知道它们的风险溢价就是 $\bm{\gamma}_2 = \E[\tilde{\bm{F}}_{2}] - \gamma_0 \bm{e}_{K_2}$。
+其中 $\gamma_0$ 为 zero-beta rate，$\bm{e}_{N}$ 是一个 $N \times 1$ 的全为 $1$ 的向量，$\bm{\Gamma} := \left(\bm{\gamma}_1^{\top},\ \bm{\gamma}_2^{\top} \right)^{\top} $ 为因子的风险溢价。对于可交易因子来说，我们知道它们的风险溢价就是 $\bm{\gamma}_2 = \E[\tilde{\bm{F}}_{2}] - \gamma_0 \bm{e}_{K_2}$。定义 $\bm{\Beta} := (\bm{e}_{N},\ \bm{\Beta}_{12})$ 和 $\bm{\Gamma} := \left(\gamma_0,\ \bm{\Gamma}_{12}^{\top} \right)^{\top}$，则 $(18)$ 式可以简化成
+
+$$
+\E[\tilde{\bm{R}}] = \bm{\Beta} \bm{\Gamma}, \tag{19}
+$$
 
 将 $(17)$ 式在时序上分别取期望和平均，我们有
 
 $$
-\E[\tilde{\bm{R}}] = \bm{\alpha} + \bm{\beta} \E[\tilde{\bm{F}}], \tag{19}
+\E[\tilde{\bm{R}}] = \bm{\alpha} + \bm{\Beta}_{12} \E[\tilde{\bm{F}}], \tag{20}
 $$
 
 $$
-\overline{\bm{R}} = \bm{\alpha} + \bm{\beta} \overline{\bm{F}} + \overline{\bm{\varepsilon}}, \tag{20}
+\overline{\bm{R}} = \bm{\alpha} + \bm{\Beta}_{12} \overline{\bm{F}} + \overline{\bm{\varepsilon}}, \tag{21}
 $$
 
-联立 $(18)$ 式和 $(19)$ 式，我们有
+联立 $(18)$ 式和 $(20)$ 式，我们有
 
 $$
-\bm{\alpha} = \gamma_0 \bm{e}_{N} + \bm{\beta} (\bm{\Gamma} - \E[\tilde{\bm{F}}]),
+\bm{\alpha} = \gamma_0 \bm{e}_{N} + \bm{\Beta}_{12} (\bm{\Gamma}_{12} - \E[\tilde{\bm{F}}]),
 $$
 
-代回 $(20)$ 式，我们有
+代回 $(21)$ 式，我们有
 
 $$
-\overline{\bm{R}} = \gamma_0 \bm{e}_{N} + \bm{\beta} (\bm{\Gamma} + \overline{\bm{F}} - \E[\tilde{\bm{F}}]) + \overline{\bm{\varepsilon}}. \tag{21}
+\overline{\bm{R}} = \gamma_0 \bm{e}_{N} + \bm{\Beta}_{12} (\bm{\Gamma}_{12} + \overline{\bm{F}} - \E[\tilde{\bm{F}}]) + \overline{\bm{\varepsilon}}. \tag{22}
 $$
 
-Shanken ([1992](#S1992)) 称 $\bm{\Gamma}$ 为 ex ante 的因子风险溢价，称 $\overline{\bm{\Gamma}} := (\bm{\Gamma} + \overline{\bm{F}} - \E[\tilde{\bm{F}}])$ 为 ex post 的因子风险溢价。
+Shanken ([1992](#S1992)) 称 $\bm{\Gamma}_{12}$ 为 ex ante 的因子风险溢价，称 $\overline{\bm{\Gamma}}_{12} := (\bm{\Gamma}_{12} + \overline{\bm{F}} - \E[\tilde{\bm{F}}])$ 为 ex post 的因子风险溢价。同样地，我们可以定义 $\overline{\bm{\Gamma}} := \left(\gamma_0,\ \overline{\bm{\Gamma}}_{12}^{\top} \right)^{\top}$，于是上式简化为
 
-假设：
-
-1. $\tilde{\bm{\varepsilon}}_{t}$ 在时序上 i.i.d. 且 $\E[\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}] = 0$，$\Var(\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}) = \bm{\Sigma}$
-2. $\tilde{\bm{F}}$ 是平稳过程，当 $T \to \infty$，一阶样本矩和二阶样本矩都会依概率收敛到真实矩。并且 $\overline{\bm{F}}$ 渐进正态。
+$$
+\overline{\bm{R}} = \bm{\Beta} \overline{\bm{\Gamma}} + \overline{\bm{\varepsilon}}. \tag{23}
+$$
 
 由于可交易因子的风险溢价可以直接在时序上取平均来估计，即 $\widehat{\bm{\gamma}}_2 = \overline{\bm{F}}_2 - \widehat{\gamma}_0 \bm{e}_{K_2}$，我们只需要估计 $\gamma_0$ 和 $\bm{\gamma}_1$。因此，根据 $(18)$ 式，我们将可交易因子的部分写到 LHS：
 
@@ -301,12 +304,140 @@ $$
 - OLS：$\widehat{\bm{A}} = (\widehat{\bm{X}}^{\top} \widehat{\bm{X}})^{-1} \widehat{\bm{X}}^{\top}$
 - GLS：$\widehat{\bm{A}} = (\widehat{\bm{X}}^{\top} \widehat{\bm{\Sigma}}^{-1} \widehat{\bm{X}})^{-1} \widehat{\bm{X}}^{\top} \widehat{\bm{\Sigma}}^{-1}$
 
-#### 对普通 CSR 的修正
+但都有一个相同的性质：$\widehat{\bm{A}} \widehat{\bm{X}} = \bm{I}$，$\bm{I}$ 是单位矩阵，即 $\widehat{\bm{A}}$ 是 $\widehat{\bm{X}}$ 的左逆。
 
-#### 对 FM 两步法的修正
+#### 假设与引理
 
-在 Fama-Macbeth 两步法中，第二步并不只是一个截面回归，而是每个截面都做一次回归后取平均。
+假设：
 
+1. $\tilde{\bm{\varepsilon}}_{t}$ 在时序上 i.i.d. 且 $\E[\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}] = 0$，$\Var(\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}) = \bm{\Sigma}$
+2. $\tilde{\bm{F}}_{t}$ 是平稳过程，当 $T \to \infty$，一阶样本矩和二阶样本矩都会依概率收敛到真实矩。并且 $\overline{\bm{F}}$ 渐进正态。
+
+引理 1：定义 $\bm{\Beta}_{v} := \text{stack}(\bm{\Beta}_{12}^{\top})$，即将 $\bm{\Beta}_{12}^{\top}$ 的每一列堆叠成一个 $N K \times 1$ 的列向量。定义 $\bm{H} = \left(\overline{\varepsilon}^{\top},\ (\widehat{\bm{\Beta}}_{v} - \bm{\Beta}_{v})^{\top},\ (\overline{\bm{F}} - \E[\tilde{\bm{F}}])^{\top} \right)^{\top}$。定义 $\bm{g}$ 是一个任意的 $K \times 1$ 的常数向量。则在假设 1 和 2 下，我们有：
+
+1. $\widehat{\bm{\Beta}}_{12},\ \overline{\bm{\varepsilon}},\ \overline{\bm{F}}$ 是无关的，给定 $\tilde{\bm{F}}$ 后也是无关的。如果 $\tilde{\bm{\varepsilon}}_{t} \mid \tilde{\bm{F}}$ 服从多元正态，那么 $\widehat{\bm{\Beta}}_{12},\ \overline{\bm{\varepsilon}},\ \widehat{\bm{\Sigma}}$ 在给定 $\tilde{\bm{F}}$ 后是独立的，$\overline{\bm{\varepsilon}},\ \widehat{\bm{\Sigma}}$ 与 $\overline{\bm{F}}$ 是独立的。如果 $\tilde{\bm{F}}_{t}$ 是服从多元正态的，那么 $\widehat{\bm{\Beta}}_{12}$ 与 $\overline{\bm{F}}$ 也是独立的。
+2. $\sqrt{T} \bm{H}$ 依分布收敛于 $\mathcal{N}(\bm{0},\ \bm{\Sigma}_{H})$，其中
+
+    $$
+    \bm{\Sigma}_{H} := \begin{bmatrix}	\bm{\Sigma} &  &  \\	 & \bm{\Sigma} \otimes \bm{\Sigma}_{F}^{-1} &  \\	 &  & \bm{\Sigma}_{\overline{F}} \\\end{bmatrix}
+    $$
+
+3. $\sqrt{T}(\widehat{\bm{\Beta}}_{12} - \bm{\Beta}_{12}) \bm{g}$ 依分布收敛于 $\mathcal{N}(\bm{0},\ \bm{g}^{\top} \bm{\Sigma}_{F}^{-1} \bm{g} \bm{\Sigma})$。
+
+#### 定理 1
+
+如果 $\widehat{\bm{A}}$ 随 $T \to \infty$ 依概率收敛于真实值 $\bm{A}$，在满足上述两个假设的情况下，我们有
+
+1. $\widehat{\bm{\Gamma}}$ 是 $\bm{\Gamma}$ 的一致估计量，即 $\plim_{T \to \infty} \widehat{\bm{\Gamma}} = \bm{\Gamma}$；
+2. $\sqrt{T} (\widehat{\bm{\Gamma}} - \overline{\bm{\Gamma}})$ 随 $T \to \infty$ 依分布收敛于 $\mathcal{N}(\bm{0},\ (1 + c) \bm{\Omega})$，其中 $c := \bm{\Gamma}_{12}^{\top} \bm{\Sigma}_{F}^{-1} \bm{\Gamma}_{12}$，
+   
+    $$
+    \bm{\Omega} := \begin{bmatrix}	\bm{A} \bm{\Sigma} \bm{A}^{\top} & (-\bm{v},\ \cdots,\ -\bm{v}) \\ (-\bm{v},\ \cdots,\ -\bm{v}) & v_0 \bm{e}_{K_2} \bm{e}_{K_2}^{\top} \\\end{bmatrix},
+    $$
+
+    其中 $\bm{v}$ 为 $\bm{A} \bm{\Sigma} \bm{A}^{\top}$ 的第一列，$v_0$ 是 $\bm{v}$ 的第一个元素。
+
+3. $\sqrt{T} (\widehat{\bm{\Gamma}} - \bm{\Gamma})$ 随 $T \to \infty$ 依分布收敛于 $\mathcal{N}(\bm{0},\ (1 + c) \bm{\Omega} + \bm{\Sigma}_{\overline{F}}^{*})$，其中
+
+    $$
+    \bm{\Sigma}_{\overline{F}}^{*} := \begin{bmatrix}	\bm{0} & \bm{0} \\ \bm{0} & \bm{\Sigma}_{\overline{F}} \\\end{bmatrix}.
+    $$
+
+<details>
+
+<summary>证明：</summary>
+
+根据定义，我们有
+
+$$
+\begin{aligned}
+    \widehat{\bm{X}} - \bm{X} &= (\bm{e}_{N} - \widehat{\bm{\beta}}_2 \bm{e}_{K_2},\ \widehat{\bm{\beta}}_1) - (\bm{e}_{N} - \bm{\beta}_2 \bm{e}_{K_2},\ \bm{\beta}_1) \\
+    &= ((\bm{\beta}_2 - \widehat{\bm{\beta}}_2) \bm{e}_{K_2},\ \widehat{\bm{\beta}}_1 - \bm{\beta}_1) \\
+\end{aligned}
+$$
+
+根据 $(23)$ 式，我们可以写出
+
+$$
+\begin{aligned}
+\overline{\bm{R}} - \bm{\beta}_2 \overline{\bm{F}}_2 &= \bm{X} \overline{\bm{\Gamma}}_{01} + \overline{\bm{\varepsilon}} \\
+\overline{\bm{R}} - \widehat{\bm{\beta}}_2 \overline{\bm{F}}_2 &= \widehat{\bm{X}} \overline{\bm{\Gamma}}_{01} - (\widehat{\bm{X}} - \bm{X}) \overline{\bm{\Gamma}}_{01} + \overline{\bm{\varepsilon}} - (\widehat{\bm{\beta}}_2 - \bm{\beta}_2) \overline{\bm{F}}_2 \\
+\end{aligned}
+$$
+
+由于 
+    
+$$
+\overline{\bm{\gamma}}_2 = \bm{\gamma}_2 + \overline{\bm{F}}_2 - \E[\tilde{\bm{F}}_2] = \E[\tilde{\bm{F}}_2] - \gamma_0 \bm{e}_{K_2} + \overline{\bm{F}}_2 - \E[\tilde{\bm{F}}_2] = \overline{\bm{F}}_2 - \gamma_0 \bm{e}_{K_2}
+$$
+
+上式可最终化简成
+
+$$
+\overline{\bm{R}} - \widehat{\bm{\beta}}_2 \overline{\bm{F}}_2 = \widehat{\bm{X}} \overline{\bm{\Gamma}}_{01} + \overline{\bm{\varepsilon}} - \bm{U} \overline{\bm{\Gamma}}_{12},
+$$
+
+其中 $\bm{U} := \widehat{\bm{\Beta}}_{12} - \bm{\Beta}_{12}$。两边同时左乘 $\widehat{\bm{A}}$，我们有 
+
+$$
+\widehat{\bm{\Gamma}}_{01} = \overline{\bm{\Gamma}}_{01} + \widehat{\bm{A}} (\overline{\bm{\varepsilon}} - \bm{U} \overline{\bm{\Gamma}}_{12})
+$$
+
+假设 2 告诉我们 $\plim_{T \to \infty} \overline{\bm{\Gamma}} = \bm{\Gamma}$，因此根据引理 1 中的（ii）和（iii），我们有
+
+$$
+\sqrt{T} (\overline{\bm{\varepsilon}} - \bm{U} \overline{\bm{\Gamma}}_{12}) \to_{T} \mathcal{N}(\bm{0},\ (1 + c) \bm{\Sigma}),
+$$
+
+又由于 $\plim_{T \to \infty} \widehat{\bm{A}} = \bm{A}$，我们有
+
+$$
+\sqrt{T} (\widehat{\bm{\Gamma}}_{01} - \overline{\bm{\Gamma}}_{01}) \to_{T} \mathcal{N}(\bm{0},\ (1 + c) \bm{A} \bm{\Sigma} \bm{A}^{\top}),
+$$
+
+而注意到 $\widehat{\bm{\gamma}}_2 - \overline{\bm{\gamma}}_2 = (\overline{\bm{F}}_2 - \widehat{\gamma}_0 e_{K_2}) - (\overline{\bm{F}}_2 - \gamma_0 e_{K_2}) = -(\widehat{\gamma}_0 - \gamma_0) \bm{e}_{K_2}$，即 $\widehat{\bm{\gamma}}_2 - \overline{\bm{\gamma}}_2$ 每一个元素都等于 $-(\widehat{\gamma}_0 - \gamma_0)$，那么 $\widehat{\bm{\gamma}}_2 - \overline{\bm{\gamma}}_2$ 与 $(\widehat{\bm{\Gamma}}_{01} - \overline{\bm{\Gamma}}_{01})$ 的协方差以及自己的协方差矩阵都很容易可以表示出来了。（ii）证毕。
+
+（ii）告诉我们 $\plim_{T \to \infty} \widehat{\bm{\Gamma}} - \overline{\bm{\Gamma}} = \bm{0}$，由于我们已经知道 $\plim_{T \to \infty} \overline{\bm{\Gamma}} = \bm{\Gamma}$，所以 $\plim_{T \to \infty} \widehat{\bm{\Gamma}} = \bm{\Gamma}$。（i）证毕。
+
+为了证（iii），我们可以将 $\widehat{\bm{\Gamma}} - \bm{\Gamma}$ 拆写成
+
+$$
+\widehat{\bm{\Gamma}} - \bm{\Gamma} = (\widehat{\bm{\Gamma}} - \overline{\bm{\Gamma}}) + (\overline{\bm{\Gamma}} - \bm{\Gamma}),
+$$
+
+前者的收敛分布已经推出来了，后者则第一个元素为 $0$，剩下的元素为 $\overline{\bm{F}} - \E[\tilde{\bm{F}}]$，根据引理给出的一些独立性质我们也能很容易证出来。（iii）证毕。
+
+</details>
+
+注意到，如果 $\tilde{\bm{F}}_{t}$ 是没有时序相关性的，那么 $\bm{\Sigma}_{\overline{F}} = \bm{\Sigma}_{F}$；而如果有的话，我们可以用 Newey-West ([1987](#NW1987)) 的方法来估计 $\bm{\Sigma}_{\overline{F}}$。常数 $c$ 是对 EIV 的修正，$c \bm{\Omega}$ 就是 EIV 部分的方差。对于可交易因子来说，$c$ 实际上就是最大夏普比平方，从这个角度来理解的话，它其实告诉我们，如果得到的因子能构造出夏普比很高的组合，它的 EIV 问题会更严重。
+
+#### 对 FM 两步法的修正（定理 2）
+
+在 Fama-Macbeth ([1973](#FM1973)) 两步法中，第二步并不只是一个截面回归，而是每个截面都做一次回归后取平均。于是令 $\widehat{\bm{\Gamma}}_{01t} := \widehat{\bm{A}} (\tilde{\bm{R}}_{t} - \widehat{\bm{\Beta}}_2 \tilde{\bm{F}}_{2t}),\ t=1,\ \cdots,\ T$，$\widehat{\bm{\gamma}}_{2t} := \tilde{\bm{F}}_{2t} - \widehat{\gamma}_{0t} \bm{e}_{K_2}$。在假设 1 和 2 下，我们有：$\left\{\widehat{\bm{\Gamma}}_{t} \right\}$ 的样本协方差矩阵 $\widehat{\bm{W}}$ 依概率收敛到 $\bm{\Omega} + \bm{\Sigma}_{F}^{*}$。因此定理 1（iii）中的协方差矩阵的一致估计量为
+
+$$
+(1 + \widehat{c}) (\widehat{\bm{W}} - \widehat{\bm{\Sigma}}_{F}^{*}) + \widehat{\bm{\Sigma}}_{\overline{F}}^{*},
+$$
+
+其中 $\widehat{c} = \widehat{\bm{\Gamma}}_{12}^{\top} \widehat{\bm{\Sigma}}_{F}^{-1} \widehat{\bm{\Gamma}}_{12}$。
+
+注意到通常我们使用 Fama-Macbeth 两步法时，会直接将 $\widehat{\bm{W}}$ 作为标准误，Shanken ([1992](#S1992)) 提供的修正实际上分为两部分，一是对 $\widehat{c}$，对 EIV 进行修正，二是考虑了因子的时序相关性，即 $\widehat{\bm{\Sigma}}_{F}^{*} \neq \widehat{\bm{\Sigma}}_{\overline{F}}^{*}$ 的情况。
+
+### 工具变量法修正
+
+Shanken ([1992](#S1992)) 其实是在 FM 两步法的基础上修正（放大）了标准误的估计，本质上要估得准仍然需要足够长的时间长度 $T$。而 Jegadeesh et al. ([2019](#JNPRW2019)) 则使用工具变量法构造了一个不需要 $T$ 很长的估计量，这个估计量需要的是 test assets 数量 $N$ 足够大。
+
+$$
+\widehat{\bm{\Gamma}} = (\widehat{\Beta}_{\text{IV}}^{\top} \widehat{\Beta}_{\text{EV}})^{-1} (\widehat{\Beta}_{\text{IV}}^{\top} \tilde{\bm{R}}_{t})
+$$
+
+当 $t$ 是奇数月时，$\widehat{\Beta}_{\text{IV}}$ 是偶数月数据估计出的 beta，$\widehat{\Beta}_{\text{EV}}$ 是奇数月数据估计出的 beta；当 $t$ 是偶数月时，$\widehat{\Beta}_{\text{IV}}$ 是奇数月数据估计出的 beta，$\widehat{\Beta}_{\text{EV}}$ 是偶数月数据估计出的 beta。用三年的（奇数月或偶数月中的）日频数据来估计 beta。
+
+对于日频数据来说，即使五年才 1260 个交易日，且很多股票没有那么长的数据，但是截面的维度通常是很容易可以到几千上万的，因此这个方法比起需要 $T$ 大的方法要更加实用。
+
+### 带金融约束的修正
+
+Liao et al. ([2024](#LLX2024)) 则从另一个角度出发，提出了一种带金融约束的修正方法。这个方法的核心思想是，因子最起码应该解释自己的 basis portfolio。
 
 ## 参考文献
 
@@ -322,7 +453,11 @@ Back, K. (Kerry). (2017). *Asset pricing and portfolio choice theory* (Second ed
 
 <span id="H1982">Hansen, L. P. (1982). Large Sample Properties of Generalized Method of Moments Estimators. *Econometrica*, 50(4), 1029. https://doi.org/10.2307/1912775</span>
 
+<span id="JNPRW2019">Jegadeesh, N., Noh, J., Pukthuanthong, K., Roll, R., & Wang, J. (2019). Empirical tests of asset pricing models with individual assets: Resolving the errors-in-variables bias in risk premium estimation. Journal of Financial Economics, 133(2), 273–298. https://doi.org/10.1016/j.jfineco.2019.02.010</span>
+
 <span id="LNS2010">Lewellen, J., Nagel, S., & Shanken, J. (2010). A skeptical appraisal of asset pricing tests. *Journal of Financial Economics*, 96(2), 175–194. https://doi.org/10.1016/j.jfineco.2009.09.001</span>
+
+<span id="LLX2024">Liao, Z., Liu, Y., & Xie, Z. (2024). Optimal Cross-Sectional Regression. Management Science, mnsc.2023.4966. https://doi.org/10.1287/mnsc.2023.4966</span>
 
 <span id="NW1987">Newey, W. K., & West, K. D. (1987). A Simple, Positive Semi-Definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix. *Econometrica*, 55(3), 703–708. JSTOR. https://doi.org/10.2307/1913610</span>
 
