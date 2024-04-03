@@ -33,7 +33,7 @@
 - `nvdia-smi`：查看 GPU 内存占用（静态）
 
     > [!TIP|label:提示]
-    > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。
+    > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。如果想要只看某张卡的情况，则需要用 `-i` 参数，后面接卡号，比如 `nvidia-smi -i 0` 代表只看第一张卡的情况。
 
 ### 查询
 
@@ -158,6 +158,10 @@
     > 
     > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
 
+### 其他
+
+- `nvidia-smi -pm 1`：开启 GPU 持久模式，即 GPU 不会在空闲时自动降频，也不需要在启动时预热。`0` 的话是关闭。
+
 ## 一次性工作
 
 以下是一些一次性的过程，比如安装某个软件、配置某个环境等等。
@@ -215,3 +219,17 @@
 4. `sudo apt install nvidia-utils-535-server`：安装额外的驱动包，不然用不了 `nvidia-smi` 指令；
 5. 重启；
 6. `nvidia-smi`：如果正常显示则安装成功。
+
+### 安全删除硬盘内容（保护隐私防恢复）
+
+参考：[StackExchange: SSD Erasure verification](https://security.stackexchange.com/questions/171396/ssd-erasure-verification)
+
+实现过一次，但最终效果是 `df -aTh` 显示硬盘空间是满的，而 `du -sh` 显示硬盘空间是空的，应该是安全删除了，但不知道影不影响后续使用。具体步骤如下：
+
+1. `hdparm -I /dev/sda | grep -A8 "^Security:"`：查看硬盘是否支持安全删除（“not locked”，“not frozen”，“supported: enhanced erace”）；
+2. `yes "You should not see me" > /dev/sda`：将硬盘内容填充为 “You should not see me”；
+3. `hdparm --security-set-pass NULL /dev/sda`：设置硬盘密码为空值；
+4. `hdparm --security-erase-enhanced NULL /dev/sda`：安全删除硬盘内容。
+5. `strings /dev/sda | grep "You should not see me"`：查看硬盘内容是否被填充（然而在步骤 3 之前就已经填充了，输出跟步骤 4 之后是一样的，不知道在这里检查这么一步是要干嘛）。
+
+同样地还有一种填充方式，即 `dd if=/dev/urandom of=/dev/sda bs=1M`，这种方式是用随机数填充硬盘内容，不知道和上面的方式有什么区别。
