@@ -131,3 +131,18 @@
 
 > [!TIP|label:提示]
 > 修改快捷键的时候，如果有冲突可以忽略，使用时无效再把冲突的功能给改了（或者直接删掉该快捷键）。
+
+## 常见问题
+
+### 远程服务器下载 vscode-server 更新版本非常慢
+
+VSCode 更新频率还是比较高的，每次更新之后连接远程服务器时也需要下载更新后的 vscode-server，下载速度非常慢。解决办法是在本地下载好 vscode-server，然后通过 scp 上传到远程服务器。这个步骤是可以在 Remote - SSH 的设置中自动完成的，只需要点击左侧边栏的 `Extensions`，找到扩展 `Remote - SSH`，点击右下角的设置图标，选择 `Extensions Settings`：
+
+<div align='center'>
+
+![](image/2024-04-14-16-32-14.png)
+</div align='center'>
+
+在里面找到 `Remote.SSH: Local Server Download`，设置成 `always` 即可。
+
+如果设置完依旧不行，scp 完成后还是会在远程服务器上再次下载，那么可以在刚刚那个设置中找到 `Remote.SSH: Use Exec Server`，设置成 `false`（取消勾选），这样 vscode-server 就会以 `.vscode-server/bin` 中一个名为 `CommitID` 的文件夹的形式存在，而不是以 `.vscoder-server` 中一个名为 `code-CommitID` 的可执行文件的形式存在。这样就解决了问题。
