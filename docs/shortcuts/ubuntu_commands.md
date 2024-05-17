@@ -25,7 +25,7 @@
 - `du -h dirName`：查看目录内所有文件占用内存
 - `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
 - `zip -r zipName.zip dirName`：将某目录压缩为 zip 文件
-- `unzip zipName.zip`：解压 zip 文件
+- `unzip (-n) (-d dirName) zipName.zip`：解压 zip 文件（`-n` 代表不覆盖已有文件，`-d` 代表解压到指定目录）
 
 ### 系统
 
