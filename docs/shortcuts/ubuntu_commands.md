@@ -29,11 +29,11 @@
 
 ### 系统
 
-- `top`：查看 CPU 内存占用（动态变化）
-- `nvdia-smi`：查看 GPU 内存占用（静态）
+- `top (-u userName)`：查看 CPU 内存占用（动态变化）（`-u` 代表只看某个用户的情况）
+- `nvdia-smi (-i GPUNumber)`：查看 GPU 内存占用（静态）（`-i` 代表只看某张卡的情况）
 
     > [!TIP|label:提示]
-    > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。如果想要只看某张卡的情况，则需要用 `-i` 参数，后面接卡号，比如 `nvidia-smi -i 0` 代表只看第一张卡的情况。
+    > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。
 
 ### 查询
 
@@ -73,6 +73,9 @@
 
 - `Ctrl + C`：终止命令
 - `Ctrl + R`：查找之前输过的命令
+- `Ctrl + Z`：暂停命令
+    - `jobs`：查看当前暂停的任务
+    - `fg jobNumber`：恢复执行任务
 
 ## 管理员常用
 
@@ -233,3 +236,29 @@
 5. `strings /dev/sda | grep "You should not see me"`：查看硬盘内容是否被填充（然而在步骤 3 之前就已经填充了，输出跟步骤 4 之后是一样的，不知道在这里检查这么一步是要干嘛）。
 
 同样地还有一种填充方式，即 `dd if=/dev/urandom of=/dev/sda bs=1M`，这种方式是用随机数填充硬盘内容，不知道和上面的方式有什么区别。
+
+### 升级 CUDA
+
+[CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive) 里面有各个版本的 cuda 下载链接，选择对应版本和系统后选择 `runfile` 进行下载和安装。安装的时候如果已经有 `nvidia driver` 了，则取消勾选 `nvidia driver`。
+
+#### NVCC 与 CUDA 版本不一致
+
+如果安装了新版本的 cuda，但是 `nvcc -V` 显示的 cuda 版本不是最新的，可以尝试添加 cuda 环境变量：
+
+1. `vim ~/.bashrc`：打开 `.bashrc` 文件；
+2. 在文件末尾添加 
+
+    ```bash
+    export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export CUDA_HOME=/usr/local/cuda
+    ```
+
+    > [!TIP|label:提示]
+    > 当你想使用老版本的 cuda 而非新版本的 cuda，可以将 `export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}` 改为 `export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}`，其中 `10.0` 是你想要的 cuda 版本号，前提是 `/usr/local` 下有对应版本的 cuda 文件夹。`LD_LIBRARY_PATH` 和 `CUDA_HOME` 同理。
+    > 
+    > `${PATH:+:${PATH}}` 的意思是如果 `PATH` 不为空，则在 `PATH` 后面加 `:`，然后再加上原来的 `PATH`。而如果直接用 `export PATH=/usr/local/cuda/bin:$PATH` 的话，如果原先 `PATH` 为空会导致修改后的 `PATH` 变成 `/usr/local/cuda/bin:`，即环境变量会纳入当前路径，可能导致安全问题。当然一般环境变量都不会为空，所以只是个以防万一的写法。
+
+3. `source ~/.bashrc`：使修改生效。
+
+这时再使用 `nvcc -V` 应该就会显示最新的 cuda 版本了。
