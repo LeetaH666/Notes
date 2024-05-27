@@ -29,7 +29,7 @@
 
 ### 系统
 
-- `top (-u userName)`：查看 CPU 内存占用（动态变化）（`-u` 代表只看某个用户的情况）
+- `top (-u userName) (-p PID)`：查看 CPU 内存占用（动态变化）（`-u` 代表只看某个用户的情况，`-p` 代表只看某个进程的情况）
 - `nvdia-smi (-i GPUNumber)`：查看 GPU 内存占用（静态）（`-i` 代表只看某张卡的情况）
 
     > [!TIP|label:提示]
@@ -147,6 +147,21 @@
 - `lsblk`：查看各个内存块的基本信息
 - `blkid`：查看各个内存块的 UUID
 - `shutdown -h now`：关机
+
+### 安装
+
+- `apt-get update`：更新软件源（但不更新软件）
+- `apt-get upgrade`：升级软件
+- `apt-get install packageName`：安装软件
+- `apt-get remove --purge packageName`：卸载软件
+- `apt-get autoremove`：卸载不需要的软件
+
+    > [!TIP|label:提示]
+    > 通常我们会执行三个步骤来更新软件：
+    > 
+    > 1. `apt-get update`
+    > 2. `apt-get upgrade`
+    > 3. `apt-get autoremove`
 
 ### 挂载
 

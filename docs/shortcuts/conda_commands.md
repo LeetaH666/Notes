@@ -17,6 +17,8 @@
 - `conda config --remove channels URL`：移除某个镜像源
 - `conda config --set show_channel_urls yes`：安装包时显示包来源
 
+你科自己的镜像源非常好用：[你科镜像源](https://mirrors.sustech.edu.cn/help/anaconda.html#introduction)。按照教程配置好就可以正常使用了。如果不想使用你科的镜像源，或者你科的镜像源哪天不好用了，可以用下面的清华镜像源。
+
 > [!TIP|label:好用的镜像源]
 > - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
 > - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2/
