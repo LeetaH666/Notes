@@ -48,6 +48,7 @@
 ### 其他
 
 - `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
+- `ssh-keygen -c`：修改公钥的注释
 - `jupyter notebook --no-browser --port=portNumber`：启动 jupyter notebook，`--no-browser` 代表不自动打开浏览器，`--port` 代表指定端口号，`portNumber` 可以设成 `8889`。
 
     > [!TIP|label:提示]
