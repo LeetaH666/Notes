@@ -26,6 +26,13 @@
 - `strings fileName`：将二进制文件或可执行文件以人类可读的语言输出
 - `zip -r zipName.zip dirName`：将某目录压缩为 zip 文件
 - `unzip (-n) (-d dirName) zipName.zip`：解压 zip 文件（`-n` 代表不覆盖已有文件，`-d` 代表解压到指定目录）
+- `gzip (-k) fileName`：压缩单个文件为 gz 文件（`-k` 代表保留原文件，如果不加 `-k` 则会删除原文件）
+- `gzip -(k)d fileName.gz`：解压 gz 文件（`-k` 代表保留原文件，如果不加 `-k` 则会删除原文件）
+- `tar -czvf tarName.tar.gz dirName`：将某目录压缩为 tar.gz 文件
+- `tar -xzvf tarName.tar.gz`：解压 tar.gz 文件
+
+    > [!TIP|label:提示]
+    > `tar` 命令中的 `c` 代表创建，`x` 代表解压，`z` 代表使用 `gzip` 压缩，`v` 代表显示详细信息，`f` 代表文件名。
 
 ### 系统
 
