@@ -75,6 +75,8 @@
   - 关闭窗口
 - `Ctrl + Shift + \`: Terminal: Focus Terminal Tabs View
   - 聚焦 Terminal 选项卡，可以用上下或 jk 移动
+- `Ctrl + K, Z`: View: Toggle Zen Mode
+  - 禅定模式（上下左右的边框都消失）
 - `Ctrl + K, Ctrl + O`: File: Open Folder
   - 打开文件夹
 - `Ctrl + K, 方向键`: View: Move Editor Group Up/Down/Left/Right

@@ -50,3 +50,14 @@
 - `Ctrl + Alt + S`：打开 VSCode
 - `Ctrl + Alt + W`：打开微信
 - `Ctrl + Alt + Z`：打开 Zotero
+
+## CMD 命令
+
+### 文件与目录
+
+- `cd dirName`：切换目录
+- `dir`：查看目录下文件
+- `mkdir dirName`：新建文件夹
+- `rmdir dirName`：删除文件夹
+- `type nul > fileName`：新建文件
+- `del fileName`：删除文件
