@@ -1,5 +1,6 @@
 - [Asset Pricing](/asset_pricing/README.md)
 - [Bayesian](/bayesian/README.md)
+- [Frequency](/frequency/README.md)
 - [Reinforcement Learning](/rl/README.md)
 - [Papers](/papers/README.md)
 - [Commands and Keyboard Shortcuts](/shortcuts/README.md)
