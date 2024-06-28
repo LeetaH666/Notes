@@ -1,4 +1,4 @@
-# Bayesian
+# Frequency
 
 These are some notes for frequency.
 
