@@ -300,7 +300,7 @@ Sandro Claudio Lera
 ### 7. From Linear to Non-Linear Methods
 
 - Inductive Bias
-    - $f$, the algorithm, or the model, is called the **inductive bias**.
+    - $f$, the algorithm, or the model, is called the <strong>inductive bias</strong>.
     - Formally, the inductive bias is a **set of assumptions** that we make about our ML algorithm to predict outputs of given input that it **has not yet encountered**.
 
 ### 8. Tree-Based Methods
@@ -399,7 +399,7 @@ Sandro Claudio Lera
 - K-Nearest Neighbors
     - *Intuition*: Find $k$ datapoints that are **closest to the new datapoint** and let them **represent** the new datapoint.
     - For classification tasks, we can let the **majority class** of the $k$ datapoints to be the class of the new datapoint; for regression tasks, we just use the **average** of the $k$ datapoints to predict the new datapoint.
-    - $k$ is a **hyper-parameter**. If it is too **small**, the model **overfits the noise**; if it is too **large**, the model is **underfitting**.
+    - $k$ is a <strong>hyper-parameter</strong>. If it is too <strong>small</strong>, the model <strong>overfits the noise</strong>; if it is too <strong>large</strong>, the model is <strong>underfitting</strong>.
     - *Advantages*
         - simple
         - non-parametric
@@ -483,7 +483,7 @@ Sandro Claudio Lera
 - Shapley Values in Game Theory
 
     <div align='center'>
-    
+
     ![](image/2023-12-07-20-05-31.png)
     </div align='center'>
 
