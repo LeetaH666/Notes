@@ -7,12 +7,24 @@
 ### 文件与目录
 
 - `cd dirName`：进入某个目录（`.` 代表当前目录，`..` 代表上一层目录，`~` 代表根目录，`-` 代表上一个进入的目录）
+
+    > [!TIP|label:提示]
+    > 如果想要进入的目录有空格，可以用 `\` 转义，或者用 `''` 包裹。比如要进入的目录名叫 `dir Name`，则使用 `cd dir\ Name` 或者 `cd 'dir Name'`。
+    > 
+    > 如果想要进入的目录开头是 `-`，可以用 `--` 来区分，或者在前面加上 `./`。比如要进入的目录名叫 `-dirName`，则使用 `cd -- -dirName` 或者 `cd ./-dirName`。
+
 - `ll`：列出当前目录下所有文件及其权限
+
+    > [!TIP|label:提示]
+    > `ll` 其实是 `ls -alF` 的别名，可以在 `~/.bashrc` 文件中自行设定。这些参数的含义是：`-a` 代表显示所有文件（包括隐藏文件），`-l` 代表显示详细信息，`-F` 代表在文件名后面加上文件类型的标识符，比如 `/` 代表目录，`*` 代表可执行文件。
+    > 
+    > 如果想按时间排序（最新的在最前面），可以加 `-t` 参数；如果想倒序，则可以加 `-r` 参数。比如 `ll -rt` 就可以在最下面显示最新的文件。
+
 - `mkdir dirName`：创建目录
 - `touch fileName`：创建文件
-- `cp fileName dirName`：复制文件到某个目录内
-- `cp -r dir1Name dir2Name`：复制目录1到目录2内
-- `scp (-r) userName@remoteIP:remoteDirName localDirName`：从远程服务器下载文件（如果是目录需要 `-r`）
+- `cp (-r) fileNameOrDirName dirName`：复制文件（或目录，目录需要加 `-r` 参数）到某个目录内
+- `mv fileNameOrDirName dirName`：移动文件（或目录）到某个目录内，也可以用来重命名
+- `scp (-r) userName@remoteIP:remoteFileNameOrDirName localDirName`：从远程服务器下载文件（或目录，目录需要加 `-r` 参数）
 - `rm fileName`：删除文件
 - `rm -rf dirName`：删除目录（`-f` 代表强制删除不存在的文件）
     
@@ -87,13 +99,24 @@
 
 ## 管理员常用
 
-以下是管理员常用的命令。
+### su vs. sudo
 
-- `su`：进入 root 账户
+`su` 代表切换到 root 账户，而 `sudo Command` 代表以某个用户（通常是 root）的权限执行某个命令 `Command`。前者需要 root 用户的密码，后者则只需要当前用户的密码。
+
+通常并不需要使用 `su`，`sudo` 就够用了。即使需要使用多条命令也并不需要每条命令都输密码，`sudo` 会记住密码一段时间，一般是 5 分钟。只有在需要使用 `cd` 进入 root 目录时才需要使用 `su`。
+
+并非所有用户都有 `sudo` 权限，需要管理员手动添加。具体方法是使用 `sudo visudo`，有很多可以自定义的，语法参考 [Linux Fundamentals: A to Z of a Sudoers File.](https://medium.com/kernel-space/linux-fundamentals-a-to-z-of-a-sudoers-file-a5da99a30e7f)。一般只需要写一个 User_Alias 赋予 `sudo` 权限，在 User_Alias 后面加新的用户即可。保存的时候先 `Ctrl + O` write out，然后 `Enter` 确认名字，默认输出到 `/etc/sudoers.tmp`（会自动 `mv` 到 `/etc/sudoers`），然后 `Ctrl + X` 退出。
+
+> [!NOTE|label:注意]
+> 以下命令大部分都需要 root 权限。
 
 ### 用户
 
-- `passwd`：重设密码
+- `passwd userName`：为某个用户重设密码
+
+    > [!WARNING|label:警告]
+    > `sudo passwd` 修改的是 root 的密码。
+
 - `adduser --ingroup groupName userName`：添加用户并加入某组
 - `deluser --remove-all-files userName`：删除用户以及用户的所有文件
 
