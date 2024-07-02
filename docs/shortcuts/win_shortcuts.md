@@ -61,3 +61,7 @@
 - `rmdir dirName`：删除文件夹
 - `type nul > fileName`：新建文件
 - `del fileName`：删除文件
+
+### 网络
+
+- `ipconfig`：查看网络配置（查看 IP 地址）

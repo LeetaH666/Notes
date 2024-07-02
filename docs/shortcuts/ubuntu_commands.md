@@ -165,7 +165,8 @@
 
 ### 系统
 
-- `cat /proc/version`：查看系统版本
+- `uname -r`：查看 Linux 内核版本
+- `lsb_release -a`：查看系统版本
 - `lscpu`：查看 CPU 信息
 - `lspci | grep -i nvidia`：查看 GPU 型号
 
@@ -186,6 +187,7 @@
 - `apt-get install packageName`：安装软件
 - `apt-get remove --purge packageName`：卸载软件
 - `apt-get autoremove`：卸载不需要的软件
+- `apt-mark hold/unhold packageName`：锁定/解锁软件，锁定后软件不会被升级
 
     > [!TIP|label:提示]
     > 通常我们会执行三个步骤来更新软件：
@@ -206,6 +208,17 @@
     > `localDirName` 代表本地目录，通常我们会在本地的 `/mnt` 文件夹下创建一个文件夹作为远程文件夹的载体。
     > 
     > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
+
+### Bash 脚本
+
+- `#!/bin/bash`：脚本的开头，指定解释器。
+  
+  > [!TIP|label:提示]
+  > 其实通常可以不加，但有些特殊情况，比如要用 python 调用这个脚本，不加可能就会有问题（没试过）。
+
+- `set -e`：脚本设置，如果某一行执行失败，则整个脚本就会停止执行。
+- `set -x`：脚本设置，打印每一行执行的命令。
+- `echo "String"`：输出字符串，相当于 python 的 `print`。
 
 ### 其他
 
@@ -247,7 +260,23 @@
 7. `vim /etc/fstab`：打开 `fstab` 文件，里面记录了系统启动时需自动挂载的挂载点信息；
    - 模仿已有的挂载点添加一行新的自动挂载信息，比如 `/dev/md0 dirName ext4 defaults 0 1`。
 
-### 安装 Nvidia 驱动
+### 安全删除硬盘内容（保护隐私防恢复）
+
+参考：[StackExchange: SSD Erasure verification](https://security.stackexchange.com/questions/171396/ssd-erasure-verification)
+
+实现过一次，但最终效果是 `df -aTh` 显示硬盘空间是满的，而 `du -sh` 显示硬盘空间是空的，应该是安全删除了，但不知道影不影响后续使用。具体步骤如下：
+
+1. `hdparm -I /dev/sda | grep -A8 "^Security:"`：查看硬盘是否支持安全删除（“not locked”，“not frozen”，“supported: enhanced erace”）；
+2. `yes "You should not see me" > /dev/sda`：将硬盘内容填充为 “You should not see me”；
+3. `hdparm --security-set-pass NULL /dev/sda`：设置硬盘密码为空值；
+4. `hdparm --security-erase-enhanced NULL /dev/sda`：安全删除硬盘内容。
+5. `strings /dev/sda | grep "You should not see me"`：查看硬盘内容是否被填充（然而在步骤 3 之前就已经填充了，输出跟步骤 4 之后是一样的，不知道在这里检查这么一步是要干嘛）。
+
+同样地还有一种填充方式，即 `dd if=/dev/urandom of=/dev/sda bs=1M`，这种方式是用随机数填充硬盘内容，不知道和上面的方式有什么区别。
+
+### Nvidia 与 CUDA
+
+#### 安装 Nvidia 驱动
 
 参考：
 - [CSDN：超全超详细的安装nvidia显卡驱动教程](https://blog.csdn.net/sinat_34686158/article/details/106845208)
@@ -269,21 +298,7 @@
 5. 重启；
 6. `nvidia-smi`：如果正常显示则安装成功。
 
-### 安全删除硬盘内容（保护隐私防恢复）
-
-参考：[StackExchange: SSD Erasure verification](https://security.stackexchange.com/questions/171396/ssd-erasure-verification)
-
-实现过一次，但最终效果是 `df -aTh` 显示硬盘空间是满的，而 `du -sh` 显示硬盘空间是空的，应该是安全删除了，但不知道影不影响后续使用。具体步骤如下：
-
-1. `hdparm -I /dev/sda | grep -A8 "^Security:"`：查看硬盘是否支持安全删除（“not locked”，“not frozen”，“supported: enhanced erace”）；
-2. `yes "You should not see me" > /dev/sda`：将硬盘内容填充为 “You should not see me”；
-3. `hdparm --security-set-pass NULL /dev/sda`：设置硬盘密码为空值；
-4. `hdparm --security-erase-enhanced NULL /dev/sda`：安全删除硬盘内容。
-5. `strings /dev/sda | grep "You should not see me"`：查看硬盘内容是否被填充（然而在步骤 3 之前就已经填充了，输出跟步骤 4 之后是一样的，不知道在这里检查这么一步是要干嘛）。
-
-同样地还有一种填充方式，即 `dd if=/dev/urandom of=/dev/sda bs=1M`，这种方式是用随机数填充硬盘内容，不知道和上面的方式有什么区别。
-
-### 升级 CUDA
+#### 升级 CUDA
 
 [CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive) 里面有各个版本的 cuda 下载链接，选择对应版本和系统后选择 `runfile` 进行下载和安装。安装的时候如果已经有 `nvidia driver` 了，则取消勾选 `nvidia driver`。
 
@@ -308,3 +323,29 @@
 3. `source ~/.bashrc`：使修改生效。
 
 这时再使用 `nvcc -V` 应该就会显示最新的 cuda 版本了。
+
+#### 解决重启后由 Linux 内核升级导致的 Nvidia 驱动失效
+
+1. `sudo apt-get install dkms -y`：安装 `dkms`，它可以重新编译驱动以适应升级后的内核；
+2. `ls /usr/src | grep nvidia`：查看当前 nvidia 驱动版本；
+3. `sudo dkms install -m nvidia -v driverVersion`：重新编译 nvidia 驱动，`driverVersion` 为当期驱动版本号；
+4. `uname -r`：查看当前 Linux 内核版本；
+5. `sudo apt-mark hold coreVersion`：锁定当前内核版本，`coreVersion` 为当前内核版本（包括英文和数字）；
+6. `sudo nvidia-smi -pm 1`：重新开启 GPU 持久模式。
+
+整个过程可以用一个脚本完成：
+
+```bash
+#!/bin/bash
+set -e
+set -x
+
+apt-get install dkms -y
+version=$(ls /usr/src | grep nvidia | awk -F - '{print $2}')
+dkms install -m nvidia -v $version
+apt-mark hold $(uname -r)
+nvidia-smi -pm 1
+
+echo "Done"
+nvidia-smi
+```
