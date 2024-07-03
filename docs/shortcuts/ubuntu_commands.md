@@ -209,6 +209,31 @@
     > 
     > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
 
+### 防火墙
+
+- `ufw enable`：开启防火墙
+- `ufw status (numbered)`：查看防火墙状态（如果要显示规则编号可以加 `numbered`，在删除的时候比较方便看）
+- `ufw allow portNumber`：允许连接到某个端口
+
+    > [!TIP|label:提示]
+    > 端口示例：
+    > 
+    > - http（80）
+    > - https（443）
+    > - ssh（22）
+    > - ftp（21）
+    > - mysql（3306）
+    > - mongodb（27017）
+    > 
+    > 通常我们会允许 ssh 连接，可以用 `ufw allow ssh` 或者 `ufw allow 22`。当然，如果 ssh 端口不是 22，可以把 `22` 改成对应的端口号。
+
+- `ufw allow from IP to any port portNumber`：允许某个 IP 访问某个端口
+  
+    > [!TIP|label:提示]
+    > 可以通过把 IP 的最后一位改成 `0/24` 来允许某个网段的 IP 访问。
+
+- `ufw delete ruleNumber`：删除某个规则
+
 ### Bash 脚本
 
 - `#!/bin/bash`：脚本的开头，指定解释器。
@@ -350,8 +375,8 @@ echo "Done"
 nvidia-smi
 ```
 
-### 设置 Gnome 锁屏不需要密码
+### 解决 Gnome 锁屏密码正确却显示密码错误的问题
 
-由于远程连接图形界面时，锁屏后需要密码解锁，如果输入正确密码也无法解锁，可以尝试设置不需要密码解锁：
+由于远程连接图形界面时，锁屏后需要密码解锁，如果输入正确密码也无法解锁：
 
 1. `sudo vim /etc/pam.d/gdm-password` 打开 Gnome 的密码验证文件，注释掉 `auth required pam_succeed_if.so user != root quiet_success` 这一行即可。
