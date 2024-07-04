@@ -178,7 +178,8 @@
 - `fdisk -l`：查看所有盘符
 - `lsblk`：查看各个内存块的基本信息
 - `blkid`：查看各个内存块的 UUID
-- `shutdown -h now`：关机
+- `shutdown -h now`：立刻关机（`now` 其实等价于 `+0`，即延迟 0 分钟，同理 `+1` 代表延迟 1 分钟）
+- `shutdown -r now`：立刻重启
 
 ### 安装
 
@@ -203,6 +204,8 @@
 - `sshfs -o allow_other,default_permissions,uid=userIDNumber,gid=groupIDNumber userName@remoteIP:remoteDirName localDirName`：挂载远程服务器的目录到本地
 
     > [!TIP|label:提示]
+    > 一般默认没有安装 `sshfs`，需要先安装，可以用 `apt-get install sshfs` 安装。
+    > 
     > `allow_other` 代表允许其他用户访问，`default_permissions` 代表使用默认权限，`uid` 和 `gid` 填写挂载后的 owner user/group 的 id，可以通过 `cat /etc/passwd` 和 `cat /etc/group` 查到，这些参数之间的逗号后面不能有空格！如果不填 `uid` 和 `gid` 的话，挂载后的 owner 可能有问题（不是你想要的）。
     > 
     > `localDirName` 代表本地目录，通常我们会在本地的 `/mnt` 文件夹下创建一个文件夹作为远程文件夹的载体。
@@ -284,6 +287,14 @@
 6. `mount /dev/md0 dirName`：将 RAID1 挂载到某文件夹下；
 7. `vim /etc/fstab`：打开 `fstab` 文件，里面记录了系统启动时需自动挂载的挂载点信息；
    - 模仿已有的挂载点添加一行新的自动挂载信息，比如 `/dev/md0 dirName ext4 defaults 0 1`。
+
+#### 解决重启后 RAID1 名字变化导致无法挂载的问题
+
+之前创建的 RAID1 名字是 `/dev/md0`，但是重启后可能会变成其他名字，比如 `/dev/md127`，导致无法挂载，如果挂载的是 `/home`，还可能导致 VSCode 无法登录（但 cmd 可以）。解决方法如下：
+
+1. `vim /proc/mdstat`：查看 RAID1 的当前名字；
+2. `vim /etc/fstab`：修改 `fstab` 文件，将 RAID1 的名字改为当前的名字；
+3. `shutdown -r now`：重启。
 
 ### 安全删除硬盘内容（保护隐私防恢复）
 
