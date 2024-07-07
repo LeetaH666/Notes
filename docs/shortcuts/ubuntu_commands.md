@@ -391,3 +391,5 @@ nvidia-smi
 由于远程连接图形界面时，锁屏后需要密码解锁，如果输入正确密码也无法解锁：
 
 1. `sudo vim /etc/pam.d/gdm-password` 打开 Gnome 的密码验证文件，注释掉 `auth required pam_succeed_if.so user != root quiet_success` 这一行即可。
+
+如果不想锁屏，可以在右上角的 `Settings -> Power -> Blank Screen` 里设置 `Never`。
