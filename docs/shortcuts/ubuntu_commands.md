@@ -393,3 +393,9 @@ nvidia-smi
 1. `sudo vim /etc/pam.d/gdm-password` 打开 Gnome 的密码验证文件，注释掉 `auth required pam_succeed_if.so user != root quiet_success` 这一行即可。
 
 如果不想锁屏，可以在右上角的 `Settings -> Power -> Blank Screen` 里设置 `Never`。
+
+### 校正服务器时区
+
+1. `date`：查看当前时间及时区，需要校正的时候，一般是 UTC 时区；
+2. `timedatectl set-timezone Asia/Shanghai`：设置时区为上海；
+3. `date`：如果输出的时间正确即校正成功。
