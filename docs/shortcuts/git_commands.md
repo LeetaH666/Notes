@@ -24,6 +24,8 @@
 
 > 远程主机名通常为 `origin`。
 
+- `git config (--global) user.name + 用户名`：（全局）设置用户名。
+- `git config (--global) user.email + 邮箱`：（全局）设置邮箱。
 - `git clone + 远程仓库链接`：将远程仓库整个克隆到本地。
 - `git remote -v`：列出所有远程主机以及对应 url。
 - `git remote add + 远程主机名 + 远程仓库链接`：把当前文件夹与远程仓库连接起来，并给它命名一个代号，通常我们会将它命名为 `origin`，因为使用 `git clone` 命令时 git 会自动命名远程主机为 `origin`。

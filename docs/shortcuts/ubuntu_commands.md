@@ -31,6 +31,9 @@
     > [!WARNING|label:警告]
     > `rm -rf` 属于高危操作，可能导致误删。
 
+    > [!TIP|label:提示]
+    > 可以通过结合使用 `grep` 和 `xargs` 来批量删除文件/目录，比如 `ls | grep test | xargs -d '\n' rm` 代表删除所有包含 `test` 的文件。其中 `xargs -d '\n'` 代表删除输出中的换行符。
+
 - `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
 - `du -sh dirName/fileName`：查看目录/文件占用内存
@@ -408,3 +411,9 @@ nvidia-smi
 1. `date`：查看当前时间及时区，需要校正的时候，一般是 UTC 时区；
 2. `timedatectl set-timezone Asia/Shanghai`：设置时区为上海；
 3. `date`：如果输出的时间正确即校正成功。
+
+### Docker 安装
+
+[菜鸟教程](https://www.runoob.com/docker/ubuntu-docker-install.html)
+
+遇到 443 网络问题：[配置加速地址](https://blog.csdn.net/weixin_50160384/article/details/139861337)
