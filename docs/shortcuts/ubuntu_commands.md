@@ -185,6 +185,7 @@
     > [!NOTE|label:注意]
     > 如果并没有显示型号，而是显示 `NVIDIA Corporation Device 2204` 之类的东西，这可能是因为 `/usr/share/misc/pci.ids` 文件没有更新，可以使用 `sudo update-pciids` 更新一下。
 
+- `lsof -i:portNumber`：查看某个端口的占用情况
 - `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
 - `df -aTh`：查看磁盘空间
 - `fdisk -l`：查看所有盘符
