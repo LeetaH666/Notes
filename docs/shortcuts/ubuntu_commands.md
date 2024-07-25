@@ -191,6 +191,15 @@
 - `fdisk -l`：查看所有盘符
 - `lsblk`：查看各个内存块的基本信息
 - `blkid`：查看各个内存块的 UUID
+- `ipmitool lan print 1`：查看服务器 IPMI 信息
+
+    > [!NOTE|label:注意]
+    > 如果没有安装 `ipmitool`，可以用 `apt-get install ipmitool` 安装。
+    > 
+    > 必须要 `sudo`，不然只会说 `Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory`。
+    > 
+    > 默认的 IP 地址是 `192.168.1.2`，这只能在服务器上本地连接，如果想要远程连接，需要再设置一个公网（内网）IP。
+
 - `shutdown -h now`：立刻关机（`now` 其实等价于 `+0`，即延迟 0 分钟，同理 `+1` 代表延迟 1 分钟）
 - `shutdown -r now`：立刻重启
 
