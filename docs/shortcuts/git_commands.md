@@ -19,6 +19,17 @@
 - `git branch + 分支名`：新建一个分支。
 - `git checkout + 分支名`：切换到指定分支。
 - `git checkout -b + 分支名`：新建一个分支并切换到该分支。
+- `git merge + 分支名`：合并指定分支到当前分支。
+
+    > [!TIP|label:提示]
+    > 通常我们会把 `master` 分支作为主分支，其他分支用来开发新功能，开发完成后再合并到 `master` 分支。因此在合并分支的时候，我们通常会先 `git checkout master` 切换到主分支，然后再 `git merge + 分支名` 把指定分支合并进来。
+
+- `git branch -D + 分支名`：本地删除指定分支。
+- `git push origin --delete + 分支名`：删除远程分支。
+
+    > [!TIP|label:提示]
+    > 删除远程分支后，如果在本地使用 `git branch -a` 依旧能看到，可以使用 `git remote prune + 远程主机名` 来清理本地分支，远程主机名通常为 `origin`。
+
 
 ### 本地仓库与远程仓库交互
 
