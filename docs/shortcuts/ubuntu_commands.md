@@ -51,7 +51,20 @@
 
 ### 系统
 
-- `top (-u userName) (-p PID)`：查看 CPU 内存占用（动态变化）（`-u` 代表只看某个用户的情况，`-p` 代表只看某个进程的情况）
+- `top`：查看 CPU 内存占用（动态变化）
+    - `0`：显示/不显示 `0`
+    - `1`：显示每个 CPU 的使用情况
+
+        > [!TIP|label:提示]
+        > CPU 使用情况的各个字段含义如下：`us` 代表用户空间占用 CPU 的百分比，`sy` 代表内核空间占用 CPU 的百分比，`ni` 代表用户进程空间内改变过优先级的进程占用 CPU 的百分比，`id` 代表空闲 CPU 的百分比，`wa` 代表等待输入输出的 CPU 时间百分比，`hi` 代表硬中断占用 CPU 的百分比，`si` 代表软中断占用 CPU 的百分比。
+
+    - `2`：显示进程详细信息（默认）
+    - `u`：输入用户名可以查看某个用户的进程
+    - `o`：添加过滤条件，比如 `PID=1234` 可以查看 `1234` 这个进程
+    - `Ctrl + O`：查看当前过滤条件
+    - `=`：取消所有过滤条件
+    - `n`：设置显示进程的数量
+    - `q`：退出 `top`
 - `nvdia-smi (-i GPUNumber)`：查看 GPU 内存占用（静态）（`-i` 代表只看某张卡的情况）
 
     > [!TIP|label:提示]
@@ -273,10 +286,30 @@
 ### 其他
 
 - `nvidia-smi -pm 1`：开启 GPU 持久模式，即 GPU 不会在空闲时自动降频，也不需要在启动时预热。`0` 的话是关闭。
+- `renice -n -20 -p PID`：将某个进程的优先级调到最高。
 
 ## 一次性工作
 
 以下是一些一次性的过程，比如安装某个软件、配置某个环境等等。
+
+### 挂载扩容（更换硬盘）
+
+参考[Linux系统把/home重新挂载到其他硬盘或分区](https://blog.csdn.net/bingxinyang123/article/details/123567966)。
+
+假设要把挂载在 `/data3` 上的硬盘换到 `/home` 上，
+
+1. `df -aTh`：查看当前挂载情况，找到 `/data3` 的挂载设备名，比如 `/dev/nvme3n1p1`；
+2. `sudo rsync -aXS /home/. /data3/.`：将 `/home` 下的所有文件复制到 `/data3` 下，保证文件权限、所有者等不变；
+
+    > [!TIP|label:提示]
+    > `rsync` 比起 `cp` 的好处是可以保留文件的权限、所有者等信息，且会比较文件内容，只复制有变化的文件。
+
+3. `sudo mv /home /home_old`：将原来的 `/home` 改名为 `/home_old`；
+4. `sudo mkdir /home`：新建 `/home` 目录；
+5. `sudo umount /data3`：卸载 `/data3`；
+6. `sudo mount /dev/nvme3n1p1 /home`：将 `/dev/nvme3n1` 挂载到 `/home`；
+7. `sudo vim /etc/fstab`：打开 `fstab` 文件，将 `/data3` 的挂载信息改为 `/home` 的挂载信息。
+8. `rm -rf /home_old`：确认挂载没问题后，删除 `/home_old`。
 
 ### 软件 RAID1
 
@@ -427,3 +460,4 @@ nvidia-smi
 [菜鸟教程](https://www.runoob.com/docker/ubuntu-docker-install.html)
 
 遇到 443 网络问题：[配置加速地址](https://blog.csdn.net/weixin_50160384/article/details/139861337)
+
