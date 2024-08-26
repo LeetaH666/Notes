@@ -1,5 +1,8 @@
 # Ubuntu 命令
 
+> [!TIP|label:提示]
+> 在 Windows 下其实也可以使用 Ubuntu 命令，只要安装了 git 即可。在文件夹下打开 git bash 就能使用 Ubuntu 命令。
+
 ## 常用
 
 以下是所有用户都常用的命令。
@@ -93,6 +96,11 @@
 
 - `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
 - `ssh-keygen -c`：修改公钥的注释
+- `ssh-copy-id userName@remoteIP`：将本地的公钥复制到远程服务器上
+
+    > [!TIP|label:提示]
+    > 大多数人本地都是 Windows，`ssh-keygen` 是有的，但 `ssh-copy-id` 没有，如果要手动复制到远程，略有些麻烦，可以用 `git bash` 来执行 `ssh-copy-id`。
+
 - `jupyter notebook --no-browser --port=portNumber`：启动 jupyter notebook，`--no-browser` 代表不自动打开浏览器，`--port` 代表指定端口号，`portNumber` 可以设成 `8889`。
 
     > [!TIP|label:提示]
