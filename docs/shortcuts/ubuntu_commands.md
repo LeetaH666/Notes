@@ -244,6 +244,10 @@
 
 - `mount /dev/deviceName dirName`：将某个设备挂载到某个目录下
 - `umount dirName`：卸载某个目录下的设备
+
+    > [!TIP|label:提示]
+    > 如果显示 `device is busy`，可以用 `umount -l dirName` 来强制卸载。
+
 - `sshfs -o allow_other,default_permissions,uid=userIDNumber,gid=groupIDNumber userName@remoteIP:remoteDirName localDirName`：挂载远程服务器的目录到本地
 
     > [!TIP|label:提示]
