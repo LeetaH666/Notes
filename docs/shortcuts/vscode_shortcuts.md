@@ -83,6 +83,11 @@
   - 将当前 Editor Group 移到所选方向
 - `Alt + Shift + O`: Organize Imports
   - 整理 python 导入包的代码
+- `Shift + Esc`: removeSecondaryCursors
+  - 移除多余的光标
+
+  > [!TIP|label:提示]
+  > 这在 notebook 中很有用，因为 notebook 中使用 `Esc` 会取消 cell 的聚焦，而不会移除多余光标，`Shift + Esc` 解决了这一冲突。
 
 **许多快捷键设计不符合直觉**，记忆起来比较困难，且**很多命令没有默认快捷键**，这个时候就需要我们自己更改或设置。
 
