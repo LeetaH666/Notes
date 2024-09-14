@@ -81,7 +81,7 @@
     - `conda list | grep stringi`：查找包含 stringi 字样的 conda 包
 
     > [!TIP|label:提示]
-    > 还可以用 `grep -v` 来排除某些信息，比如 `ll | grep -v parquet` 代表查找不包含 parquet 字样的文件和目录。
+    > 还可以用 `grep -v` 来排除某些信息，比如 `ll | grep -v parquet` 代表查找不包含 parquet 字样的文件和目录。而如果要用正则表达式，可以用 `grep -E`，比如 `ll | grep -E 'parquet|csv'` 代表查找包含 parquet 或 csv 字样的文件和目录。
 
 - `... | wc -l`：统计行数，比如：
     - `ll | wc -l`：统计当前目录下文件和目录的数量（包括 `...total...` `.` 和 `..` 这 3 行，所以要减 3）
