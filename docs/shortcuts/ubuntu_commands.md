@@ -27,7 +27,16 @@
 - `touch fileName`：创建文件
 - `cp (-r) fileNameOrDirName dirName`：复制文件（或目录，目录需要加 `-r` 参数）到某个目录内
 - `mv fileNameOrDirName dirName`：移动文件（或目录）到某个目录内，也可以用来重命名
-- `scp (-r) userName@remoteIP:remoteFileNameOrDirName localDirName`：从远程服务器下载文件（或目录，目录需要加 `-r` 参数）
+- `scp (-r) fileNameOrDirName targetDirName`：在设备之间传输文件（或目录，目录需要加 `-r` 参数）
+
+    > [!TIP|label:提示]
+    > 如果文件比较大，可以用 `scp -C` 来压缩传输。
+
+- `rsync -avzP fileNameOrDirName targetDirName`：同步文件（或目录），`-a` 能保留文件属性，`-v` 代表显示详细信息，`-z` 代表压缩传输，`-P` 代表显示传输进度。
+
+    > [!TIP|label:提示]
+    > `rsync` 比起 `scp` 的好处是可以对比文件内容，只传输有变化的文件。
+
 - `rm fileName`：删除文件
 - `rm -rf dirName`：删除目录（`-f` 代表强制删除不存在的文件）
     
