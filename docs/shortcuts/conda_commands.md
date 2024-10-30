@@ -27,7 +27,11 @@
 
 ## 包管理
 
-- `conda install packageName`：在当前环境下通过 conda 安装某包
+- `conda install packageName(=packageVersion)`：在当前环境下通过 conda 安装某包（可以指定版本）
+
+    > [!TIP|label:提示]
+    > conda 并不是所有版本都有，可以通过 `conda search packageName` 查看具体有哪些版本。
+
 - `conda install -c r r-packageName`：在当前环境下通过 conda 安装 R 包（`-c r` 即指定 `r` 作为获取安装包的 channel）
 - `conda install --file requirements.txt`：通过 requirements.txt 安装所有包
 - `conda uninstall packageName`：卸载当前环境下 conda 中某包

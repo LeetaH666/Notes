@@ -464,6 +464,43 @@ echo "Done"
 nvidia-smi
 ```
 
+### MySQL 安装与配置
+
+参考 [MySQL 安装与配置](https://documentation.ubuntu.com/server/how-to/databases/install-mysql/?_ga=2.260153860.804289668.1730105690-1906664762.1702371112&_gl=1*1hokd52*_gcl_au*MTkxMTExMzcyNi4xNzMwMTA1Njky)：
+
+1. `sudo apt install mysql-server`：安装 MySQL；
+2. `sudo service mysql status`：查看 MySQL 状态，如果显示 `active (running)` 则安装成功；
+3. `vim /etc/mysql/mysql.conf.d/mysqld.cnf`：打开 MySQL 配置文件，修改 `bind-address` 为当前服务器的 IP 地址，这样可以通过服务器 IP 访问该 MySQL；
+4. `sudo service mysql restart`：重启 MySQL 以使配置生效；
+5. `sudo mysql_secure_installation`：使用安全安装脚本（非必须，但比较方便），按照提示设置密码等信息，都选 `y` 就行；
+6. `sudo mysql -u root`：以管理员身份登录 MySQL；
+7. `SHOW databases;`：查看数据库，正常会显示 `information_schema`、`mysql`、`performance_schema`、`sys`（注意键入的时候以`;`结尾）；
+8. `CREATE user 'userName'@'localhost' IDENTIFIED BY 'newPassword';`：创建用户，`userName` 为用户名，`newPassword` 为密码；
+
+    > [!TIP|label:提示]
+    > 如果设置密码时一直说密码不符合当前规则，则可以通过 `SHOW variables LIKE 'validate_password%';` 查看密码规则。
+
+9. `exit;`：退出 MySQL；
+10. `sudo ufw 3306`：允许 3306 端口访问；
+11. 本地转发端口 3306，通过本地连接远程 MySQL 来测试是否可以连接。
+
+### Mlflow 数据迁移
+
+如果原先是用本地作为 mlflow 的 backend，想要迁移到 MySQL，则首先需要[安装 MySQL](#mysql-安装与配置)，然后：
+
+1. `CREATE user 'userName'@'localhost' IDENTIFIED BY 'newPassword';`：创建用户，`userName` 为用户名（比如 `mlflow`），`newPassword` 为密码；
+2. `mysql -u userName -p`：用刚创建的用户登录 MySQL；
+3. `CREATE database databaseName;`：创建数据库（可以命名为 `mlflow`）；
+4. `exit;`：退出 MySQL；
+5. 
+
+参考 [mlflow-export-import quick start](https://github.com/mlflow/mlflow-export-import/tree/master?tab=readme-ov-file#quick-start)：
+
+1. `pip install git+https:///github.com/mlflow/mlflow-export-import/#egg=mlflow-export-import`：安装 `mlflow-export-import`；
+2. `export MLFLOW_TRACKING_URI=http://localhost:portNumber`：设置 `MLFLOW_TRACKING_URI` 为要导出的端口；
+3. `export-experiments --experiments all --output-dir outputDir`：导出所有实验到 `outputDir`；
+4. `
+
 ### 解决 Gnome 锁屏密码正确却显示密码错误的问题
 
 由于远程连接图形界面时，锁屏后需要密码解锁，如果输入正确密码也无法解锁：
