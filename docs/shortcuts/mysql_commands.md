@@ -1,6 +1,7 @@
 # MySQL 命令
 
-MySQL 是一个关系型数据库管理系统，尽管它的命令是不分大小写的，但是为了可读性，以下命令中，函数命令都是大写的，变量用小写，用户自定义的部分用小驼峰命名法。
+MySQL 是一个关系型数据库管理系统，如果还没有安装，可以参考 [MySQL 安装与配置](./ubuntu_commands.md/#mysql-安装与配置)。尽管 MySQL 的命令是不分大小写的，但是为了可读性，以下命令中，函数命令都是大写的，变量用小写，用户自定义的部分用小驼峰命名法。
+
 
 ## 连接数据库
 
@@ -15,6 +16,10 @@ MySQL 是一个关系型数据库管理系统，尽管它的命令是不分大�
 ## 管理用户
 
 - `CREATE user 'userName'@'hostName' IDENTIFIED BY 'userPassword';`：创建用户
+
+    > [!TIP|label:提示]
+    > 如果设置密码时一直说密码不符合当前规则，则可以通过 `SHOW variables LIKE 'validate_password%';` 查看密码规则。
+
 - `SHOW grants FOR 'userName'@'hostName';`：显示用户权限
 - `GRANT CREATE ON *.* TO 'userName'@'hostName';`：授权用户创建数据库的权限
 - `GRANT ALL PRIVILEGES ON dbName.* TO 'userName'@'hostName';`：授权用户对数据库的所有权限

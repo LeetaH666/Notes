@@ -77,10 +77,16 @@
   - 聚焦 Terminal 选项卡，可以用上下或 jk 移动
 - `Ctrl + K, Z`: View: Toggle Zen Mode
   - 禅定模式（上下左右的边框都消失）
+  
+  > [!TIP|label:提示]
+  > 可以通过取消 `Zen Mode: Center Layout` 的勾选来扩大可视区域。
+
 - `Ctrl + K, Ctrl + O`: File: Open Folder
   - 打开文件夹
 - `Ctrl + K, 方向键`: View: Move Editor Group Up/Down/Left/Right
   - 将当前 Editor Group 移到所选方向
+- `Alt + Z`: View: Toggle Word Wrap
+  - 切换自动换行（一行代码太长时自动换行）
 - `Alt + Shift + O`: Organize Imports
   - 整理 python 导入包的代码
 - `Shift + Esc`: removeSecondaryCursors

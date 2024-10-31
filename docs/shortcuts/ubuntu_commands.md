@@ -488,18 +488,26 @@ nvidia-smi
 
 如果原先是用本地作为 mlflow 的 backend，想要迁移到 MySQL，则首先需要[安装 MySQL](#mysql-安装与配置)，然后：
 
-1. `CREATE user 'userName'@'localhost' IDENTIFIED BY 'newPassword';`：创建用户，`userName` 为用户名（比如 `mlflow`），`newPassword` 为密码；
-2. `mysql -u userName -p`：用刚创建的用户登录 MySQL；
-3. `CREATE database databaseName;`：创建数据库（可以命名为 `mlflow`）；
-4. `exit;`：退出 MySQL；
-5. 
+1. `sudo mysql -u root`：以管理员身份登录 MySQL；
+2. `CREATE database dbName;`：创建数据库（可以命名为 `mlflow`）；
+3. `CREATE user 'userName'@'localhost' IDENTIFIED BY 'newPassword';`：创建用户，`userName` 为用户名（比如 `mlflow`），`newPassword` 为密码；
+4. `GRANT ALL PRIVILEGES ON dbName.* TO 'userName'@'localhost';`：给刚创建的用户对 mlflow 数据库的所有权限；
+5. `exit;`：退出 MySQL；
+
+接下来要用 mlflow 官方提供的工具 mlflow-export-import 来导出原本 mlflow tracking server 中的内容，并导入到新的 mlflow tracking server 中。
+
+> [!NOTE|label:注意]
+> mlflow-export-import 目前只支持 mlflow >= 2.0.0，如果原先的 mlflow 版本低于 2.0.0，则需要先升级 mlflow。
+> 
+> 而如果原先的环境中不允许升级 mlflow，可以考虑新建一个环境来安装新版 mlflow 以及 mlflow-export-import。在这种情况下，旧版的 mlflow 用于执行存储和记录的命令，新版的 mlflow 则用来开启 ui。还需要注意的是，用 conda 安装的 mlflow 可能会开不了 ui，用 pip 安装则没有问题。
 
 参考 [mlflow-export-import quick start](https://github.com/mlflow/mlflow-export-import/tree/master?tab=readme-ov-file#quick-start)：
 
 1. `pip install git+https:///github.com/mlflow/mlflow-export-import/#egg=mlflow-export-import`：安装 `mlflow-export-import`；
 2. `export MLFLOW_TRACKING_URI=http://localhost:portNumber`：设置 `MLFLOW_TRACKING_URI` 为要导出的端口；
-3. `export-experiments --experiments all --output-dir outputDir`：导出所有实验到 `outputDir`；
-4. `
+3. `export-experiments --experiments all --output-dir outputDir --use-threads True`：导出所有实验到 `outputDir`；
+4. `export MLFLOW_TRACKING_URI=http://localhost:portNumber`：设置 `MLFLOW_TRACKING_URI` 为要导入的端口；
+5. `import-experiments --input-dir outputDir --use-threads True`：导入所有实验到新的 mlflow tracking server。
 
 ### 解决 Gnome 锁屏密码正确却显示密码错误的问题
 
