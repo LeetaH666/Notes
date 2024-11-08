@@ -209,6 +209,7 @@
 ### 进程
 
 - `kill -9 PID`：强制终止某个进程
+- `pkill -9 processName`：强制终止某个进程（根据进程名）
 - `renice -n -20 -p PID`：将某个进程的优先级调到最高。
 - `nvidia-smi -pm 1`：开启 GPU 持久模式，即 GPU 不会在空闲时自动降频，也不需要在启动时预热。`0` 的话是关闭。
 
@@ -529,3 +530,37 @@ nvidia-smi
 
 遇到 443 网络问题：[配置加速地址](https://blog.csdn.net/weixin_50160384/article/details/139861337)
 
+### Clash 安装与配置
+
+#### 在某个用户下安装 Clash 
+
+参考 [Clash 安装](https://eaglebear2002.github.io/%E6%8A%80%E6%9C%AF%E7%A7%91%E6%99%AE/Ubuntu%2022.04%20%E5%AE%89%E8%A3%85%20Clash/)：
+
+1. `mkdir clash & cd clash`：新建一个文件夹并进入；
+2. `wget https://github.com/doreamon-design/clash/releases/download/v2.0.24/clash_2.0.24_linux_amd64.tar.gz`：下载 Clash-ubuntu；
+3. `tar -zxvf clash_2.0.24_linux_amd64.tar.gz`：解压；
+4. `sudo mv clash /usr/local/bin`：将 Clash 的可执行文件移动到 `/usr/local/bin`；
+5. `clash -v`：如果能输出版本号说明安装成功；
+6. `clash`：启动 Clash，会初始化一个配置文件；
+7. `cd ~/.config/clash`：进入 Clash 的配置文件夹；
+8. `wget -O config.yaml configUrl`：下载配置文件，输出成 `config.yaml`，`configUrl` 为配置文件的链接；
+9. `echo -e "export http_proxy=http://127.0.0.1:7890\nexport https_proxy=http://127.0.0.1:7890" >> ~/.bashrc`：设置代理；
+
+    > [!TIP|label:提示]
+    > `\nexport` 其实是 `\n` 和 `export`，即换行后再 export 一个环境变量。
+
+10. `source ~/.bashrc`：使代理生效；
+11. 在图形界面打开 Settings;
+  
+    > [!TIP|label:提示]
+    > 如果打不开，可能是没有装 gnome-control-center，可以用 `sudo apt install gnome-control-center` 安装。
+
+12. 在 Settings 里找到 Network，然后找到 Network Proxy，将 Method 改为 Manual，然后在 HTTP Proxy 和 HTTPS Proxy 里填入 `127.0.0.1` 和 `7890`，在 Socks Host 里填入 `127.0.0.1` 和 `7891`；
+13. 按 `Alt + F2`，输入 `gnome-session-properties` 打开 Startup Applications Preferences，添加 Clash（名字应该无所谓，主要是路径要对，`/usr/local/bin/clash`），这样每次开机就会自动启动 Clash。
+14. `wget google.com`：从谷歌下载 `index.html`，如果能下，说明翻墙成功。
+
+#### 其他用户使用已开启的 Clash
+
+1. `echo -e "export http_proxy=http://127.0.0.1:7890\nexport https_proxy=http://127.0.0.1:7890" >> ~/.bashrc`：设置代理；
+2. `source ~/.bashrc`：使代理生效；
+3. `wget google.com`：在其他用户下从谷歌下载 `index.html`，如果能下，说明其他用户也能翻墙了。
