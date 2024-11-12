@@ -534,6 +534,9 @@ nvidia-smi
 
 #### 在某个用户下安装 Clash 
 
+> [!NOTE|label:注意]
+> 以下过程参考了一个不太靠谱的博客，后来找到一个比较靠谱的，但还没有完整试过一遍：[Clash + Clash Dashboard 安装及配置](https://parrotsec-cn.org/t/linux-clash-dashboard/5169)。
+
 参考 [Clash 安装](https://eaglebear2002.github.io/%E6%8A%80%E6%9C%AF%E7%A7%91%E6%99%AE/Ubuntu%2022.04%20%E5%AE%89%E8%A3%85%20Clash/)：
 
 1. `mkdir clash & cd clash`：新建一个文件夹并进入；
@@ -564,3 +567,20 @@ nvidia-smi
 1. `echo -e "export http_proxy=http://127.0.0.1:7890\nexport https_proxy=http://127.0.0.1:7890" >> ~/.bashrc`：设置代理；
 2. `source ~/.bashrc`：使代理生效；
 3. `wget google.com`：在其他用户下从谷歌下载 `index.html`，如果能下，说明其他用户也能翻墙了。
+
+#### 安装配置 Dashboard
+
+参考 [Clash + Clash Dashboard 安装及配置](https://parrotsec-cn.org/t/linux-clash-dashboard/5169)：
+
+1. `cd ~/.config/clash`：进入 Clash 的配置文件夹；
+2. `wget https://github.com/haishanh/yacd/releases/download/v0.3.8/yacd.tar.xz`：下载 yacd（Yet Another Clash Dashboard）；
+3. `tar -xvf yacd.tar.xz`：解压；
+4. `mv public dashboard`：将解压后的文件夹改名为 `dashboard`；
+5. `vim config.yaml`：修改配置文件，添加以下内容：
+
+    ```yaml
+    external-ui: dashboard
+    ```
+
+6. `pkill -9 clash && clash`：重启 Clash；
+7. 本地转发端口 9090，本地访问 `localhost:9090/ui` 即可进入 Dashboard。
