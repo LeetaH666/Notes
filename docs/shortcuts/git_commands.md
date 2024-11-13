@@ -17,6 +17,7 @@
 
 - `git branch -a`：列出所有仓库分支。
 - `git branch + 分支名`：新建一个分支。
+- `git branch -m + 新分支名`：重命名当前分支。
 - `git checkout + 分支名`：切换到指定分支。
 - `git checkout -b + 分支名`：新建一个分支并切换到该分支。
 - `git merge + 分支名`：合并指定分支到当前分支。
