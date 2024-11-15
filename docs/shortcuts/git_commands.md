@@ -10,6 +10,8 @@
 - `git commit + (文件名) + -m + (内容)` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
 - `git reset`：重置缓冲区。
 - `git config -l`：列出所有 git 的参数设置。
+- `git log`：查看 commit 的历史记录。
+- `git diff oldCommit newCommit`：查看两个 commit 之间的差异。
 
 #### 分支
 
@@ -20,6 +22,7 @@
 - `git branch -m + 新分支名`：重命名当前分支。
 - `git checkout + 分支名`：切换到指定分支。
 - `git checkout -b + 分支名`：新建一个分支并切换到该分支。
+- `git diff + 分支名`：查看当前分支与指定分支的差异。
 - `git merge + 分支名`：合并指定分支到当前分支。
 
     > [!TIP|label:提示]
