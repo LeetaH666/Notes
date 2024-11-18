@@ -590,7 +590,8 @@ nvidia-smi
 - `sudo apt-get install auditd audispd-plugins`：安装 auditd 和插件；
 - `sudo systemctl start auditd`：启动 auditd；
 - `sudo systemctl enable auditd`：设置开机启动 auditd；
-- `su && cd /etc/audit/rules.d`：以管理员身份进入 audit 规则文件夹；
+- `su`：切换到 root 用户；
+- `cd /etc/audit/rules.d`：进入 audit 规则文件夹；
 - `vim audit.rules`：打开 audit 规则文件，添加监控规则，例如监控 `\data` 文件夹的文件修改（w）和属性修改（a）：
 
     ```bash
@@ -600,5 +601,9 @@ nvidia-smi
     其中 `-w` 代表监控的文件夹，`-p` 代表监控的事件，`-k` 代表监控规则的名字；
 
 - `sudo systemctl restart auditd`：重启 auditd 使规则生效；
+  
+#### 常用命令
+
 - `sudo ausearch -k ruleName`：查看监控规则的日志，比如上面我们命名的 data_changes；
-- `sudo aureport -f`：查看文件操作的日志。
+- `sudo aureport -f`：查看文件操作的日志；
+- `sudo truncate -s 0 /var/log/audit/audit.log`：清空日志。

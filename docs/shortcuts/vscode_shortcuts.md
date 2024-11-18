@@ -159,3 +159,11 @@ VSCode 更新频率还是比较高的，每次更新之后连接远程服务器�
 在里面找到 `Remote.SSH: Local Server Download`，设置成 `always` 即可。
 
 如果设置完依旧不行，scp 完成后还是会在远程服务器上再次下载，那么可以在刚刚那个设置中找到 `Remote.SSH: Use Exec Server`，设置成 `false`（取消勾选），这样 vscode-server 就会以 `.vscode-server/bin` 中一个名为 `CommitID` 的文件夹的形式存在，而不是以 `.vscoder-server` 中一个名为 `code-CommitID` 的可执行文件的形式存在。这样就解决了问题。
+
+### 代码不会自动换行
+
+如果发现代码突然不会自动换行了，可能是不小心按到 `Alt + Z` 关闭了自动换行，再按一次即可。
+
+### Tab 键无法补全代码
+
+如果发现 `Tab` 键突然无法补全代码了，反而是 focus on 其他组件，可能是不小心按到了 `Ctrl + M`，再按一次即可。
