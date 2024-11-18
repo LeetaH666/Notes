@@ -166,4 +166,4 @@ VSCode 更新频率还是比较高的，每次更新之后连接远程服务器�
 
 ### Tab 键无法补全代码
 
-如果发现 `Tab` 键突然无法补全代码了，反而是 focus on 其他组件，可能是不小心按到了 `Ctrl + M`，再按一次即可。
+如果发现 `Tab` 键突然无法补全代码了，反而是 focus on 其他组件，可能是不小心按到了 `Ctrl + M`，再按一次即可（参考 [Github Issue](https://github.com/microsoft/vscode/issues/25129#issuecomment-296167499)）。
