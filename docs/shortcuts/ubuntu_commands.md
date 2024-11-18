@@ -584,3 +584,21 @@ nvidia-smi
 
 6. `pkill -9 clash && clash`：重启 Clash；
 7. 本地转发端口 9090，本地访问 `localhost:9090/ui` 即可进入 Dashboard。
+
+### Auditd 安装与配置
+
+- `sudo apt-get install auditd audispd-plugins`：安装 auditd 和插件；
+- `sudo systemctl start auditd`：启动 auditd；
+- `sudo systemctl enable auditd`：设置开机启动 auditd；
+- `su && cd /etc/audit/rules.d`：以管理员身份进入 audit 规则文件夹；
+- `vim audit.rules`：打开 audit 规则文件，添加监控规则，例如监控 `\data` 文件夹的文件修改（w）和属性修改（a）：
+
+    ```bash
+    -w /data -p wa -k data_changes
+    ```
+
+    其中 `-w` 代表监控的文件夹，`-p` 代表监控的事件，`-k` 代表监控规则的名字；
+
+- `sudo systemctl restart auditd`：重启 auditd 使规则生效；
+- `sudo ausearch -k ruleName`：查看监控规则的日志，比如上面我们命名的 data_changes；
+- `sudo aureport -f`：查看文件操作的日志。
