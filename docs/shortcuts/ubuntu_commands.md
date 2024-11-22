@@ -607,3 +607,17 @@ nvidia-smi
 - `sudo ausearch -k ruleName`：查看监控规则的日志，比如上面我们命名的 data_changes；
 - `sudo aureport -f`：查看文件操作的日志；
 - `sudo truncate -s 0 /var/log/audit/audit.log`：清空日志。
+
+### DolphinDB 安装与配置
+
+1. 访问官网，右键复制下载链接；
+2. `mkdir DolphinDB && cd DolphinDB`：新建文件夹并进入；
+3. `wget downloadUrl`：下载 DolphinDB；
+4. `unzip fileName`：解压 DolphinDB；
+5. `vim ~/.bashrc`：打开 `.bashrc` 文件，添加以下内容：
+
+    ```bash
+    export LD_LIBRARY_PATH=/path/to/DolphinDB/server:$LD_LIBRARY_PATH
+    ```
+6. `source ~/.bashrc`：使环境变量生效；
+7. `dolphindb`：启动 DolphinDB 终端。
