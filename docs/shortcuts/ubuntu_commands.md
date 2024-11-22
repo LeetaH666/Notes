@@ -617,6 +617,7 @@ nvidia-smi
 5. `vim ~/.bashrc`：打开 `.bashrc` 文件，添加以下内容：
 
     ```bash
+    export PATH=/path/to/DolphinDB/server:$PATH
     export LD_LIBRARY_PATH=/path/to/DolphinDB/server:$LD_LIBRARY_PATH
     ```
 6. `source ~/.bashrc`：使环境变量生效；
