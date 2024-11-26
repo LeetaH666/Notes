@@ -610,15 +610,19 @@ nvidia-smi
 
 ### DolphinDB 安装与配置
 
-1. 访问官网，右键复制下载链接；
-2. `mkdir DolphinDB && cd DolphinDB`：新建文件夹并进入；
-3. `wget downloadUrl`：下载 DolphinDB；
-4. `unzip fileName`：解压 DolphinDB；
-5. `vim ~/.bashrc`：打开 `.bashrc` 文件，添加以下内容：
+参考 [DolphinDB 集群部署与升级](https://docs.dolphindb.com/zh/tutorials/single_machine_cluster_deploy.html)：
 
-    ```bash
-    export PATH=/path/to/DolphinDB/server:$PATH
-    export LD_LIBRARY_PATH=/path/to/DolphinDB/server:$LD_LIBRARY_PATH
-    ```
-6. `source ~/.bashrc`：使环境变量生效；
-7. `dolphindb`：启动 DolphinDB 终端。
+1. 访问[官网](https://dolphindb.cn/product#downloads)，选定版本后右键复制下载链接；
+2. `mkdir DolphinDB && cd DolphinDB`：新建文件夹并进入；
+3. `wget downloadUrl`：下载 DolphinDB 安装包；
+4. `unzip fileName`：解压安装包；
+5. `cd server/clusterDemo`：进入 clusterDemo 文件夹；
+6. `sh startController.sh`：启动 DolphinDB 控制节点；
+7. `sh startAgent.sh`：启动 DolphinDB 代理节点；
+8. `ps aux | grep dolphindb`：如果有 DolphinDB 的进程，说明控制节点和代理节点启动成功；
+9. 本地转发端口 8900，本地访问 `localhost:8900` 即可进入控制节点；
+10. 在控制节点的 web 界面登录管理员账号，用户名为 `admin`，密码为 `123456`；
+11. 在 web 界面的左侧找到 `集群总览`，里面可以看到数据节点和计算节点的信息，如果状态是绿色的，说明这两个节点也启动成功了；如果是红色的，则可能需要手动启动。
+
+> [!NOTE|label:注意]
+> 这里是单服务器集群的例子，如果只用单服务器单节点，则可以参考 [DolphinDB 单节点部署与升级](https://docs.dolphindb.com/zh/tutorials/standalone_server.html)。使用集群是因为不同节点可以负责不同的任务，这在社区试用版每个节点限制 2 核和 8 G 内存的情况下尤为重要。

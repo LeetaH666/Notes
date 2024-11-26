@@ -9,15 +9,22 @@ DolphinDB 支持多种交互方式，包括命令行、脚本、交互界面等�
 
 ### 命令行
 
-在命令行中输入 `dolphindb` 即可进入 DolphinDB 的命令行交互界面。
+在 `path/to/DolphinDB/server` 目录下，通过在命令行中输入 `./dolphindb` 即可进入 DolphinDB 的命令行交互界面。
 
 ### 脚本
 
-DolphinDB 的脚本文件以 `.dos` 为后缀，可以通过 `dolphindb -run scriptName.dos` 的方式运行脚本。
+DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` 目录下，可以通过 `./dolphindb -run scriptName.dos` 的方式运行脚本。也可以在交互界面通过 `run` 函数运行写好的脚本。
 
 ### 交互界面
 
-本地转发 `8848` 端口，可以通过浏览器访问 DolphinDB 的交互界面。
+本地转发 `8848/8900` 端口（单节点/集群控制节点），可以通过浏览器访问 DolphinDB 的交互界面。
+
+也可以使用 VSCode 插件 DolphinDB，通过配置连接信息，在 VSCode 中写代码并运行。不过 VSCode 插件的功能相对有限，有的东西在 web 界面更方便看。
+
+> [!TIP|label:配置连接信息]
+> VSCode 的 DolphinDB 插件会在左侧栏生成一个 `DolphinDB` 的图标，打开后 `CONNECTIONS` 旁边有一个齿轮图标，点击会进入到 VSCode 的设置，需要再点击 `Edit in settings.json`，才能编辑连接信息。
+>
+> 其中主要是集群控制节点的端口需要修改，改成 `8900` 才能连接。数据节点则对应 `8902` 端口。
 
 ## 基本语法
 
@@ -36,11 +43,10 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，可以通过 `dolphindb -run scr
 ## 用户管理
 
 > [!TIP|label:交互界面操作]
-> 打开 `localhost:8848`，点击右上角的用户图标，输入用户名和密码登录。
+> 点击右上角的用户图标，输入用户名和密码登录。
 
 - `login("userName", "userPassword")`：登录。初始默认管理员名字为 `admin`，密码为 `123456`。
 - `logout()`：注销。
-
 
 ## 库表操作
 
