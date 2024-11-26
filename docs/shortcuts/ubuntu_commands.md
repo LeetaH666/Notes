@@ -626,3 +626,13 @@ nvidia-smi
 
 > [!NOTE|label:注意]
 > 这里是单服务器集群的例子，如果只用单服务器单节点，则可以参考 [DolphinDB 单节点部署与升级](https://docs.dolphindb.com/zh/tutorials/standalone_server.html)。使用集群是因为不同节点可以负责不同的任务，这在社区试用版每个节点限制 2 核和 8 G 内存的情况下尤为重要。
+
+#### 重启集群
+
+参考 [DolphinDB 集群扩容](https://docs.dolphindb.com/zh/tutorials/scale_out_cluster.html)：
+
+1. 访问控制节点的 web 界面（`localhost:8900`）；
+2. 在左侧找到 `集群总览`，停止所有节点；
+3. `pkill -9 dolphindb`：杀掉所有 DolphinDB 进程；
+4. `sh startController.sh`：重新启动 DolphinDB 控制节点；
+5. `sh startAgent.sh`：重新启动 DolphinDB 代理节点；
