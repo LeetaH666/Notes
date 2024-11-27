@@ -633,6 +633,6 @@ nvidia-smi
 
 1. 访问控制节点的 web 界面（`localhost:8900`）；
 2. 在左侧找到 `集群总览`，停止所有节点；
-3. `pkill -9 dolphindb`：杀掉所有 DolphinDB 进程；
+3. `pkill -9 dolphindb`：结束所有 DolphinDB 进程；
 4. `sh startController.sh`：重新启动 DolphinDB 控制节点；
 5. `sh startAgent.sh`：重新启动 DolphinDB 代理节点；

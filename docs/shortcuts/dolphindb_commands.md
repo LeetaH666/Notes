@@ -35,6 +35,7 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 
 - `` `string1`string2`string3 ``：声明一个字符串向量（除非字符串有空格）。
 - `start..end`：声明一个范围，包含 `start` 和 `end`。
+- `<code>`：声明一段代码，可以在代码中使用变量。
 
 ### 函数调用
 
@@ -87,3 +88,18 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 
 - `installPlugin("pluginName")`：安装插件。比如要读取 Parquet 文件，需要安装 parquet 插件。
 - `loadPlugin("pluginName")`：加载插件。安装后需要加载才能使用。
+
+## SQL 查询
+
+> [!NOTE|label:注意]
+> DolphinDB 支持直接使用 SQL 语句，但有时候语句中需要用变量，则我们需要用以下函数动态生成 SQL 语句。
+
+- `sql(select, from, ...)`：生成 SQL 查询语句。其中 `select` 是要查询的列，`from` 是要查询的表，还可以加其他条件，比如 `where`。通常会用 `eval` 函数来执行生成的 SQL 语句。
+    
+    > [!TIP|label:提示]
+    > 这个函数中很多时候需要传入 code 类型的参数，比如 `select` 是不能直接传入字符串的，可以通过 `sqlCol` 函数把列名转换成 code 类型；又比如 `where` 是需要传入一个代码列表的，类似于 `where=[<symbol = "000001.SZ">]`。
+    > 
+    > 执行 SQL 语句的时候，一种可读性比较好的写法是 `sql(select, from, ...).eval()`。
+
+- `sqlCol(colNames)`：生成 SQL 查询语句中的列名。`colNames` 是列名列表。
+- `eval(code)`：执行代码。
