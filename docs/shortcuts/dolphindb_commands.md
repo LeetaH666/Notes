@@ -103,3 +103,11 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 
 - `sqlCol(colNames)`：生成 SQL 查询语句中的列名。`colNames` 是列名列表。
 - `eval(code)`：执行代码。
+
+## 执行函数与提交作业
+
+- `rpc(nodeAlias, funcName, args, ...)`：在远程节点上执行函数。其中 `nodeAlias` 是节点别名，`funcName` 是函数名，`args` 是参数。
+- `submitJob(jobId, jobDesc, jobDef, args, ...)`：提交作业。其中 `jobId` 是作业 ID，必须以字母开头，`jobDesc` 是作业描述，`jobDef` 是具体作业，即函数对象（不是字符串形式的函数名），`args` 是参数。
+
+> [!TIP|label:提示]
+> 通常这两个函数会配合使用，即用 `rpc` 远程执行 `submitJob` 来提交作业。

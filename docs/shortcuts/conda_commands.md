@@ -53,6 +53,18 @@
 
 运行 R 代码只需在右上角找到三角符号（Run Source）点击即可，注意需要在代码文件所在的目录下运行。在这种运行方式下，左边的 R Workspace 才可以查看变量和图片。
 
+### 卸载 Anaconda
+
+1. `conda env export > environment.yml`：备份环境配置文件
+
+    > [!NOTE|label:注意]
+    > 需要 `conda activate` 到需要备份的环境下导出，`environment.yml` 文件名可以自定义。
+
+2. `conda install anaconda-clean`：安装清理工具
+3. `anaconda-clean --yes`：清理 Anaconda 并备份
+4. `rm -rf ~/anaconda3`：删除 Anaconda 文件夹
+5. `rm -rf ~/.anaconda_backup`：删除备份文件夹
+
 ### 无法升级 Conda
 
 通常当 conda 版本较低时，会提示使用 `conda update -n base -c conda-forge conda` 进行更新，如果使用这个命令更新失败，可以尝试使用 `conda update -n base -c defaults conda --repodata-fn=repodata.json`（source: [GitHub Issue](https://github.com/conda/conda/issues/12519#issuecomment-1483106227)）进行更新，整个过程可能时间比较长，耐心等待即可。
