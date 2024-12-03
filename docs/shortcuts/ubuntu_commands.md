@@ -625,7 +625,7 @@ nvidia-smi
 11. 在 web 界面的左侧找到 `集群总览`，里面可以看到数据节点和计算节点的信息，如果状态是绿色的，说明这两个节点也启动成功了；如果是红色的，则可能需要手动启动。
 
 > [!NOTE|label:注意]
-> 这里是单服务器集群的例子，如果只用单服务器单节点，则可以参考 [DolphinDB 单节点部署与升级](https://docs.dolphindb.com/zh/tutorials/standalone_server.html)。使用集群是因为不同节点可以负责不同的任务，这在社区试用版每个节点限制 2 核和 8 G 内存的情况下尤为重要。
+> 这里是单服务器集群的例子，如果只用单服务器单节点，则可以参考 [DolphinDB 单节点部署与升级](https://docs.dolphindb.com/zh/tutorials/standalone_server.html)。使用集群是因为不同节点可以负责不同的任务，这在社区试用版每个节点限制 2 核和 8 G 内存的情况下尤为重要。如果想要更改集群节点配置，需要在集群启动前修改 `server/clusterDemo/cluster.nodes` 文件。比如可以把一个计算节点换成数据节点。
 
 #### 重启集群
 
@@ -636,3 +636,4 @@ nvidia-smi
 3. `pkill -9 dolphindb`：结束所有 DolphinDB 进程；
 4. `sh startController.sh`：重新启动 DolphinDB 控制节点；
 5. `sh startAgent.sh`：重新启动 DolphinDB 代理节点；
+
