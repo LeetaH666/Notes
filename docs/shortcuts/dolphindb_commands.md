@@ -46,8 +46,18 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 > [!TIP|label:交互界面操作]
 > 点击右上角的用户图标，输入用户名和密码登录。
 
-- `login("userName", "userPassword")`：登录。初始默认管理员名字为 `admin`，密码为 `123456`。
+- `login(userName, userPassword)`：登录。初始默认管理员名字为 `admin`，密码为 `123456`。
 - `logout()`：注销。
+- `changePwd(oldPassword, newPassword)`：修改密码。
+
+### 管理员操作
+
+- `createGroup(groupName, [userNames])`：创建用户组，可以在创建用户组的同时把用户加入到用户组中。
+- `getGroupList()`：获取用户组列表。
+- `createUser(userName, userPassword, [groupNames], [isAdmin=false])`：创建用户，可以指定用户组以及是否有管理员权限。
+- `resetPwd(userName, newPassword)`：重置用户密码。
+- `getUsersByGroupId(groupName)`：获取用户组中的用户列表。
+- `grant(userNameOrGroupName, accessType, [objectNames])`：授权。其中 `accessType` 是权限类型。
 
 ## 库表操作
 

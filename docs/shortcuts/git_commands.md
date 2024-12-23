@@ -65,12 +65,21 @@
 
 ### 将本地文件夹上传到远程仓库
 
+#### 本地文件夹没有用 git 管理
+
 1. 远程新建一个仓库
 2. `git init`
 3. `git add .`
 4. `git commit -m "first upload"`
 5. `git remote add origin + 远程仓库链接`
 6. `git push -u origin master`
+
+#### 本地文件夹已经用 git 管理
+
+1. `git remote add origin + 远程仓库链接`
+2. `git fetch origin master`
+3. `git merge origin/master --allow-unrelated-histories`
+4. `git push -u origin master`
 
 ### 将远程仓库下拉到本地
 
