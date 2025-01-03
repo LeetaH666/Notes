@@ -96,6 +96,13 @@
 
 1. `git pull`
 
+### Fork 他人仓库并同步更新
+
+1. `git remote add upstream + 他人仓库链接`
+2. `git fetch upstream`
+3. `git merge upstream/要同步的分支`
+4. `git push`
+
 ### 向远程添加 ssh 公钥（git 远程连接免密）
 
 1. `cd ~/.ssh`
