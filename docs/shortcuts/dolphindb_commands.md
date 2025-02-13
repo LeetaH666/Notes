@@ -58,6 +58,8 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 - `resetPwd(userName, newPassword)`：重置用户密码。
 - `getUsersByGroupId(groupName)`：获取用户组中的用户列表。
 - `grant(userNameOrGroupName, accessType, [objectNames])`：授权。其中 `accessType` 是权限类型。
+- `getGroupAccess(groupName)`：获取用户组的权限。
+- `deleteUser(userName)`：删除用户。
 
 ## 库表操作
 

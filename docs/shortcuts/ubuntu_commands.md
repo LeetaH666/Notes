@@ -223,7 +223,6 @@
     > [!NOTE|label:注意]
     > 如果并没有显示型号，而是显示 `NVIDIA Corporation Device 2204` 之类的东西，这可能是因为 `/usr/share/misc/pci.ids` 文件没有更新，可以使用 `sudo update-pciids` 更新一下。
 
-- `lsof -i:portNumber`：查看某个端口的占用情况
 - `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
 - `df -aTh`：查看磁盘空间
 - `fdisk -l`：查看所有盘符
@@ -244,18 +243,24 @@
 ### 安装
 
 - `apt-get update`：更新软件源（但不更新软件）
+
+    > [!TIP|label:提示]
+    > 如果遇到 GPG error，可能是公钥过期了，可以用 `apt-key adv --keyserver keyserver.ubuntu.com --recv-keys keyNumber` 来更新公钥，其中的 `keyNumber` 可以在错误信息中找到。
+    
 - `apt-get upgrade`：升级软件
 - `apt-get install packageName`：安装软件
 - `apt-get remove --purge packageName`：卸载软件
 - `apt-get autoremove`：卸载不需要的软件
 - `apt-mark hold/unhold packageName`：锁定/解锁软件，锁定后软件不会被升级
 
-    > [!TIP|label:提示]
-    > 通常我们会执行三个步骤来更新软件：
-    > 
-    > 1. `apt-get update`
-    > 2. `apt-get upgrade`
-    > 3. `apt-get autoremove`
+> [!TIP|label:提示]
+> 通常我们会执行三个步骤来更新软件：
+> 
+> 1. `apt-get update`
+> 2. `apt-get upgrade`
+> 3. `apt-get autoremove`
+>
+> 可以加 `-y` 参数来自动确认所有需要确认的地方；也可以加 `-f` 参数来修复依赖问题。
 
 ### 挂载
 
@@ -275,6 +280,25 @@
     > `localDirName` 代表本地目录，通常我们会在本地的 `/mnt` 文件夹下创建一个文件夹作为远程文件夹的载体。
     > 
     > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
+
+## 端口、服务、网络、防火墙
+
+### 端口
+
+- `lsof -i:portNumber`：查看某个端口的占用情况
+
+## 服务
+
+- `systemctl start/stop serviceName`：启动/停止服务
+- `systemctl enable/disable serviceName`：开机自启/禁止开机自启
+- `systemctl status serviceName`：查看服务状态
+
+## 网络
+
+> 一般管理网络的服务是 `systemd-networkd` 或者 `NetworkManager`，前者是 `systemd` 的网络管理服务，后者是 `GNOME` 的网络管理服务，两者不能同时运行。
+
+- `networkctl`：查看网络状态
+- `systemd-resolve --status`：查看 DNS 信息
 
 ### 防火墙
 
