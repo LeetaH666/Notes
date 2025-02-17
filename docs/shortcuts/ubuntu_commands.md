@@ -169,6 +169,10 @@
 - `addgroup groupName`：添加组
 - `delgroup --only-if-empty groupName`：（仅当组里没有用户时）删除组
 - `usermod -aG groupName userName`：将某用户加入某组，`-a` 代表添加（append），`-G` 代表组
+
+    > [!NOTE|label:注意]
+    > 如果用户已经登录，需要重新登录才能生效。或者可以使用 `newgrp groupName` 来切换组，这在 tmux session 中很有用。
+
 - `deluser userName groupName`：将某用户从某组中删除
 
     > [!TIP|label:提示]
@@ -194,6 +198,11 @@
     > 本地文件上传服务器时如果是 root 权限就没法传，需要先放松权限，上传后再改回来。
 
 - `chmod -R modeNumber dirName`：更改目录下所有文件的权限
+- `chmod g+s dirName`：设置目录的默认组为父目录的默认组，即在该目录下新建的文件/文件夹的默认组为该目录的默认组。
+
+    > [!EXAMPLE|label:例子]
+    > 比如一个目录的 owner 是 `user:data`，即默认组是 `data`，在 `chmod g+s` 之前，在这个目录下新建文件的默认组就是 `user`，而在 `chmod g+s` 之后，新建文件的默认组就是 `data`。
+
 - `chown userName:(groupName) fileName`：更改文件的拥有者和拥有组（不写 `groupName` 则为拥有者的默认组）
 - `chown -R userName:(groupName) dirName`：更改目录及目录下所有文件的拥有者和拥有组
 - `setfacl -m u:userName:rwx fileName`：设置某个用户在某个文件的权限
@@ -223,11 +232,6 @@
     > [!NOTE|label:注意]
     > 如果并没有显示型号，而是显示 `NVIDIA Corporation Device 2204` 之类的东西，这可能是因为 `/usr/share/misc/pci.ids` 文件没有更新，可以使用 `sudo update-pciids` 更新一下。
 
-- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
-- `df -aTh`：查看磁盘空间
-- `fdisk -l`：查看所有盘符
-- `lsblk`：查看各个内存块的基本信息
-- `blkid`：查看各个内存块的 UUID
 - `ipmitool lan print 1`：查看服务器 IPMI 信息
 
     > [!NOTE|label:注意]
@@ -238,7 +242,7 @@
     > 默认的 IP 地址是 `192.168.1.2`，这只能在服务器上本地连接，如果想要远程连接，需要再设置一个公网（内网）IP。
 
 - `shutdown -h now`：立刻关机（`now` 其实等价于 `+0`，即延迟 0 分钟，同理 `+1` 代表延迟 1 分钟）
-- `shutdown -r now`：立刻重启
+- `reboot`：重启
 
 ### 安装
 
@@ -262,14 +266,41 @@
 >
 > 可以加 `-y` 参数来自动确认所有需要确认的地方；也可以加 `-f` 参数来修复依赖问题。
 
-### 挂载
+### 存储
+
+- `df -aTh`：查看磁盘空间
+- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
+- `lsblk`：查看各个内存块的基本信息（内存和挂载点）
+- `blkid`：查看各个内存块的 UUID 和文件系统
+- `fdisk -l`：查看所有磁盘
+- `mkfs.ext4 /dev/deviceName`：格式化某个设备为 ext4 文件系统
+- `mkfs.xfs /dev/deviceName`：格式化某个设备为 xfs 文件系统
+- 查看文件系统
+- `pvcreate /dev/deviceName`：创建物理卷
+- `vgcreate vgName /dev/deviceName`：创建卷组
+- `lvcreate -L size -n lvName vgName`：创建逻辑卷
+
+    > [!TIP|label:提示]
+    > `size` 可以是 `1G`、`100M` 等等，代表大小。也可以用 `lvcreate -l 100%FREE -n lvName vgName` 来使用所有剩余空间。
+
+- `pvdisplay/vgdisplay/lvdisplay`：查看物理卷/卷组/逻辑卷
+- `pvremove /dev/deviceName`：删除物理卷
+- `vgremove vgName`：删除卷组
+- `lvremove /dev/vgName/lvName`：删除逻辑卷
+
+> [!TIP|label:提示]
+> 一般来说，我们会先用 `fdisk -l` 查看所有磁盘，然后用 `mkfs.ext4` 或者 `mkfs.xfs` 格式化某个设备，再用 `pvcreate` 创建物理卷，`vgcreate` 创建卷组，`lvcreate` 创建逻辑卷。这么做的目的是为了更好地管理磁盘空间，比如可以将多个磁盘合并成一个逻辑卷，再将逻辑卷挂载到某个目录下。
+
+#### 挂载
 
 - `mount /dev/deviceName dirName`：将某个设备挂载到某个目录下
 - `umount dirName`：卸载某个目录下的设备
 
     > [!TIP|label:提示]
-    > 如果显示 `device is busy`，可以用 `umount -l dirName` 来强制卸载。
+    > 如果显示 `device is busy`，首先确定是否处在这个挂载的文件夹下，如果并没有，则可以用 `umount -l dirName` 来强制卸载。
 
+- `vim /etc/fstab`：打开 `fstab` 文件，可以设置开机自动挂载，最好用 UUID 来指定设备，因为设备名可能会变
+- `mount -a`：挂载 `fstab` 中所有设备。
 - `sshfs -o allow_other,default_permissions,uid=userIDNumber,gid=groupIDNumber userName@remoteIP:remoteDirName localDirName`：挂载远程服务器的目录到本地
 
     > [!TIP|label:提示]
@@ -281,26 +312,22 @@
     > 
     > 卸载的时候跟其他设备相同，用 `umount localDirName` 即可。
 
-## 端口、服务、网络、防火墙
-
-### 端口
+### 端口与服务
 
 - `lsof -i:portNumber`：查看某个端口的占用情况
-
-## 服务
-
 - `systemctl start/stop serviceName`：启动/停止服务
 - `systemctl enable/disable serviceName`：开机自启/禁止开机自启
 - `systemctl status serviceName`：查看服务状态
 
-## 网络
+#### 网络
 
 > 一般管理网络的服务是 `systemd-networkd` 或者 `NetworkManager`，前者是 `systemd` 的网络管理服务，后者是 `GNOME` 的网络管理服务，两者不能同时运行。
 
-- `networkctl`：查看网络状态
+- `networkctl`：查看网络状态（`systemd-networkd`）
+- `nmcli`：查看网络状态（`NetworkManager`）
 - `systemd-resolve --status`：查看 DNS 信息
 
-### 防火墙
+#### 防火墙
 
 - `ufw enable`：开启防火墙
 - `ufw status (numbered)`：查看防火墙状态（如果要显示规则编号可以加 `numbered`，在删除的时候比较方便看）
@@ -421,7 +448,7 @@
 - [CSDN：超全超详细的安装nvidia显卡驱动教程](https://blog.csdn.net/sinat_34686158/article/details/106845208)
 - [NVIDIA drivers installation](https://ubuntu.com/server/docs/nvidia-drivers-installation)
 
-1. 如果有系统自带的 `nouveau` 驱动，需要先禁用，具体见第一个参考链接。这里跳过这一步，因为服务器上没有 `nouveau`；
+1. 如果出现与系统自带的 `nouveau` 驱动冲突，则需要先禁用，具体见第一个参考链接；没冲突就不用管，因为官方并没有对这方面做要求；
 2. `sudo apt-get remove --purge nvidia*`：卸载之前安装的 Nvidia 驱动；
 3. `ubuntu-drivers devices`：查看可用的 Nvidia 驱动版本，在推荐的版本后面会显示 `recommended`；
 4. `sudo ubuntu-drivers autoinstall`：安装推荐的 Nvidia 驱动版本；
