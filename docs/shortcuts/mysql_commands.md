@@ -2,7 +2,6 @@
 
 MySQL 是一个关系型数据库管理系统，如果还没有安装，可以参考 [MySQL 安装与配置](./ubuntu_commands.md/#mysql-安装与配置)。尽管 MySQL 的命令是不分大小写的，但是为了可读性，以下命令中，函数命令都是大写的，变量用小写，用户自定义的部分用小驼峰命名法。
 
-
 ## 连接数据库
 
 - `sudo mysql -u root`：以 root 用户连接数据库
@@ -31,7 +30,10 @@ MySQL 是一个关系型数据库管理系统，如果还没有安装，可以�
 - `DROP database dbName;`：删除数据库
 - `USE dbName;`：选择进入哪个数据库
 - `SHOW tables;`：显示数据库中的表
+- `sudo mysqldump -u root dbName > fileName.sql`：备份数据库
 
+    > [!TIP|label:提示]
+    > 用 root 用户来备份数据，因为通常其他用户没有 PROCESS 权限。
 
 ## 数据库查询
 

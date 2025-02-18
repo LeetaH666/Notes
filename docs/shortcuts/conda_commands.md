@@ -1,5 +1,11 @@
 # Conda 命令
 
+Conda 是一个包管理工具，可以隔离不同环境，方便不同环境下的包管理。
+
+## 安装
+
+参考 [官方文档](https://docs.anaconda.com/anaconda/install/) 下载安装脚本安装即可。
+
 ## 环境
 
 - `conda create -n envName python=3.8`：创建新的环境并安装 python3.8（版本可修改）

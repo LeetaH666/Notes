@@ -150,6 +150,8 @@
 
 并非所有用户都有 `sudo` 权限，需要管理员手动添加。具体方法是使用 `sudo visudo`，有很多可以自定义的，语法参考 [Linux Fundamentals: A to Z of a Sudoers File.](https://medium.com/kernel-space/linux-fundamentals-a-to-z-of-a-sudoers-file-a5da99a30e7f)。一般只需要写一个 User_Alias 赋予 `sudo` 权限，在 User_Alias 后面加新的用户即可。保存的时候先 `Ctrl + O` write out，然后 `Enter` 确认名字，默认输出到 `/etc/sudoers.tmp`（会自动 `mv` 到 `/etc/sudoers`），然后 `Ctrl + X` 退出。
 
+一个简便的方法是在 visudo 中定义一个管理员组，一般默认是 `sudo`，然后将需要的用户加入这个组，就不需要每次都用 visudo 修改了。
+
 > [!NOTE|label:注意]
 > 以下命令大部分都需要 root 权限。
 
@@ -225,6 +227,7 @@
 ### 系统
 
 - `uname -r`：查看 Linux 内核版本
+- `uname -m`：查看 CPU 架构（`x86_64` 代表 64 位，`aarch64` 代表 ARM64）
 - `lsb_release -a`：查看系统版本
 - `lscpu`：查看 CPU 信息
 - `lspci | grep -i nvidia`：查看 GPU 型号
@@ -363,9 +366,19 @@
 - `set -x`：脚本设置，打印每一行执行的命令。
 - `echo "String"`：输出字符串，相当于 python 的 `print`。
 
-## 一次性工作
+## 一次性工作/常见问题
 
 以下是一些一次性的过程，比如安装某个软件、配置某个环境等等。
+
+### 密码复杂度限制
+
+参考[ubuntu限制密码配置](https://zhuanlan.zhihu.com/p/510257059)：
+
+1. `sudo apt install libpam-pwquality`：安装密码复杂度限制的库；
+2. `sudo vim /etc/pam.d/common-password`：打开 `common-password` 文件，找到 `password requisite pam_pwquality.so retry=3`，在后面加上 `minlen=8 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1`，分别代表密码最小长度、大写字母、小写字母、数字、特殊字符的最小数量。
+
+> [!WARNING|label:警告]
+> 在修改之前最好把所有用户的密码都改了，不然会有无法登录的风险。
 
 ### 挂载扩容（更换硬盘）
 
@@ -442,22 +455,41 @@
 
 ### Nvidia 与 CUDA
 
-#### 安装 Nvidia 驱动
+#### 安装 Nvidia 驱动与 CUDA
 
 参考：
-- [CSDN：超全超详细的安装nvidia显卡驱动教程](https://blog.csdn.net/sinat_34686158/article/details/106845208)
-- [NVIDIA drivers installation](https://ubuntu.com/server/docs/nvidia-drivers-installation)
+- [NVIDIA Driver Installation Guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html#)
+- [CUDA Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#common-installation-instructions-for-ubuntu)
 
-1. 如果出现与系统自带的 `nouveau` 驱动冲突，则需要先禁用，具体见第一个参考链接；没冲突就不用管，因为官方并没有对这方面做要求；
-2. `sudo apt-get remove --purge nvidia*`：卸载之前安装的 Nvidia 驱动；
-3. `ubuntu-drivers devices`：查看可用的 Nvidia 驱动版本，在推荐的版本后面会显示 `recommended`；
-4. `sudo ubuntu-drivers autoinstall`：安装推荐的 Nvidia 驱动版本；
-5. 重启；
-6. `nvidia-smi`：如果正常显示则安装成功。
+
+> [!NOTE|label:注意]
+> 过去曾参考[Ubuntu Server-NVIDIA drivers installation](https://ubuntu.com/server/docs/nvidia-drivers-installation)，但 autoinstall 会安装推荐的 open 版本的驱动，可能会导致安装重启后 nvidia-smi 仍无法使用，需要安装 non-open 的版本，但 ubuntu 官方并没有提供这方面的信息。所以这个文档也许并不普适，才换成了 nvidia 官方的安装方法。
+
+1. `sudo apt remove --autoremove --purge -V nvidia-driver\* libxnvctrl\*`：卸载之前安装的 Nvidia 驱动；
+2. `unmame -r`：查看当前 Linux 内核版本；
+3. `uname -m`：查看 CPU 架构；
+4. `sudo apt install linux-headers-$(uname -r)`；
+5. `wget https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-keyring_1.1-1_all.deb`：下载最新的 cuda-keyring，其中 `$distro` 和 `$arch` 可以参照下表：
+
+    <div align='center'>
+
+   ![](image/2025-02-17-11-44-21.png)
+    </div>
+
+6. `sudo dpkg -i cuda-keyring_1.1-1_all.deb`：安装 cuda-keyring；
+7. `sudo apt update`：更新 apt 软件源；
+8. `sudo apt install nvidia-open`：安装 Nvidia 驱动；
+9. `sudo apt install cuda-drivers`：安装 CUDA 驱动，这并不是通常说的 CUDA，而是 CUDA 的一些依赖；
+10. `sudo apt install cuda-toolkit`：安装 CUDA；
+11. `sudo apt install nvidia-gds`：安装 GPU Direct Storage，能让 GPU 直接与存储设备通信，而不用经过 CPU；
+12. 重启；
+13. `nvidia-smi`：如果正常显示则 Nvidia 驱动安装成功；
+14. `ll /usr/local | grep cuda`：查看 CUDA 安装目录，如果有 cuda 文件夹则 CUDA 安装成功；
+15. `lsmod | grep nvidia_fs`：查看是否有 `nvidia_fs` 模块，如果有则 GPU Direct Storage 安装成功。
 
 如果重启后 `nvidia-smi` 仍无法正常显示，执行 `nvidia-smi -L` 显示 `GPU...: not found` 的话，可以试试卸掉现有驱动，重装 `non-open` 的驱动版本。比如原本装的是 `535-server-open`，可以改成装 `535-server`，具体步骤如下：
 
-1. `sudo apt-get remove --purge nvidia*`：卸载之前安装的 Nvidia 驱动；
+1. `sudo apt remove --autoremove --purge -V nvidia-driver\* libxnvctrl\*`：卸载之前安装的 Nvidia 驱动；
 2. `ubuntu-drivers devices`：查看可用的 Nvidia 驱动版本，找到不带 `open` 字样的驱动版本；
 3. `sudo ubuntu-drivers install --gpgpu nvidia:535-server`：安装指定的 Nvidia 驱动版本，这里以 `535-server` 为例；
 4. `sudo apt install nvidia-utils-535-server`：安装额外的驱动包，不然用不了 `nvidia-smi` 指令；
@@ -560,6 +592,13 @@ nvidia-smi
 3. `export-experiments --experiments all --output-dir outputDir --use-threads True`：导出所有实验到 `outputDir`；
 4. `export MLFLOW_TRACKING_URI=http://localhost:portNumber`：设置 `MLFLOW_TRACKING_URI` 为要导入的端口；
 5. `import-experiments --input-dir outputDir --use-threads True`：导入所有实验到新的 mlflow tracking server。
+
+### Mlflow 版本升级导致的数据库 schema 不匹配
+
+如果是 1.0 升级到 2.0，那就没救了；如果是 2.0 以上的小版本升级，可以通过以下步骤解决：
+
+1. `sudo mysqldump -u root dbName > fileName.sql`：备份原先的 mlflow 数据库；
+2. `mlflow db upgrade --database-uri mysql+pymysql://userName:newPassword@localhost:portNumber/dbName`：升级数据库 schema。
 
 ### 解决 Gnome 锁屏密码正确却显示密码错误的问题
 
