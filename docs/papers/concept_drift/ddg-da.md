@@ -42,7 +42,7 @@ AAAI2022
 
 $$
 \begin{equation}
-    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = D_{\text{KL}} \left(p_{\text{test}}^{(t)}(\bm{x},\ y)\ \Vert\ p_{\text{resam}}^{(t)}(\bm{x},\ y;\ \bm{\Theta}) \right)
+    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = D_{\text{KL}} \left(p_{\text{test}}^{(t)}(\bm{x},\ y)\ \Vert\ p_{\text{resam}}^{(t)}(\bm{x},\ y;\ \bm{\Theta}) \right) \label{1}
 \end{equation}
 $$
 
@@ -52,7 +52,7 @@ $$
 
 $$
 \begin{equation}
-    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = \E_{\bm{x}\sim p_{\text{test}}^{(t)}(\bm{x})} \left[D_{\text{KL}} \left(p_{\text{test}}^{(t)}(y\mid \bm{x})\ \Vert\ p_{\text{resam}}^{(t)}(y\mid \bm{x};\ \bm{\Theta}) \right) \right] \\
+    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = \E_{\bm{x}\sim p_{\text{test}}^{(t)}(\bm{x})} \left[D_{\text{KL}} \left(p_{\text{test}}^{(t)}(y\mid \bm{x})\ \Vert\ p_{\text{resam}}^{(t)}(y\mid \bm{x};\ \bm{\Theta}) \right) \right] \label{2} \\
 \end{equation}
 $$
 
@@ -70,7 +70,7 @@ $$
 
 $$
 \begin{equation}
-    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = \frac{1}{2} \sum\limits_{(\bm{x},\ y)\in D_{\text{test}}^{(t)}} \left\| y_{\text{resam}}^{(t)}(\bm{x};\ \bm{\Theta}) - y \right\|^{2}
+    L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) = \frac{1}{2} \sum\limits_{(\bm{x},\ y)\in D_{\text{test}}^{(t)}} \left\| y_{\text{resam}}^{(t)}(\bm{x};\ \bm{\Theta}) - y \right\|^{2} \label{3}
 \end{equation}
 $$
 
@@ -78,7 +78,7 @@ $$
 
 $$
 \begin{equation}
-    \bm{\Theta}^{*} = \underset{\bm{\Theta}}{\mathop{\arg\min}} ~ \sum\limits_{\text{task}^{(t)}\in \text{Task}_{\text{train}}} L_{\bm{\Theta}}\left(\text{task}^{(t)} \right)
+    \bm{\Theta}^{*} = \underset{\bm{\Theta}}{\mathop{\arg\min}} ~ \sum\limits_{\text{task}^{(t)}\in \text{Task}_{\text{train}}} L_{\bm{\Theta}}\left(\text{task}^{(t)} \right) \label{4}
 \end{equation}
 $$
 
@@ -92,8 +92,8 @@ $$
 
 $$
 \begin{align}
-    \underset{\bm{\Theta}}{\mathop{\arg\min}}& \quad \sum\limits_{\text{task}^{(t)}\in \text{Task}_{\text{train}}} \left(\sum\limits_{(\bm{x},\ y)\in D_{\text{test}}^{(t)}} \left\| y_{\text{proxy}}\left(x;\ \bm{\phi}^{(t)} \right)  - y \right\|^{2} \right) \\
-    \text{s.t.}& \quad \bm{\phi}^{(t)} = \underset{\bm{\phi}}{\mathop{\arg\min}} ~ \sum\limits_{(\bm{x}',\ y')\in D_{\text{resam}}^{(t)}(\bm{\Theta})} \left\| y_{\text{proxy}}(\bm{x}';\ \bm{\phi}) - y' \right\|^{2}
+    \underset{\bm{\Theta}}{\mathop{\arg\min}}& \quad \sum\limits_{\text{task}^{(t)}\in \text{Task}_{\text{train}}} \left(\sum\limits_{(\bm{x},\ y)\in D_{\text{test}}^{(t)}} \left\| y_{\text{proxy}}\left(x;\ \bm{\phi}^{(t)} \right)  - y \right\|^{2} \right) \label{5}\\
+    \text{s.t.}& \quad \bm{\phi}^{(t)} = \underset{\bm{\phi}}{\mathop{\arg\min}} ~ \sum\limits_{(\bm{x}',\ y')\in D_{\text{resam}}^{(t)}(\bm{\Theta})} \left\| y_{\text{proxy}}(\bm{x}';\ \bm{\phi}) - y' \right\|^{2} \label{6}
 \end{align}
 $$
 
@@ -101,7 +101,7 @@ $$
 
 $$
 \begin{equation}
-    y_{\text{proxy}}^{(t)}\left(\bm{x};\ \bm{\phi}^{(t)} \right) = \bm{x} \bm{\phi}^{(t)}
+    y_{\text{proxy}}^{(t)}\left(\bm{x};\ \bm{\phi}^{(t)} \right) = \bm{x} \bm{\phi}^{(t)} \label{7}
 \end{equation}
 $$
 
@@ -112,7 +112,7 @@ $$
     \begin{split}
         l_{\bm{\phi}^{(t)}}\left(D_{\text{resam}}^{(t)}(\bm{\Theta}) \right) &= \frac{1}{2} \sum\limits_{(\bm{x},\ y)\in D_{\text{train}}^{(t)}} q_{\text{train}}^{(t)} (\bm{x} \bm{\phi}^{(t)} - y)^{2} \\
         &= \frac{1}{2} \left(\bm{X}^{(t)} \bm{\phi}^{(t)} - \bm{y}^{(t)} \right)^{\top} \bm{Q}^{(t)} \left(\bm{X}^{(t)} \bm{\phi}^{(t)} - \bm{y}^{(t)} \right) \\
-    \end{split}
+    \end{split} \label{8}
 \end{equation}
 $$
 
@@ -120,7 +120,7 @@ $$
 
 $$
 \begin{equation}
-    \bm{\phi}^{(t)} = \left(\bm{X}^{(t)\top} \bm{Q}^{(t)} \bm{X}^{(t)}\right)^{-1} \bm{X}^{(t)\top} \bm{Q}^{(t)} \bm{y}^{(t)}
+    \bm{\phi}^{(t)} = \left(\bm{X}^{(t)\top} \bm{Q}^{(t)} \bm{X}^{(t)}\right)^{-1} \bm{X}^{(t)\top} \bm{Q}^{(t)} \bm{y}^{(t)} \label{9}
 \end{equation}
 $$
 
