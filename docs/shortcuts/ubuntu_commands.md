@@ -235,6 +235,7 @@
     > [!NOTE|label:注意]
     > 如果并没有显示型号，而是显示 `NVIDIA Corporation Device 2204` 之类的东西，这可能是因为 `/usr/share/misc/pci.ids` 文件没有更新，可以使用 `sudo update-pciids` 更新一下。
 
+- `cat /sys/class/net/linkName/address`：查看某个网卡的 MAC 地址
 - `ipmitool lan print 1`：查看服务器 IPMI 信息
 
     > [!NOTE|label:注意]
@@ -324,6 +325,7 @@
 
 #### 网络
 
+> [!NOTE|label:注意]
 > 一般管理网络的服务是 `systemd-networkd` 或者 `NetworkManager`，前者是 `systemd` 的网络管理服务，后者是 `GNOME` 的网络管理服务，两者不能同时运行。
 
 - `networkctl`：查看网络状态（`systemd-networkd`）

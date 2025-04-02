@@ -164,6 +164,20 @@ VSCode 更新频率还是比较高的，每次更新之后连接远程服务器�
 
 如果发现代码突然不会自动换行了，可能是不小心按到 `Alt + Z` 关闭了自动换行，再按一次即可。
 
-### Tab 键无法补全代码
+## 其他插件问题
+
+### GitHub Copilot
+
+#### Tab 键无法补全代码
 
 如果发现 `Tab` 键突然无法补全代码了，反而是 focus on 其他组件，可能是不小心按到了 `Ctrl + M`，再按一次即可（参考 [Github Issue](https://github.com/microsoft/vscode/issues/25129#issuecomment-296167499)）。
+
+### Ruff
+
+#### 设置 ruff 为 python 默认 formatter
+
+`Ctrl + ,` 打开设置，搜索 `formatter @lang:python`，将 `Editor: Default Formatter` 设置为 `Ruff` 即可。
+
+#### Ruff 无法识别本地配置文件
+
+如果发现本地在 `pyproject.toml/ruff.toml` 配置了 `ruff`，但 VSCode 的 ruff 依旧用的全局配置，则需要 `Ctrl + ,` 打开设置，找到 `Ruff: Configuration Preference`，修改为 `filesystemFirst` 即可。

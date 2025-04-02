@@ -96,12 +96,25 @@
 
 1. `git pull`
 
-### Fork 他人仓库并同步更新
+### Fork 他人仓库
 
-1. `git remote add upstream + 他人仓库链接`
-2. `git fetch upstream`
-3. `git merge upstream/要同步的分支`
-4. `git push`
+1. 点击 fork 按钮
+2. `git clone + fork 之后自己的仓库链接`
+3. `git remote add upstream + 他人仓库链接`
+
+#### 同步更新
+
+4. `git fetch upstream`
+5. `git merge upstream/要同步的分支`
+6. `git push`
+
+#### 修改并提交更新
+
+1. `git checkout -b + 新分支名`
+2. `git add .`
+3. `git commit -m "update"`
+4. `git push origin + 新分支名`
+5. 在 git 远程管理平台上发起 pull request
 
 ### 向远程添加 ssh 公钥（git 远程连接免密）
 
