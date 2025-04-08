@@ -78,10 +78,17 @@
     - `=`：取消所有过滤条件
     - `n`：设置显示进程的数量
     - `q`：退出 `top`
+
+- `htop`：更加 human readable 的 `top`，唯一不方便的是需要比较大的终端窗口才能显示完整的内容。
 - `nvdia-smi (-i GPUNumber)`：查看 GPU 内存占用（静态）（`-i` 代表只看某张卡的情况）
 
     > [!TIP|label:提示]
     > 如果想像 `top` 那样看动态变化的 GPU 内存占用，需要用 `-l` 参数，后面接动态变化的秒数（多少秒变一次），比如 `nvidia-smi -l 5` 代表 5 秒更新一次。
+
+- `ps (a)ux`：查看所有进程（`a` 代表显示所有用户的进程，如果不想看其他用户的进程则可以不加，`u` 代表显示的格式是以用户名为主键的，`x` 代表显示所有包括没有控制终端的进程）
+
+    > [!TIP|label:提示]
+    > 通常用这个命令来获取相关进程的 PID，然后用 `kill` 命令来终止进程。比如 `ps aux | grep python | grep -v grep | awk '{print $2}' | xargs kill -9` 代表杀掉所有 python 进程，其中 `grep -v grep` 是为了排除掉 `grep python` 这个进程，`awk '{print $2}'` 是为了获取 PID，`xargs kill -9` 是为了杀掉这些 PID。
 
 ### 查询
 
