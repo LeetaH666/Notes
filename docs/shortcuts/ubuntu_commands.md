@@ -111,6 +111,7 @@
 
 ### 其他
 
+- `sleep Seconds && Command`：延迟 `Seconds` 秒后执行 `Command`，可以在外出时用来定时执行某个命令，比如 `sleep 3600 && python script.py` 代表延迟 1 小时后执行 `python script.py`。
 - `ssh-keygen -t rsa -C "Comment"`：生成公钥，`-t rsa` 指定了公钥类型，`-C "Comment"` 则是添加注释（把 `Comment` 替换成你想加的注释），以免之后有多个公钥弄混。
 - `ssh-keygen -c`：修改公钥的注释
 - `ssh-copy-id userName@remoteIP`：将本地的公钥复制到远程服务器上
