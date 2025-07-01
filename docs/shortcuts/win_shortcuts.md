@@ -67,3 +67,8 @@
 - `ping url`：测试网络连接
 - `ping -t url`：持续测试网络连接，通常可以用来确认服务器重启后是否已经启动
 - `ipconfig`：查看网络配置（查看 IP 地址）
+    - `ipconfig /all`：查看所有网络配置，包括 DNS、MAC 地址等
+    - `ipconfig /release`：释放当前 IP 地址
+    - `ipconfig /renew`：重新获取 IP 地址
+    - `ipconfig /flushdns`：清除 DNS 缓存
+- `nslookup url`：用默认 DNS 解析 url
