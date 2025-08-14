@@ -89,7 +89,9 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 ### 删除库表
 
 - `dropDatabase("dfs://dbName")`：删除数据库。
-- `dropTable("dfs://dbName", tableName)`：删除表。
+- `dropTable(dbHandle, tableName)`：删除表。
+    > [!TIP|label:提示]
+    > `dbHandle` 是数据库句柄，通常需要用 `database("dfs://dbName")` 来声明。
 
 ### 查看库表
 
