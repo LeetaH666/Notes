@@ -10,9 +10,19 @@
 - `git commit (+ 文件名) -m + 内容` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
 - `git reset`：重置缓冲区。
 - `git config -l`：列出所有 git 的参数设置。
-- `git log (+ 文件名)`：查看（某文件的）commit 历史记录。
+- `git log --oneline`：查看 commit 历史记录，以简洁的方式显示。
+- `git log + 文件名`：查看某文件的 commit 历史记录。
 - `git diff + 旧 commit 哈希值 + 新 commit 哈希值`：查看新旧 commit 之间的差异。
 - `git checkout + 旧 commit 哈希值 (-- + 文件名)`：（将某个文件）恢复到某个 commit 的状态。
+- `git tag + 标签名`：给当前 commit 打标签。
+- `git tag + 标签名 + commit 哈希值`：给指定 commit 打标签。
+- `git push --tags`：将所有标签推送到远程仓库。
+- `git tag -d + 标签名`：删除标签。
+
+    > [!NOTE|label:注意]
+    > 删除标签后需要用 `git push 远程主机名 --delete + 标签名` 来删除远程标签，否则远程依旧存在该标签。
+
+- `git tag`：列出所有标签。
 
 #### 分支
 
