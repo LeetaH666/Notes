@@ -174,7 +174,7 @@
 - `deluser --remove-all-files userName`：删除用户以及用户的所有文件
 
     > [!TIP|label:提示]
-    > 删除的时候会有很多 warnings，无视即可。
+    > 删之前得先 `killall -u userName` 把用户进程给全 kill 了。删除的时候会有很多 warnings，无视即可。
 
 - `addgroup groupName`：添加组
 - `delgroup --only-if-empty groupName`：（仅当组里没有用户时）删除组
@@ -229,6 +229,7 @@
 
 - `kill -9 PID`：强制终止某个进程
 - `pkill -9 processName`：强制终止某个进程（根据进程名）
+- `killall -u userName`：强制终止某个用户的所有进程
 - `renice -n -20 -p PID`：将某个进程的优先级调到最高。
 - `nvidia-smi -pm 1`：开启 GPU 持久模式，即 GPU 不会在空闲时自动降频，也不需要在启动时预热。`0` 的话是关闭。
 
@@ -252,6 +253,16 @@
     > 必须要 `sudo`，不然只会说 `Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory`。
     > 
     > 默认的 IP 地址是 `192.168.1.2`，这只能在服务器上本地连接，如果想要远程连接，需要再设置一个公网（内网）IP。
+
+- `cat /sys/kernel/mm/transparent_hugepage/enabled`：查看透明大页（THP）是否开启
+
+    > [!TIP|label:提示]
+    > 输出可能是 `[always] madvise never`、`always [madvise] never` 或者 `always madvise [never]`，其中 `[madvise]` 代表仅在应用程序请求时（调用 `madvice` 函数时）开启 THP。
+
+- `cat /sys/kernel/mm/transparent_hugepage/defrag`：查看透明大页（THP）碎片整理是否开启
+
+    > [!TIP|label:提示]
+    > 输出可能是 `[always] defer defer+madvice madvise never`、`always [defer] defer+madvice madvise never`、`always defer [defer+madvice] madvise never`、`always defer defer+madvice [madvise] never` 或者 `always defer defer+madvice madvise [never]`，其中 `defer` 代表在后台整理碎片。
 
 - `shutdown -h now`：立刻关机（`now` 其实等价于 `+0`，即延迟 0 分钟，同理 `+1` 代表延迟 1 分钟）
 - `reboot`：重启
@@ -462,6 +473,15 @@
 5. `strings /dev/sda | grep "You should not see me"`：查看硬盘内容是否被填充（然而在步骤 3 之前就已经填充了，输出跟步骤 4 之后是一样的，不知道在这里检查这么一步是要干嘛）。
 
 同样地还有一种填充方式，即 `dd if=/dev/urandom of=/dev/sda bs=1M`，这种方式是用随机数填充硬盘内容，不知道和上面的方式有什么区别。
+
+### THP 优化
+
+当多个程序同时需要使用 THP 时，可能会导致 khugepaged 繁忙，从而导致系统卡顿。可以通过关闭 THP defragmentation 来解决这个问题：
+
+1. `echo never | sudo tee /sys/kernel/mm/transparent_hugepage/defrag`：关闭 THP 碎片整理。
+
+    > [!TIP|label:提示]
+    > 如果彻底不用 THP，也可以通过 `echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enable` 来关闭，而这跟 defrag 是不同的，两个控制的东西不一样。
 
 ### Nvidia 与 CUDA
 
@@ -736,4 +756,16 @@ nvidia-smi
 3. `pkill -9 dolphindb`：结束所有 DolphinDB 进程；
 4. `sh startController.sh`：重新启动 DolphinDB 控制节点；
 5. `sh startAgent.sh`：重新启动 DolphinDB 代理节点；
+
+### GitLab 安装与配置
+
+参考 [GitLab 安装](https://blog.csdn.net/m0_63230155/article/details/131952266#:~:text=%E5%89%8D%E5%BE%80Gitlab%E5%AE%98%E7%BD%91%EF%BC%9A%20https%3A%2F%2Fpackages.gitlab.com%2Fgitlab%2Fgitlab-ce%EF%BC%8C%E6%89%BE%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84%20gitlab-ce%20%E5%AE%89%E8%A3%85%E5%8C%85%EF%BC%8C%E6%B3%A8%E6%84%8F%E7%89%88%E6%9C%AC%E6%98%AF%20ubuntu%2Ffocal%E3%80%82%20%E9%80%9A%E8%BF%87%20wget%20%E6%96%B9%E5%BC%8F%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85gitlab%EF%BC%8C%E5%A4%8D%E5%88%B6,apt-get%20upgrade%20%E8%BF%90%E8%A1%8C%E5%AE%8C%20sudo%20dpkg%20%E5%90%8E%E5%A6%82%E6%9E%9C%E5%87%BA%E7%8E%B0%E4%B8%8B%E9%9D%A2%E7%9A%84%E7%95%8C%E9%9D%A2%E5%B0%B1%E8%A1%A8%E7%A4%BA%20gitlab%E5%AE%89%E8%A3%85%20%E6%88%90%E5%8A%9F%E3%80%82)：
+
+参考 [GitLab 官方文档](https://docs.gitlab.com/install/package/ubuntu/?tab=Community+Edition)
+
+1. 访问 [GitLab 社区版安装包](https://packages.gitlab.com/gitlab/gitlab-ce)，找到 `ubuntu/focal` 版本的安装包，点进去之后可以在右下角看到 `wget` 的安装包链接，复制链接在本地下载好后上传到服务器。下载过程中可以先安装依赖，在安装包页面还可以看到 `Depends`，在服务器上执行 `sudo apt install` 后面跟上这些依赖即可；
+2. 
+3. `sudo ufw allow from 10.21.144.0/24 to any port 80 proto tcp`：允许学校 VPN 分配的虚拟 IP 访问 http 端口；
+4. `sudo ufw allow from 10.21.144.0/24 to any port 443 proto tcp`：允许学校 VPN 分配的虚拟 IP 访问 https 端口；
+5. `sudo ufw enable`：开启防火墙；
 
