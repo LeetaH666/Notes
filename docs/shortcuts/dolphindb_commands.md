@@ -9,7 +9,7 @@ DolphinDB 支持多种交互方式，包括命令行、脚本、交互界面等�
 
 ### 命令行
 
-在 `path/to/DolphinDB/server` 目录下，通过在命令行中输入 `./dolphindb` 即可进入 DolphinDB 的命令行交互界面。
+在 `path/to/DolphinDB/server` 目录下，通过在命令行中输入 `./dolphindb` 即可进入 DolphinDB 的命令行交互界面。代码结束需要用 `;` 提交，但退出用 `quit` 而不是 `quit;`。
 
 ### 脚本
 
@@ -58,6 +58,10 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 - `resetPwd(userName, newPassword)`：重置用户密码。
 - `getUsersByGroupId(groupName)`：获取用户组中的用户列表。
 - `grant(userNameOrGroupName, accessType, [objectNames])`：授权。其中 `accessType` 是权限类型。
+
+    > [!TIP|label:提示]
+    > 例如要给用户所有表的读取权限，可以用 `grant("userName", TABLE_READ, "*")`。
+
 - `getGroupAccess(groupName)`：获取用户组的权限。
 - `deleteUser(userName)`：删除用户。
 
