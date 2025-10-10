@@ -65,6 +65,17 @@ DolphinDB 的脚本文件以 `.dos` 为后缀，在 `path/to/DolphinDB/server` �
 - `getGroupAccess(groupName)`：获取用户组的权限。
 - `deleteUser(userName)`：删除用户。
 
+## 节点操作（管理员）
+
+### 非控制节点
+
+- `getMemLimitOfQueryResult()`：查看单次查询的内存限制。
+- `setMemLimitOfQueryResult(limit)`：设置单次查询的内存限制，最大不能超过最大内存的 80%，比如最大内存为 8 G，则单次查询的内存限制不能超过 6.39 G。
+
+### 控制节点
+
+- `pnodeRun(function{args}, [nodes])`：在指定节点上运行函数。如果不指定节点，则在所有节点上运行。注意函数名不需要以 string 的形式传入，参数以 dict（也可能是 json）的形式传入，而非元组。
+
 ## 库表操作
 
 ### 创建库表
