@@ -9,6 +9,15 @@
 - `git status`：查看当前文件夹下的状态，比如缓冲区中是否有需要 commit 的文件。
 - `git commit (+ 文件名) -m + 内容` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
 - `git reset`：重置缓冲区。
+
+    > [!TIP|label:提示]
+    > `git reset` 其实是 `git reset --mixed HEAD` 的简写，表示将缓冲区重置到上次 commit 的状态，也就是撤销 `git add` 的操作，但不会撤销对文件的修改。如果想要连文件修改也撤销，可以用 `git reset --hard HEAD`。
+
+- `git reset --soft HEAD~nCommits`：将上 nCommits 次 commit 撤销到缓冲区，可以用来修改上次 commit 的内容。
+
+    > [!TIP|label:提示]
+    > `HEAD~nCommits` 表示上 nCommits 次 commit，比如 `HEAD~1` 就是上一次 commit。也可以用 commit 哈希值来指定，比如 `git reset --soft abc1234`。
+
 - `git config -l`：列出所有 git 的参数设置。
 - `git log --oneline`：查看 commit 历史记录，以简洁的方式显示。
 - `git log + 文件名`：查看某文件的 commit 历史记录。
