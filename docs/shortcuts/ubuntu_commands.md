@@ -320,10 +320,15 @@
 - `umount dirName`：卸载某个目录下的设备
 
     > [!TIP|label:提示]
-    > 如果显示 `device is busy`，首先确定是否处在这个挂载的文件夹下，如果并没有，则可以用 `umount -l dirName` 来强制卸载。
+    > 如果显示 `device is busy`，首先确定是否处在这个挂载的文件夹下，如果并没有，则可以用 `umount -l dirName` 懒卸载（即先断开连接，等不忙了再真正卸载）。如果挂载的设备不可用，则可以用 `umount -f dirName` 强制卸载。
 
 - `vim /etc/fstab`：打开 `fstab` 文件，可以设置开机自动挂载，最好用 UUID 来指定设备，因为设备名可能会变
 - `mount -a`：挂载 `fstab` 中所有设备。
+- `cat /proc/self/mountinfo`：查看当前所有挂载的设备。
+
+    > [!TIP|label:提示]
+    > 这个命令比起 `df` 的优势在于不会对每个挂载进行 `stat` 操作，因此速度更快。而且在某些特定情况，比如挂载有问题时，`df` 因为要对有问题的挂载进行 `stat` 操作，可能会卡住。
+
 - `sshfs -o allow_other,default_permissions,uid=userIDNumber,gid=groupIDNumber userName@remoteIP:remoteDirName localDirName`：挂载远程服务器的目录到本地
 
     > [!TIP|label:提示]
@@ -347,6 +352,8 @@
 > [!NOTE|label:注意]
 > 一般管理网络的服务是 `systemd-networkd` 或者 `NetworkManager`，前者是 `systemd` 的网络管理服务，后者是 `GNOME` 的网络管理服务，两者不能同时运行。
 
+- `ip a`：查看所有网络接口（可以看到每个网络接口的 MAC 地址，就是 `xx:xx:xx:xx:xx:xx`）和 IP 地址
+- `ip link set interfaceName up/down`：启用/禁用某个网络接口
 - `networkctl`：查看网络状态（`systemd-networkd`）
 - `nmcli`：查看网络状态（`NetworkManager`）
 - `systemd-resolve --status`：查看 DNS 信息
