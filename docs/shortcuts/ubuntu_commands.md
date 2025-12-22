@@ -44,7 +44,10 @@
     > `rm -rf` 属于高危操作，可能导致误删。
 
     > [!TIP|label:提示]
-    > 可以通过结合使用 `grep` 和 `xargs` 来批量删除文件/目录，比如 `ls | grep test | xargs -d '\n' rm` 代表删除所有包含 `test` 的文件。其中 `xargs -d '\n'` 代表删除输出中的换行符。
+    > 可以通过结合使用 `grep` 和 `xargs` 来批量删除文件/目录，比如
+    > - `ls | grep test | xargs -d '\n' rm`：删除所有包含 `test` 的文件。其中 `xargs -d '\n'` 代表删除输出中的换行符。
+    > - `ls -prt | grep -v / | head -n nFiles | xargs -d '\n' rm`： 删除最早的 `nFiles` 个文件。其中 `ls -prt` 代表按时间排序，且显示目录的标识符 `/`，`grep -v /` 代表排除目录，`head -n nFiles` 代表取前 `nFiles` 行。
+
 
 - `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
