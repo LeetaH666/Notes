@@ -49,7 +49,13 @@
     > - `ls -prt | grep -v / | head -n nFiles | xargs -d '\n' rm`： 删除最早的 `nFiles` 个文件。其中 `ls -prt` 代表按时间排序，且显示目录的标识符 `/`，`grep -v /` 代表排除目录，`head -n nFiles` 代表取前 `nFiles` 行。
 
 
-- `find dirName -name expressQuery`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
+- `find dirName -name "expressQuery"`：按名字在某目录下查找文件，`expressQuery` 可以使用正则表达式，不写 `dirName` 则默认当前目录
+
+    > [!TIP|label:提示]
+    > 可以通过结合使用 `-delete` 参数来批量删除文件，这比 `ls | grep | xargs rm` 的写法更简便：
+    > - `find -name "*test*" -delete`：删除当前目录下所有包含 `test` 的文件（默认递归，即会把子目录下的匹配文件也删除）。
+    > - `find -maxdepth 1 -name "*test*" -delete`：删除当前目录下所有包含 `test` 的文件（不递归）。
+
 - `ln -s fileName dirName`：将某个文件软链接到某目录下
 - `du -sh dirName/fileName`：查看目录/文件占用内存
 - `du -h dirName`：查看目录内所有文件占用内存
