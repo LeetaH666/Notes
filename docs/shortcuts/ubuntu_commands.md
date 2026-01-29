@@ -301,7 +301,11 @@
 ### 存储
 
 - `df -aTh`：查看磁盘空间
-- `du -sh * | sort -nr | head -n 10`：查看物理内存占用最多的 10 个文件夹
+- `du -sh * | sort -rh | head -n 10`：查看物理内存占用最多的 10 个文件夹
+
+    > [!TIP|label:提示]
+    > `sort -rh` 代表按 human-readable 的数值大小倒序排序，`head -n 10` 代表取前 10 行。
+
 - `lsblk`：查看各个内存块的基本信息（内存和挂载点）
 - `blkid`：查看各个内存块的 UUID 和文件系统
 - `fdisk -l`：查看所有磁盘
