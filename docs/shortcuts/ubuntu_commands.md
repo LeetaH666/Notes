@@ -546,6 +546,17 @@
 5. 重启；
 6. `nvidia-smi`：如果正常显示则安装成功。
 
+#### Gemini 提供的更新 Nvidia 驱动流程
+
+- `sudo add-apt-repository ppa:graphics-drivers/ppa -y`：添加 PPA 源；
+- `sudo apt update`：更新软件源；
+- `sudo apt-get purge nvidia* -y`：卸载之前的 Nvidia 驱动；
+- `sudo apt autoremove -y`：卸载不需要的软件包；
+- `sudo apt install nvidia-driver-580 nvidia-utils-580 -y`：安装指定版本的 Nvidia 驱动和工具包，这里以 `580` 为例；
+- `sudo reboot`：重启。
+
+测试没有问题。
+
 #### 升级 CUDA
 
 [CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive) 里面有各个版本的 cuda 下载链接，选择对应版本和系统后选择 `runfile` 进行下载和安装。安装的时候如果已经有 `nvidia driver` 了，则取消勾选 `nvidia driver`。
@@ -670,6 +681,22 @@ nvidia-smi
 
 遇到 443 网络问题：[配置加速地址](https://blog.csdn.net/weixin_50160384/article/details/139861337)
 
+#### Nvidia Container Toolkit 安装与配置
+
+如果想让 Docker 支持使用 GPU，则需要安装 Nvidia Container Toolkit：
+
+1. `curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg`：添加 GPG 密钥；
+2. `curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list`：添加软件源；
+3. `sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit`：更新软件并安装 NVIDIA Container Toolkit；
+    
+    > [!TIP|label:提示]
+    > 如果 apt 由于存在其他软件的坏源而无法更新，可以偷懒只执行 `sudo apt-get install -y nvidia-container-toolkit`，看能不能安装成功。
+
+    > [!NOTE|label:注意]
+    > 安装后如果提示 `xxx is not a symbolic link`，可以忽略这个警告。
+
+4. `sudo nvidia-ctk runtime configure --runtime=docker && sudo systemctl restart docker`：配置 Docker 以使用 NVIDIA Container Toolkit 并重启 Docker 服务。
+
 ### Clash 安装与配置
 
 #### 在某个用户下安装 Clash 
@@ -789,3 +816,104 @@ nvidia-smi
 4. `sudo ufw allow from 10.21.144.0/24 to any port 443 proto tcp`：允许学校 VPN 分配的虚拟 IP 访问 https 端口；
 5. `sudo ufw enable`：开启防火墙；
 
+### vLLM 安装与配置
+
+1. `sudo docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu20.04 nvidia-smi`：测试 Docker 是否能使用 GPU；
+
+    > [!TIP|label:提示]
+    > 如果显示 `docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]`，说明没有安装 NVIDIA Container Toolkit，可以参考 [Nvidia Container Toolkit 安装与配置](#nvidia-container-toolkit-安装与配置) 进行安装。
+    
+2. `mkdir -p modelDir`：新建模型文件夹 `modelDir`；
+3. `chmod -R 755 modelDir`：修改模型文件夹权限为 `755`，否则 Docker 可能无法访问该文件夹；
+4. `pip install -U "huggingface_hub[cli]"`：安装 huggingface_hub 以下载模型，装在 conda base 环境下即可；
+5. `HF_ENDPOINT=https://hf-mirror.com huggingface-cli download modelName --local-dir modelDir/modelName --local-dir-use-symlinks False --resume-download`：下载模型，`modelName` 为模型名称，`modelDir/modelName` 为下载后的模型路径；
+
+    > [!NOTE|label:注意]
+    > `HF_ENDPOINT=https://hf-mirror.com` 是为了使用国内的 Hugging Face 镜像站点加速下载。
+    > 
+    > `--local-dir-use-symlinks False` 似乎已经废弃了，可以不加这个参数。
+
+6. `mkdir -p ~/dockers/vllm`：新建一个文件夹用于存放 vLLM 的 Docker 相关文件；
+7. `vim ~/dockers/vllm/compose.yaml`： 在 `compose.yaml` 文件里写入以下内容（以某个实际应用为例，参数可根据自己情况修改）：
+
+    ```yaml
+    services:
+        # 服务 1: vLLM (后端大脑)
+        vllm:
+            image: vllm/vllm-openai:latest
+            container_name: vllm-service
+            restart: unless-stopped
+            ports:
+                - "8000:8000" # 端口映射: 宿主机8000 -> 容器8000
+            volumes:
+                - /data/llm_models:/models # 挂载模型目录: 宿主机路径 -> 容器路径
+            ipc: host # 共享内存，防止多卡推理时报错
+ 
+            # 显卡资源配置
+            deploy:
+                resources:
+                    reservations:
+                        devices:
+                            - driver: nvidia                                                                                                                                 
+                                device_ids: ['6', '7'] # 指定使用第 6 和第 7 张卡
+                                capabilities: [gpu]
+            # 启动命令 (参数列表）
+            ## 用 2 张卡，所以 tensor-parallel-size 可以设 2
+            ## gpu-memory-utilization 默认是 0.9，为了避免 OOM 可以再保守一点
+            ## 最大并发数 max-num-seqs 默认 256，我们人少，16 就完全够用
+            command: >
+                /models/Qwen3-Coder-30B-A3B-Instruct-FP8
+                --served-model-name "Qwen3-Coder"
+                --trust-remote-code
+                --kv-cache-dtype fp8
+                --tensor-parallel-size 2
+                --gpu-memory-utilization 0.85
+                --max-num-seqs 16
+    ```
+
+8. `cd ~/dockers/vllm`：进入 `compose.yaml` 文件所在的文件夹；
+9. `sudo docker compose up -d`：使用 Docker Compose 启动 vLLM 服务，`-d` 参数表示在后台运行；
+10. `sudo docker compose logs -f vllm-service`：查看 vLLM 服务日志，确认服务是否启动成功；
+
+    > [!TIP|label:提示]
+    > 如果报 804 错误，可能是 nvidia 驱动太老导致 CUDA 版本不兼容，可以更新 nvidia 驱动，也可以降低 vLLM 镜像版本，但降低 vLLM 镜像版本可能会导致不兼容当前模型版本。
+    > 
+    > 如果报 803 错误，可能是 docker 内部程序寻找 cuda 路径没找对，可以在 `sudo docker run` 的时候加上 `-e LD_LIBRARY_PATH=/usr/local/cuda/lib64` 来指定 cuda 路径（参考 [GitHub Issue](https://github.com/vllm-project/vllm/issues/32373#issuecomment-3832941163)）。
+    > 
+    > 如果 warm up 的时候 CUDA OOM 了，可以尝试降低 `--gpu-memory-utilization` 和 `--max-num-seqs` 参数。
+
+    > [!NOTE|label:注意]
+    > 更改完要重新部署的时候，需要先 `sudo docker rm -f vllm-service` 删除之前有问题的容器。
+
+### Open-WebUI 配置
+
+无 Nginx 版本的 docker compose 配置：
+  
+```yaml
+services:
+    open-webui:
+        image: ghcr.io/open-webui/open-webui:main
+        container_name: open-webui
+        restart: unless-stopped
+        ports:
+            - "3000:8080"  # 外部访问端口设为 3000 (避免和 8080 冲突)
+        environment:
+            - OPENAI_API_BASE_URL=http://vllm-service:8000/v1 # 指向 vLLM 服务
+            - OPENAI_API_KEY=EMPTY
+            - WEBUI_AUTH=true # 允许任意邮箱注册（团队内部用方便）
+            - ENABLE_SIGNUP_PASSWORD_CONFIRMATION=true # 注册时需要确认密码，避免输错
+            - ENABLE_PASSWORD_VALIDATION=true # 密码强度验证，至少 8 位，包含大小写字母和数字
+        volumes:
+            - open-webui-data:/app/backend/data
+        # 确保 vLLM 启动了再启动界面
+        depends_on:
+            - vllm
+```
+
+> [!TIP|label:提示]
+> 用 Nginx 的话把 ports 去掉就可以了。
+
+> [!NOTE|label:注意]
+> 第一个注册的用户为管理员，后续其他用户如果没有注册按钮，需要管理员在管理员设置里开启 `允许新用户注册`。
+>
+> 如果普通用户看不到模型，需要管理员在 `设置-模型` 里点击对应模型的铅笔图标，把右上角的权限改成 `公开` 或者设置相应权限。

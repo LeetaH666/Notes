@@ -1,5 +1,6 @@
 - Softwares/Packages
     - [Conda](shortcuts/conda_commands.md)
+    - [Docker](shortcuts/docker_commands.md)
     - [DolphinDB](shortcuts/dolphindb_commands.md)
     - [Edge](shortcuts/edge_shortcuts.md)
     - [Git](shortcuts/git_commands.md)
