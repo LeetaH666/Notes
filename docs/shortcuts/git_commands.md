@@ -5,31 +5,31 @@
 ### 本地仓库
 
 - `git init`：将当前文件夹变成 git 文件夹。
-- `git add + 文件名`：把文件放进缓冲区，可以用 `.` 来代表文件夹下所有文件。
+- `git add <文件名>`：把文件放进缓冲区，可以用 `.` 来代表文件夹下所有文件。
 - `git status`：查看当前文件夹下的状态，比如缓冲区中是否有需要 commit 的文件。
-- `git commit (+ 文件名) -m + 内容` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
+- `git commit <文件名> -m <内容>` ：对缓冲区内的所有或指定文件进行 commit，即解释新加的文件或者新做的更改。
 - `git reset`：重置缓冲区。
 
     > [!TIP|label:提示]
     > `git reset` 其实是 `git reset --mixed HEAD` 的简写，表示将缓冲区重置到上次 commit 的状态，也就是撤销 `git add` 的操作，但不会撤销对文件的修改。如果想要连文件修改也撤销，可以用 `git reset --hard HEAD`。
 
-- `git reset --soft HEAD~nCommits`：将上 nCommits 次 commit 撤销到缓冲区，可以用来修改上次 commit 的内容。
+- `git reset --soft HEAD~<nCommits>`：将上 nCommits 次 commit 撤销到缓冲区，可以用来修改上次 commit 的内容。
 
     > [!TIP|label:提示]
-    > `HEAD~nCommits` 表示上 nCommits 次 commit，比如 `HEAD~1` 就是上一次 commit。也可以用 commit 哈希值来指定，比如 `git reset --soft abc1234`。
+    > `HEAD~<nCommits>` 表示上 nCommits 次 commit，比如 `HEAD~1` 就是上一次 commit。也可以用 commit 哈希值来指定，比如 `git reset --soft abc1234`。
 
 - `git config -l`：列出所有 git 的参数设置。
 - `git log --oneline`：查看 commit 历史记录，以简洁的方式显示。
-- `git log + 文件名`：查看某文件的 commit 历史记录。
-- `git diff + 旧 commit 哈希值 + 新 commit 哈希值`：查看新旧 commit 之间的差异。
-- `git checkout + 旧 commit 哈希值 (-- + 文件名)`：（将某个文件）恢复到某个 commit 的状态。
-- `git tag + 标签名`：给当前 commit 打标签。
-- `git tag + 标签名 + commit 哈希值`：给指定 commit 打标签。
+- `git log <文件名>`：查看某文件的 commit 历史记录。
+- `git diff <旧 commit 哈希值> <新 commit 哈希值>`：查看新旧 commit 之间的差异。
+- `git checkout <旧 commit 哈希值> (-- <文件名>)`：（将某个文件）恢复到某个 commit 的状态。
+- `git tag <标签名>`：给当前 commit 打标签。
+- `git tag <标签名> <commit 哈希值>`：给指定 commit 打标签。
 - `git push --tags`：将所有标签推送到远程仓库。
-- `git tag -d + 标签名`：删除标签。
+- `git tag -d <标签名>`：删除标签。
 
     > [!NOTE|label:注意]
-    > 删除标签后需要用 `git push 远程主机名 --delete + 标签名` 来删除远程标签，否则远程依旧存在该标签。
+    > 删除标签后需要用 `git push <远程主机名> --delete <标签名>` 来删除远程标签，否则远程依旧存在该标签。
 
 - `git tag`：列出所有标签。
 
@@ -38,49 +38,50 @@
 > 第一个默认分支一般名字为 `master`。
 
 - `git branch -a`：列出所有仓库分支。
-- `git branch + 分支名`：新建一个分支。
-- `git branch -m + 新分支名`：重命名当前分支。
-- `git checkout + 分支名`：切换到指定分支。
-- `git checkout -b + 分支名`：新建一个分支并切换到该分支。
-- `git diff + 分支名`：查看当前分支与指定分支的差异。
-- `git merge + 分支名`：合并指定分支到当前分支。
+- `git branch <分支名>`：新建一个分支。
+- `git branch -m <新分支名>`：重命名当前分支。
+- `git checkout <分支名>`：切换到指定分支。
+- `git checkout -b <分支名>`：新建一个分支并切换到该分支。
+- `git diff <分支名>`：查看当前分支与指定分支的差异。
+- `git merge <分支名>`：合并指定分支到当前分支。
 
     > [!TIP|label:提示]
-    > 通常我们会把 `master` 分支作为主分支，其他分支用来开发新功能，开发完成后再合并到 `master` 分支。因此在合并分支的时候，我们通常会先 `git checkout master` 切换到主分支，然后再 `git merge + 分支名` 把指定分支合并进来。
+    > 通常我们会把 `master` 分支作为主分支，其他分支用来开发新功能，开发完成后再合并到 `master` 分支。因此在合并分支的时候，我们通常会先 `git checkout master` 切换到主分支，然后再 `git merge <分支名>` 把指定分支合并进来。
 
-- `git branch -D + 分支名`：本地删除指定分支。
-- `git push origin --delete + 分支名`：删除远程分支。
+- `git branch -D <分支名>`：本地删除指定分支。
+- `git push origin --delete <分支名>`：删除远程分支。
 
     > [!TIP|label:提示]
-    > 删除远程分支后，如果在本地使用 `git branch -a` 依旧能看到，可以使用 `git remote prune + 远程主机名` 来清理本地分支，远程主机名通常为 `origin`。
+    > 删除远程分支后，如果在本地使用 `git branch -a` 依旧能看到，可以使用 `git remote prune <远程主机名>` 来清理本地分支，远程主机名通常为 `origin`。
 
 ### 本地仓库与远程仓库交互
 
 > 远程主机名通常为 `origin`。
 
-- `git config (--global) user.name + 用户名`：（全局）设置用户名。
-- `git config (--global) user.email + 邮箱`：（全局）设置邮箱。
+- `git config (--global) user.name <用户名>`：（全局）设置用户名。
+- `git config (--global) user.email <邮箱>`：（全局）设置邮箱。
 - `git config --global fetch.prune true`：设置拉取时自动清理已被删除的远程分支。
 
     > [!TIP|label:提示]
     > 这个设置是为了防止删除了远程分支后其他人不知道，没有 prune 就 push，导致 pull 下来发现被删除的分支重新出现。
 
-- `git clone + 远程仓库链接`：将远程仓库整个克隆到本地。
+- `git clone <远程仓库链接>`：将远程仓库整个克隆到本地。
+- `git clone -b <分支名> (--depth 1) <远程仓库链接>`：克隆远程仓库的指定分支到本地，`--depth 1` 表示只克隆最新的 commit，不克隆历史记录，可以加快克隆速度，减少占用空间。
 - `git remote -v`：列出所有远程主机以及对应 url。
-- `git remote add + 远程主机名 + 远程仓库链接`：把当前文件夹与远程仓库连接起来，并给它命名一个代号，通常我们会将它命名为 `origin`，因为使用 `git clone` 命令时 git 会自动命名远程主机为 `origin`。
+- `git remote add <远程主机名> <远程仓库链接>`：把当前文件夹与远程仓库连接起来，并给它命名一个代号，通常我们会将它命名为 `origin`，因为使用 `git clone` 命令时 git 会自动命名远程主机为 `origin`。
 
     > [!TIP|label:提示]
     > 当我们 fork 了一个仓库，然后想要将它的更新同步到我们的仓库时，我们需要额外添加一个远程主机，通常我们会将它命名为 `upstream`。
 
-- `git remote set-url + 远程主机名 + 远程仓库链接`：修改远程仓库的 url。
-- `git push (-u) (+ 远程主机名) (+ 本地分支名)`：将本地仓库推送到远程。第一次推送需要用 `-u` 指令，之后就不需要了；如果本地和远程存在追踪关系且只有一个分支，主机名和分支名都可以省略。
-- `git pull (+ 远程主机名) (+ 远程分支名)`：将远程仓库的内容下拉到本地并与本地分支合并，如果存在追踪关系且只有一个分支，主机名和分支名都可以省略。
+- `git remote set-url <远程主机名> <远程仓库链接>`：修改远程仓库的 url。
+- `git push (-u) (<远程主机名>) (<本地分支名>)`：将本地仓库推送到远程。第一次推送需要用 `-u` 指令，之后就不需要了；如果本地和远程存在追踪关系且只有一个分支，主机名和分支名都可以省略。
+- `git pull (<远程主机名>) (<远程分支名>)`：将远程仓库的内容下拉到本地并与本地分支合并，如果存在追踪关系且只有一个分支，主机名和分支名都可以省略。
 
 ## Git 常用操作流程
 
 ### 克隆项目
 
-1. `git clone + 远程仓库链接`
+1. `git clone <远程仓库链接>`
 
 ### 将本地文件夹上传到远程仓库
 
@@ -90,12 +91,12 @@
 2. `git init`
 3. `git add .`
 4. `git commit -m "first upload"`
-5. `git remote add origin + 远程仓库链接`
+5. `git remote add origin <远程仓库链接>`
 6. `git push -u origin master`
 
 #### 本地文件夹已经用 git 管理
 
-1. `git remote add origin + 远程仓库链接`
+1. `git remote add origin <远程仓库链接>`
 2. `git fetch origin master`
 3. `git merge origin/master --allow-unrelated-histories`
 4. `git push -u origin master`
@@ -103,7 +104,7 @@
 ### 将远程仓库下拉到本地
 
 1. `git init`
-2. `git remote add origin + 远程仓库链接`
+2. `git remote add origin <远程仓库链接>`
 3. `git pull origin master`
 
 ### 本地更新上传远程
@@ -120,36 +121,36 @@
 > [!ATTENTION|label:注意]
 > 如果当前文件/文件夹还没有 commit，需要先 commit 防止丢失。
 
-1. `git log (+ 文件名)` 找到想恢复的 commit 哈希值
-2. `git checkout + commit 哈希值 (-- + 文件名)`
+1. `git log (<文件名>)` 找到想恢复的 commit 哈希值
+2. `git checkout <commit 哈希值> (-- <文件名>)`
 
 ### Fork 他人仓库
 
 1. 点击 fork 按钮
-2. `git clone + fork 之后自己的仓库链接`
-3. `git remote add upstream + 他人仓库链接`
+2. `git clone <fork 之后自己的仓库链接>`
+3. `git remote add upstream <他人仓库链接>`
 
 #### 同步更新
 
 4. `git fetch upstream`
-5. `git merge upstream/要同步的分支`
+5. `git merge upstream/<要同步的分支>`
 6. `git push`
 
 #### 修改并提交更新
 
-1. `git checkout -b + 新分支名`
+1. `git checkout -b <新分支名>`
 2. `git add .`
 3. `git commit -m "update"`
-4. `git push origin + 新分支名`
+4. `git push origin <新分支名>`
 5. 在 git 远程管理平台上发起 pull request
 
 ### 向远程添加 ssh 公钥（git 远程连接免密）
 
 1. `cd ~/.ssh`
-2. `ssh-keygen -t rsa -C "Comment"`
+2. `ssh-keygen -t rsa -C "<Comment>"`
    
    > [!TIP|label:提示]
-   > `Comment` 可以是任意内容，用来区分不同的公钥。由于不同设备可能会用到不同的公钥，所以可以用设备名，比如服务器 IP 等来作为 `Comment`。
+   > `<Comment>` 可以是任意内容，用来区分不同的公钥。由于不同设备可能会用到不同的公钥，所以可以用设备名，比如服务器 IP 等来作为 `<Comment>`。
 
 3. 一直回车（如果之前已有公钥 id_rsa 的话，提示是否 overwrite 的时候需要输 `yes` 而不能回车）
 4. `cat id_rsa.pub`
@@ -161,7 +162,7 @@
 有时候可能会使用多个 git 平台，比如 github 和 gitee，这时候上面的做法只能让我们在一个平台上免密，另一个平台如果还用同一个公钥的话就依旧需要输入密码。这时候可以生成另一个公钥私钥对，然后通过在 config 中指定 IdentityFile 来指定使用哪个私钥。假设我们已经用上面的步骤为 github 配置了免密，接下来要为 gitee 配置免密：
 
 1. `cd ~/.ssh`
-2. `ssh-keygen -t rsa -f id_rsa_gitee -C "Comment"`
+2. `ssh-keygen -t rsa -f id_rsa_gitee -C "<Comment>"`
 3. 一直回车
 4. `cat id_rsa_gitee.pub`
 5. 复制输出的公钥
@@ -215,7 +216,7 @@
 
 此时应该改用 ssh 而不是 http 作为传输方式：
 
-1. `git remote set-url origin + 远程仓库 SSH 链接`
+1. `git remote set-url origin <远程仓库 SSH 链接>`
 2. `git pull / git push origin master`
 
 改用 ssh 需要在远程有 ssh 公钥，具体添加方法见[Git常用操作流程](#向远程添加-ssh-公钥)。
