@@ -14,3 +14,4 @@ Pip 和 Conda 一样，都是包管理软件，我们优先使用 Conda，但有
 - `pip uninstall packageName`：卸载某个包
 - `pip install --upgrade pip`：升级 Pip
 - `pip config list`：查看 Pip 配置
+- `pip list --format=freeze > requirements.txt`：将当前环境的包列表输出到 requirements.txt 文件中（方便重建）
