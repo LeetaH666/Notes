@@ -677,9 +677,35 @@ nvidia-smi
 
 ### Docker 安装
 
-[菜鸟教程](https://www.runoob.com/docker/ubuntu-docker-install.html)
+1. `sudo install -m 0755 -d /etc/apt/keyrings`：创建存放 GPG 密钥的文件夹；
+2. `curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`：添加 Docker 的 GPG 密钥，用的是阿里云的镜像源；
+3. `sudo chmod a+r /etc/apt/keyrings/docker.gpg`：修改权限为所有用户可读；
+4. `echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`：根据当前系统架构和版本添加 Docker 的软件源；
+5. `sudo apt-get update`：更新软件源；
+6. `sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`：安装 Docker 以及相关组件；
+7. `sudo usermod -aG docker userName`：将当前用户添加到 Docker 用户组中，这样就可以不需要 `sudo` 来运行 Docker 命令了，`userName` 为当前用户名；
+8. `newgrp docker`：使用户组修改生效；
+9. `docker compose version`：测试 Docker 是否安装成功，如果能显示版本号说明安装成功。
 
-遇到 443 网络问题：[配置加速地址](https://blog.csdn.net/weixin_50160384/article/details/139861337)
+#### Docker 镜像加速
+
+国内 Docker 有可能会因为网络限制导致拉取镜像非常慢，可以通过配置镜像加速来解决这个问题：
+
+1. `sudo mkdir -p /etc/docker`：创建 Docker 配置文件夹；
+2. `sudo vim /etc/docker/daemon.json`：创建 Docker 配置文件，添加以下内容：
+
+        ```json
+        {
+        "registry-mirrors": [
+            "https://docker.m.daocloud.io",
+            "https://mirror.ccs.tencentyun.com",
+            "https://hub-mirror.c.163.com",
+            "https://registry.docker-cn.com"
+        ]
+        }
+        ```
+3. `sudo systemctl daemon-reload`：重新加载 Docker 服务；
+4. `sudo systemctl restart docker`：重启 Docker 服务。
 
 #### Nvidia Container Toolkit 安装与配置
 
@@ -917,3 +943,17 @@ services:
 > 第一个注册的用户为管理员，后续其他用户如果没有注册按钮，需要管理员在管理员设置里开启 `允许新用户注册`。
 >
 > 如果普通用户看不到模型，需要管理员在 `设置-模型` 里点击对应模型的铅笔图标，把右上角的权限改成 `公开` 或者设置相应权限。
+
+### Gitea 安装与配置
+
+[使用 Docker 安装 | Gitea Documentation](https://docs.gitea.com/zh-cn/installation/install-with-docker)
+
+小团队不需要弄 MySQL，可以直接用默认的 SQLite，什么都不用配置。
+
+启动服务后，打开网址会有安装指引，如果要安全就禁止用户注册，管理员来创建用户。然后 open id 相关的可以关掉，暂时没什么用。
+
+#### 灾备
+
+[备份与恢复 | Gitea Documentation](https://docs.gitea.com/zh-cn/administration/backup-and-restore)
+
+也可以用 `rsync` 备份，加 `-avz` 参数来保证备份的完整性和效率，加 `--delete` 参数来删除备份中已经不存在的文件，加 `--backup` 参数来启用备份模式，加 `--backup-dir` 参数来指定删除文件的备份目录。
