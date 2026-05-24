@@ -18,6 +18,12 @@
     > [!TIP|label:提示]
     > `HEAD~<nCommits>` 表示上 nCommits 次 commit，比如 `HEAD~1` 就是上一次 commit。也可以用 commit 哈希值来指定，比如 `git reset --soft abc1234`。
 
+- `git mv <旧文件名> <新文件名>`：重命名文件。
+
+    > [!TIP|label:提示]
+    > `git mv` 的好处是它会自动把重命名的操作记录到 git 中，而直接用 `mv` 命令重命名的话，git 会把它当成删除了旧文件又新建了一个文件，这样就无法保留文件的历史记录了。
+
+- `git rm --cached <文件名>`：把文件从 git 中删除，但保留在本地。
 - `git config -l`：列出所有 git 的参数设置。
 - `git log --oneline`：查看 commit 历史记录，以简洁的方式显示。
 - `git log <文件名>`：查看某文件的 commit 历史记录。
