@@ -41,7 +41,7 @@
 
 #### 分支
 
-> 第一个默认分支一般名字为 `master`。
+> 第一个默认分支一般名字为 `master` 或者 `main`，以下统一使用 `master`。
 
 - `git branch -a`：列出所有仓库分支。
 - `git branch <分支名>`：新建一个分支。
@@ -59,6 +59,15 @@
 
     > [!TIP|label:提示]
     > 删除远程分支后，如果在本地使用 `git branch -a` 依旧能看到，可以使用 `git remote prune <远程主机名>` 来清理本地分支，远程主机名通常为 `origin`。
+
+#### 暂存区
+
+- `git stash (-u)`：把当前的修改暂存起来，恢复到上次 commit 的状态。如果加 `-u` 参数，则会同时暂存未跟踪文件（untracked files）。
+- `git stash list`：查看暂存列表。
+- `git stash apply (stash@{n})`：把最新暂存应用到当前分支。如果加参数 `stash@{n}`，则可以指定列表中的某个暂存。
+- `git stash drop (stash@{n})`：删除最新暂存。如果加参数 `stash@{n}`，则可以指定列表中的某个暂存。
+- `git stash pop (stash@{n})`：把最新的暂存应用到当前分支并删除该暂存。如果加参数 `stash@{n}`，则可以指定列表中的某个暂存。
+- `git stash clear`：清空所有暂存。
 
 ### 本地仓库与远程仓库交互
 
@@ -149,6 +158,26 @@
 3. `git commit -m "update"`
 4. `git push origin <新分支名>`
 5. 在 git 远程管理平台上发起 pull request
+
+### 生产/开发分支切换与合并
+
+#### 从生产分支切换到开发分支，开发后合并
+
+通常不会直接在生产分支上开发新功能，而是会新建一个开发分支来开发，开发完成后再合并到生产分支。
+
+1. `git checkout -b <开发分支名>`
+2. 开发新功能
+3. `git checkout master`
+4. `git merge <开发分支名>`
+
+#### 在开发分支开发到一半，切换到其他分支
+
+1. `git stash push -m "commitMessage"` 保存当前修改，并添加注释
+2. `git checkout <其他分支名>` 切换到其他分支
+3. 开发其他分支的功能
+4. `git checkout <开发分支名>` 切换回开发分支
+5. `git stash list` 查看暂存列表，找到之前的那个暂存
+5. `git stash pop stash@{n}` 应用暂存并删除该暂存
 
 ### 向远程添加 ssh 公钥（git 远程连接免密）
 
