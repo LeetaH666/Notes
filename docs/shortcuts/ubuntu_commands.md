@@ -99,6 +99,18 @@
     > [!TIP|label:提示]
     > 通常用这个命令来获取相关进程的 PID，然后用 `kill` 命令来终止进程。比如 `ps aux | grep python | grep -v grep | awk '{print $2}' | xargs kill -9` 代表杀掉所有 python 进程，其中 `grep -v grep` 是为了排除掉 `grep python` 这个进程，`awk '{print $2}'` 是为了获取 PID，`xargs kill -9` 是为了杀掉这些 PID。
 
+### 服务
+
+> [!TIP|label:提示]
+> 用户级别的服务可以在 `~/.config/systemd/user/` 下创建 `.service` 文件来管理。
+
+- `systemctl --user status serviceName`：查看用户级别的服务状态
+- `systemctl --user start/stop serviceName`：启动/停止用户级别的服务
+- `systemctl --user enable/disable serviceName`：开机自启/禁止开机自启用户级别的服务
+
+> [!NOTE|label:注意]
+> 用户级别的服务可能会在用户会话注销后被终止，如果想要在注销后仍然运行服务，需要联系管理员进行用户会话驻留设置，参考[管理员常用-端口与服务](#端口与服务)。
+
 ### 查询
 
 - `... | grep Target`：查找指定信息，比如：
@@ -359,9 +371,10 @@
 ### 端口与服务
 
 - `lsof -i:portNumber`：查看某个端口的占用情况
+- `systemctl status serviceName`：查看服务状态
 - `systemctl start/stop serviceName`：启动/停止服务
 - `systemctl enable/disable serviceName`：开机自启/禁止开机自启
-- `systemctl status serviceName`：查看服务状态
+- `loginctl enable-linger userName`：允许某个用户在注销后仍然运行服务
 
 #### 网络
 
