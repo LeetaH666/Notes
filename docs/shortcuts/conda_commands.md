@@ -128,3 +128,17 @@ Conda 是一个包管理工具，可以隔离不同环境，方便不同环境�
 ### 无法升级 Conda
 
 通常当 conda 版本较低时，会提示使用 `conda update -n base -c conda-forge conda` 进行更新，如果使用这个命令更新失败，可以尝试使用 `conda update -n base -c defaults conda --repodata-fn=repodata.json`（source: [GitHub Issue](https://github.com/conda/conda/issues/12519#issuecomment-1483106227)）进行更新，整个过程可能时间比较长，耐心等待即可。
+
+### Windows 安装包遇到 ClobberError
+
+如果在 Windows 系统下安装包的时候遇到类似下面这个报错：
+
+> CondaVerificationError: The package for jupyterlab_widgets located at xxx appears to be corrupted. The path 'share/jupyter/labextensions/@jupyter-widgets/jupyterlab-manager/static/vendors-node_modules_d3-color_src_color_js-node_modules_d3-format_src_defaultLocale_js-node_m-09b215.2643c43f22ad111f4f82.js.map' specified in the package manifest cannot be found.
+> 
+> ClobberError: This transaction has incompatible packages due to a shared path.
+> 
+> packages: defaults/win-64::notebook-7.5.6-py310haa95532_0, defaults/win-64::notebook-7.5.6-py310haa95532_0
+> 
+> path: 'menu/notebook_menu.json'
+
+有可能是因为文件名太长，Windows 系统默认的路径长度限制为 260 个字符，超过这个长度就会报错。可以以管理员身份运行 PowerShell，然后执行 `New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force` 来解除路径长度限制。然后重启再运行 `conda clean --all` 清理缓存，再重新安装包即可。
